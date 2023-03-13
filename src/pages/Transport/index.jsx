@@ -118,7 +118,7 @@ import {
                 </div>
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="check" value="Онцолсон шалгасан" />
+                    <Label htmlFor="check" value="Онцлон шалгасан" />
                   </div>
                   <Select id="check">
                       <option value="true">Үнэн</option>
@@ -161,7 +161,7 @@ import {
                 <Table.HeadCell>Ангиллын дугаар</Table.HeadCell>
                 <Table.HeadCell>Их биеийн төрөл</Table.HeadCell>
                 <Table.HeadCell>Өнгө</Table.HeadCell>
-                <Table.HeadCell>Онцолсон шалгасан</Table.HeadCell>
+                <Table.HeadCell>Онцлон шалгасан</Table.HeadCell>
                 {/* <Select> 
                     <option value="True">Үнэн</option>
                     <option value="False">Худал</option>

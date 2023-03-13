@@ -13,6 +13,7 @@ import Human from "./pages/Human";
 import EmployeePerformance from "./pages/EmployeePerformance";
 import EmployeeSalary  from "./pages/EmployeeSalary";
 import Affiliate from "./pages/Affiliate";
+import Order from "./pages/Order";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
  {
   path: "/affiliate", 
   element: <Affiliate/>
+ },
+ {
+  path: "/order", 
+  element: <Order />
  },
 ]);
 

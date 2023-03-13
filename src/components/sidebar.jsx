@@ -9,7 +9,7 @@ const SidebarComponent = () => {
         <ItemGroup>
           <Item href="/">Нүүр</Item>
           <Collapse label="Харилцагч">
-            <Item href="/customer">Хэрэглэгчийн бүртгэл</Item>
+            <Item href="/customer">Харилцагчийн бүртгэл</Item>
             <Item href="/transport">Тээврийн хэрэгслийн бүртгэл</Item>
             <Item href="/service">Үйлчилгээний цаг авах</Item>
             <Item href="/service/history">Түүх харах</Item>
@@ -35,7 +35,7 @@ const SidebarComponent = () => {
             <Item href="#">Хямдрал, урамшуулал</Item>
           </Collapse>
           <Collapse label="Захиалга">
-            <Item href="#">Сэлбэг Захиалга</Item>
+            <Item href="/order">Сэлбэг Захиалга</Item>
             <Item href="#">Inquiry авах</Item>
           </Collapse>
           <Item>Системээс гарах</Item>

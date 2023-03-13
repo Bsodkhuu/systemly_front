@@ -4,7 +4,6 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Label, TextInput, Button, Table} from "flowbite-react";
 const Service = () => {
-
   return(
     <Layout> 
           <form className="flex flex-col gap-4  overflow-y-auto">
@@ -25,7 +24,7 @@ const Service = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="model" value="Модел" />
+                  <Label htmlFor="model" value="Маяг" />
                 </div>
                 <TextInput id="model" />
               </div>
