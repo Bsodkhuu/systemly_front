@@ -12,7 +12,7 @@ const SidebarComponent = () => {
             <Item href="/customer">Хэрэглэгчийн бүртгэл</Item>
             <Item href="/transport">Тээврийн хэрэгслийн бүртгэл</Item>
             <Item href="/service">Үйлчилгээний цаг авах</Item>
-            <Item href="/history">Түүх харах</Item>
+            <Item href="/service/history">Түүх харах</Item>
           </Collapse>
           <Collapse label="Хүний нөөц">
             <Item href="#">Нийт ажилчдын бүртгэл</Item>

@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     element: <Service/>,
   },
  {
-  path: "/history", 
+  path: "/service/history", 
   element: <ServiceHistory/>
  }, 
 ]);
