@@ -14,22 +14,29 @@ const SidebarComponent = () => {
             <Item href="/service">Үйлчилгээний цаг авах</Item>
             <Item href="/service/history">Түүх харах</Item>
           </Collapse>
+          <Collapse label="Гишүүд">
+            <Item href="/affiliate">Манай гишүүд</Item>
+            <Item href="#">Брэндбүүк</Item>
+            <Item href="#">Танилцуулга</Item>
+            <Item href="#">Шинэ гишүүний судалгаа</Item>
+          </Collapse>
           <Collapse label="Хүний нөөц">
-            <Item href="#">Нийт ажилчдын бүртгэл</Item>
-            <Item href="#">Ажилчдын ажлын гүйцэтгэлийг бүртгэх, хянах</Item>
-            <Item href="#">Ажилчдын цалин урамшуулал хянах</Item>
+            <Item href="/human">Нийт ажилчдын бүртгэл</Item>
+            <Item href="/employee/performance">Ажилчдын ажлын гүйцэтгэлийг бүртгэх, хянах</Item>
+            <Item href="/employee/salary">Ажилчдын цалин урамшуулал хянах</Item>
           </Collapse>
           <Collapse label="Агуулах">
-            <Item>Агуулахын бүртгэл</Item>
-            <Item>Худалдан авалт</Item>
+            <Item href="#">Агуулахын бүртгэл</Item>
+            <Item href="#">Худалдан авалт</Item>
           </Collapse>
           <Collapse label="Борлуулалт">
-            <Item>Нийт бүтээгдэхүүний борлуулалт</Item>
-            <Item>Үйлчилгээний төлбөр тооцоо</Item>
-            <Item>Хямдрал, урамшуулал</Item>
+            <Item href="#">Нийт бүтээгдэхүүний борлуулалт</Item>
+            <Item href="#">Үйлчилгээний төлбөр тооцоо</Item>
+            <Item href="#">Хямдрал, урамшуулал</Item>
           </Collapse>
           <Collapse label="Захиалга">
-            <Item>Сэлбэгийн Захиалга</Item>
+            <Item href="#">Сэлбэг Захиалга</Item>
+            <Item href="#">Inquiry авах</Item>
           </Collapse>
           <Item>Системээс гарах</Item>
         </ItemGroup>

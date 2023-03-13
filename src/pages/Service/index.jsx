@@ -1,6 +1,12 @@
+import Layout from "../../components/layout";
+
 const Service = () => {
   return(
-    <h1>Service </h1>
+    <Layout> 
+      <div>
+        <h1>Үйлчилгээний цаг авах </h1>
+      </div>
+    </Layout>
   );
 }
 export default Service; 

@@ -10,6 +10,7 @@ const ServiceHistory = () => {
           <h1 className="text-2xl">Түүх харах</h1>
           <div className="flex gap-4"> 
           <TextInput id="search" type="search" placeholder="Хайх"/>
+         
           </div>
         </div>
         <Table>
@@ -17,9 +18,11 @@ const ServiceHistory = () => {
             <Table.HeadCell>Vin дугаар</Table.HeadCell>
             <Table.HeadCell>Он сар</Table.HeadCell>
             <Table.HeadCell>Гишүүний дугаар</Table.HeadCell>
-            <Table.HeadCell>Түүх</Table.HeadCell>
+            <Table.HeadCell>Үйлчилгээний түүх</Table.HeadCell>
+            <Table.HeadCell>Үйлчилгээний төрлийн нэр</Table.HeadCell>
             <Table.HeadCell>Ажил гүйцэтгэсэн ажилтан</Table.HeadCell>
             <Table.HeadCell>Тоо хэмжээ</Table.HeadCell>
+            <Table.HeadCell>Үнэ</Table.HeadCell>
             <Table.HeadCell>Зардал</Table.HeadCell>
             <Table.HeadCell>Хөнгөлөлт</Table.HeadCell>
             <Table.HeadCell>Нийт дүн</Table.HeadCell>
@@ -31,10 +34,12 @@ const ServiceHistory = () => {
             <Table.Cell>2023.01.11</Table.Cell>
             <Table.Cell>q</Table.Cell>
             <Table.Cell>2</Table.Cell>
+            <Table.Cell>Үйлчилгээний төрлийн нэр</Table.Cell>
             <Table.Cell>Example</Table.Cell>
             <Table.Cell>1</Table.Cell>
             <Table.Cell>12</Table.Cell>
-            <Table.Cell>120000</Table.Cell>
+            <Table.Cell>100,000</Table.Cell>
+            <Table.Cell>120,000</Table.Cell>
             <Table.Cell>1200000</Table.Cell>
           </Table.Row>
           </Table.Body>

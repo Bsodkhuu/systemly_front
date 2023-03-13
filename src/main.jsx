@@ -9,6 +9,10 @@ import Login from "./pages/Login";
 import Transport from "./pages/Transport";
 import Service from "./pages/Service";
 import ServiceHistory from "./pages/ServiceHistory";
+import Human from "./pages/Human";
+import EmployeePerformance from "./pages/EmployeePerformance";
+import EmployeeSalary  from "./pages/EmployeeSalary";
+import Affiliate from "./pages/Affiliate";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +39,22 @@ const router = createBrowserRouter([
   path: "/service/history", 
   element: <ServiceHistory/>
  }, 
+ {
+  path: "/human", 
+  element: <Human/>
+ },
+ {
+  path: "/employee/performance", 
+  element: <EmployeePerformance/>
+ },
+ {
+  path: "/employee/salary",
+  element: <EmployeeSalary />
+ },
+ {
+  path: "/affiliate", 
+  element: <Affiliate/>
+ },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
