@@ -15,32 +15,32 @@ const ServiceHistory = () => {
         </div>
         <Table>
           <Table.Head className="uppercase">
-            <Table.HeadCell>Vin дугаар</Table.HeadCell>
-            <Table.HeadCell>Он сар</Table.HeadCell>
-            <Table.HeadCell>Гишүүний дугаар</Table.HeadCell>
-            <Table.HeadCell>Үйлчилгээний түүх</Table.HeadCell>
-            <Table.HeadCell>Үйлчилгээний төрлийн нэр</Table.HeadCell>
+            <Table.HeadCell>Загвар</Table.HeadCell>
+            <Table.HeadCell>Маяг</Table.HeadCell>
+            <Table.HeadCell>Үйлчилгээ авсан он сар</Table.HeadCell>
+            <Table.HeadCell>Үйлчилгээ өгсөн ажилтны нэр</Table.HeadCell>
+            <Table.HeadCell>Үйлчилгээний төрөл</Table.HeadCell>
             <Table.HeadCell>Ажил гүйцэтгэсэн ажилтан</Table.HeadCell>
             <Table.HeadCell>Тоо хэмжээ</Table.HeadCell>
-            <Table.HeadCell>Үнэ</Table.HeadCell>
+            <Table.HeadCell>Үйлчилгээний үнэ</Table.HeadCell>
             <Table.HeadCell>Зардал</Table.HeadCell>
             <Table.HeadCell>Хөнгөлөлт</Table.HeadCell>
             <Table.HeadCell>Нийт дүн</Table.HeadCell>
-            
           </Table.Head>
           <Table.Body className="dividy-y"> 
           <Table.Row> 
             <Table.Cell>1</Table.Cell>
+            <Table.Cell>1</Table.Cell>
             <Table.Cell>2023.01.11</Table.Cell>
             <Table.Cell>q</Table.Cell>
-            <Table.Cell>2</Table.Cell>
-            <Table.Cell>Үйлчилгээний төрлийн нэр</Table.Cell>
-            <Table.Cell>Example</Table.Cell>
+            <Table.Cell>q</Table.Cell>
+            <Table.Cell>нэр</Table.Cell>
             <Table.Cell>1</Table.Cell>
-            <Table.Cell>12</Table.Cell>
+            <Table.Cell>1</Table.Cell>
+            <Table.Cell>120,000</Table.Cell>
             <Table.Cell>100,000</Table.Cell>
             <Table.Cell>120,000</Table.Cell>
-            <Table.Cell>1200000</Table.Cell>
+            
           </Table.Row>
           </Table.Body>
         </Table>
