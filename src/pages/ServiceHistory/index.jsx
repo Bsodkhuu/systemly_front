@@ -18,7 +18,7 @@ const ServiceHistory = () => {
             <Table.HeadCell>Загвар</Table.HeadCell>
             <Table.HeadCell>Маяг</Table.HeadCell>
             <Table.HeadCell>Үйлчилгээ авсан он сар</Table.HeadCell>
-            <Table.HeadCell>Үйлчилгээ өгсөн ажилтны нэр</Table.HeadCell>
+            
             <Table.HeadCell>Үйлчилгээний төрөл</Table.HeadCell>
             <Table.HeadCell>Ажил гүйцэтгэсэн ажилтан</Table.HeadCell>
             <Table.HeadCell>Тоо хэмжээ</Table.HeadCell>
@@ -32,7 +32,6 @@ const ServiceHistory = () => {
             <Table.Cell>1</Table.Cell>
             <Table.Cell>1</Table.Cell>
             <Table.Cell>2023.01.11</Table.Cell>
-            <Table.Cell>q</Table.Cell>
             <Table.Cell>q</Table.Cell>
             <Table.Cell>нэр</Table.Cell>
             <Table.Cell>1</Table.Cell>
