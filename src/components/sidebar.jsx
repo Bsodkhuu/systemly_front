@@ -4,7 +4,7 @@ const { Item, Collapse, Items, ItemGroup } = Sidebar;
 
 const SidebarComponent = () => {
   return (
-    <Sidebar className="w-1/3">
+    <Sidebar className="w-1/4">
       <Items>
         <ItemGroup>
           <Item href="/">Нүүр</Item>
@@ -22,7 +22,7 @@ const SidebarComponent = () => {
           </Collapse>
           <Collapse label="Хүний нөөц">
             <Item href="/human">Нийт ажилчдын бүртгэл</Item>
-            <Item href="/employee/performance">Ажилчдын ажлын гүйцэтгэлийг бүртгэх, хянах</Item>
+            <Item href="/employee/performance">Ажилчдын ажлын гүйцэтгэлийг бүртгэх</Item>
             <Item href="/employee/salary">Ажилчдын цалин урамшуулал хянах</Item>
           </Collapse>
           <Collapse label="Агуулах">
