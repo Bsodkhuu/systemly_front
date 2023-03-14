@@ -14,6 +14,7 @@ import EmployeePerformance from "./pages/EmployeePerformance";
 import EmployeeSalary  from "./pages/EmployeeSalary";
 import Affiliate from "./pages/Affiliate";
 import Order from "./pages/Order";
+import Information from "./pages/Information";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
  {
   path: "/order", 
   element: <Order />
+ },
+ {
+  path: "/information", 
+  element: <Information />
  },
 ]);
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { TextInput, Button, Tabs,Table,  Modal, Label, FileInput} from "flowbite-react";
+import { TextInput, Button, Table,  Modal, Label, FileInput} from "flowbite-react";
 const Human = () => {
     const [showModal, setShowModal] = useState(false);
 
@@ -20,7 +20,7 @@ const Human = () => {
     return (
         <Layout>
            <Modal show={showModal} onClose={closeModal}>
-        <Modal.Header>Хэлтэс нэмэх</Modal.Header>
+        <Modal.Header>Шинэ ажилтан нэмэх</Modal.Header>
         <Modal.Body>
           <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
             <div className="flex gap-4">
@@ -99,14 +99,18 @@ const Human = () => {
       <div className="p-4 bg-gray-200 h-screen w-full">
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
-            <Tabs.Group style="underline">
-                <Tabs.Item title="Жагсаалт">
-                    <h2>Example</h2>
-                    <h2>Example</h2>
-                    <h2>Example</h2>
-                    <h2>Example</h2>
-
-                    <Table> 
+          <h4 className="text-1xl">Харилцагчын жагсаалт
+          &nbsp;&nbsp;
+          <a href="/information" className="text-1xl">Ажилтны мэдээллэл</a></h4>
+          
+            <div className="flex gap-4">
+              <TextInput id="search" type="search" placeholder="Хайх" />
+              <Button className="bg-blue-500" onClick={openModal}>
+                Ажилтан нэмэх
+              </Button>
+            </div>
+          </div>
+          <Table> 
                         <Table.Head className="uppercase">
                         <Table.HeadCell>Ажилтны дугаар</Table.HeadCell>
                         <Table.HeadCell>Нэр</Table.HeadCell>
@@ -133,26 +137,8 @@ const Human = () => {
                             </Table.Row>
                         </Table.Body>
                     </Table>
-                </Tabs.Item>
-                <Tabs.Item title="Мэдээлэл харах">
-                <h2>Example</h2>
-                    <h2>Example</h2>
-                    <h2>Example</h2>
-                    <h2>Example</h2>
-                    
-                </Tabs.Item>
-            </Tabs.Group>
-
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500" onClick={openModal}>
-                Ажилтан нэмэх
-              </Button>
-            </div>
-
           </div>
           
-          </div>
           </div>
         </Layout>
     );
