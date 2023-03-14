@@ -1,10 +1,10 @@
-import { Footer, Sidebar } from "flowbite-react";
+import { Sidebar } from "flowbite-react";
 
 const { Item, Collapse, Items, ItemGroup } = Sidebar;
 
 const SidebarComponent = () => {
   return (
-    <Sidebar className="w-1/4">
+    <Sidebar className="w-1/3">
       <Items>
         <ItemGroup>
           <Item href="/">Нүүр</Item>
@@ -15,7 +15,7 @@ const SidebarComponent = () => {
             <Item href="/service/history">Түүх харах</Item>
           </Collapse>
           <Collapse label="Гишүүд">
-            <Item href="/affiliate">Манай гишүүд</Item>
+            <Item href="#">Манай гишүүд</Item>
             <Item href="#">Брэндбүүк</Item>
             <Item href="#">Танилцуулга</Item>
             <Item href="#">Шинэ гишүүний судалгаа</Item>
@@ -26,7 +26,7 @@ const SidebarComponent = () => {
             <Item href="/employee/salary">Ажилчдын цалин урамшуулал хянах</Item>
           </Collapse>
           <Collapse label="Агуулах">
-            <Item href="#">Агуулахын бүртгэл</Item>
+            <Item href="/warehouse">Агуулахын бүртгэл</Item>
             <Item href="#">Худалдан авалт</Item>
           </Collapse>
           <Collapse label="Борлуулалт">

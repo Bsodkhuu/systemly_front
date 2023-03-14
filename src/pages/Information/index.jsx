@@ -45,7 +45,7 @@ const Information = () => {
             </Card>
             </div>
             
-            <div className="mt-4 flex space-x-3 lg:mt-6 absolute inset-x-10 left-100">
+            <div className="mt-4 flex space-x-3 lg:mt-6">
             <Timeline vertical={true}>
                 <Timeline.Item>
                     <Timeline.Point />

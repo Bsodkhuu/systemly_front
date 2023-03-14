@@ -15,6 +15,7 @@ import EmployeeSalary  from "./pages/EmployeeSalary";
 import Affiliate from "./pages/Affiliate";
 import Order from "./pages/Order";
 import Information from "./pages/Information";
+import Warehouse from "./pages/Warehouse";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
   path: "/information", 
   element: <Information />
  },
+ {
+  path: "/warehouse", 
+  element: <Warehouse/>
+ }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
