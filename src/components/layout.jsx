@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import SidebarComponent from "./sidebar";
 import { Navbar, Dropdown, Avatar, Footer } from "flowbite-react";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 
 const Layout = ({ children }) => {
   return (

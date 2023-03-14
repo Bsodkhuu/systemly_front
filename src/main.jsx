@@ -16,6 +16,7 @@ import Affiliate from "./pages/Affiliate";
 import Order from "./pages/Order";
 import Information from "./pages/Information";
 import Warehouse from "./pages/Warehouse";
+import Purchase from "./pages/Purchase";
 
 const router = createBrowserRouter([
   {
@@ -69,7 +70,11 @@ const router = createBrowserRouter([
  {
   path: "/warehouse", 
   element: <Warehouse/>
- }
+ }, 
+ {
+  path: "/purchase", 
+  element: <Purchase/>
+ },
 
 ]);
 

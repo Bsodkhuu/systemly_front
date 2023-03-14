@@ -27,7 +27,7 @@ const SidebarComponent = () => {
           </Collapse>
           <Collapse label="Агуулах">
             <Item href="/warehouse">Агуулахын бүртгэл</Item>
-            <Item href="#">Худалдан авалт</Item>
+            <Item href="/purchase">Худалдан авалт</Item>
           </Collapse>
           <Collapse label="Борлуулалт">
             <Item href="#">Нийт бүтээгдэхүүний борлуулалт</Item>
