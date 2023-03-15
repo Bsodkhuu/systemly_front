@@ -10,7 +10,7 @@ const Description = () => {
             <div className="p-4 bg-gray-200 h-screen w-full"> 
             <div className="bg-white p-6 rounded-lg">
               <div className="flex justify-between mb-4"> 
-                  <h4 className="text-1xl">Бараа материалын дэлгэрэнгүй</h4>
+                  <h4 className="text-1xl">Агуулах</h4>
                   <div className="flex gap-4"> 
                   <TextInput id="search" type="search" placeholder="Партын дугаар"/>
                     <Button className="bg-blue-200">
@@ -66,15 +66,14 @@ const Description = () => {
                 <Table.Cell>50,000</Table.Cell>
                 <Table.Cell>500,000</Table.Cell>
                 <Table.Cell className="text-xl">
-                  <FontAwesomeIcon icon={faCartShopping} />
+                 <a href="/purchase">
+                 <FontAwesomeIcon icon={faCartShopping} />
+                 </a>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
          </Table>
         </div>
-         
-         
-       
             </div>
             </div>
         </Layout>

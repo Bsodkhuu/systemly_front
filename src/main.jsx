@@ -80,7 +80,10 @@ const router = createBrowserRouter([
   path: "/description", 
   element: <Description/>
  },
-
+ {
+  path: "/purchase", 
+  element: <Purchase/>
+ },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

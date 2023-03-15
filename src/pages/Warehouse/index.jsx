@@ -3,12 +3,22 @@ import {
     FileInput,
     Label,
     Modal,
-    TextInput, Avatar
+    TextInput, Avatar,Card
   } from "flowbite-react";
+
   import Layout from "../../components/layout";
-  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-  import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-  import { faTrash } from "@fortawesome/free-solid-svg-icons";
+  import { Bar, Pie } from "react-chartjs-2";
+  import {
+    Chart,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    ArcElement,
+  } from "chart.js";
+  Chart.register(CategoryScale);
+  Chart.register(LinearScale);
+  Chart.register(BarElement);
+  Chart.register(ArcElement);
   import { useState } from "react";
   
   const Warehouse = () => {
@@ -71,7 +81,7 @@ import {
         <div className="p-4 bg-gray-200 h-screen w-full">
           <div className="bg-white p-6 rounded-lg">
             <div className="flex justify-between mb-4">
-              <h1 className="text-1xl">Агуулах бүртгэл</h1>
+              <h1 className="text-1xl">Агуулах</h1>
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
                 <Button className="bg-blue-500" onClick={openModal}>
@@ -82,13 +92,28 @@ import {
            <div className="flex flex-wrap items-center gap-2">
             <a href="/description" className="text-1xl"> 
             <Avatar placeholderInitials="" size="xl">
-              
               </Avatar> 
             </a>
             <a href="/description" className="text-1xl"> 
             <Avatar placeholderInitials="" size="xl" /> 
             </a>
            </div>
+           &nbsp;
+           <Card className="w-2/5 h-96">
+          <Bar
+            data={{
+              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              datasets: [
+                {
+                  label: "# of Votes",
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderWidth: 1,
+                  backgroundColor: "#9925be",
+                },
+              ],
+            }}
+          />
+        </Card>
           </div>
         </div>
       </Layout>

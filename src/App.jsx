@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./components/layout";
-import { Card } from "flowbite-react";
+import { Card, TextInput} from "flowbite-react";
 import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart,
@@ -19,6 +19,10 @@ const App = () => {
   return (
     <Layout>
       <div className="h-screen p-6 flex gap-4">
+      <div className="flex gap-4">
+              <TextInput id="search" type="search" placeholder="Хайх" />
+              
+            </div>
         <Card className="w-2/5 h-96">
           <Bar
             data={{
