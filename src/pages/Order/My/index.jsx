@@ -29,10 +29,8 @@ const My= () => {
              </Button>
              </div>
              </div>
-             
-
           <div className="grid grid-cols-2"> 
-            <div className="flex p-4"> 
+            <div className="p-4"> 
             <Card> 
             <h5 className="text-1xl">Захиалгийн жагсаалт</h5>
                <div className="flex gap-4"> 
@@ -54,7 +52,7 @@ const My= () => {
                <Checkbox />
               </Table.HeadCell>
                 <Table.HeadCell> 
-                   Захиалгийн дугаар
+                   Захиалга
                 </Table.HeadCell>
                 <Table.HeadCell> 
                    Нийлүүлэгч
@@ -78,6 +76,7 @@ const My= () => {
                     <option value="teewerlelt">Тээвэрлэлт эхэлсэн</option>
                     <option value="ub">Улаанбаатарт ирсэн</option>
                     <option value="zahialagchid">Захиалагчид хүргэж өгсөн</option>
+                    <option value="payment">Төлбөр төлөгдсөн</option>
                   </Select>
                 </Table.Cell>
               </Table.Row>
@@ -86,12 +85,58 @@ const My= () => {
             </Card>
             </div>
             <div className="p-4">
-              <div className="border">
-                <p>Сонгосон захиалгийн дэлгэрэнгүй</p>
+              <div className="flex p-4">
+               <Card> 
+                <h5 className="text-1xl">Захиалгийн дэлгэрэнгүй</h5>
+                  <div className="flex gap-4">
+                    <Table> 
+                        <Table.Head> 
+                            <Table.HeadCell>Захиалга</Table.HeadCell>
+                            <Table.HeadCell>Партын дугаар</Table.HeadCell>
+                            <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                            <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
+                            <Table.HeadCell>Currency</Table.HeadCell>
+                            <Table.HeadCell>Нийт үнэ</Table.HeadCell>
+                        </Table.Head>
+                        <Table.Body className="divide-y"> 
+                        <Table.Row> 
+                            <Table.Cell>Meyle</Table.Cell>
+                            <Table.Cell>12345</Table.Cell>
+                            <Table.Cell>10</Table.Cell>
+                            <Table.Cell>50.0</Table.Cell>
+                            <Table.Cell>$</Table.Cell>
+                            <Table.Cell>500.000</Table.Cell>
+                        </Table.Row>
+                        </Table.Body>
+                    </Table>
+                  </div>
+               </Card>
               </div>
               <div className="p-4"> 
-              <div className="border">
-              <p>Сонгосон захиалгийн замын мэдээний дэлгэрэнгүй</p>
+              <div className="flex p-4">
+              <Card> 
+                <h5 className="text-1xl">Замын мэдээний дэлгэрэнгүй</h5>
+                 <div className="flex gap-4"> 
+                 <Table> 
+                        <Table.Head> 
+                       
+                            <Table.HeadCell>Байршил</Table.HeadCell>
+                            <Table.HeadCell>Статус</Table.HeadCell>
+                            <Table.HeadCell>Он сар</Table.HeadCell>
+                           
+                        </Table.Head>
+                        <Table.Body className="divide-y"> 
+                        <Table.Row> 
+                       
+                            <Table.Cell>Bad bentheim,GE</Table.Cell>
+                            <Table.Cell>Ирсэн</Table.Cell>
+                            <Table.Cell>2023.03.15</Table.Cell>
+                           
+                        </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+              </Card>
               </div>
               </div>
             </div>

@@ -40,9 +40,9 @@ const History = () => {
                 <Table.Cell>Meyle</Table.Cell>
                 <Table.Cell>11111</Table.Cell>
                 <Table.Cell>
-                <Select>
-                    <option value="payment">Төлбөр төлөгдсөн</option>
-                  </Select>
+                <Table.Cell>
+                Төлбөр төлөгдсөн
+                </Table.Cell>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>

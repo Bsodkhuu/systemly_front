@@ -101,6 +101,7 @@ const Human = () => {
           <div className="flex justify-between mb-4">
           <h4 className="text-1xl">Харилцагчын жагсаалт
          </h4>
+         
           
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
