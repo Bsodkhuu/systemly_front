@@ -9,10 +9,13 @@ import Login from "./pages/Login";
 import Human from "./pages/Human";
 import Order from "./pages/Order";
 import Warehouse from "./pages/Warehouse";
-import Description from "./pages/Warehouse/Description";
 import My from "./pages/Order/My";
 import Sale from "./pages/Sale";
 import Spare from "./pages/Spare"; 
+import Maintenance from "./pages/Maintenance";
+import Price from "./pages/Price";
+import History from "./pages/Order/History";
+
 
 const router = createBrowserRouter([
   {
@@ -20,9 +23,14 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: "/history",
+    element: <History />,
+  },
+  {
     path: "/sale", 
     element: <Sale/>
   },
+ 
   {
     path: "/spare", 
     element: <Spare/>
@@ -56,10 +64,13 @@ const router = createBrowserRouter([
  }, 
  
  {
-  path: "/description", 
-  element: <Description/>
+  path: "/maintenance", 
+  element: <Maintenance/>
  },
-
+{
+  path: "/price", 
+  element: <Price/>
+},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

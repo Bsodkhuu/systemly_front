@@ -25,8 +25,8 @@ const SidebarComponent = () => {
             <Item href="/spare">Сэлбэгийн үлдэгдэл</Item>
           </Collapse>
           <Collapse label="Тохиргоо">
-            <Item href="#">Засвар</Item>
-            <Item href="#">Засварын үнийн тохиргоо</Item>
+            <Item href="/maintenance">Засвар</Item>
+            <Item href="/price">Засварын үнийн тохиргоо</Item>
           </Collapse>
          
           <Item>Системээс гарах</Item>
