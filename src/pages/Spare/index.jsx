@@ -1,11 +1,10 @@
 import Layout from "../../components/layout";
 
-const Purchase = () => {
+const Spare = () => {
     return(
         <Layout> 
-         <h1>Худалдан авалт</h1>
+            <h1>Сэлбэгийн үлдэгдэл</h1>
         </Layout>
     );
 }
-
-export default Purchase;
+export default Spare;

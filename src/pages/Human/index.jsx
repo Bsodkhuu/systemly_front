@@ -100,8 +100,7 @@ const Human = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
           <h4 className="text-1xl">Харилцагчын жагсаалт
-          &nbsp;&nbsp;
-          <a href="/information" className="text-1xl">Ажилтны мэдээллэл</a></h4>
+         </h4>
           
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />

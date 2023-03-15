@@ -19,10 +19,9 @@ const App = () => {
   return (
     <Layout>
       <div className="h-screen p-6 flex gap-4">
-      <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-              
-            </div>
+        <h1>худалдан авалтын тайлан</h1>
+        <h1>борлуулалтын тайлан</h1>
+        <h1>Нарядын тайлан</h1>
         <Card className="w-2/5 h-96">
           <Bar
             data={{
