@@ -4,7 +4,7 @@ const { Item, Collapse, Items, ItemGroup } = Sidebar;
 
 const SidebarComponent = () => {
   return (
-    <Sidebar className="w-1/3 h-screen">
+    <Sidebar className="w-1/4 h-screen">
       <Items>
         <ItemGroup>
           <Item href="/">Нүүр</Item>

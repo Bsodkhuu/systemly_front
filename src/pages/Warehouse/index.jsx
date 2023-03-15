@@ -3,7 +3,7 @@ import {
     FileInput,
     Label,
     Modal,
-    TextInput,Card
+    TextInput, Avatar
   } from "flowbite-react";
   import Layout from "../../components/layout";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -79,9 +79,16 @@ import {
                 </Button>
               </div>
             </div>
-           <Card> 
-          
-           </Card>
+           <div className="flex flex-wrap items-center gap-2">
+            <a href="/description" className="text-1xl"> 
+            <Avatar placeholderInitials="" size="xl">
+              
+              </Avatar> 
+            </a>
+            <a href="/description" className="text-1xl"> 
+            <Avatar placeholderInitials="" size="xl" /> 
+            </a>
+           </div>
           </div>
         </div>
       </Layout>

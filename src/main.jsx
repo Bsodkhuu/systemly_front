@@ -17,6 +17,7 @@ import Order from "./pages/Order";
 import Information from "./pages/Information";
 import Warehouse from "./pages/Warehouse";
 import Purchase from "./pages/Purchase";
+import Description from "./pages/Warehouse/Description";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
  {
   path: "/purchase", 
   element: <Purchase/>
+ },
+ {
+  path: "/description", 
+  element: <Description/>
  },
 
 ]);
