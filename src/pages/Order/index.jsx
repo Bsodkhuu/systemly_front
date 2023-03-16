@@ -20,7 +20,7 @@ const Order = () => {
         <div className="p-4 bg-gray-200 h-screen w-full"> 
          <div className="bg-white p-6 rounded-lg">
            <div className="flex justify-between mb-4"> 
-            <h5 className="text-1xl">Захиалга хийх</h5>
+            <h5 className="text-1xl">Сэлбэгийн захиалга хийх</h5>
            <div className="flex gap-4">
                <div className="w-1/2"> 
                  <div className="mb-2 block"> 
@@ -58,7 +58,9 @@ const Order = () => {
             <div className="border"> 
               <Table className="divide-y"> 
                 <Table.Head className="uppercase"> 
+                <Table.HeadCell>Сериал</Table.HeadCell>
                  <Table.HeadCell>Брэнд</Table.HeadCell>
+                 <Table.HeadCell>OE</Table.HeadCell>
                  <Table.HeadCell>Партын дугаар</Table.HeadCell>
                  <Table.HeadCell>Тайлбар</Table.HeadCell>
                  <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
@@ -68,11 +70,13 @@ const Order = () => {
                 </Table.Head>
                 <Table.Body className="divide-y"> 
                 <Table.Row> 
+                <Table.Cell>EK508</Table.Cell>
                   <Table.Cell>
                     <Avatar src="" />
                   </Table.Cell>
                   <Table.Cell>12345</Table.Cell>
                   <Table.Cell>Meyle</Table.Cell>
+                  <Table.HeadCell>OE</Table.HeadCell>
                   <Table.Cell>10.000</Table.Cell>
                   <Table.Cell>$</Table.Cell>
                   <Table.Cell>

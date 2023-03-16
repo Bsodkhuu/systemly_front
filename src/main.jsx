@@ -17,13 +17,16 @@ import Price from "./pages/Price";
 import History from "./pages/Order/History";
 import Create from "./pages/Order/Create";
 import Cart from "./pages/Order/Cart";
-
+import Checkbox from "./pages/Order/Checkbox";
+import Payment from "./pages/Order/Payment";
+import Inquiry from "./pages/Order/Inquiry";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+  
   {
     path: "/cart", 
     element: <Cart/>
@@ -35,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/history",
     element: <History />,
+  },
+  {
+    path: "/checkbox",
+    element: <Checkbox />,
   },
 
   {
@@ -70,6 +77,11 @@ const router = createBrowserRouter([
  },
 
  {
+  path: "/payment", 
+  element: <Payment/>
+ },
+
+ {
   path: "/warehouse", 
   element: <Warehouse/>
  }, 
@@ -81,6 +93,10 @@ const router = createBrowserRouter([
 {
   path: "/price", 
   element: <Price/>
+},
+{
+  path: "/inquiry", 
+  element: <Inquiry/>
 },
 ]);
 

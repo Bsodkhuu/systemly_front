@@ -7,6 +7,9 @@ const Cart = () => {
            <h1 className="text-1xl">Сагс</h1>
              <div className="w-50"> 
               <ListGroup> 
+              <ListGroup.Item> 
+                Сериал: EK508 
+              </ListGroup.Item>
                 <ListGroup.Item> 
                 <Avatar src=""/>
               </ListGroup.Item>
