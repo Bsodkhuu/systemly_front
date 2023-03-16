@@ -99,7 +99,7 @@ const Human = () => {
       <div className="p-4 bg-gray-200 h-screen w-full">
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
-          <h4 className="text-1xl">Харилцагчын жагсаалт
+          <h4 className="text-1xl">Ажилтны жагсаалт
          </h4>
          
           

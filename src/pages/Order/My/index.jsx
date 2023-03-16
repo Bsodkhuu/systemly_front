@@ -2,7 +2,8 @@ import { useState } from "react";
 import { TextInput, Button, Card, Table, Select,Checkbox} from "flowbite-react";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 const My= () => {
 
     const [showSearch, setSearch] = useState(false);
@@ -60,6 +61,9 @@ const My= () => {
                 <Table.HeadCell> 
                    Статус
                 </Table.HeadCell>
+                <Table.HeadCell> 
+                   Үйлдэл
+                </Table.HeadCell>
                </Table.Head>
                 <Table.Body className="divide-y">
               <Table.Row>
@@ -78,6 +82,10 @@ const My= () => {
                     <option value="zahialagchid">Захиалагчид хүргэж өгсөн</option>
                     <option value="payment">Төлбөр төлөгдсөн</option>
                   </Select>
+                </Table.Cell>
+                <Table.Cell className="text-xl space-x-2">
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                  <FontAwesomeIcon icon={faTrash} />
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
