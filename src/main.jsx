@@ -15,12 +15,22 @@ import Spare from "./pages/Spare";
 import Maintenance from "./pages/Maintenance";
 import Price from "./pages/Price";
 import History from "./pages/Order/History";
+import Create from "./pages/Order/Create";
+import Cart from "./pages/Order/Cart";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/cart", 
+    element: <Cart/>
+  },
+  {
+    path: "/create", 
+    element: <Create/>
   },
   {
     path: "/history",

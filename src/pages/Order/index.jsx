@@ -1,15 +1,20 @@
 import { TextInput, Button,Card, Table, Select, Label, Avatar, ListGroup} from "flowbite-react";
 import Layout from "../../components/layout";
+import Cart from "../Order/Cart/index"; 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const Order = () => {
   const [showSearch, setSearch] = useState(false);
-    
+  const [showCancel, setCancel] = useState(false);
   function Haih(){
       //fetch api
      setSearch(true);
   }
+  function cancel(){
+    //fetch api
+   setCancel(true);
+}
   return (
     <Layout> 
         <div className="p-4 bg-gray-200 h-screen w-full"> 
@@ -43,7 +48,7 @@ const Order = () => {
            </div>
            </div>
            {/* Category, subcategory */}
-           <div className="grid grid-cols-2">
+           <div className="grid grid-cols-2 ">
             <div className="col-span-2"> 
             
                <h1 className="text-1xl">Ангилал</h1>
@@ -74,7 +79,9 @@ const Order = () => {
                     <TextInput type="number" id="numbers"/>
                   </Table.Cell>
                   <Table.Cell className="text-xl space-x-2">
+                 
                   <FontAwesomeIcon icon={faCartShopping} />
+                
                 </Table.Cell>
                 </Table.Row>
                 </Table.Body>
@@ -83,42 +90,9 @@ const Order = () => {
             </div>
 
             {/* Сагс */}
-            <div className="p-4"> 
-            <Card className="max-w-sm"> 
-            <h1 className="text-1xl">Сагс</h1>
-            <div className="w-50"> 
-            <ListGroup> 
-              <ListGroup.Item> 
-                <Avatar src=""/>
-              </ListGroup.Item>
-              <ListGroup.Item> 
-                Партын дугаар: 12345
-              </ListGroup.Item>
-              <ListGroup.Item> 
-                Тайлбар: Meyle
-              </ListGroup.Item>
-              <ListGroup.Item> 
-                Нэгжийн үнэ: 50
-              </ListGroup.Item>
-              <ListGroup.Item> 
-                Валют: $
-              </ListGroup.Item>
-              <ListGroup.Item> 
-                Тоо ширхэг: 1
-              </ListGroup.Item>
-              <ListGroup.Item> 
-                Нийт үнэ: 50$
-              </ListGroup.Item>
-            </ListGroup>
-             &nbsp;
-            <Button  className="bg-blue-500"> 
-              Захиалга үүсгэх
-            </Button>
-            </div>
-            </Card>
-            
-            </div>
-
+              
+              <Cart/>
+            {/* захиалга үүсгэх  */}
            </div>
          </div>
         </div>
