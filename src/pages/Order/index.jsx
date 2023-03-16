@@ -21,6 +21,9 @@ const Order = () => {
          <div className="bg-white p-6 rounded-lg">
            <div className="flex justify-between mb-4"> 
             <h5 className="text-1xl">Сэлбэгийн захиалга хийх</h5>
+            <a href="/inquiry">
+            <h5 className="text-1xl">Inquiry</h5>
+            </a>
            <div className="flex gap-4">
                <div className="w-1/2"> 
                  <div className="mb-2 block"> 

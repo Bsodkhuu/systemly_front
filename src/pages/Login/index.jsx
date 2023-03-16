@@ -4,7 +4,7 @@ const Login = () => {
     <div class="flex h-screen justify-center items-center">
       <Card>
         <h5 className="justify-center items-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          NEXUS AUTO
+          NEXUS ERP SYSTEM
         </h5>
 
         <form className="flex flex-col gap-4">

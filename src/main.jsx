@@ -10,23 +10,43 @@ import Human from "./pages/Human";
 import Order from "./pages/Order";
 import Warehouse from "./pages/Warehouse";
 import My from "./pages/Order/My";
-import Sale from "./pages/Sale";
-import Spare from "./pages/Spare"; 
-import Maintenance from "./pages/Maintenance";
-import Price from "./pages/Price";
 import History from "./pages/Order/History";
 import Create from "./pages/Order/Create";
 import Cart from "./pages/Order/Cart";
 import Checkbox from "./pages/Order/Checkbox";
 import Payment from "./pages/Order/Payment";
 import Inquiry from "./pages/Order/Inquiry";
-
+import Sale from "./pages/Customer/Sale"; 
+import Spare from "./pages/Customer/Spare";
+import Settings from "./pages/Settings";
+import Price from "./pages/Settings/Price";
+import Naryd from "./pages/Human/Naryd";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  
+
+  {
+    path: "/naryd", 
+    element: <Naryd/>
+  },
+  {
+    path: "/settings", 
+    element: <Settings/>
+  },
+  {
+    path: "/price", 
+    element: <Price/>
+  },
+  {
+    path:"/spare", 
+    element: <Spare/>
+  },
+  {
+    path:"/sale", 
+    element: <Sale/>
+  },
   {
     path: "/cart", 
     element: <Cart/>
@@ -44,15 +64,7 @@ const router = createBrowserRouter([
     element: <Checkbox />,
   },
 
-  {
-    path: "/sale", 
-    element: <Sale/>
-  },
- 
-  {
-    path: "/spare", 
-    element: <Spare/>
-  },
+
   {
     path: "/customer",
     element: <Customer />,
@@ -86,14 +98,6 @@ const router = createBrowserRouter([
   element: <Warehouse/>
  }, 
  
- {
-  path: "/maintenance", 
-  element: <Maintenance/>
- },
-{
-  path: "/price", 
-  element: <Price/>
-},
 {
   path: "/inquiry", 
   element: <Inquiry/>
