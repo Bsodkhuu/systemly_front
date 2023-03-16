@@ -4,7 +4,7 @@ import Layout from "../../../components/layout";
 const Payment = () => {
     return (
         <Layout>
-            <h1>Төлбөр төлөх </h1>
+            <h1> Мессэж харуулах alert Төлбөр төлөх qpay холболт хийгээд боллоо </h1>
         </Layout>
     );
 }

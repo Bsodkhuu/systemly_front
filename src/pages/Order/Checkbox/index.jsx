@@ -12,7 +12,7 @@ const Checkbox = () => {
             <div className="p-4 bg-gray-200 h-screen w-full"> 
             <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-between mb-4"> 
-                   <h5 className="text-1xl">Захиалга хянаад баталгаажуулах</h5>
+                   <h5 className="text-1xl">Мэссэж хариулах alert </h5>
                    <div className="flex gap-4">
                     <TextInput id="search" type="search" placeholder="Хайх"/>
                     <Button className="bg-blue-500">
