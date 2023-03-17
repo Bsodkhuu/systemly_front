@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { TextInput, Button, Table,  Modal, Label, FileInput} from "flowbite-react";
+import { TextInput, Button, Table, Card, Modal, Label, FileInput} from "flowbite-react";
 const Human = () => {
     const [showModal, setShowModal] = useState(false);
 
@@ -99,7 +99,7 @@ const Human = () => {
       <div className="p-4 bg-gray-200 h-screen w-full">
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
-          <h4 className="text-1xl">Ажилтны жагсаалт
+          <h4 className="text-1xl">Ажилтан
          </h4>
          
           
@@ -110,35 +110,27 @@ const Human = () => {
               </Button>
             </div>
           </div>
-          <Table> 
-                        <Table.Head className="uppercase">
-                        <Table.HeadCell>Ажилтны дугаар</Table.HeadCell>
-                        <Table.HeadCell>Нэр</Table.HeadCell>
-                        <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                        <Table.HeadCell>Хүйс</Table.HeadCell>
-                        <Table.HeadCell>Хариуцсан үүрэг</Table.HeadCell>
-                        <Table.HeadCell>Мэргэжил</Table.HeadCell>
-                        <Table.HeadCell>Ажилд орсон он сар</Table.HeadCell>
-                        <Table.HeadCell>Үйлдэл</Table.HeadCell>
-                        </Table.Head>
-                        <Table.Body className="divide-y">
-                            <Table.Row> 
-                                <Table.Cell>NN-1</Table.Cell>
-                                <Table.Cell>Example</Table.Cell>
-                                <Table.Cell>90909090</Table.Cell>
-                                <Table.Cell>Эм</Table.Cell>
-                                <Table.Cell>full stack developer</Table.Cell>
-                                <Table.Cell>IT</Table.Cell>
-                                <Table.Cell>2023.03.13</Table.Cell>
-                                <Table.Cell className="text-xl space-x-2">
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                  <FontAwesomeIcon icon={faTrash} />
-                </Table.Cell>
-                            </Table.Row>
-                        </Table.Body>
-                    </Table>
+           <div className="grid grid-cols-2"> 
+           <div className="p-4"> 
+           <Card>
+           <h5 className="text-1xl">Ажилтны жагсаалт</h5>
+            <div className="flex gap-4">
+              <Button className="bg-blue-500">Идэвхитэй</Button>
+              <a href="/employee_history"> 
+               <Button className="bg-blue-500">
+                 Түүх
+               </Button>
+               </a>
+            </div>
+            <Table> 
+              <Table.Head className="uppercase"> 
+                
+              </Table.Head>
+            </Table>
+           </Card>
+           </div>
+           </div>
           </div>
-          
           </div>
         </Layout>
     );
