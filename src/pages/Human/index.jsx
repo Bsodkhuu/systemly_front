@@ -1,9 +1,7 @@
 import Layout from "../../components/layout";
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { TextInput, Button, Table, Card, Modal, Label, FileInput} from "flowbite-react";
+
+import { TextInput, Button, Table, Card, Modal,Avatar, Label, FileInput, Checkbox, Select} from "flowbite-react";
 const Human = () => {
     const [showModal, setShowModal] = useState(false);
 
@@ -57,9 +55,9 @@ const Human = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="role" value="Хариуцсан үүрэг" />
+                  <Label htmlFor="department" value="Хэлтэс" />
                 </div>
-                <TextInput id="role" />
+                <TextInput id="department" />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -83,7 +81,20 @@ const Human = () => {
                 <TextInput id="startDate" type="date" />
                 </div>
             </div>
+            <div className="flex gap-4">
+                <div className="w-1/2">
+                    <div className="mb-2 block">
+                        <Label htmlFor="job" value="Ажиллаж байгаа эсэх"/>
+                    </div>
+                    <Select> 
+                        <option value="job">Ажиллаж байгаа</option>
+                        <option value="job">Ээлжийн амралт</option>
+                        <option value="job">Томилолт</option>
+                        <option value="job">Ажлаас гарсан</option>
+                        </Select>
+                </div>
 
+                </div>
             
           </form>
         </Modal.Body>
@@ -101,8 +112,6 @@ const Human = () => {
           <div className="flex justify-between mb-4">
           <h4 className="text-1xl">Ажилтан
          </h4>
-         
-          
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
               <Button className="bg-blue-500" onClick={openModal}>
@@ -124,15 +133,106 @@ const Human = () => {
             </div>
             <Table> 
               <Table.Head className="uppercase"> 
-                
+                <Table.HeadCell>
+                  {/* <Avatar src="">
+                  </Avatar> */}
+                </Table.HeadCell>
+                <Table.HeadCell>
+                  Ажилтны зураг
+                </Table.HeadCell>
+                <Table.HeadCell>Ажилтны дугаар</Table.HeadCell>
+                <Table.HeadCell>Овог нэр</Table.HeadCell>
+                <Table.HeadCell>Хэлтэс</Table.HeadCell>
+                <Table.HeadCell>Мэргэжил</Table.HeadCell>
               </Table.Head>
+              <Table.Body> 
+                <Table.Row>
+                  <Table.Cell>
+                    <Checkbox/>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <Avatar src="">
+                    </Avatar>
+                  </Table.Cell>
+                  <Table.Cell>
+                    12345
+                  </Table.Cell>
+                  <Table.Cell>
+                    Example
+                  </Table.Cell>
+                  <Table.Cell>
+                    Example
+                  </Table.Cell>
+                  <Table.Cell>
+                    Example
+                  </Table.Cell>
+                </Table.Row>
+              </Table.Body>
             </Table>
            </Card>
-           </div>
-           </div>
+          </div>
+          {/* Сонгосон ажилтны дэлгэрэнгүй */}
+          <div className="p-4"> 
+          <div className="w-50"> 
+            <Card> 
+              <h1>Сонгосон ажилтны дэлгэрэнгүй</h1>
+              <Table>
+                <Table.Head className="uppercase">
+                   <Table.HeadCell>
+                    Ажилтны зураг
+                   </Table.HeadCell>
+                   <Table.HeadCell>
+                    Ажилтны дугаар
+                   </Table.HeadCell>
+                   <Table.HeadCell>
+                    Овог нэр
+                   </Table.HeadCell>
+                   <Table.HeadCell>
+                    Утасны дугаар
+                   </Table.HeadCell>
+                   <Table.HeadCell>
+                    Хүйс
+                   </Table.HeadCell>
+                   <Table.HeadCell>
+                    Хэлтэс
+                   </Table.HeadCell>
+                   <Table.HeadCell>
+                    Мэргэжил
+                   </Table.HeadCell>
+                  
+                   <Table.HeadCell>
+                    Ажилд орсон он сар
+                   </Table.HeadCell>
+                   
+                </Table.Head>
+                <Table.Body> 
+                  <Table.Row> 
+                    <Table.Cell>
+                      <Avatar src=""/>
+                    </Table.Cell>
+                    <Table.Cell>12</Table.Cell>
+                    <Table.Cell>Example</Table.Cell>
+                    <Table.Cell>12345678</Table.Cell>
+                    <Table.Cell>
+                     Эм 
+                    </Table.Cell>
+                    <Table.Cell>Хөгжүүлэгч</Table.Cell>
+                    <Table.Cell>IT Enginer</Table.Cell>
+                   
+                    <Table.Cell>
+                      <TextInput type="date"/>
+                    </Table.Cell>
+                    
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+            </Card>
           </div>
           </div>
-        </Layout>
+        </div>
+      </div>
+    </div>
+  </Layout>
     );
 }
 export default Human;
