@@ -4,6 +4,8 @@ import Cart from "../Order/Cart/index";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import Categories from "./Categories";
+import SliderHome from "./Categories/slider";
 const Order = () => {
   const [showSearch, setSearch] = useState(false);
   const [showCancel, setCancel] = useState(false);
@@ -53,13 +55,12 @@ const Order = () => {
            {/* Category, subcategory */}
            <div className="grid grid-cols-2 ">
             <div className="col-span-2"> 
-            
-               <h1 className="text-1xl">Ангилал</h1>
+              {/* Categories */}
             </div> 
             {/* Захиалга */}
             <div className="p-4"> 
-            <div className="border"> 
-              <Table className="divide-y"> 
+              <Card>
+              <Table> 
                 <Table.Head className="uppercase"> 
                 <Table.HeadCell>Сериал</Table.HeadCell>
                  <Table.HeadCell>Брэнд</Table.HeadCell>
@@ -93,7 +94,8 @@ const Order = () => {
                 </Table.Row>
                 </Table.Body>
               </Table>
-            </div>
+              </Card>
+            
             </div>
 
             {/* Сагс */}

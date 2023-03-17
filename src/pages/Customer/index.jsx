@@ -141,9 +141,7 @@ const Customer = () => {
           <div className="flex justify-between mb-4">
             <h1 className="text-2xl">Харилцагчын жагсаалт</h1>
             <div className="flex gap-4">
-              <Label>Улсын дугаар</Label>
-              <Label>Арлын дугаар</Label>
-              <Label>Утасны дугаар</Label>
+              
               <TextInput id="search" type="search" placeholder="Хайх" />
               <Button className="bg-blue-500">
                 Хайх
