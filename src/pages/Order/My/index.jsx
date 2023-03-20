@@ -73,7 +73,8 @@ const My= () => {
                 <Table.Cell>Meyle</Table.Cell>
                 <Table.Cell>11111</Table.Cell>
                 <Table.Cell>
-                <Select>
+                Захиалга хийгдэж байгаа
+                {/* <Select>
                     <option value="zahialga hiigdej bgaa">Захиалга хийгдэж байгаа</option>
                     <option value="zahialga batalgaajuulsan">Захиалга баталгаажсан</option>
                     <option value="sawlagdaj bgaa">Савлагдаж байгаа</option>
@@ -81,7 +82,7 @@ const My= () => {
                     <option value="ub">Улаанбаатарт ирсэн</option>
                     <option value="zahialagchid">Захиалагчид хүргэж өгсөн</option>
                     <option value="payment">Төлбөр төлөгдсөн</option>
-                  </Select>
+                  </Select> */}
                 </Table.Cell>
                 <Table.Cell className="text-xl space-x-2">
                   <FontAwesomeIcon icon={faPenToSquare} />

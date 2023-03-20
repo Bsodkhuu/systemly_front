@@ -1,4 +1,4 @@
-import { TextInput, Button, Card, Table } from "flowbite-react";
+import { TextInput, Button, Card, Table, Modal, Label } from "flowbite-react";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -10,19 +10,21 @@ import {useState} from "react";
 const Price = () => {
   const [showSearch, setShowSearch] = useState();
   const [showActive, setShowActive] = useState();
-  const [showInactive, setShowInactive] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   function active(){
     {/* zaswarin idewhitei bvrtgene  */}
+    
+
     setShowActive();
   }
 
-  function Inactive(){
-    {/* zaswarin idewhif zawsaraa bvrtgene */}
-    setShowInactive();
+  
+  function openModal() {
+    setShowModal(true);
   }
 
-  function createPrice(){
+  function closeModal() {
     setShowModal(false);
   }
  
@@ -32,6 +34,42 @@ const Price = () => {
   }
     return(
         <Layout> 
+          <Modal show={showModal} onClose={closeModal}>
+             <Modal.Header>Идэвхитэй</Modal.Header>
+             <Modal.Body> 
+              <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+                <div className="flex gap-4"> 
+                   <div className="w-1/2"> 
+                   <div className="mb-2 block"> 
+                       <Label htmlFor="service" value="Засвар үйлчилгээний нэр"/>
+                   </div>
+                   <TextInput id="service"/>
+                   </div>
+                   <div className="w-1/2"> 
+                    <div className="mb-2 block"> 
+                     <Label htmlFor="price" value="Үнэ"/>
+                    </div>
+                    <TextInput id="price" />
+                   </div>
+                   <div className="w-1/2"> 
+                     <div className="mb-2 block"> 
+                       <Label htmlFor="currency" value="Валют" />
+                     </div>
+                     <TextInput id="currency"/>
+                   </div>
+                </div>
+
+              </form>
+             </Modal.Body>
+             <Modal.Footer>
+               <Button onClick={closeModal} className="bg-gray-400">
+                Буцах
+               </Button>
+               <Button onClick={active} className="bg-gray-400">
+                Хадгалах
+               </Button>
+             </Modal.Footer>
+          </Modal>
           <div className="p-4 bg-gray-200 h-screen w-full"> 
            <div className="bg-white p-6 rounded-lg"> 
            <div className="flex justify-between mb-4"> 
@@ -41,6 +79,10 @@ const Price = () => {
               <Button className="bg-blue-500" onClick={search}>
                 Хайх
               </Button>
+              <Button className="bg-blue-500" onClick={openModal}>Идэвхитэй</Button>
+              <a href="/inactive">
+              <Button className="bg-blue-500">Идэвхигүй</Button>
+              </a>
             </div>
            </div>
 
@@ -51,18 +93,20 @@ const Price = () => {
              <div className="max-w-lg"> 
               <div className="flex gap-4"> 
               
-              <Button className="bg-blue-500" onClick={active}>Идэвхитэй</Button>
-             
-                
-                <Button className="bg-blue-500" onClick={Inactive}>
+              {/* <Button className="bg-blue-500" onClick={openModal}>Идэвхитэй</Button>
+                 {/* table helwereer ajilaa bvrtgene  */}
+                {/* <Button className="bg-blue-500" onClick={Inactive}>
                   Идэвхигүй
-                </Button>
+                </Button>  */}
               
               </div>
-              <Table> 
+              &nbsp;
+             <Card className="max-w-sm"> 
+             <h5 className="text-1xl">Засвар үйлчилгээний жагсаалт</h5>
+             <Table> 
                 <Table.Head className="uppercase"> 
                  <Table.HeadCell>
-                  Засварын үйлчилгээний нэр
+                  Засвар үйлчилгээний нэр
                  </Table.HeadCell>
                  <Table.HeadCell>
                   Үнэ
@@ -92,6 +136,7 @@ const Price = () => {
                   </Table.Row>
                 </Table.Body>
               </Table>
+             </Card>
              </div>
              </div>
            </div>

@@ -66,7 +66,19 @@ const Inquiry = () => {
                     
                     {/* file input  */}
                      <div className="flex"> 
-                     
+                       
+                        <div className="p-4"> 
+                           <FileInput />
+                           <div className="w-3/4">
+                            <Label htmlFor="description" value="Тайлбар бичих" />
+                             <Textarea id="description"/>
+                             &nbsp;
+                             <Button className="ml-auto">
+                                Хүсэлт илгээх
+                             </Button>
+                           </div>
+                        </div>
+                        
                      </div>
                      {/* сэлбэгийн жагсаалт харуулах  */}
                    <div className="p-4"> 

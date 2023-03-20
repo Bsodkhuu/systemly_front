@@ -53,12 +53,7 @@ const Human = () => {
             </div>
            
             <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="department" value="Хэлтэс" />
-                </div>
-                <TextInput id="department" />
-              </div>
+             
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="image" value="Зураг оруулах" />
@@ -142,7 +137,7 @@ const Human = () => {
                 </Table.HeadCell>
                 <Table.HeadCell>Ажилтны дугаар</Table.HeadCell>
                 <Table.HeadCell>Овог нэр</Table.HeadCell>
-                <Table.HeadCell>Хэлтэс</Table.HeadCell>
+               
                 <Table.HeadCell>Мэргэжил</Table.HeadCell>
               </Table.Head>
               <Table.Body> 
@@ -156,9 +151,6 @@ const Human = () => {
                   </Table.Cell>
                   <Table.Cell>
                     12345
-                  </Table.Cell>
-                  <Table.Cell>
-                    Example
                   </Table.Cell>
                   <Table.Cell>
                     Example
@@ -193,9 +185,7 @@ const Human = () => {
                    <Table.HeadCell>
                     Хүйс
                    </Table.HeadCell>
-                   <Table.HeadCell>
-                    Хэлтэс
-                   </Table.HeadCell>
+                   
                    <Table.HeadCell>
                     Мэргэжил
                    </Table.HeadCell>
@@ -216,7 +206,7 @@ const Human = () => {
                     <Table.Cell>
                      Эм 
                     </Table.Cell>
-                    <Table.Cell>Хөгжүүлэгч</Table.Cell>
+                    
                     <Table.Cell>IT Enginer</Table.Cell>
                    
                     <Table.Cell>

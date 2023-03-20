@@ -58,25 +58,11 @@ const Customer = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="model" value="Загварын нэр" />
+                  <Label htmlFor="email" value="Имэйл" />
                 </div>
-                <TextInput id="model" />
+                <TextInput id="email" />
               </div>
-              <div className="w-1/2 flex gap-4">
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    <Label htmlFor="color" value="Өнгө" />
-                  </div>
-                  <TextInput  id="color" />
-                </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    <Label htmlFor="license_plate_number" value="Улсын дугаар" />
-                  </div>
-                 <TextInput id="license_plate_number" />
-                </div>
               </div>
-            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
@@ -100,6 +86,11 @@ const Customer = () => {
               <Button className="bg-blue-500" onClick={openModal}>
                 Харилцагч нэмэх
               </Button>
+              <a href="/transport">
+                <Button className="bg-blue-500">
+                  Тээврийн хэрэгсэл нэмэх
+                </Button>
+              </a>
             </div>
           </div>
          <div className="grid grid-cols-3"> 
@@ -112,20 +103,15 @@ const Customer = () => {
                  <Table.Head className="uppercase"> 
                  <Table.HeadCell>Овог нэр</Table.HeadCell>
                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                 <Table.HeadCell>Загварын нэр</Table.HeadCell>
-                 <Table.HeadCell>Өнгө</Table.HeadCell>
-                 <Table.HeadCell>Улсын дугаар</Table.HeadCell>
-                 <Table.HeadCell>Арлын дугаар</Table.HeadCell>
+                 <Table.HeadCell>Имэйл хаяг</Table.HeadCell>
                 
                  </Table.Head>
                  <Table.Body className="divide-y">
                   <Table.Row>
                     <Table.Cell>М.Нямсүрэн</Table.Cell>
                     <Table.Cell>80156917</Table.Cell>
-                    <Table.Cell>Prius</Table.Cell>
-                    <Table.Cell>Хар</Table.Cell>
-                    <Table.Cell>1234УБЯ</Table.Cell>
-                    <Table.Cell>1234</Table.Cell>
+                    <Table.Cell>mnymsuren37@gmail.com</Table.Cell>
+                    
                   </Table.Row>
                  </Table.Body>
               </Table>
@@ -174,54 +160,13 @@ const Customer = () => {
                   <Table.HeadCell> 
                     Овог Нэр
                   </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Арлын дугаар
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                      Загварын нэр
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Модел нэр
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Үйлдвэрлэгдсэн он
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Импортлогдсон он
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Өнгө
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Улсын дугаар
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Бүртгэгдсэн он 
-                  </Table.HeadCell>
-                  <Table.HeadCell> 
-                    Гишүүнд бүртгэгдсэн он сар
-                  </Table.HeadCell>
+                  
+                  
                 </Table.Head>
                 <Table.Body className="divide-y"> 
                 <Table.Row> 
                   <Table.Cell>М.Нямсүрэн</Table.Cell>
-                  <Table.Cell>1234</Table.Cell>
-                  <Table.Cell>Prius</Table.Cell>
-                  <Table.Cell>Prius</Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="date" id="date"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="date" id="date"/>
-                  </Table.Cell>
-                  <Table.Cell>Хар</Table.Cell>
-                  <Table.Cell>1234УБЯ</Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="date" id="date"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="date" id="date"/>
-                  </Table.Cell>
+                  
                 </Table.Row>
                 </Table.Body>
               </Table>
@@ -230,7 +175,7 @@ const Customer = () => {
          </div>
          
 
-        <div className="col-span-2">
+        {/* <div className="col-span-2">
         <div className="p-4"> 
             <div className="w-68"> 
             <Card>
@@ -258,9 +203,7 @@ const Customer = () => {
                 <Table.HeadCell> 
                   Машины эд анги
                 </Table.HeadCell>
-                <Table.HeadCell> 
-                  Онцлосон шалгах 
-                </Table.HeadCell>
+                
               </Table.Head>
               <Table.Body> 
                 <Table.Row> 
@@ -275,20 +218,15 @@ const Customer = () => {
                   </Table.Cell>
                   <Table.Cell>SUV</Table.Cell>
                   <Table.Cell>SUV</Table.Cell>
-                  <Table.Cell>
-                   <Select> 
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                   </Select>
-                  </Table.Cell>
+                  
                 </Table.Row>
               </Table.Body>
             </Table>
             </Card>
             </div>
          </div>
-        </div>
-        <div className="col-span-2">
+        </div> */}
+        {/* <div className="col-span-2">
        
             <div className="w-68"> 
             <Card>
@@ -313,7 +251,7 @@ const Customer = () => {
             </Card>
             
          </div>
-        </div>
+        </div> */}
         
         </div>
         </div>

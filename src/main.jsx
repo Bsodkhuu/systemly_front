@@ -22,13 +22,22 @@ import Settings from "./pages/Settings";
 import Price from "./pages/Settings/Price";
 import Naryd from "./pages/Human/Naryd";
 import EmployeeHistory from "./pages/Human/Employee_history";
+import Inactive from "./pages/Settings/Inactive";
+import Transport from "./pages/Customer/Transport";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
- 
+  {
+    path: "/transport",
+    element: <Transport/>
+  },
+ {
+  path: "/inactive", 
+  element: <Inactive/>
+ },
 
   {
     path: "/naryd", 
