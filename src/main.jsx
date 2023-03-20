@@ -24,11 +24,16 @@ import Naryd from "./pages/Human/Naryd";
 import EmployeeHistory from "./pages/Human/Employee_history";
 import Inactive from "./pages/Settings/Inactive";
 import Transport from "./pages/Customer/Transport";
+import Zahialga from "./pages/Order/zahialga";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/zahialga", 
+    element: <Zahialga/>
   },
   {
     path: "/transport",
