@@ -1,14 +1,17 @@
-import { TextInput, Button,Card, Table, Select, Label, Avatar, ListGroup} from "flowbite-react";
+import { TextInput, Button, Carousel, Card, Table, Select, Label, Avatar, ListGroup} from "flowbite-react";
 import Layout from "../../components/layout";
 import Cart from "../Order/Cart/index"; 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import Categories from "./Categories";
-import SliderHome from "./Categories/slider";
+
+
 const Order = () => {
+
+  
   const [showSearch, setSearch] = useState(false);
   const [showCancel, setCancel] = useState(false);
+
   function Haih(){
       //fetch api
      setSearch(true);
@@ -17,6 +20,18 @@ const Order = () => {
     //fetch api
    setCancel(true);
 }
+const reviews = [
+  {
+     id: 1, 
+     image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+     link:"" 
+  },
+  {
+     id: 2, 
+     link:"",
+     image: "https://flowbite.com/docs/images/carousel/carousel-1.svg", 
+  },
+];
   return (
     <Layout> 
         <div className="p-4 bg-gray-200 h-screen w-full"> 
@@ -55,7 +70,15 @@ const Order = () => {
            {/* Category, subcategory */}
            <div className="grid grid-cols-2 ">
             <div className="col-span-2"> 
-              {/* Categories */}
+            <div className="h-56 sm:h-64 xl:h-80 2xl:h-96"> 
+                  <Carousel> 
+                   {reviews.map(review => (
+                       <img className="d-block w-50" 
+                       src={review.image}
+                       alt={review.link} />
+                   ))}
+                  </Carousel>
+                </div>
             </div> 
             {/* Захиалга */}
             <div className="p-4"> 

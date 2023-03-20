@@ -22,16 +22,13 @@ import Settings from "./pages/Settings";
 import Price from "./pages/Settings/Price";
 import Naryd from "./pages/Human/Naryd";
 import EmployeeHistory from "./pages/Human/Employee_history";
-import Desc from "./pages/Human/Desc";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  {
-    path:"/desc", 
-    element:<Desc/>
-  },
+ 
 
   {
     path: "/naryd", 
