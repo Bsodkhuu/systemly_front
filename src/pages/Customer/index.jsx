@@ -7,7 +7,7 @@ import {
   TextInput,
   Select,
   ListGroup,
-  Dropdown
+  Dropdown, Textarea, FileInput
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,92 +44,38 @@ const Customer = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="name" value="Нэр" />
+                  <Label htmlFor="fullname" value="Овог Нэр" />
                 </div>
-                <TextInput id="name" />
+                <TextInput id="fullname" />
               </div>
-              {/* <div className="w-1/2">
+              <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="category" value="Yндсэн категори" />
+                  <Label htmlFor="phone" value="Утасны дугаар" />
                 </div>
-                <Select id="category">
-                  <option value="B2C">B2C</option>
-                  <option value="other">Бусад</option>
-                </Select>
+                <TextInput id="phone" />
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="address" value="Хаяг" />
+                  <Label htmlFor="model" value="Загварын нэр" />
                 </div>
-                <TextInput id="address" />
+                <TextInput id="model" />
               </div>
               <div className="w-1/2 flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="creditDate" value="Кредит хоног" />
+                    <Label htmlFor="color" value="Өнгө" />
                   </div>
-                  <TextInput type="number" id="creditDate" defaultValue={0} />
+                  <TextInput  id="color" />
                 </div>
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="agent" value="Хариуцсан агент" />
+                    <Label htmlFor="license_plate_number" value="Улсын дугаар" />
                   </div>
-                  <Select id="agent">
-                    <option value="">Г. Ням-Очир</option>
-                  </Select>
+                 <TextInput id="license_plate_number" />
                 </div>
               </div>
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="description" value="Тайлбар" />
-              </div>
-              <Textarea id="description" rows={4} />
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="web" value="Веб сайт" />
-                </div>
-                <TextInput id="web" />
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="facebook" value="Фэйсбүүк пэйж" />
-                </div>
-                <TextInput id="facebook" />
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="phone" value="Байгууллагын Утас" />
-                </div>
-                <TextInput id="phone" />
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="logo" value="Лого" />
-                </div>
-                <FileInput id="logo" />
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="email" value="Имэйл" />
-                </div>
-                <TextInput id="email" />
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="password" value="Нууц үг" />
-                </div>
-                <TextInput id="password" type="password" />
-              </div>
-            </div> */}
             </div>
           </form>
         </Modal.Body>
