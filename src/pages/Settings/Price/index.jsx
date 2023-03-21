@@ -4,18 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import {useState} from "react";
+import {useState, Fragment} from "react";
 
 
 const Price = () => {
   const [showSearch, setShowSearch] = useState();
   const [showActive, setShowActive] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [showSave, setShowSave] = useState();
+  const [showDelete, setShowDelete] = useState();
 
-  function active(){
+
+  function ustgah(){
+    setShowDelete();
+  }
+  function Inactive(){
     {/* zaswarin idewhitei bvrtgene  */}
-    
-
+    // Inactive uilchilgeenii jagsaaltaas shuud hadgalah tovch daraad active ruu oruulna
     setShowActive();
   }
 
@@ -32,10 +37,17 @@ const Price = () => {
   function search(){
     setShowSearch();
   }
+  function save(){
+    setShowSave();
+  }
+
+
+
+
     return(
         <Layout> 
           <Modal show={showModal} onClose={closeModal}>
-             <Modal.Header>Идэвхитэй</Modal.Header>
+             <Modal.Header>Үйлчилгээ бүртгэх</Modal.Header>
              <Modal.Body> 
               <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
                 <div className="flex gap-4"> 
@@ -65,7 +77,7 @@ const Price = () => {
                <Button onClick={closeModal} className="bg-gray-400">
                 Буцах
                </Button>
-               <Button onClick={active} className="bg-gray-400">
+               <Button onClick={Inactive} className="bg-gray-400">
                 Хадгалах
                </Button>
              </Modal.Footer>
@@ -75,71 +87,84 @@ const Price = () => {
            <div className="flex justify-between mb-4"> 
             <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
             <div className="flex gap-4"> 
-              <TextInput id="searc" type="search" placeholder="Хайлт"/>
+              <TextInput id="search" type="search" placeholder="Хайлт"/>
               <Button className="bg-blue-500" onClick={search}>
                 Хайх
               </Button>
-              <Button className="bg-blue-500" onClick={openModal}>Идэвхитэй</Button>
-              <a href="/inactive">
-              <Button className="bg-blue-500">Идэвхигүй</Button>
+              <Button className="bg-blue-500" onClick={openModal}>Үйлчилгээ бүртгэх</Button>
+              <a href="/active">
+              <Button className="bg-blue-500">Идэвхитэй</Button>
               </a>
             </div>
            </div>
 
+           {/* main, sub group service service table + towch daraad mashinii torlin vne garar oruullaad hadgalah towch darah  */}
+            
 
-           <div className="grid grid-cols-2"> 
-             <div className="p-4"> 
-             
-             <div className="max-w-lg"> 
-              <div className="flex gap-4"> 
-              
-              {/* <Button className="bg-blue-500" onClick={openModal}>Идэвхитэй</Button>
-                 {/* table helwereer ajilaa bvrtgene  */}
-                {/* <Button className="bg-blue-500" onClick={Inactive}>
-                  Идэвхигүй
-                </Button>  */}
-              
-              </div>
-              &nbsp;
-             <Card className="max-w-sm"> 
-             <h5 className="text-1xl">Засвар үйлчилгээний жагсаалт</h5>
-             <Table> 
-                <Table.Head className="uppercase"> 
+            <Table> 
+              <Table.Head className="uppercase"> 
                  <Table.HeadCell>
-                  Засвар үйлчилгээний нэр
+                  Main group
                  </Table.HeadCell>
                  <Table.HeadCell>
-                  Үнэ
+                  Том оврийн
                  </Table.HeadCell>
                  <Table.HeadCell>
-                   Валют
+                  SUV 
+                 </Table.HeadCell>
+                 <Table.HeadCell>
+                  Дунд гарын 
+                 </Table.HeadCell>
+                 <Table.HeadCell>
+                  Суудлын
                  </Table.HeadCell>
                  <Table.HeadCell>
                   Үйлдэл
                  </Table.HeadCell>
-                </Table.Head>
-                <Table.Body> 
-                  <Table.Row>
-                    <Table.Cell> 
-                      qwerty
-                    </Table.Cell>
-                    <Table.Cell> 
-                      1
-                    </Table.Cell>
-                    <Table.Cell> 
-                      $
-                    </Table.Cell>
-                    <Table.Cell className="text-xl space-x-2">
-                     <FontAwesomeIcon icon={faPenToSquare} />
-                     <FontAwesomeIcon icon={faTrash} />
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-             </Card>
-             </div>
-             </div>
-           </div>
+              </Table.Head>
+              <Table.Body>
+                <Table.Row>
+                  <Table.Cell>
+                    <TextInput type="text"/>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <TextInput type="text"/>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <TextInput type="text"/>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <TextInput type="text"/>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <TextInput type="text"/>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
+                  </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>
+                    Мотор
+                  </Table.Cell>
+                  <Table.Cell>
+                    10,000
+                  </Table.Cell>
+                  <Table.Cell>
+                  10,0000
+                  </Table.Cell>
+                  <Table.Cell>
+                  10,0000
+                  </Table.Cell>
+                  <Table.Cell>
+                  10,0000
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button className="bg-blue-500" onClick={ustgah}>Устгах</Button>
+                  </Table.Cell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
            </div>
           </div>
         </Layout>

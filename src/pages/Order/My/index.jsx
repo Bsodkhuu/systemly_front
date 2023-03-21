@@ -52,6 +52,9 @@ const My= () => {
                <Table.HeadCell className="!p-4">
                <Checkbox />
               </Table.HeadCell>
+             
+
+                {/* zahialga or-10002 ni back-end iimerhvv baidlaar hiine shvv */}
                 <Table.HeadCell> 
                    Захиалга
                 </Table.HeadCell>
@@ -70,6 +73,7 @@ const My= () => {
                 <Table.Cell className="!p-4">
                 <Checkbox />
                 </Table.Cell>
+                
                 <Table.Cell>Meyle</Table.Cell>
                 <Table.Cell>11111</Table.Cell>
                 <Table.Cell>
