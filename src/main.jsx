@@ -22,15 +22,20 @@ import Settings from "./pages/Settings";
 import Price from "./pages/Settings/Price";
 import Naryd from "./pages/Human/Naryd";
 import EmployeeHistory from "./pages/Human/Employee_history";
-import Inactive from "./pages/Settings/Inactive";
+import Active from "./pages/Settings/Active";
 import Transport from "./pages/Customer/Transport";
 import Zahialga from "./pages/Order/zahialga";
 import Service from "./pages/Customer/Service";
+import ZaswarService from "./pages/Customer/Zaswar_Service";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:"/zaswar_service", 
+    element: <ZaswarService/>
   },
   {
     path: "/service", 
@@ -45,8 +50,8 @@ const router = createBrowserRouter([
     element: <Transport/>
   },
  {
-  path: "/inactive", 
-  element: <Inactive/>
+  path: "/active", 
+  element: <Active/>
  },
 
   {

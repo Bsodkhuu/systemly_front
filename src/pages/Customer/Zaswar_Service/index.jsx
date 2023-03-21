@@ -1,66 +1,60 @@
-import { TextInput, Button, Select, ListGroup, Table, Card, Checkbox} from "flowbite-react";
+import { TextInput, Button, Table, Card, ListGroup, Select} from "flowbite-react";
 import Layout from "../../../components/layout";
-import {useState} from "react";
+import { useState } from "react";
 
- const Sale = () => {
-   const [showSearch, setShowSearch] = useState();
+const ZaswarService = () => {
+    const [showSearch, setShowSearch] = useState();
 
-   function search(){
-       setShowSearch()
-   }
-
+    function search(){
+        setShowSearch()
+    }
     return (
-        <Layout> 
+        <Layout>
            <div className="p-4 bg-gray-200 h-screen w-full">
             <div className="bg-white p-6 rounded-lg">
-               <div className="flex justify-between mb-4">
-                  <h4 className="text-1xl">Засвар борлуулалт</h4>
-                  <div className="flex gap-4">
-                     <TextInput id="search" type="search" placeholder="Хайх" />
-                     <Button className="bg-blue-500" onClick={search}>
-                        Хайх
-                     </Button>
-                  </div>
-               </div>
-               {/* Огнооны slicer */}
-               
+                <div className="flex justify-between mb-4">
+                    <h4 className="text-1xl">Засвар үйлчилгээний бүртгэл</h4>
+                    <div className="flex gap-4">
+                        <TextInput id="search" type="search" placeholder="Хайх"/>
+                        <Button className="bg-blue-500" onClick={search}>
+                            Хайх
+                        </Button>
+                    </div>
+                </div>
 
-               <div className="grid grid-cols-3">
-                  <div className="p-4">
-                     <Card>
-                     <h4 className="text-1xl">Үйлчилгээний жагсаалт</h4>
-                     <Table> 
-                            <Table.Head className="uppercase">
-                              <Table.HeadCell>
-                                </Table.HeadCell>
-                                <Table.HeadCell>
-                                    Үйлчилгээний нэр
-                                </Table.HeadCell>
-                                <Table.HeadCell>
-                                    Тоо ширхэг
-                                </Table.HeadCell>
-                                <Table.HeadCell>
-                                    Нэгжийн үнэ
-                                </Table.HeadCell>
-                            </Table.Head>
-                            <Table.Body className="divide-y bg-scroll">
-                                <Table.Cell>
-                                 <Checkbox />
-                                </Table.Cell>
-                                <Table.Cell>Наклад солих</Table.Cell>
-                                <Table.Cell>2</Table.Cell>
-                                <Table.Cell>
-                                    21000
-                                </Table.Cell>
-                                
-                            </Table.Body>
-                        </Table>
-                     </Card>
-                  </div>
-                  <div className="p-4">
-                     
-                     <Card> 
-                     <h4 className="text-1xl">Засварын хуудасны дэлгэрэнгүй</h4>
+                {/* ezamshigchin details,  */}
+
+                <div className="p-4"> 
+                <Card> 
+                   <h4 className="text-1xl">Эзэмшигчийн дэлгэрэнгүй</h4>
+
+                   <Table>
+                    <Table.Head className="uppercase">
+                        <Table.HeadCell>Овог</Table.HeadCell>
+                        <Table.HeadCell>Нэр</Table.HeadCell>
+                        <Table.HeadCell>Утасны дугаар</Table.HeadCell>
+                        <Table.HeadCell>Имэйл</Table.HeadCell>
+                        <Table.HeadCell>Төрсөн он сар</Table.HeadCell>
+                    </Table.Head>
+                    <Table.Body className="divide-y">
+                       <Table.Cell>Мөнх-Эрдэнэхуяг</Table.Cell>
+                       <Table.Cell>Нямсүрэн</Table.Cell>
+                       <Table.Cell>80156917</Table.Cell>
+                       <Table.Cell>mnymsuren37@gmail.com</Table.Cell>
+                       <Table.Cell>
+                        <TextInput type="date"/>
+                       </Table.Cell>
+                    </Table.Body>
+                   </Table>
+                </Card>
+                </div>
+
+                {/* service details, zaswarin tolwor */}
+
+                <div className="grid grid-cols-2 divide-x">
+                    <div className="p-4"> 
+                    <Card> 
+                        <h1 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h1>
                         <Table> 
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>
@@ -105,9 +99,10 @@ import {useState} from "react";
                             </Table.Body>
                         </Table>
                     </Card>
-                  </div>
-                  <div className="p-5">
-                  <Card className="max-w-sm">
+                    </div>
+                    <div className="p-3"> 
+
+                    <Card className="max-w-sm">
                         <h1 className="text-1xl">Засварын хуудас</h1>
                         <ListGroup> 
                             <ListGroup.Item>
@@ -133,13 +128,12 @@ import {useState} from "react";
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>
-                  </div>
-               </div>
-               
+                    </div>
+                </div>
             </div>
            </div>
         </Layout>
     );
- }
+}
 
- export default Sale;
+export default ZaswarService;
