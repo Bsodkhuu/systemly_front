@@ -25,11 +25,16 @@ import EmployeeHistory from "./pages/Human/Employee_history";
 import Inactive from "./pages/Settings/Inactive";
 import Transport from "./pages/Customer/Transport";
 import Zahialga from "./pages/Order/zahialga";
+import Service from "./pages/Customer/Service";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/service", 
+    element: <Service/>
   },
   {
     path: "/zahialga", 

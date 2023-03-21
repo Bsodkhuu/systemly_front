@@ -44,21 +44,27 @@ const Customer = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="fullname" value="Овог Нэр" />
+                  <Label htmlFor="firstName" value="Овог" />
                 </div>
-                <TextInput id="fullname" />
+                <TextInput id="firstName" />
               </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="lastName" value="Нэр" />
+                </div>
+                <TextInput id="lastName" />
+              </div>
+            </div>
+            <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phone" value="Утасны дугаар" />
                 </div>
                 <TextInput id="phone" />
               </div>
-            </div>
-            <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="email" value="Имэйл" />
+                  <Label htmlFor="email" value="Имэйл"/>
                 </div>
                 <TextInput id="email" />
               </div>
@@ -77,7 +83,7 @@ const Customer = () => {
       <div className="p-4 bg-gray-200 h-screen w-full">
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
-          <h4 className="text-1xl">Харилцагч</h4>
+          <h4 className="text-1xl">Харилцагчийн бүртгэл</h4>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Улсын,арлын,утасны дугаараар хайх" />
               <Button className="bg-blue-500" onClick={search}>
@@ -86,174 +92,74 @@ const Customer = () => {
               <Button className="bg-blue-500" onClick={openModal}>
                 Харилцагч нэмэх
               </Button>
-              <a href="/transport">
+              {/* <a href="/transport">
                 <Button className="bg-blue-500">
                   Тээврийн хэрэгсэл нэмэх
                 </Button>
-              </a>
+              </a> */}
             </div>
           </div>
-         <div className="grid grid-cols-3"> 
        
-         <div className="col-span-2"> 
-            <div className="w-50">
-              <Card>
-              <h1>Хайлтын жагсаалт</h1>
-              <Table>
-                 <Table.Head className="uppercase"> 
-                 <Table.HeadCell>Овог нэр</Table.HeadCell>
-                 <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                 <Table.HeadCell>Имэйл хаяг</Table.HeadCell>
-                
-                 </Table.Head>
-                 <Table.Body className="divide-y">
-                  <Table.Row>
-                    <Table.Cell>М.Нямсүрэн</Table.Cell>
-                    <Table.Cell>80156917</Table.Cell>
-                    <Table.Cell>mnymsuren37@gmail.com</Table.Cell>
-                    
-                  </Table.Row>
-                 </Table.Body>
-              </Table>
-              </Card>
-              </div>
-         </div>
-         <div className="p-4"> 
-            <div className="w-68"> 
-            <Card>
-            <h1>Засварын хуудас</h1>
-            <ListGroup> 
-              <ListGroup.Item>
-                Ажлын хөлс: Нийлбэр харагдана
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Материал: Нийлбэр харагдана
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Хямдрал урамшуулал: Дүн
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Нийт: Дүн
-              </ListGroup.Item>
-              <ListGroup.Item>
-              Төлбөр төлөх хэлбэр
-               &nbsp;
-              <Select>
-                
-                <option value="belen">Бэлэн</option>
-                <option value="cart">Карт</option>
-                <option value="qpay">Qpay</option>
-              </Select>
-              </ListGroup.Item>
-             
-            </ListGroup>
-            </Card>
-            </div>
-          </div>
-         
-          <div className="p-4"> 
-            <div className="w-58">
-              <Card>
-              <h1>Эзэмшигчийн дэлгэрэнгүй</h1>
-              <Table> 
-                <Table.Head className="uppercase"> 
-                  <Table.HeadCell> 
-                    Овог Нэр
-                  </Table.HeadCell>
-                  
-                  
-                </Table.Head>
-                <Table.Body className="divide-y"> 
-                <Table.Row> 
-                  <Table.Cell>М.Нямсүрэн</Table.Cell>
-                  
-                </Table.Row>
-                </Table.Body>
-              </Table>
-              </Card>
-         </div>
-         </div>
-         
 
-        {/* <div className="col-span-2">
-        <div className="p-4"> 
-            <div className="w-68"> 
-            <Card>
-            <h1>Автомашины дэлгэрэнгүй</h1>
-            <Table>
-              <Table.Head className="uppercase">
-                <Table.HeadCell> 
-                  Make name
-                </Table.HeadCell>
-                <Table.HeadCell> 
-                  Загварын нэр
-                </Table.HeadCell>
-                <Table.HeadCell> 
-                  Үйлдвэрлэгчийн нэр
-                </Table.HeadCell>
-                <Table.HeadCell> 
-                  Үйлдвэрлэсэн жилээс өмнөх он
-                </Table.HeadCell>
-                <Table.HeadCell> 
-                  Үйлдвэрлэсэн жил
-                </Table.HeadCell>
-                <Table.HeadCell> 
-                  Машины анги
-                </Table.HeadCell>
-                <Table.HeadCell> 
-                  Машины эд анги
-                </Table.HeadCell>
-                
-              </Table.Head>
-              <Table.Body> 
-                <Table.Row> 
-                  <Table.Cell>Rivan</Table.Cell>
-                  <Table.Cell>R1T</Table.Cell>
-                  <Table.Cell>Abarth</Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="date" />
-                  </Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="date" />
-                  </Table.Cell>
-                  <Table.Cell>SUV</Table.Cell>
-                  <Table.Cell>SUV</Table.Cell>
-                  
-                </Table.Row>
-              </Table.Body>
-            </Table>
-            </Card>
-            </div>
-         </div>
-        </div> */}
-        {/* <div className="col-span-2">
-       
-            <div className="w-68"> 
-            <Card>
-            <h1>Үйлчилгээний дэлгэрэнгүй</h1>
+
+       {/* owner, vehicle search and details  */}
+
+       <div className="grid grid-cols-3 divide-x">
+        <div className="p-4">
+          <Card> 
+            <h5 className="text-1xl">Харилцагчийн хайлтын жагсаалт</h5>
             <Table> 
               <Table.Head className="uppercase"> 
-                <Table.HeadCell>Items</Table.HeadCell>
-                <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
-                <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
-                
-                <Table.HeadCell>Нийт үнэ</Table.HeadCell>
+                 <Table.HeadCell>Овог</Table.HeadCell>
+                 <Table.HeadCell>Нэр</Table.HeadCell>
+                 <Table.HeadCell>Утасны дугаар</Table.HeadCell>
+                 <Table.HeadCell>Имэйл</Table.HeadCell>
               </Table.Head>
-              <Table.Body> 
-                <Table.Row> 
-                  <Table.Cell>11</Table.Cell>
-                  <Table.Cell>1</Table.Cell>
-                  <Table.Cell>11.0000</Table.Cell>
-                  <Table.Cell>11.0000</Table.Cell>
+              <Table.Body className="divide-y">
+                <Table.Row>
+                  <Table.Cell>Мөнх-Эрдэнэхуяг</Table.Cell>
+                  <Table.Cell>Нямсүрэн</Table.Cell>
+                  <Table.Cell>80156917</Table.Cell>
+                  <Table.Cell>mnymsuren37@gmail.com</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
-            </Card>
-            
-         </div>
-        </div> */}
-        
+          </Card>
         </div>
+        <div className="p-4">
+          <Card> 
+            <h5 className="text-1xl">Тээврийн хэрэгслийн жагсаалт</h5>
+          </Card>
+          </div>
+        <div className="p-4">
+          <Card> 
+            <h5 className="text-1xl">Автомашины дэлгэрэнгүй </h5>
+            <a href="#">
+              <Button className="bg-blue-500">
+                Засвар эхлүүлэх
+              </Button>
+            </a>
+            <Table>
+              <Table.Head className="uppercase"> 
+                 <Table.HeadCell>Vin дугаар</Table.HeadCell>
+                 <Table.HeadCell>Make</Table.HeadCell>
+                 <Table.HeadCell>Model</Table.HeadCell>
+                 <Table.HeadCell>Төрөл</Table.HeadCell>
+                 <Table.HeadCell>Үйлдвэрлэсэн он</Table.HeadCell>
+                 <Table.HeadCell>Импортлосон он</Table.HeadCell>
+                 <Table.HeadCell>Өнгө</Table.HeadCell>
+                 <Table.HeadCell>Улсын дугаар</Table.HeadCell>
+                 <Table.HeadCell>Моторын багтаамж</Table.HeadCell>
+                 <Table.HeadCell>Шатахууны төрөл</Table.HeadCell>
+                 <Table.HeadCell>Хурдны хайрцаг</Table.HeadCell>
+                 <Table.HeadCell>Гуйлт</Table.HeadCell>
+
+              </Table.Head>
+            </Table>
+          </Card>
+        </div>
+       </div>
+
         </div>
       </div>
     </Layout>

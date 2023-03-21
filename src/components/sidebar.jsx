@@ -12,18 +12,19 @@ const SidebarComponent = () => {
             <Item href="/my">Миний захиалга</Item>
             <Item href="/order">Захиалга хийх</Item>
           </Collapse>
-          
-          <Collapse label="Хүний нөөц">
-            <Item href="/human">Нийт ажилчдын бүртгэл</Item>
-            <Item href="/naryd">Нарядын тайлан</Item>
-            
-          </Collapse>
-          
           <Collapse label="Засвар Борлуулалт">
             <Item href="/customer">Харилцагчийн бүртгэл</Item>
             <Item href="/sale">Засвар,борлуулалтын бүртгэл</Item>
             <Item href="/spare">Сэлбэгийн үлдэгдэл</Item>
+            <Item href="/service">Үйлчилгээний цаг</Item>
           </Collapse>
+          <Collapse label="Хүний нөөц">
+            <Item href="/human">Нийт ажилчдын бүртгэл</Item>
+            {/* <Item href="/naryd">Нарядын тайлан</Item> */}
+            
+          </Collapse>
+          
+          
           <Collapse label="Тохиргоо">
             <Item href="/settings">Засвар</Item>
             <Item href="/price">Засварын үнийн тохиргоо</Item>

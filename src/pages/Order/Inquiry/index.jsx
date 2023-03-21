@@ -68,7 +68,7 @@ const Inquiry = () => {
                      <div className="flex"> 
                        
                         <div className="p-4"> 
-                           <FileInput />
+                         <Card className="max-w-lg">
                            <div className="w-3/4">
                             <Label htmlFor="description" value="Тайлбар бичих" />
                              <Textarea id="description"/>
@@ -77,12 +77,14 @@ const Inquiry = () => {
                                 Хүсэлт илгээх
                              </Button>
                            </div>
+                           </Card>
                         </div>
                         
                      </div>
                      {/* сэлбэгийн жагсаалт харуулах  */}
                    <div className="p-4"> 
                      <Card> 
+                        <FileInput />
                         <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
                          <Table> 
                            <Table.Head className="uppercase"> 
