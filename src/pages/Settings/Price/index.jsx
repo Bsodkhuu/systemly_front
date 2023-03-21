@@ -15,9 +15,7 @@ const Price = () => {
   const [showDelete, setShowDelete] = useState();
 
 
-  function ustgah(){
-    setShowDelete();
-  }
+
   function Inactive(){
     {/* zaswarin idewhitei bvrtgene  */}
     // Inactive uilchilgeenii jagsaaltaas shuud hadgalah tovch daraad active ruu oruulna
@@ -41,7 +39,9 @@ const Price = () => {
     setShowSave();
   }
 
-
+  function ustgah(){
+    setShowDelete();
+  }
 
 
     return(
