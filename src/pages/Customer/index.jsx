@@ -7,7 +7,7 @@ import {
   TextInput,
   Select,
   ListGroup,
-  Dropdown, Textarea, FileInput
+  Dropdown, Textarea, FileInput, Checkbox
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -110,6 +110,7 @@ const Customer = () => {
             <h5 className="text-1xl">Харилцагчийн хайлтын жагсаалт</h5>
             <Table> 
               <Table.Head className="uppercase"> 
+                <Table.HeadCell></Table.HeadCell>
                  <Table.HeadCell>Овог</Table.HeadCell>
                  <Table.HeadCell>Нэр</Table.HeadCell>
                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
@@ -117,6 +118,10 @@ const Customer = () => {
               </Table.Head>
               <Table.Body className="divide-y">
                 <Table.Row>
+                  <Table.Cell> 
+                    <Checkbox/>
+                    {/* <Checkbox /> hariltsagchin jagsaaltaas songohod  ezemshigchin delgerendvi deer shuud haragdana */}
+                  </Table.Cell>
                   <Table.Cell>Мөнх-Эрдэнэхуяг</Table.Cell>
                   <Table.Cell>Нямсүрэн</Table.Cell>
                   <Table.Cell>80156917</Table.Cell>
