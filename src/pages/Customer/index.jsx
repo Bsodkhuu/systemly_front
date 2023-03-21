@@ -104,7 +104,7 @@ const Customer = () => {
 
        {/* owner, vehicle search and details  */}
 
-       <div className="grid grid-cols-3 divide-x">
+       <div className="grid grid-cols-2">
         <div className="p-4">
           <Card> 
             <h5 className="text-1xl">Харилцагчийн хайлтын жагсаалт</h5>
@@ -129,12 +129,44 @@ const Customer = () => {
         <div className="p-4">
           <Card> 
             <h5 className="text-1xl">Тээврийн хэрэгслийн жагсаалт</h5>
+            <Table>
+              <Table.Head className="uppercase">
+                <Table.HeadCell>Vin дугаар</Table.HeadCell>
+                <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
+                <Table.HeadCell>Make</Table.HeadCell>
+                <Table.HeadCell>Model</Table.HeadCell>
+                <Table.HeadCell>Үйлдвэрлэсэн он</Table.HeadCell>
+                <Table.HeadCell>Импортлосон он</Table.HeadCell>
+                <Table.HeadCell>Өнгө</Table.HeadCell>
+                <Table.HeadCell>Улсын дугаар</Table.HeadCell>
+                <Table.HeadCell>Бүртгэгдсэн он</Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                <Table.Cell>12345</Table.Cell>
+                <Table.Cell>Нямсүрэн</Table.Cell>
+                <Table.Cell>12345</Table.Cell>
+                <Table.Cell>12345</Table.Cell>
+                <Table.Cell>
+                  <TextInput type="date"/>
+                </Table.Cell>
+                <Table.Cell>
+                  <TextInput type="date"/>
+                </Table.Cell>
+                <Table.Cell>Black</Table.Cell>
+                <Table.Cell>12345</Table.Cell>
+                <Table.Cell>
+                  <TextInput type="date"/>
+                </Table.Cell>
+              </Table.Body>
+            </Table>
           </Card>
           </div>
-        <div className="p-4">
+        
+       </div>
+       <div className="p-4">
           <Card> 
             <h5 className="text-1xl">Автомашины дэлгэрэнгүй </h5>
-            <a href="#">
+            <a href="/zaswar_service">
               <Button className="bg-blue-500">
                 Засвар эхлүүлэх
               </Button>
@@ -155,11 +187,50 @@ const Customer = () => {
                  <Table.HeadCell>Гуйлт</Table.HeadCell>
 
               </Table.Head>
+              <Table.Body className="divide-y">
+                <Table.Row>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  <Table.Cell> 
+                    12345
+                  </Table.Cell>
+                  
+                  </Table.Row>
+              </Table.Body>
             </Table>
           </Card>
         </div>
-       </div>
-
         </div>
       </div>
     </Layout>
