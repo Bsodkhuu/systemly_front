@@ -27,11 +27,25 @@ import Transport from "./pages/Customer/Transport";
 import Zahialga from "./pages/Order/zahialga";
 import Service from "./pages/Customer/Service";
 import ZaswarService from "./pages/Customer/Zaswar_Service";
+import Clock from "./pages/Settings/Clock";
+import Holiday from "./pages/Settings/Holiday";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:"/holiday", 
+    element: <Holiday/>
+  },
+  {
+    path: "/clock", 
+    element: <Clock/>,
+  },
+  {
+    path: "/customer",
+    element: <Customer />,
   },
   {
     path:"/zaswar_service", 
@@ -96,10 +110,7 @@ const router = createBrowserRouter([
   },
 
 
-  {
-    path: "/customer",
-    element: <Customer />,
-  },
+ 
   {
     path: "/login",
     element: <Login />,
