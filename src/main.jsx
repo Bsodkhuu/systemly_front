@@ -30,11 +30,13 @@ import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
 import Holiday from "./pages/Settings/Holiday";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+
   {
     path:"/holiday", 
     element: <Holiday/>
@@ -108,9 +110,6 @@ const router = createBrowserRouter([
     path: "/checkbox",
     element: <Checkbox />,
   },
-
-
- 
   {
     path: "/login",
     element: <Login />,

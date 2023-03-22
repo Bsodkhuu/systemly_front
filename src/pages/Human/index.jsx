@@ -116,19 +116,21 @@ import {useState } from "react";
               <div className="p-4">
                 <Card>
                   <h4 className="text-1xl">Ажилчдын жагсаалт</h4>
-                  
+                  zaswarin ajilchdin ners, 
                 </Card>
                 </div>
               <div className="p-4">
                 <Card>
                   <h4 className="text-1xl">Хийсэн үйлчилгээний жагсаалт</h4>
+                  zawsar duusan id 
                 </Card>
               </div>
               <div className="p-4">
                 <Card>
-                  <h4 className="text-1xl">Сонгосон ажилчны дэлгэрэнгүй</h4>
+                  <h4 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h4>
                   <Table> 
                     <Table.Head className="uppercase">
+                      {/* mexanikin hiisen ajlin dvn  */}
                       <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
                       <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                       <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
