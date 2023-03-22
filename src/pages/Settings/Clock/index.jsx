@@ -1,5 +1,5 @@
 import Layout from "../../../components/layout";
-import { TextInput, Button, Table, Select } from "flowbite-react";
+import { TextInput, Button, Table, Select, Checkbox } from "flowbite-react";
 import { useState } from "react";
 
 const Clock= () => {
@@ -36,19 +36,16 @@ const Clock= () => {
                 <Table.Body className="divide-y">
                   <Table.Row>
                     <Table.Cell>
-                      <TextInput type="text" />
+                      Даваа
                     </Table.Cell>
                     <Table.Cell>
-                    <TextInput type="text" />
+                    <TextInput type="time" />
                     </Table.Cell>
                     <Table.Cell>
-                    <TextInput type="text" />
+                    <TextInput type="time" />
                     </Table.Cell>
                     <Table.Cell>
-                      <Select>
-                        <option value="true">Үнэн</option>
-                        <option value="false">Худал</option>
-                      </Select>
+                      <Checkbox/>
                     </Table.Cell>
                     <Table.Cell>
                       <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
