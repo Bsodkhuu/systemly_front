@@ -27,6 +27,7 @@ import {useState} from "react";
                <div className="flex gap-4">
                  <TextInput type="date"/>
                </div>
+              
                   <div className="p-4">
                      <Card>
                      <h4 className="text-1xl">Үйлчилгээний жагсаалт</h4>

@@ -1,4 +1,4 @@
-import { TextInput, Button, Select, Table, Modal, Label } from "flowbite-react";
+import { TextInput, Button, Select, Table, Modal, Label} from "flowbite-react";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -141,16 +141,16 @@ const Price = () => {
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                    10,000
+                    <TextInput type="number" />
                   </Table.Cell>
                   <Table.Cell>
-                  10,000
+                    <TextInput type="number" />
                   </Table.Cell>
                   <Table.Cell>
-                  10,000
+                    <TextInput type="number" />
                   </Table.Cell>
                   <Table.Cell>
-                  10,000
+                    <TextInput type="number" />
                   </Table.Cell>
                   <Table.Cell>
                     <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
