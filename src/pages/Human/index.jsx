@@ -95,13 +95,20 @@ import {useState } from "react";
     function onChangeEmployeeAvatar(event) {
       employee.avatar = event.target.value;
     }
-    function employeeService(register) {
+    function employeeChecked(event, register) {
+      console.log(event.target.checked);
       console.log(register);
-      var foundEmployee = employeeList.find((employee) =>
-        employee.register == register);
-      console.log(foundEmployee);
+      var foundEmployee = employeeList.find((employee) => employee.register == register);
+      foundEmployee.checked = event.target.checked;
+      console.log(employeeList);
+    }
+    function employeeService() {
+      var checkedEmployees = employeeList.filter((employee) =>
+        employee.checked == true);
+      console.log(checkedEmployees);
       var foundService = serviceList.filter((service) =>
-        service.employeeId == foundEmployee.register);
+        checkedEmployees.find((employee) =>
+          service.employeeId == employee.register));
       console.log(foundService);
       setShowServiceList(foundService);
     }
@@ -215,14 +222,13 @@ import {useState } from "react";
                       <Table.HeadCell>Овог</Table.HeadCell>
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Мэргэжил</Table.HeadCell>
-                      <Table.HeadCell>Үйлдэл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
                       {
                         employeeList.map(employee =>
                           <Table.Row key={employee.register}>
                             <Table.Cell>
-                              <Checkbox checked={employee.checked}/>
+                              <Checkbox onChange={() => employeeChecked(event, employee.register)}/>
                             </Table.Cell>
                             <Table.Cell>
                               <Avatar src={employee.avatar}>
@@ -236,9 +242,6 @@ import {useState } from "react";
                             </Table.Cell>
                             <Table.Cell>
                               {employee.profession}
-                            </Table.Cell>
-                            <Table.Cell>
-                              <Button onClick={() => employeeHistory(employee.register)}>Түүх</Button>
                             </Table.Cell>
                           </Table.Row>
                         )
