@@ -11,7 +11,8 @@ import {useState} from "react";
 
     return (
         <Layout> 
-           <div className="p-4 bg-gray-200 h-screen w-full">
+        <div className="grid grid-cols-3 gap-4">
+           <div className="p-4 bg-gray-200 h-screen col-span-2">
             <div className="bg-white p-6 rounded-lg">
                <div className="flex justify-between mb-4">
                   <h4 className="text-1xl">Засвар борлуулалт</h4>
@@ -23,9 +24,10 @@ import {useState} from "react";
                   </div>
                </div>
                {/* Огнооны slicer */}
-               
-
-               <div className="grid grid-cols-3">
+               <div className="flex gap-4">
+                 <TextInput type="date"/>
+               </div>
+              
                   <div className="p-4">
                      <Card>
                      <h4 className="text-1xl">Үйлчилгээний жагсаалт</h4>
@@ -52,7 +54,6 @@ import {useState} from "react";
                                 <Table.Cell>
                                     21000
                                 </Table.Cell>
-                                
                             </Table.Body>
                         </Table>
                      </Card>
@@ -63,6 +64,9 @@ import {useState} from "react";
                      <h4 className="text-1xl">Засварын хуудасны дэлгэрэнгүй</h4>
                         <Table> 
                             <Table.Head className="uppercase">
+                                <Table.HeadCell>
+                                    Дуусах Засварын ID
+                                </Table.HeadCell>
                                 <Table.HeadCell>
                                     Үйлчилгээний нэр
                                 </Table.HeadCell>
@@ -87,6 +91,7 @@ import {useState} from "react";
 
                             </Table.Head>
                             <Table.Body className="divide-y">
+                                <Table.Cell>Дуусах Засварын ID</Table.Cell>
                                 <Table.Cell>Наклад солих</Table.Cell>
                                 <Table.Cell>2</Table.Cell>
                                 <Table.Cell>
@@ -106,7 +111,10 @@ import {useState} from "react";
                         </Table>
                     </Card>
                   </div>
-                  <div className="p-5">
+            </div>
+           </div>
+           <div className="col-span">
+           <div className="p-4">
                   <Card className="max-w-sm">
                         <h1 className="text-1xl">Засварын хуудас</h1>
                         <ListGroup> 
@@ -134,9 +142,7 @@ import {useState} from "react";
                         </ListGroup>
                     </Card>
                   </div>
-               </div>
-               
-            </div>
+           </div>
            </div>
         </Layout>
     );
