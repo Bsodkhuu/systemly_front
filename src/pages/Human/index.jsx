@@ -11,7 +11,8 @@ const Human = () => {
       gender: '',
       profession: '',
       startDate: '',
-      isWorking: ''
+      isWorking: '',
+      avatar: ''
     });
     const [employeeList] = useState([]);
     function openModal(){
@@ -29,7 +30,8 @@ const Human = () => {
         console.log(employee.profession);
         console.log(employee.startDate);
         console.log(employee.isWorking);
-        employeeList.push({id: employee.id, name: employee.name, profession: employee.profession});
+        console.log(employee.avatar);
+        employeeList.push({id: employee.id, name: employee.name, profession: employee.profession, avatar: employee.avatar});
         //fetch
         setShowModal(false);
     }
@@ -54,6 +56,9 @@ const Human = () => {
     }
     function onChangeEmployeeJob(event) {
         employee.isWorking = event.target.value;
+    }
+    function onChangeEmployeeAvatar(event) {
+        employee.avatar = event.target.value;
     }
     return (
         <Layout>
@@ -102,7 +107,8 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="image" value="Зураг оруулах" />
                 </div>
-                <FileInput id="image" />
+                <FileInput id="image"
+                 onChange={onChangeEmployeeAvatar}/>
               </div>
             </div>
 
@@ -194,7 +200,7 @@ const Human = () => {
                         <Checkbox/>
                       </Table.Cell>
                       <Table.Cell>
-                        <Avatar src="">
+                        <Avatar src={employee.avatar}>
                         </Avatar>
                       </Table.Cell>
                       <Table.Cell key={employee.id}>
@@ -214,8 +220,9 @@ const Human = () => {
                     <Checkbox/>
                   </Table.Cell>
                   <Table.Cell>
-                  <Avatar src="">
-                    </Avatar>
+                  <Avatar alt="Avatar" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b0/NewTux.svg">
+                  </Avatar>
                   </Table.Cell>
                   <Table.Cell>
                     12345
