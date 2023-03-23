@@ -6,7 +6,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 const My= () => {
 
-    const [showSearch, setSearch] = useState(false);
+    const [showSearch, setSearch] = useState();
     
     function Haih(){
         //fetch api

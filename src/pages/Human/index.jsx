@@ -1,303 +1,160 @@
 import Layout from "../../components/layout";
-import { useState } from "react";
+import {
+  Button,
+  Table,
+  Label,
+  Modal,
+  Card,
+  TextInput,
+  Select,
+  ListGroup,
+  Dropdown, Textarea, FileInput, Checkbox
+} from "flowbite-react";
 
-import { TextInput, Button, Table, Card, Modal,Avatar, Label, FileInput, Checkbox, Select} from "flowbite-react";
-const Human = () => {
+import {useState } from "react";
+
+  const Human = ()=> {
+
     const [showModal, setShowModal] = useState(false);
-    const [employee, setEmployee] = useState({
-      id: '',
-      name: '',
-      phone: '',
-      gender: '',
-      profession: '',
-      startDate: '',
-      isWorking: '',
-      avatar: ''
-    });
-    const [employeeList] = useState([]);
+    const [showSearch, setShowSearch] = useState();
+
     function openModal(){
-        setShowModal(true);
+      setShowModal(true);
     }
     function closeModal(){
-        setShowModal(false);
+      setShowModal(false);
     }
+
     function createHuman(){
-        console.log("employeeId:");
-        console.log(employee.id);
-        console.log(employee.name);
-        console.log(employee.phone);
-        console.log(employee.gender);
-        console.log(employee.profession);
-        console.log(employee.startDate);
-        console.log(employee.isWorking);
-        console.log(employee.avatar);
-        employeeList.push({id: employee.id, name: employee.name, profession: employee.profession, avatar: employee.avatar});
-        //fetch
-        setShowModal(false);
+      setShowModal(false);
     }
-    function onChangeEmployeeId(empId) {
-        employee.id = empId.target.value;
-        console.log(empId.target.value);
+
+    function search(){
+      setShowSearch();
     }
-    function onChangeEmployeeName(event) {
-        employee.name = event.target.value;
-    }
-    function onChangeEmployeePhone(event) {
-        employee.phone = event.target.value;
-    }
-    function onChangeEmployeeGender(event) {
-        employee.gender = event.target.value;
-    }
-    function onChangeEmployeeProfession(event) {
-        employee.profession = event.target.value;
-    }
-    function onChangeEmployeeStartDate(event) {
-        employee.startDate = event.target.value;
-    }
-    function onChangeEmployeeJob(event) {
-        employee.isWorking = event.target.value;
-    }
-    function onChangeEmployeeAvatar(event) {
-        employee.avatar = event.target.value;
-    }
-    return (
-        <Layout>
-           <Modal show={showModal} onClose={closeModal}>
-        <Modal.Header>Шинэ ажилтан нэмэх</Modal.Header>
-        <Modal.Body>
-          <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="employeeId" value="Ажилтны дугаар" />
-                </div>
-                  <TextInput id="employeeId"
-                    onChange={onChangeEmployeeId}/>
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="name" value="Нэр" />
-                </div>
-                <TextInput id="name"
-                  onChange={onChangeEmployeeName}/>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="phone" value="Утасны дугаар" />
-                </div>
-                <TextInput id="phone"
-                  onChange={onChangeEmployeePhone}/>
-              </div>
-              <div className="w-1/2 flex gap-4">
+    return(
+      <Layout> 
+        <Modal show={showModal} onClose={closeModal}>
+          <Modal.Header>Ажилчид нэмэх</Modal.Header>
+          <Modal.Body>
+            <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+              <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="gender" value="Хүйс" />
+                    <Label htmlFor="firstName" value="Овог" />
                   </div>
-                  <TextInput type="text" id="gender"
-                    onChange={onChangeEmployeeGender}/>
+                  <TextInput id="firstName"/>
+                </div>
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                    <Label htmlFor="lastName" value="Нэр"/>
+                  </div>
+                  <TextInput id="lastName" type="text"/>
                 </div>
               </div>
-            </div>
-           
-            <div className="flex gap-4">
-             
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="image" value="Зураг оруулах" />
+              <div className="flex gap-4">
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                    <Label htmlFor="phone" value="Утасны дугаар" />
+                  </div>
+                  <TextInput id="phone" />
                 </div>
-                <FileInput id="image"
-                 onChange={onChangeEmployeeAvatar}/>
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                    <Label htmlFor="email" value="Имэйл"/>
+                  </div>
+                  <TextInput id="email" />
+                </div>
               </div>
-            </div>
-
-            <div className="flex gap-4">
+              <div className="flex gap-4">
                 <div className="w-1/2">
-                    <div className="mb-2 block">
-                        <Label htmlFor="profession" value="Мэргэжил"/>
-                    </div>
-                    <TextInput id="profession"
-                      onChange={onChangeEmployeeProfession}/>
+                  <div className="mb-2 block">
+                    <Label htmlFor="register_number" value="Регистрийн дугаар" />
+                  </div>
+                  <TextInput id="register_number"/>
                 </div>
-                <div className="w-1/2"> 
-                <div className="mb-2 block">
-                  <Label htmlFor="startDate" value="Ажилд орсон он сар" /> 
-                </div>
-                <TextInput id="startDate" type="date"
-                  onChange={onChangeEmployeeStartDate}/>
-                </div>
-            </div>
-            <div className="flex gap-4">
                 <div className="w-1/2">
-                    <div className="mb-2 block">
-                      
-  <Label htmlFor="job" value="Ажиллаж байгаа эсэх"/>
-                    </div>
-                    <Select
-                      onChange={onChangeEmployeeJob}> 
-                        <option value="working">Ажиллаж байгаа</option>
-                        <option value="vacation">Ээлжийн амралт</option>
-                        <option value="tour">Томилолт</option>
-                        <option value="quit">Ажлаас гарсан</option>
-                        </Select>
+                  <div className="mb-2 block">
+                    <Label htmlFor="image" value="Ажилчдын зураг" /> 
+                  </div>
+                  <FileInput id="image" />
                 </div>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={closeModal} className="bg-gray-400">
-            Буцах
-          </Button>
-          <Button onClick={createHuman} className="bg-blue-500">
-            Хадгалах
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <div className="p-4 bg-gray-200 h-screen w-full">
-        <div className="bg-white p-6 rounded-lg">
-          <div className="flex justify-between mb-4">
-          <h4 className="text-1xl">Ажилтан
-         </h4>
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500" onClick={openModal}>
-                Ажилтан нэмэх
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                    <Label htmlFor="profession" value="Албан тушаал"/>
+                  </div>
+                  <TextInput type="profession"/>
+                </div>
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer> 
+            <Button onClick={closeModal} className="bg-gray-400">
+              Буцах
+            </Button>
+            <Button onClick={createHuman} className="bg-blue-500">
+              Хадгалах
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <div className="p-4 bg-gray-200 h-screen w-full">
+          <div className="bg-white p-6 rounded-lg">
+            <div className="flex justify-between mb-4">
+              <h4 className="text-1xl">Ажилчид</h4>
+              <div className="flex gap-4">
+                <TextInput id="search" type="search" placeholder="Хайх"/>
+                <Button className="bg-blue-500" onClick={search}>
+                  Хайх
+                </Button>
+                <Button className="bg-blue-500" onClick={openModal}>
+                 Ажилчид нэмэх
               </Button>
+              </div>
             </div>
-          </div>
-           <div className="grid grid-cols-2"> 
-           <div className="p-4"> 
-           <Card>
-           <h5 className="text-1xl">Ажилтны жагсаалт</h5>
-            <div className="flex gap-4">
-              <Button className="bg-blue-500">Идэвхитэй</Button>
-              <a href="/employee_history"> 
-               <Button className="bg-blue-500">
-                 Түүх
-               </Button>
-               </a>
+            <div className="grid grid-cols-3">
+              <div className="p-4">
+                <Card>
+                  <h4 className="text-1xl">Ажилчдын жагсаалт</h4>
+                  zaswarin ajilchdin ners, 
+                </Card>
+                </div>
+              <div className="p-4">
+                <Card>
+                  <h4 className="text-1xl">Хийсэн үйлчилгээний жагсаалт</h4>
+                  zawsar duusan id 
+                </Card>
+              </div>
+              <div className="p-4">
+                <Card>
+                  <h4 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h4>
+                  <Table> 
+                    <Table.Head className="uppercase">
+                      {/* mexanikin hiisen ajlin dvn  */}
+                      <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
+                      <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                      <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
+                      <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
+                      <Table.HeadCell>Хямдрал</Table.HeadCell>
+                      <Table.HeadCell>Нийт</Table.HeadCell>
+                    </Table.Head>
+                    <Table.Body className="divide-y">
+                      <Table.Row>
+                        <Table.Cell>Example</Table.Cell>
+                        <Table.Cell>2</Table.Cell>
+                        <Table.Cell>10.000</Table.Cell>
+                        <Table.Cell>Example</Table.Cell>
+                        <Table.Cell>Calculate</Table.Cell>
+                        <Table.Cell>20.000</Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+                  </Table>
+                </Card>
+              </div>
             </div>
-            <Table> 
-              <Table.Head className="uppercase"> 
-                <Table.HeadCell>
-                  {/* <Avatar src="">
-                  </Avatar> */}
-                </Table.HeadCell>
-                <Table.HeadCell>
-                  Ажилтны зураг
-                </Table.HeadCell>
-                <Table.HeadCell>Ажилтны дугаар</Table.HeadCell>
-                <Table.HeadCell>Овог нэр</Table.HeadCell>
-               
-                <Table.HeadCell>Мэргэжил</Table.HeadCell>
-              </Table.Head>
-              <Table.Body> 
-                {
-                  employeeList.map(employee => 
-                    <Table.Row key={employee.id}>
-                      <Table.Cell>
-                        <Checkbox/>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <Avatar src={employee.avatar}>
-                        </Avatar>
-                      </Table.Cell>
-                      <Table.Cell key={employee.id}>
-                        {employee.id}
-                      </Table.Cell>
-                      <Table.Cell>
-                        {employee.name}
-                      </Table.Cell>
-                      <Table.Cell>
-                        {employee.profession}
-                      </Table.Cell>
-                   </Table.Row>
-                  )
-                }
-                <Table.Row>
-                  <Table.Cell>
-                    <Checkbox/>
-                  </Table.Cell>
-                  <Table.Cell>
-                  <Avatar alt="Avatar" 
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/b0/NewTux.svg">
-                  </Avatar>
-                  </Table.Cell>
-                  <Table.Cell>
-                    12345
-                  </Table.Cell>
-                  <Table.Cell>
-                    Example
-                  </Table.Cell>
-                  <Table.Cell>
-                    Example
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            </Table>
-           </Card>
-          </div>
-          {/* Сонгосон ажилтны дэлгэрэнгүй */}
-          <div className="p-4"> 
-          <div className="w-50"> 
-            <Card> 
-              <h1>Сонгосон ажилтны дэлгэрэнгүй</h1>
-              <Table>
-                <Table.Head className="uppercase">
-                   <Table.HeadCell>
-                    Ажилтны зураг
-                   </Table.HeadCell>
-                   <Table.HeadCell>
-                    Ажилтны дугаар
-                   </Table.HeadCell>
-                   <Table.HeadCell>
-                    Овог нэр
-                   </Table.HeadCell>
-                   <Table.HeadCell>
-                    Утасны дугаар
-                   </Table.HeadCell>
-                   <Table.HeadCell>
-                    Хүйс
-                   </Table.HeadCell>
-                   
-                   <Table.HeadCell>
-                    Мэргэжил
-                   </Table.HeadCell>
-                  
-                   <Table.HeadCell>
-                    Ажилд орсон он сар
-                   </Table.HeadCell>
-                   
-                </Table.Head>
-                <Table.Body> 
-                  <Table.Row> 
-                    <Table.Cell>
-                      <Avatar src=""/>
-                    </Table.Cell>
-                    <Table.Cell>12</Table.Cell>
-                    <Table.Cell>Example</Table.Cell>
-                    <Table.Cell>12345678</Table.Cell>
-                    <Table.Cell>
-                     Эм 
-                    </Table.Cell>
-                    
-                    <Table.Cell>IT Enginer</Table.Cell>
-                   
-                    <Table.Cell>
-                      <TextInput type="date"/>
-                    </Table.Cell>
-                    
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-            </Card>
-          </div>
           </div>
         </div>
-      </div>
-    </div>
-  </Layout>
+      </Layout>
     );
-}
-export default Human;
+  }
+
+  export default Human;

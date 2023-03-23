@@ -1,12 +1,11 @@
 import Layout from "../../../components/layout";
 
+const Naryd = () => {
 
-const Naryd= () => {
-    return (
+    return(
         <Layout> 
-            <h1>Нарядын тайлан </h1>
+            
         </Layout>
     );
 }
-
 export default Naryd;

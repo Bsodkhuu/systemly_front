@@ -15,9 +15,7 @@ const Price = () => {
   const [showDelete, setShowDelete] = useState();
 
 
-  function ustgah(){
-    setShowDelete();
-  }
+
   function Inactive(){
     {/* zaswarin idewhitei bvrtgene  */}
     // Inactive uilchilgeenii jagsaaltaas shuud hadgalah tovch daraad active ruu oruulna
@@ -41,7 +39,9 @@ const Price = () => {
     setShowSave();
   }
 
-
+  function ustgah(){
+    setShowDelete();
+  }
 
 
     return(
@@ -124,24 +124,7 @@ const Price = () => {
               </Table.Head>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell>
-                    <TextInput type="text"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                  <TextInput type="text"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                  <TextInput type="text"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                  <TextInput type="text"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                  <TextInput type="text"/>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
-                  </Table.Cell>
+                  
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>
@@ -151,17 +134,17 @@ const Price = () => {
                     10,000
                   </Table.Cell>
                   <Table.Cell>
-                  10,0000
+                  10,000
                   </Table.Cell>
                   <Table.Cell>
-                  10,0000
+                  10,000
                   </Table.Cell>
                   <Table.Cell>
-                  10,0000
+                  10,000
                   </Table.Cell>
-                  <Table.Cell>
+                  {/* <Table.Cell>
                     <Button className="bg-blue-500" onClick={ustgah}>Устгах</Button>
-                  </Table.Cell>
+                  </Table.Cell> */}
                 </Table.Row>
               </Table.Body>
             </Table>

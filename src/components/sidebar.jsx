@@ -26,8 +26,9 @@ const SidebarComponent = () => {
           
           
           <Collapse label="Тохиргоо">
-            {/* <Item href="/settings">Засвар</Item> */}
+            <Item href="/settings">Засвар</Item>
             <Item href="/price">Засварын үнийн тохиргоо</Item>
+            <Item href="/clock">Ажлын цагийн хуваарь</Item>
           </Collapse>
          
           <Item>Системээс гарах</Item>
