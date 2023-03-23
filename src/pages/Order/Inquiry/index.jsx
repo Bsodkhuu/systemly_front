@@ -36,54 +36,48 @@ const Inquiry = () => {
       ];
     return(
         <Layout> 
-            <div className="p-4 bg-gray-200 h-screen w-full"> 
-              <div className="bg-white p-6 rounded-lg"> 
-                <div className="flex justify-between mb-4"> 
-                 <h5 className="text-1xl">Үнийн санал авах</h5>
-                 <div className="flex gap-4"> 
-                   <TextInput id="search" type="search" placeholder="Хайх"/>
-                   <Button className="bg-blue-500" onClick={search}>
-                    Хайх
-                   </Button>
-                 </div>
-                </div>
+            <div className="grid grid-cols-3 gap-4">
+                <div className="p-4 bg-gray-200 h-screen col-span-2">
+                   <div className="bg-white p-6 rounded-lg">
+                    <div className="flex justify-between mb-4">
+                        <h5 className="text-1xl">Үнийн санал</h5>
+                        <div className="flex gap-4">
+                            <TextInput id="search" type="search" placeholder="Хайх" />
+                            <Button className="bg-blue-500" onClick={search}>Хайх</Button>
+                        </div>
+                    </div>
 
-                {/* inquiry logo */}
-
-                <div className="grid grid-cols-2">
-                    <div className="col-span-2">
+                    <div className="grid grid-cols-2">
+                      <div className="col-span-2">
                         <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
                             <Carousel>
                             {reviews.map(review => (
                        <img className="d-block w-50" 
                        src={review.image}
                        alt={review.link} />
-                   ))}
+                        ))}
                             </Carousel>
                         </div>
-                 
                     </div>
-                    
-                    {/* file input  */}
-                     <div className="flex"> 
-                       
-                        <div className="p-4"> 
-                         <Card className="max-w-lg">
-                           <div className="w-3/4">
-                            <Label htmlFor="description" value="Тайлбар бичих" />
-                             <Textarea id="description"/>
-                             &nbsp;
-                             <Button className="ml-auto">
-                                Хүсэлт илгээх
-                             </Button>
-                           </div>
-                           </Card>
+
+
+                    <div className="flex">
+                        <div className="p-4">
+                            <Card className="max-w-lg">
+                                <div className="mb-2 block">
+                                   <Label htmlFor="description" value="Тайлбар бичих"/>
+                                   <Textarea id="description" />
+                                       &nbsp;
+                                    <Button className="ml-auto">
+                                     Хүсэлт илгээх
+                                   </Button>
+                                </div>
+                            </Card>
                         </div>
-                        
-                     </div>
-                     {/* сэлбэгийн жагсаалт харуулах  */}
-                   <div className="p-4"> 
-                     <Card> 
+                    </div>
+                 {/* сэлбэгийн жагсаалт харуулах  */}
+                 <div className="p-2"> 
+                     <Card className="max-w-sm"> 
                         <FileInput />
                         <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
                          <Table> 
@@ -137,13 +131,16 @@ const Inquiry = () => {
                                 </Table.Row>
                         </Table.Body>
                       </Table>
-                 </Card>
-               </div>
-                 {/* сагс харуулах */}
-               <Cart/>
-                </div>
-              </div>
+                 </Card> 
+                </div>  
             </div>
+        </div>
+    </div>
+        <div className="col-span">
+            <Cart/>
+            </div>
+        </div>
+            
         </Layout>
     );
 }

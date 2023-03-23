@@ -1,4 +1,4 @@
-import { TextInput, Button, Card, Table, Modal, Label } from "flowbite-react";
+import { TextInput, Button, Select, Table, Modal, Label } from "flowbite-react";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -107,6 +107,9 @@ const Price = () => {
                   Main group
                  </Table.HeadCell>
                  <Table.HeadCell>
+                  Sub group
+                 </Table.HeadCell>
+                 <Table.HeadCell>
                   Том оврийн
                  </Table.HeadCell>
                  <Table.HeadCell>
@@ -128,7 +131,14 @@ const Price = () => {
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>
-                    Мотор
+                    <Select>
+                      <option value="">Мотор</option>
+                    </Select>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <Select>
+                      <option value="">Моторын тосолгоо</option>
+                    </Select>
                   </Table.Cell>
                   <Table.Cell>
                     10,000
@@ -142,9 +152,9 @@ const Price = () => {
                   <Table.Cell>
                   10,000
                   </Table.Cell>
-                  {/* <Table.Cell>
-                    <Button className="bg-blue-500" onClick={ustgah}>Устгах</Button>
-                  </Table.Cell> */}
+                  <Table.Cell>
+                    <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
+                  </Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
