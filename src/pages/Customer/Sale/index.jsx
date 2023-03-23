@@ -24,9 +24,9 @@ import {useState} from "react";
                   </div>
                </div>
                {/* Огнооны slicer */}
-               
-
-              
+               <div className="flex gap-4">
+                 <TextInput type="date"/>
+               </div>
                   <div className="p-4">
                      <Card>
                      <h4 className="text-1xl">Үйлчилгээний жагсаалт</h4>
@@ -53,7 +53,6 @@ import {useState} from "react";
                                 <Table.Cell>
                                     21000
                                 </Table.Cell>
-                                
                             </Table.Body>
                         </Table>
                      </Card>
