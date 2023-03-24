@@ -110,6 +110,9 @@ const Price = () => {
                   Sub group
                  </Table.HeadCell>
                  <Table.HeadCell>
+                  Үйлчилгээний нэр
+                 </Table.HeadCell>
+                 <Table.HeadCell>
                   Том оврийн
                  </Table.HeadCell>
                  <Table.HeadCell>
@@ -126,10 +129,8 @@ const Price = () => {
                  </Table.HeadCell>
               </Table.Head>
               <Table.Body>
-                <Table.Row>
-                  
-                </Table.Row>
-                <Table.Row>
+
+              <Table.Row>
                   <Table.Cell>
                     <Select>
                       <option value="">Мотор</option>
@@ -139,6 +140,12 @@ const Price = () => {
                   <Select>
                       <option value="">Моторын тосолгоо</option>
                     </Select>
+                  </Table.Cell>
+                  <Table.Cell>
+                     <Select>
+                      <option value="">Example</option>
+                     </Select>
+                    
                   </Table.Cell>
                   <Table.Cell>
                     <TextInput type="number" />
@@ -156,6 +163,41 @@ const Price = () => {
                     <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
                   </Table.Cell>
                 </Table.Row>
+
+
+                {/* oorsdoo garaar vilchilgeeni neree oruulna shvv  */}
+                <Table.Row>
+                <Table.Cell>
+                    <Select>
+                      <option value="">Мотор</option>
+                    </Select>
+                  </Table.Cell>
+                  <Table.Cell>
+                  <Select>
+                      <option value="">Моторын тосолгоо</option>
+                    </Select>
+                  </Table.Cell>
+                  <Table.Cell>
+                     <TextInput type="text" />
+                    
+                  </Table.Cell>
+                  <Table.Cell>
+                    <TextInput type="number" />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <TextInput type="number" />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <TextInput type="number" />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <TextInput type="number" />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
+                  </Table.Cell>
+                </Table.Row>
+                
               </Table.Body>
             </Table>
            </div>

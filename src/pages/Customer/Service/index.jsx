@@ -17,8 +17,7 @@ const Service = ()=> {
           <div className="flex justify-between mb-4">
             
             <h4 className="text-1xl">Үйлчилгээний цаг авах
-            &nbsp;
-              <TextInput type="date"/>
+           
             </h4>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
@@ -26,7 +25,7 @@ const Service = ()=> {
               <Button className="bg-blue-500" onClick={search}>
                   Хайх
               </Button>
-            
+            <TextInput id="date" type="date"/>
             </div>
           </div>
              {/* calendar */}

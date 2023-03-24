@@ -46,6 +46,9 @@ const My= () => {
                  Түүх
                </Button>
                </a>
+               <Button className="bg-blue-500">
+                 Дэлгэрэнгүй
+               </Button>
                </div>
 
                <Table> 
@@ -65,13 +68,11 @@ const My= () => {
                 <Table.HeadCell> 
                    Статус
                 </Table.HeadCell>
-                <Table.HeadCell> 
-                   Үйлдэл
-                </Table.HeadCell>
+                
                </Table.Head>
                 <Table.Body className="divide-y">
               <Table.Row>
-                <Table.Cell className="!p-4">
+                <Table.Cell className="p-4">
                 <Checkbox />
                 </Table.Cell>
                 
@@ -89,10 +90,7 @@ const My= () => {
                     <option value="payment">Төлбөр төлөгдсөн</option>
                   </Select> */}
                 </Table.Cell>
-                <Table.Cell className="text-xl space-x-2">
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                  <FontAwesomeIcon icon={faTrash} />
-                </Table.Cell>
+                
               </Table.Row>
             </Table.Body>
                </Table>
@@ -131,8 +129,7 @@ const My= () => {
       </div>
         <div className="col-span">
           <div className="p-4"> 
-              <div className="flex p-4">
-              <Card> 
+              <Card className="max-w-sm">  
                 <h5 className="text-1xl">Замын мэдээний дэлгэрэнгүй</h5>
                  <div className="flex gap-4"> 
                  <Table> 
@@ -158,7 +155,7 @@ const My= () => {
               </div>
               </div> 
         </div>
-      </div>
+      
         </Layout>
     );
 }
