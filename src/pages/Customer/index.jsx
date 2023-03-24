@@ -84,8 +84,8 @@ const Customer = () => {
         </Modal.Footer>
       </Modal>
       <div className="grid grid-cols-3 gap-4">
-      <div className="p-4 bg-gray-200 h-screen col-span-2">
-        <div className="bg-white p-6 rounded-lg">
+      <div className="p-2 bg-gray-200 h-screen col-span-2">
+        <div className="bg-white p-2 rounded-lg">
           <div className="flex justify-between mb-4">
           <h4 className="text-1xl">Харилцагчийн бүртгэл</h4>
             <div className="flex gap-4">
@@ -109,9 +109,9 @@ const Customer = () => {
        {/* owner, vehicle search and details  */}
 
        <div className="grid grid-cols-2">
-        <div className="p-4">
-          <Card> 
-            <h5 className="text-1xl">Харилцагчийн хайлтын жагсаалт</h5>
+        <div className="p-2">
+          <Card className="max-w-sm"> 
+            <h5 className="text-1xl">Харилцагчийн жагсаалт</h5>
            <div className="flex gap-4">
             <TextInput id="search" type="search" placeholder=" Хэрэглэгч хайх"/>
             <Button className="bg-blue-500" onClick={search}>Хайх</Button>
@@ -119,10 +119,9 @@ const Customer = () => {
             <Table> 
               <Table.Head className="uppercase"> 
                 {/* <Table.HeadCell></Table.HeadCell> */}
-                 <Table.HeadCell>Овог</Table.HeadCell>
-                 <Table.HeadCell>Нэр</Table.HeadCell>
+                 <Table.HeadCell>Овог Нэр</Table.HeadCell>
                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                 <Table.HeadCell>Имэйл</Table.HeadCell>
+                
               </Table.Head>
               <Table.Body className="divide-y">
                 <Table.Row>
@@ -130,10 +129,8 @@ const Customer = () => {
                     <Checkbox/> */}
                     {/* <Checkbox /> hariltsagchin jagsaaltaas songohod  ezemshigchin delgerendvi deer shuud haragdana */}
                   {/* </Table.Cell> */}
-                  <Table.Cell>Мөнх-Эрдэнэхуяг</Table.Cell>
-                  <Table.Cell>Нямсүрэн</Table.Cell>
+                  <Table.Cell>М.Нямсүрэн</Table.Cell>
                   <Table.Cell>80156917</Table.Cell>
-                  <Table.Cell>mnymsuren37@gmail.com</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
@@ -148,8 +145,8 @@ const Customer = () => {
               </div>
             <Table>
               <Table.Head className="uppercase">
-                <Table.HeadCell>Make</Table.HeadCell>
-                <Table.HeadCell>Model</Table.HeadCell>
+                <Table.HeadCell>Улсын дугаар</Table.HeadCell>
+                <Table.HeadCell>Загвар</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
                 <Table.Cell>12345</Table.Cell>
@@ -158,13 +155,11 @@ const Customer = () => {
             </Table>
           </Card>
           </div>
-        
        </div>
-       
-        </div>
-      </div>
+    </div>
+  </div>
       <div className="col-span">
-      <div className="p-4">
+      <div className="p-2">
           <Card> 
             <h5 className="text-1xl">Автомашины дэлгэрэнгүй </h5>
             <div className="flex gap-4">
