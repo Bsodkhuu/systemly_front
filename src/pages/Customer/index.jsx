@@ -13,11 +13,13 @@ import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Customer = () => {
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+
+
   function openModal() {
     setShowModal(true);
   }
@@ -34,6 +36,7 @@ const Customer = () => {
     // fetch('/api/customer')
     setShowSearch();
   }
+  
 
   return (
     <Layout>
@@ -80,7 +83,8 @@ const Customer = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="p-4 bg-gray-200 h-screen w-full">
+      <div className="grid grid-cols-3 gap-4">
+      <div className="p-4 bg-gray-200 h-screen col-span-2">
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
           <h4 className="text-1xl">Харилцагчийн бүртгэл</h4>
@@ -156,7 +160,11 @@ const Customer = () => {
           </div>
         
        </div>
-       <div className="p-4">
+       
+        </div>
+      </div>
+      <div className="col-span">
+      <div className="p-4">
           <Card> 
             <h5 className="text-1xl">Автомашины дэлгэрэнгүй </h5>
             <div className="flex gap-4">

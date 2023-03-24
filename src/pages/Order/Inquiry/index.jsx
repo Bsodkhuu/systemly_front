@@ -77,7 +77,7 @@ const Inquiry = () => {
                     </div>
                  {/* сэлбэгийн жагсаалт харуулах  */}
                  <div className="p-2"> 
-                     <Card className="max-w-sm"> 
+                     <Card> 
                         <FileInput />
                         <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
                          <Table> 
