@@ -3,9 +3,7 @@ import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
 import {useState, Fragment} from "react";
-
 
 const Price = () => {
   const [showSearch, setShowSearch] = useState();
@@ -13,15 +11,30 @@ const Price = () => {
   const [showModal, setShowModal] = useState(false);
   const [showSave, setShowSave] = useState();
   const [showDelete, setShowDelete] = useState();
-
-
-
+  const [service, setService] = useState({
+    service: '',
+    price: '',
+    currency: ''
+  });
   function Inactive(){
     {/* zaswarin idewhitei bvrtgene  */}
     // Inactive uilchilgeenii jagsaaltaas shuud hadgalah tovch daraad active ruu oruulna
-    setShowActive();
+    openModal();
+    console.log("service");
+    console.log(service);
+    fetch("http://localhost:3000/settings/service", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify(service)
+    }).then(res => res.json()
+    ).then(data => {
+      console.log(data);
+    });
+    closeModal();
   }
-
   
   function openModal() {
     setShowModal(true);
@@ -30,11 +43,11 @@ const Price = () => {
   function closeModal() {
     setShowModal(false);
   }
- 
 
   function search(){
     setShowSearch();
   }
+
   function save(){
     setShowSave();
   }
@@ -43,109 +56,117 @@ const Price = () => {
     setShowDelete();
   }
 
+  function onChangeService(event) {
+    service.service = event.target.value;
+  }
+  
+  function onChangePrice(event) {
+    service.price = event.target.value;
+  }
 
-    return(
-        <Layout> 
-          <Modal show={showModal} onClose={closeModal}>
-             <Modal.Header>Үйлчилгээ бүртгэх</Modal.Header>
-             <Modal.Body> 
-              <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
-                <div className="flex gap-4"> 
-                   <div className="w-1/2"> 
-                   <div className="mb-2 block"> 
-                       <Label htmlFor="service" value="Засвар үйлчилгээний нэр"/>
-                   </div>
-                   <TextInput id="service"/>
-                   </div>
-                   <div className="w-1/2"> 
-                    <div className="mb-2 block"> 
-                     <Label htmlFor="price" value="Үнэ"/>
-                    </div>
-                    <TextInput id="price" />
-                   </div>
-                   <div className="w-1/2"> 
-                     <div className="mb-2 block"> 
-                       <Label htmlFor="currency" value="Валют" />
-                     </div>
-                     <TextInput id="currency"/>
-                   </div>
+  function onChangeCurrency(event) {
+    service.currency = event.target.value;
+  }
+  return(
+    <Layout> 
+      <Modal show={showModal} onClose={closeModal}>
+        <Modal.Header>Үйлчилгээ бүртгэх</Modal.Header>
+          <Modal.Body> 
+            <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+              <div className="flex gap-4"> 
+                <div className="w-1/2"> 
+                  <div className="mb-2 block"> 
+                    <Label htmlFor="service" value="Засвар үйлчилгээний нэр"/>
+                  </div>
+                  <TextInput id="service"
+                    onChange={onChangeService}/>
                 </div>
-
-              </form>
-             </Modal.Body>
-             <Modal.Footer>
-               <Button onClick={closeModal} className="bg-gray-400">
-                Буцах
-               </Button>
-               <Button onClick={Inactive} className="bg-gray-400">
-                Хадгалах
-               </Button>
-             </Modal.Footer>
-          </Modal>
-          <div className="p-4 bg-gray-200 h-screen w-full"> 
-           <div className="bg-white p-6 rounded-lg"> 
-           <div className="flex justify-between mb-4"> 
-            <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
-            <div className="flex gap-4"> 
-              <TextInput id="search" type="search" placeholder="Хайлт"/>
-              <Button className="bg-blue-500" onClick={search}>
-                Хайх
-              </Button>
-              <Button className="bg-blue-500" onClick={openModal}>Үйлчилгээ бүртгэх</Button>
-              <a href="/active">
-              <Button className="bg-blue-500">Идэвхитэй</Button>
-              </a>
+                <div className="w-1/2"> 
+                  <div className="mb-2 block"> 
+                    <Label htmlFor="price" value="Үнэ"/>
+                  </div>
+                  <TextInput id="price"
+                    onChange={onChangePrice}/>
+                </div>
+                <div className="w-1/2"> 
+                  <div className="mb-2 block"> 
+                    <Label htmlFor="currency" value="Валют" />
+                  </div>
+                  <TextInput id="currency"
+                    onChange={onChangeCurrency}/>
+                </div>
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={closeModal} className="bg-gray-400">
+              Буцах
+            </Button>
+            <Button onClick={Inactive} className="bg-gray-400">
+              Хадгалах
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <div className="p-4 bg-gray-200 h-screen w-full"> 
+          <div className="bg-white p-6 rounded-lg"> 
+            <div className="flex justify-between mb-4"> 
+              <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
+              <div className="flex gap-4"> 
+                <TextInput id="search" type="search" placeholder="Хайлт"/>
+                <Button className="bg-blue-500" onClick={search}>
+                  Хайх
+                </Button>
+                <Button className="bg-blue-500" onClick={openModal}>Үйлчилгээ бүртгэх</Button>
+                <a href="/active">
+                  <Button className="bg-blue-500">Идэвхитэй</Button>
+                </a>
+              </div>
             </div>
-           </div>
 
            {/* main, sub group service service table + towch daraad mashinii torlin vne garar oruullaad hadgalah towch darah  */}
-            
-
             <Table> 
               <Table.Head className="uppercase"> 
-                 <Table.HeadCell>
+                <Table.HeadCell>
                   Main group
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   Sub group
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   Үйлчилгээний нэр
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   Том оврийн
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   SUV 
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   Дунд гарын 
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   Суудлын
-                 </Table.HeadCell>
-                 <Table.HeadCell>
+                </Table.HeadCell>
+                <Table.HeadCell>
                   Үйлдэл
-                 </Table.HeadCell>
+                </Table.HeadCell>
               </Table.Head>
               <Table.Body>
-
-              <Table.Row>
+                <Table.Row>
                   <Table.Cell>
                     <Select>
                       <option value="">Мотор</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                  <Select>
+                    <Select>
                       <option value="">Моторын тосолгоо</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                     <Select>
+                    <Select>
                       <option value="">Example</option>
-                     </Select>
-                    
+                    </Select>
                   </Table.Cell>
                   <Table.Cell>
                     <TextInput type="number" />
@@ -163,23 +184,20 @@ const Price = () => {
                     <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
                   </Table.Cell>
                 </Table.Row>
-
-
                 {/* oorsdoo garaar vilchilgeeni neree oruulna shvv  */}
                 <Table.Row>
-                <Table.Cell>
+                  <Table.Cell>
                     <Select>
                       <option value="">Мотор</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                  <Select>
+                    <Select>
                       <option value="">Моторын тосолгоо</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                     <TextInput type="text" />
-                    
+                    <TextInput type="text" />
                   </Table.Cell>
                   <Table.Cell>
                     <TextInput type="number" />
@@ -197,7 +215,6 @@ const Price = () => {
                     <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
                   </Table.Cell>
                 </Table.Row>
-                
               </Table.Body>
             </Table>
            </div>
