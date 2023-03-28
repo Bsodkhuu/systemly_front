@@ -9,7 +9,8 @@ const Clock= () => {
   const [work, setWork] = useState({
     weekend: '', 
     open:'', 
-    close:''
+    close:'',
+    work_checkbox: ''
   });
   const [workList, setWorkList] = useState([]);
 
@@ -18,7 +19,7 @@ const Clock= () => {
       
       console.log("Ажлын цагийн хуваарь post request");
       console.log(work);
-
+      
       fetch("http://localhost:3000/settings/work", {
         method: "POST",
         headers:{
@@ -44,9 +45,14 @@ const Clock= () => {
       work.close = event.target.value;
     }
 
+    function onChangeWorkCheckbox(event){
+      work.work_checkbox = event.target.value;
+    }
+
   //example data get request
 
   function fetchData(){
+    
     console.log("Ажлын цагийн хуваарь get");
     fetch("http://localhost:3000/settings/ajil", 
     {
@@ -101,6 +107,9 @@ const Clock= () => {
                   <TextInput type="time" onChange={onChangeClose}/>
                 </Table.Cell>
                 <Table.Cell>
+                  <TextInput type="text" onChange={onChangeWorkCheckbox}/>
+                </Table.Cell>
+                <Table.Cell>
                   <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
                 </Table.Cell>
               </Table.Row>
@@ -119,7 +128,7 @@ const Clock= () => {
                       {work.close}
                     </Table.Cell>
                     <Table.Cell>
-                      <Checkbox/>
+                      {work.work_checkbox}
                     </Table.Cell>
                     <Table.Cell className="text-xl space-x-2">
                   <FontAwesomeIcon icon={faPenToSquare} />
