@@ -1,13 +1,69 @@
 import Layout from "../../../components/layout";
 import { TextInput, Button, Table, Select, Checkbox } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Clock= () => {
-  const [showSave, setShowsave] = useState();
+  const [work, setWork] = useState({
+    weekend: '', 
+    open:'', 
+    close:''
+  });
+  const [workList, setWorkList] = useState([]);
 
-  function save(){
-    setShowsave();
+   //ajlin tsagin huwaari post request
+    function save(){
+      
+      console.log("Ажлын цагийн хуваарь post request");
+      console.log(work);
+
+      fetch("http://localhost:3000/settings/work", {
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify(work)
+      }).then(res => res.json()
+      ).then(data => {
+        console.log(data);
+      });
+    }
+
+    function onChangeWeekend(event){
+      work.weekend = event.target.value;
+    }
+
+    function onChangeOpen(event){
+      work.open = event.target.value;
+    }
+
+    function onChangeClose(event){
+      work.close = event.target.value;
+    }
+
+  //example data get request
+
+  function fetchData(){
+    console.log("Ажлын цагийн хуваарь get");
+    fetch("http://localhost:3000/settings/ajil", 
+    {
+      headers:{
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }).then(res => res.json()
+    ).then(data => {
+      console.log(data);
+      setWorkList(data);
+    });
   }
+
+  useEffect(() => {
+    fetchData();
+  }, [""]);
     return (
         <Layout>
            <div className="p-4 bg-gray-200 h-screen w-full"> 
@@ -34,23 +90,44 @@ const Clock= () => {
                   <Table.HeadCell>Үйлдэл</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  <Table.Row>
+              <Table.Row>
+                <Table.Cell>
+                  <TextInput type="text" onChange={onChangeWeekend}/>
+                </Table.Cell>
+                <Table.Cell>
+                  <TextInput type="time" onChange={onChangeOpen}/>
+                </Table.Cell>
+                <Table.Cell>
+                  <TextInput type="time" onChange={onChangeClose}/>
+                </Table.Cell>
+                <Table.Cell>
+                  <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+                <Table.Body className="divide-y">
+                 {
+                  workList.map((work, index) => 
+                  <Table.Row key={index}>
                     <Table.Cell>
-                      Даваа
+                      {work.weekend}
                     </Table.Cell>
                     <Table.Cell>
-                    <TextInput type="time" />
+                      {work.open}
                     </Table.Cell>
                     <Table.Cell>
-                    <TextInput type="time" />
+                      {work.close}
                     </Table.Cell>
                     <Table.Cell>
                       <Checkbox/>
                     </Table.Cell>
-                    <Table.Cell>
-                      <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
-                    </Table.Cell>
+                    <Table.Cell className="text-xl space-x-2">
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                  <FontAwesomeIcon icon={faTrash} />
+                </Table.Cell>
                   </Table.Row>
+                  )
+                 }
                 </Table.Body>
               </Table>
             </div>

@@ -1,7 +1,9 @@
 
 import { TextInput, Button,  Table, Card, Checkbox, ListGroup} from "flowbite-react";
 import { useState } from "react";
+
 import Layout from "../../../components/layout";
+
 
 const Service = ()=> {
   const [showSearch, setShowSearch] = useState();
@@ -40,7 +42,7 @@ const Service = ()=> {
             <Table> 
               <Table.Head className="uppercase"> 
                 {/* <Table.HeadCell></Table.HeadCell> */}
-                 <Table.HeadCell>Нэрс</Table.HeadCell>
+                 <Table.HeadCell>Нэр</Table.HeadCell>
                  <Table.HeadCell>Үйлчилгээний төрөл</Table.HeadCell>
                  <Table.HeadCell>Цаг авсан</Table.HeadCell>
                  
@@ -58,12 +60,11 @@ const Service = ()=> {
           </Card>
         </div>
         <div className="p-3">
-          Calendar
+         calendar
         </div>
        </div>
        <div className="p-4">
           <Card className="max-w-sm"> 
-            <h5 className="text-1xl">Үзлэгийн хуваарь</h5>
               <div className="flex gap-4">
                <TextInput id="search" type="search" placeholder="Хайх"/>
                <Button className="bg-blue-500" onClick={search}>Хайх</Button>
@@ -74,7 +75,7 @@ const Service = ()=> {
               </Table.Head>
               <Table.Body className="divide-y">
                 <Table.Cell>
-                  <TextInput type="date" />
+                 Үйлчилгээний цаг
                 </Table.Cell>
               </Table.Body>
             </Table>

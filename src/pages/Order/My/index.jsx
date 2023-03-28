@@ -46,16 +46,14 @@ const My= () => {
                  Түүх
                </Button>
                </a>
-               <Button className="bg-blue-500">
-                 Дэлгэрэнгүй
-               </Button>
+              
                </div>
 
                <Table> 
                <Table.Head>
-               <Table.HeadCell className="!p-4">
+               {/* <Table.HeadCell className="!p-4">
                <Checkbox />
-              </Table.HeadCell>
+              </Table.HeadCell> */}
              
 
                 {/* zahialga or-10002 ni back-end iimerhvv baidlaar hiine shvv */}
@@ -72,23 +70,15 @@ const My= () => {
                </Table.Head>
                 <Table.Body className="divide-y">
               <Table.Row>
-                <Table.Cell className="p-4">
+                {/* <Table.Cell className="p-4">
                 <Checkbox />
-                </Table.Cell>
+                </Table.Cell> */}
                 
                 <Table.Cell>Meyle</Table.Cell>
                 <Table.Cell>11111</Table.Cell>
                 <Table.Cell>
                 Захиалга хийгдэж байгаа
-                {/* <Select>
-                    <option value="zahialga hiigdej bgaa">Захиалга хийгдэж байгаа</option>
-                    <option value="zahialga batalgaajuulsan">Захиалга баталгаажсан</option>
-                    <option value="sawlagdaj bgaa">Савлагдаж байгаа</option>
-                    <option value="teewerlelt">Тээвэрлэлт эхэлсэн</option>
-                    <option value="ub">Улаанбаатарт ирсэн</option>
-                    <option value="zahialagchid">Захиалагчид хүргэж өгсөн</option>
-                    <option value="payment">Төлбөр төлөгдсөн</option>
-                  </Select> */}
+               
                 </Table.Cell>
                 
               </Table.Row>

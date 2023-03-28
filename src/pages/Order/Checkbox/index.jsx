@@ -17,7 +17,7 @@ const Checkbox = () => {
                            <Alert color="failure" icon="">
                             <span>
                                 <span className="font-medium">
-                                    Захиалгаа хянаад баталгаажуулаарай
+                                    Захиалгаа хянаад баталгаажуулаарай / zahialgin statusin messej haragdana 
                                 </span>
                             </span>
                            </Alert>

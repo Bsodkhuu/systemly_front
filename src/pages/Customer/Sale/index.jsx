@@ -64,11 +64,12 @@ import {useState} from "react";
                      <h4 className="text-1xl">Засварын хуудасны дэлгэрэнгүй</h4>
                         <Table> 
                             <Table.Head className="uppercase">
-                                <Table.HeadCell>
-                                    Дуусах Засварын ID
-                                </Table.HeadCell>
+                               
                                 <Table.HeadCell>
                                     Үйлчилгээний нэр
+                                </Table.HeadCell>
+                                <Table.HeadCell>
+                                    Үйлчилгээ хийсэн механикч
                                 </Table.HeadCell>
                                 <Table.HeadCell>
                                     Тоо ширхэг
@@ -76,9 +77,7 @@ import {useState} from "react";
                                 <Table.HeadCell>
                                     Нэгжийн үнэ
                                 </Table.HeadCell>
-                                <Table.HeadCell>
-                                    Үйлчилгээ хийсэн механикч
-                                </Table.HeadCell>
+                                
                                 <Table.HeadCell>
                                     Хямдрал
                                 </Table.HeadCell>
@@ -91,13 +90,14 @@ import {useState} from "react";
 
                             </Table.Head>
                             <Table.Body className="divide-y">
-                                <Table.Cell>Дуусах Засварын ID</Table.Cell>
+                              
                                 <Table.Cell>Наклад солих</Table.Cell>
+                                <Table.Cell>hyzaarf</Table.Cell>
                                 <Table.Cell>2</Table.Cell>
                                 <Table.Cell>
                                     21000
                                 </Table.Cell>
-                                <Table.Cell>hyzaarf</Table.Cell>
+
                                 <Table.Cell>
                                     Calculate
                                 </Table.Cell>

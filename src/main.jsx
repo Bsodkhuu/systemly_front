@@ -8,7 +8,6 @@ import Customer from "./pages/Customer";
 import Login from "./pages/Login";
 import Human from "./pages/Human";
 import Order from "./pages/Order";
-import Warehouse from "./pages/Warehouse";
 import My from "./pages/Order/My";
 import History from "./pages/Order/History";
 import Create from "./pages/Order/Create";
@@ -36,7 +35,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-
+  // Gishuun design 
   {
     path:"/holiday", 
     element: <Holiday/>
@@ -134,10 +133,7 @@ const router = createBrowserRouter([
   element: <Payment/>
  },
 
- {
-  path: "/warehouse", 
-  element: <Warehouse/>
- }, 
+
  
 {
   path: "/inquiry", 

@@ -252,9 +252,7 @@ import {useState, useEffect} from "react";
           <div className="bg-white p-6 rounded-lg">
             <div className="flex justify-between mb-4">
               <h4 className="text-1xl">Ажилчид</h4>
-              <Button className="bg-blue-500" onClick={openModal}>
-                Ажилчид нэмэх
-              </Button>
+             
               <div className="flex gap-4">
                 <TextInput id="startDate" type="date"/>
                 -
@@ -262,6 +260,9 @@ import {useState, useEffect} from "react";
                 <Button className="bg-blue-500" onClick={search}>
                   Хайх
                 </Button>
+                <Button className="bg-blue-500" onClick={openModal}>
+                Ажилчид нэмэх
+              </Button>
               </div>
             </div>
             <div className="grid grid-cols-3">

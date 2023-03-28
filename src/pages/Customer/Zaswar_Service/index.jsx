@@ -66,9 +66,7 @@ const ZaswarService = () => {
                         <h1 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h1>
                         <Table> 
                             <Table.Head className="uppercase">
-                            <Table.HeadCell>
-                                    Засвар эхлэх дугаар
-                                </Table.HeadCell>
+                         
                                 <Table.HeadCell>
                                     Үйлчилгээний нэр
                                 </Table.HeadCell>
@@ -93,7 +91,7 @@ const ZaswarService = () => {
 
                             </Table.Head>
                             <Table.Body className="divide-y">
-                                <Table.Cell>ZASWAR EHLEH ID</Table.Cell>
+                                
                                 <Table.Cell>Наклад солих</Table.Cell>
                                 <Table.Cell>2</Table.Cell>
                                 <Table.Cell>
