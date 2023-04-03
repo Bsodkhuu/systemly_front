@@ -1,21 +1,22 @@
-import { useState } from "react";
 import Layout from "../../components/layout";
-import { useEffect } from "react";
 import { Table } from "flowbite-react";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../config/axios";
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
+  const { data, isLoading } = useQuery("products", getProducts);
 
-  useEffect(() => {
-    async function getProducts() {
-      const p = await fetch("http://localhost:4000/product_categories");
-      const data = await p.json();
+  async function getProducts() {
+    const response = await axiosClient.get("/product_categories");
 
-      setProducts(data);
-    }
+    return response.data;
+  }
 
-    getProducts();
-  }, []);
+  if (isLoading) {
+    return <Layout></Layout>;
+  }
+
+  console.log(data);
 
   return (
     <Layout>
@@ -26,7 +27,7 @@ const ProductPage = () => {
           <Table.HeadCell>SubCategories</Table.HeadCell>
         </Table.Head>
         <Table.Body>
-          {products.map((i) => (
+          {data.map((i) => (
             <Table.Row>
               <Table.Cell>{i.id}</Table.Cell>
               <Table.Cell>{i.en}</Table.Cell>
