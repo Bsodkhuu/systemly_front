@@ -28,6 +28,7 @@ import Service from "./pages/Customer/Service";
 import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
 import Holiday from "./pages/Settings/Holiday";
+import Forgot from "./pages/Login/Forgot/forgot";
 
 
 const router = createBrowserRouter([
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  {
+    path: "/forgot",
+    element: <Forgot />,
+  },
 
  {
   path: "/human", 
@@ -131,10 +136,7 @@ const router = createBrowserRouter([
  {
   path: "/payment", 
   element: <Payment/>
- },
-
-
- 
+ }, 
 {
   path: "/inquiry", 
   element: <Inquiry/>

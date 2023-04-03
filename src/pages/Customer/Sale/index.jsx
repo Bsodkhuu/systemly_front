@@ -15,7 +15,7 @@ import {useState} from "react";
            <div className="p-4 bg-gray-200 h-screen col-span-2">
             <div className="bg-white p-6 rounded-lg">
                <div className="flex justify-between mb-4">
-                  <h4 className="text-1xl">Засвар борлуулалт</h4>
+                  <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
                   <div className="flex gap-4">
                      <TextInput id="search" type="search" placeholder="Хайх" />
                      <Button className="bg-blue-500" onClick={search}>

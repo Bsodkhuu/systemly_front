@@ -4,10 +4,7 @@ import {
   Label,
   Modal,
   Card,
-  TextInput,
-  Select,
-  ListGroup,
-  Dropdown, Textarea, FileInput, Checkbox
+  TextInput
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +15,79 @@ import { useEffect, useState } from "react";
 const Customer = () => {
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [customer, setCustomer] = useState({
+    lastName: '', 
+    firstName: '', 
+    phone_number: '',
+    email: ''
+  });
+  const [customerList, setCustomerList] = useState([]);
+  const [vehicleMake, setVehicleMake] = useState({
+    make_id:"", 
+    model_name: "", 
+    vehicle_class_id:"",
+    vehicle_body_type_id:"", 
+  });
+  const [vehicleMakeModels, setVehicleMakeModels] = useState([]);
 
+
+  //garage customer vehicles 
+
+  const [customerVehicles, setCustomerVehicles] = useState({
+    vin_number: '',
+    license_plate_number: ''
+  });
+  const [vehicleList, setVehicleList] = useState([]);
+  //garage customer vehicles 
+  function fetchData2(){
+    fetch("http://localhost:3000/customers/auto", {
+      headers:{
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      setVehicleList(data);
+    })
+  }
+  useEffect(() => {
+    fetchData2();
+   }, [""]);
+
+   // vehicle make models 
+  function fetchData1(){
+    fetch("http://localhost:3000/customers/vehiclemake", {
+      headers:{
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      setVehicleMakeModels(data);
+    })
+  }
+  useEffect(() => {
+   fetchData1();
+  }, [""]);
+
+  
+  //customers 
+  function fetchData(){
+    fetch("http://localhost:3000/customers",{
+      headers:{
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      setCustomerList(data);
+    });
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [""]);
 
   function openModal() {
     setShowModal(true);
@@ -29,14 +98,40 @@ const Customer = () => {
   }
 
   function createCustomer() {
-    // fetch('/api/customer')
-    setShowModal(false);
+    openModal();
+    console.log("customers nemeh");
+
+    fetch("http://localhost:3000/customers/hereglegch", {
+      method: "POST", 
+      headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body:JSON.stringify(customer)
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+    });
+   closeModal();
   }
   function search() {
     // fetch('/api/customer')
     setShowSearch();
   }
-  
+  function onFirstName(event){
+    customer.firstName = event.target.value;
+  }
+
+  function onLastName(event){
+    customer.lastName = event.target.value;
+  }
+
+  function onEmail(event){
+    customer.email = event.target.value;
+  }
+
+  function onPhone(event){
+    customer.phone_number = event.target.phone_number;
+  }
 
   return (
     <Layout>
@@ -49,13 +144,13 @@ const Customer = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="firstName" value="Овог" />
                 </div>
-                <TextInput id="firstName" />
+                <TextInput id="firstName" onChange={onFirstName}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="lastName" value="Нэр" />
                 </div>
-                <TextInput id="lastName" />
+                <TextInput id="lastName" onChange={onLastName}/>
               </div>
             </div>
             <div className="flex gap-4">
@@ -63,13 +158,13 @@ const Customer = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="phone" value="Утасны дугаар" />
                 </div>
-                <TextInput id="phone" />
+                <TextInput id="phone" onChange={onPhone}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="email" value="Имэйл"/>
                 </div>
-                <TextInput id="email" />
+                <TextInput id="email" onChange={onEmail} />
               </div>
               </div>
           </form>
@@ -96,11 +191,11 @@ const Customer = () => {
               <Button className="bg-blue-500" onClick={openModal}>
                 Харилцагч нэмэх
               </Button>
-              {/* <a href="/transport">
+              <a href="/transport">
                 <Button className="bg-blue-500">
                   Тээврийн хэрэгсэл нэмэх
                 </Button>
-              </a> */}
+              </a>
             </div>
           </div>
        
@@ -119,7 +214,8 @@ const Customer = () => {
             <Table> 
               <Table.Head className="uppercase"> 
                 {/* <Table.HeadCell></Table.HeadCell> */}
-                 <Table.HeadCell>Овог Нэр</Table.HeadCell>
+                 <Table.HeadCell>Овог</Table.HeadCell>
+                 <Table.HeadCell>Нэр</Table.HeadCell>
                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
                 
               </Table.Head>
@@ -129,9 +225,27 @@ const Customer = () => {
                     <Checkbox/> */}
                     {/* <Checkbox /> hariltsagchin jagsaaltaas songohod  ezemshigchin delgerendvi deer shuud haragdana */}
                   {/* </Table.Cell> */}
-                  <Table.Cell>М.Нямсүрэн</Table.Cell>
+                  <Table.Cell>М.</Table.Cell>
+                  <Table.Cell>М.</Table.Cell>
                   <Table.Cell>80156917</Table.Cell>
                 </Table.Row>
+                
+              </Table.Body>
+              <Table.Body>
+                {
+                  customerList.map((customer, index) => 
+                  <Table.Row key={index}>
+                    <Table.Cell>
+                      {customer.firstName}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {customer.lastName}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {customer.phone_number}
+                    </Table.Cell>
+                  </Table.Row>)
+                }
               </Table.Body>
             </Table>
           </Card>
@@ -145,12 +259,21 @@ const Customer = () => {
               </div>
             <Table>
               <Table.Head className="uppercase">
-                <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                 <Table.HeadCell>Загвар</Table.HeadCell>
+                <Table.HeadCell>Модел</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                <Table.Cell>12345</Table.Cell>
-                <Table.Cell>12345</Table.Cell>
+                {vehicleMakeModels.map((vehicleMake, index) => 
+                <Table.Row key={index}>
+                  <Table.Cell>
+                    {vehicleMake.make_id}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {vehicleMake.model_name}
+                  </Table.Cell>
+                 
+                </Table.Row>
+                )}
               </Table.Body>
             </Table>
           </Card>
@@ -174,59 +297,38 @@ const Customer = () => {
             <Table>
               <Table.Head className="uppercase"> 
                  <Table.HeadCell>Vin дугаар</Table.HeadCell>
-                 <Table.HeadCell>Make</Table.HeadCell>
-                 <Table.HeadCell>Model</Table.HeadCell>
                  <Table.HeadCell>Төрөл</Table.HeadCell>
                  <Table.HeadCell>Үйлдвэрлэсэн он</Table.HeadCell>
                  <Table.HeadCell>Импортлосон он</Table.HeadCell>
                  <Table.HeadCell>Өнгө</Table.HeadCell>
                  <Table.HeadCell>Улсын дугаар</Table.HeadCell>
-                 <Table.HeadCell>Моторын багтаамж</Table.HeadCell>
-                 <Table.HeadCell>Шатахууны төрөл</Table.HeadCell>
-                 <Table.HeadCell>Хурдны хайрцаг</Table.HeadCell>
-                 <Table.HeadCell>Гуйлт</Table.HeadCell>
 
               </Table.Head>
               <Table.Body className="divide-y">
-                <Table.Row>
-                  <Table.Cell> 
-                    12345
+                {vehicleList.map((customerVehicles, index) => 
+                <Table.Row key={index}>
+                  <Table.Cell>
+                    {customerVehicles.vin_number}
                   </Table.Cell>
-                  <Table.Cell> 
-                    12345
+                  <Table.Cell>
+                    {/* torol */}
+                    {customerVehicles.vin_number}
                   </Table.Cell>
-                  <Table.Cell> 
-                    12345
+                  <Table.Cell>
+                    {customerVehicles.manufactured_year}
                   </Table.Cell>
-                  <Table.Cell> 
-                    12345
+                  <Table.Cell>
+                    {customerVehicles.imported_year}
                   </Table.Cell>
-                  <Table.Cell> 
-                    12345
+                  <Table.Cell>
+                   {/* ongo */}
+                    {customerVehicles.imported_year}
                   </Table.Cell>
-                  <Table.Cell> 
-                    12345
+                  <Table.Cell>
+                    {customerVehicles.license_plate_number}
                   </Table.Cell>
-                  <Table.Cell> 
-                    12345
-                  </Table.Cell>
-                  <Table.Cell> 
-                    12345
-                  </Table.Cell>
-                  <Table.Cell> 
-                    12345
-                  </Table.Cell>
-                  <Table.Cell> 
-                    12345
-                  </Table.Cell>
-                  <Table.Cell> 
-                    12345
-                  </Table.Cell>
-                  <Table.Cell> 
-                    12345
-                  </Table.Cell>
-                  
-                  </Table.Row>
+                </Table.Row>
+                )}
               </Table.Body>
             </Table>
           </Card>
@@ -239,27 +341,3 @@ const Customer = () => {
 
 export default Customer;
 
-
-{/* <Table>
-<Table.Head className="uppercase">
-  <Table.HeadCell>Нэр</Table.HeadCell>
-  <Table.HeadCell>Тайлбар</Table.HeadCell>
-  <Table.HeadCell>Төрөл</Table.HeadCell>
-  <Table.HeadCell>Утас</Table.HeadCell>
-  <Table.HeadCell>Хариуцсан ажилтан</Table.HeadCell>
-  <Table.HeadCell>Үйлдэл</Table.HeadCell>
-</Table.Head>
-<Table.Body className="divide-y">
-  <Table.Row>
-    <Table.Cell>ABS All brake system</Table.Cell>
-    <Table.Cell></Table.Cell>
-    <Table.Cell>Үйлдвэрлэгч</Table.Cell>
-    <Table.Cell>+31 30 6861 200</Table.Cell>
-    <Table.Cell>Г. Ням-Очир</Table.Cell>
-    <Table.Cell className="text-xl space-x-2">
-      <FontAwesomeIcon icon={faPenToSquare} />
-      <FontAwesomeIcon icon={faTrash} />
-    </Table.Cell>
-  </Table.Row>
-</Table.Body>
-</Table> */}

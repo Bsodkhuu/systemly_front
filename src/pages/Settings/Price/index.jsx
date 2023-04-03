@@ -3,26 +3,29 @@ import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import {useState, Fragment} from "react";
+import {useState, Fragment, useEffect} from "react";
 
 const Price = () => {
   const [showSearch, setShowSearch] = useState();
   const [showActive, setShowActive] = useState();
   const [showModal, setShowModal] = useState(false);
-  const [showSave, setShowSave] = useState();
-  const [showDelete, setShowDelete] = useState();
-  const [service, setService] = useState({
-    service: '',
+  const [zaswarin_vne, setZaswarin_vne] = useState({
+    service_type_main_category: '', 
+    service_type_subcategory: '', 
+    service_type_name: '',
     price: '',
     currency: ''
   });
+  const [zaswarinVneList, setZaswarinVne] = useState([]);
+
+
   function Inactive(){
     {/* zaswarin idewhitei bvrtgene  */}
     // Inactive uilchilgeenii jagsaaltaas shuud hadgalah tovch daraad active ruu oruulna
     openModal();
     console.log("service");
     console.log(service);
-    fetch("http://localhost:3000/settings/service", {
+    fetch("http://localhost:3000/settings/vne", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,26 +50,88 @@ const Price = () => {
   function search(){
     setShowSearch();
   }
-
+  //zaswar vne post request 
   function save(){
-    setShowSave();
+    console.log("Засварын үнийн post request");
+    console.log(zaswarin_vne);
+
+    fetch("http://localhost:3000/settings/vne", {
+      method: "POST", 
+      headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify(zaswarin_vne)
+    }).then(res => res.json()).then(data => console.log(data));
+  }
+  function onChangeMain(event){
+    zaswarin_vne.service_type_main_category= event.target.value;
+  }
+  function onChangeSub(event){
+    zaswarin_vne.service_type_subcategory = event.target.value;
+  }
+  function onChangeServiceName(event){
+    zaswarin_vne.service_type_name = event.target.value;
   }
 
+  function onChangePrice(event){
+    zaswarin_vne.price = event.target.value;
+  }
+  function onCurrency(event){
+    zaswarin_vne.currency = event.target.value;
+  }
+  //zawsarin vne data delte request 
   function ustgah(){
-    setShowDelete();
+    console.log("засварын үнийн тохиргоо delete");
+
+    fetch("http://localhost:3000/settings/zaswar/:id", {
+      method: "DELETE", 
+      headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+
+    }).then(res=> res.json()).then(data => {
+      console.log(data);
+      setZaswarinVne(data);
+    })
+  }
+  //zawsarin vne data put request 
+
+  function shinechleh(){
+    console.log("засварын үнийн тохиргоо put");
+    fetch("http://localhost:3000/settings/zaswarvne/:id",{
+      method:"PUT", 
+      headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body:JSON.stringify(zaswarin_vne)
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      setZaswarinVne(data);
+    });
+  }
+  //zaswarin vne data get request 
+  function fetchData(){
+    console.log("засварын үнийн тохиргоо get");
+    fetch("http://localhost:3000/settings/zaswar", {
+      headers:{
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      setZaswarinVne(data);
+    });
   }
 
-  function onChangeService(event) {
-    service.service = event.target.value;
-  }
-  
-  function onChangePrice(event) {
-    service.price = event.target.value;
-  }
+  useEffect(() => {
+    fetchData();
+  }, [""]);
 
-  function onChangeCurrency(event) {
-    service.currency = event.target.value;
-  }
+
+ 
   return(
     <Layout> 
       <Modal show={showModal} onClose={closeModal}>
@@ -79,7 +144,7 @@ const Price = () => {
                     <Label htmlFor="service" value="Засвар үйлчилгээний нэр"/>
                   </div>
                   <TextInput id="service"
-                    onChange={onChangeService}/>
+                    onChange={onChangeServiceName}/>
                 </div>
                 <div className="w-1/2"> 
                   <div className="mb-2 block"> 
@@ -93,7 +158,7 @@ const Price = () => {
                     <Label htmlFor="currency" value="Валют" />
                   </div>
                   <TextInput id="currency"
-                    onChange={onChangeCurrency}/>
+                    onChange={onCurrency}/>
                 </div>
               </div>
             </form>
@@ -155,30 +220,30 @@ const Price = () => {
                 <Table.Row>
                   <Table.Cell>
                     <Select>
-                      <option value="">Мотор</option>
+                      <option value="" onChange={onChangeMain}>Мотор</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
                     <Select>
-                      <option value="">Моторын тосолгоо</option>
+                      <option value="" onChange={onChangeSub}>Моторын тосолгоо</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
                     <Select>
-                      <option value="">Example</option>
+                      <option value="" onChange={onChangeServiceName}>Example</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice} />
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
                     <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
@@ -188,33 +253,80 @@ const Price = () => {
                 <Table.Row>
                   <Table.Cell>
                     <Select>
-                      <option value="">Мотор</option>
+                      <option value="" onChange={onChangeMain}>Мотор</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
                     <Select>
-                      <option value="">Моторын тосолгоо</option>
+                      <option value="" onChange={onChangeSub}>Моторын тосолгоо</option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="text" />
+                    <TextInput type="text" onChange={onChangeServiceName}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="number" />
+                    <TextInput type="number" onChange={onChangePrice}/>
                   </Table.Cell>
                   <Table.Cell>
                     <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
                   </Table.Cell>
                 </Table.Row>
+                </Table.Body>
+                <Table.Body>
+                  {
+                    zaswarinVneList.map((zaswarin_vne, index) => 
+                    <Table.Row key={index}>
+                      <Table.Cell>
+                       <Select>
+                       <option value="">
+                       {zaswarin_vne.service_type_main_category}
+                       </option>
+                       
+                       </Select>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Select>
+                          <option value="">
+                          {zaswarin_vne.service_type_subcategory}
+                          </option>
+                        </Select>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Select>
+                          <option value="">
+                          {zaswarin_vne.service_type_name}
+                          </option>
+                        </Select>
+                      </Table.Cell>
+                      <Table.Cell>
+                        {zaswarin_vne.price}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {zaswarin_vne.price}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {zaswarin_vne.price}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {zaswarin_vne.price}
+                      </Table.Cell>
+                      <Table.Cell className="text-xl space-x-2">
+                  <FontAwesomeIcon icon={faPenToSquare} onClick={shinechleh} />
+                  <FontAwesomeIcon icon={faTrash} onClick={ustgah}/>
+                </Table.Cell>
+                    </Table.Row>
+                    )
+                  }
+                
               </Table.Body>
             </Table>
            </div>

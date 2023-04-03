@@ -1,9 +1,34 @@
 import { TextInput, Button, Table, Avatar} from "flowbite-react";
 import Layout from "../../../components/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const EmployeeHistory = () => {
     const [showSearch, setShowSearch] = useState(false);
+    const [employeeList, setEmployeeList] = useState([]);
+    const [employee, setEmployee] = useState({
+        employee_ovog: '', 
+        employee_name: '',
+        phone: '', 
+        email: '',
+        image: '',
+      });
+   
+    function fetchData(){
+        console.log("ажилчдын түүх");
+        fetch("http://localhost:3000/human/gishuun",{
+            headers:{
+                "Content-Type":"application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+            setEmployeeList(data);
+        });
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [""]);
     function search() {
         // fetch('/api/customer')
         setShowSearch();
@@ -27,19 +52,13 @@ const EmployeeHistory = () => {
                         Ажилтны зураг
                        </Table.HeadCell>
                        <Table.HeadCell>
-                        Ажилтны дугаар
+                        Овог 
                        </Table.HeadCell>
                        <Table.HeadCell>
-                        Овог нэр
+                        Нэр
                        </Table.HeadCell>
                        <Table.HeadCell>
                         Утасны дугаар
-                       </Table.HeadCell>
-                       <Table.HeadCell>
-                        Хүйс
-                       </Table.HeadCell>
-                       <Table.HeadCell>
-                        Хэлтэс
                        </Table.HeadCell>
                        <Table.HeadCell>
                         Мэргэжил
@@ -50,22 +69,32 @@ const EmployeeHistory = () => {
                       
                     </Table.Head>
                     <Table.Body> 
-                        <Table.Row>
-                            <Table.Cell>
-                                <Avatar src="" />
-                            </Table.Cell>
-                            <Table.Cell>12</Table.Cell>
-                            <Table.Cell>Example</Table.Cell>
-                            <Table.Cell>12345678</Table.Cell>
-                            <Table.Cell>Эм</Table.Cell>
-                            <Table.Cell>Хөгжүүлэгч</Table.Cell>
-                            <Table.Cell>IT Enginer</Table.Cell>
-                            <Table.Cell>
-                                <TextInput type="date" id="date_time"/>
-                            </Table.Cell>
-                            
-                            
-                        </Table.Row>
+                        {
+                            employeeList.map((employee, index)=> 
+                            <Table.Row key={index}>
+                               <Table.Cell>
+                               {employee.image}
+                               </Table.Cell>
+                               <Table.Cell>
+                               {employee.employee_ovog}
+                               </Table.Cell>
+                               <Table.Cell>
+                               {employee.employee_name}
+                               </Table.Cell>
+                               <Table.Cell>
+                               {employee.phone}
+                               </Table.Cell>
+                               <Table.Cell>
+                               {employee.position_name}
+                               </Table.Cell>
+                               <Table.Cell>
+                                {/* <TextInput type="date"  /> */}
+                                {employee.created_date}
+                               </Table.Cell>
+                            </Table.Row>
+                            )
+                        }
+
                     </Table.Body>
                 </Table>
              </div>

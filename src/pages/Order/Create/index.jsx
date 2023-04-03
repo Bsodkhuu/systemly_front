@@ -56,20 +56,7 @@ const Create = () => {
                     </div>
                  </div>
 
-                 <div className="flex gap-4">
-                    <div className="w-1/2"> 
-                      <div class="mb-2 block">
-                        <Label htmlFor="address" value="Хаяг" />
-                      </div>
-                      <TextInput id="address" />
-                    </div>
-                    <div className="w-1/2"> 
-                    <div className="mb-2 block"> 
-                    <Label htmlFor="address_line" value="Хаяг №2" />
-                    </div>
-                    <TextInput id="address_line" />
-                    </div>
-                 </div>
+                
 
                  <div className="flex gap-4">
                     <div className="w-1/2"> 

@@ -14,65 +14,9 @@ const Zahialga = () => {
   const [showSearch, setSearch] = useState(false);
   const [showCancel, setCancel] = useState(false);
  
-  const [order, setOrder] = useState({
-    serial: '', 
-    oe_brand: '',
-    part_number: '',
-    description: '',
-    net_price: '',
-    currency: '',
-    fitting: '', 
-    too: '',
-  });
-
   function cart(){
-    console.log("Захиалга post request");
-    console.log(order);
 
-    fetch("http://localhost:3000/order/zahialga", {
-      method: "POST", 
-      headers:{
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      },
-      body: JSON.stringify(order)
-    }).then(res => res.json()).then(data => {
-      console.log(data);
-    });
   }
-
-  function onChangeSerial(event){
-    order.serial = event.target.value;
-  }
-
-  function onChangeOe(event){
-    order.oe_brand = event.target.value;
-  }
-
-  function onChangePart(event){
-    order.part_number = event.target.value;
-  }
-
-  function onChangeDesc(event){
-    order.description = event.target.value;
-  }
-
-  function onChangeNetPrice(event) {
-    order.net_price = event.target.value;
-  }
-
-  function onChangeCurrency(event){
-    order.currency = event.target.value;
-  }
-
-  function onChangeFitting(event){
-    order.fitting = event.target.value;
-  }
-
-  function onChangeToo(event){
-    order.too = event.target.value
-  }
-
   function Haih(){
       //fetch api
      setSearch(true);
@@ -174,29 +118,29 @@ const reviews = [
                   <Table.Body>
                     <Table.Row>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangeSerial} />
+                        <TextInput type="text" />
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangeOe}/>
+                        <TextInput type="text"/>
                         {/* niilegchin brendin ner orj irnee */}
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangePart} />
+                        <TextInput type="text" />
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangeDesc} />
+                        <TextInput type="text" />
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangeNetPrice}/>
+                        <TextInput type="text" />
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangeCurrency} />
+                        <TextInput type="text"/>
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="text" onChange={onChangeFitting}/>
+                        <TextInput type="text"/>
                       </Table.Cell>
                       <Table.Cell>
-                        <TextInput type="number" onChange={onChangeToo}/>
+                        <TextInput type="number"/>
                       </Table.Cell>
                       <Table.Cell>
                         <Button className="bg-blue-500" onClick={cart}>

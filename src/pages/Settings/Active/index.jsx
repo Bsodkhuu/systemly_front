@@ -15,7 +15,7 @@ const Active = () => {
   function fetchData() {
     console.log("onload");
     fetch(
-      "http://localhost:3000/settings/services",
+      "http://localhost:3000/settings/zaswar",
       {
         headers: {
           "Content-Type": "application/json",
@@ -51,14 +51,14 @@ const Active = () => {
               <Table.HeadCell>Засвар үйлчилгээний нэр</Table.HeadCell>
               <Table.HeadCell>Үнэ</Table.HeadCell>
               <Table.HeadCell>Валют</Table.HeadCell>
-              <Table.HeadCell>Үйлдэл</Table.HeadCell>
+              {/* <Table.HeadCell>Үйлдэл</Table.HeadCell> */}
             </Table.Head>
             <Table.Body className="divide-y">
               {
                 serviceList.map((service, index) =>
                   <Table.Row key={index}>
                     <Table.Cell>
-                      {service.service}
+                      {service.service_type_name}
                     </Table.Cell>
                     <Table.Cell>
                       {service.price}
@@ -66,6 +66,7 @@ const Active = () => {
                     <Table.Cell>
                       {service.currency}
                     </Table.Cell>
+                   
                   </Table.Row>
                 )
               }
@@ -79,10 +80,7 @@ const Active = () => {
                 <Table.Cell>
                   $
                 </Table.Cell>
-                <Table.Cell className="text-xl space-x-2">
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                  <FontAwesomeIcon icon={faTrash} />
-                </Table.Cell>
+               
               </Table.Row>
             </Table.Body>
           </Table>
