@@ -15,7 +15,7 @@ import Cart from "./pages/Order/Cart";
 import Checkbox from "./pages/Order/Checkbox";
 import Payment from "./pages/Order/Payment";
 import Inquiry from "./pages/Order/Inquiry";
-import Sale from "./pages/Customer/Sale"; 
+import Sale from "./pages/Customer/Sale";
 import Spare from "./pages/Customer/Spare";
 import Settings from "./pages/Settings";
 import Price from "./pages/Settings/Price";
@@ -29,78 +29,78 @@ import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
 import Holiday from "./pages/Settings/Holiday";
 import Forgot from "./pages/Login/Forgot/forgot";
-
+import ProductPage from "./pages/Product";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  // Gishuun design 
+  // Gishuun design
   {
-    path:"/holiday", 
-    element: <Holiday/>
+    path: "/holiday",
+    element: <Holiday />,
   },
   {
-    path: "/clock", 
-    element: <Clock/>,
+    path: "/clock",
+    element: <Clock />,
   },
   {
     path: "/customer",
     element: <Customer />,
   },
   {
-    path:"/zaswar_service", 
-    element: <ZaswarService/>
+    path: "/zaswar_service",
+    element: <ZaswarService />,
   },
   {
-    path: "/service", 
-    element: <Service/>
+    path: "/service",
+    element: <Service />,
   },
   {
-    path: "/zahialga", 
-    element: <Zahialga/>
+    path: "/zahialga",
+    element: <Zahialga />,
   },
   {
     path: "/transport",
-    element: <Transport/>
+    element: <Transport />,
   },
- {
-  path: "/active", 
-  element: <Active/>
- },
+  {
+    path: "/active",
+    element: <Active />,
+  },
 
   {
-    path: "/naryd", 
-    element: <Naryd/>
+    path: "/naryd",
+    element: <Naryd />,
   },
   {
-    path: "/employee_history", 
-    element: <EmployeeHistory/>
+    path: "/employee_history",
+    element: <EmployeeHistory />,
   },
   {
-    path: "/settings", 
-    element: <Settings/>
+    path: "/settings",
+    element: <Settings />,
   },
   {
-    path: "/price", 
-    element: <Price/>
+    path: "/price",
+    element: <Price />,
   },
   {
-    path:"/spare", 
-    element: <Spare/>
+    path: "/spare",
+    element: <Spare />,
   },
   {
-    path:"/sale", 
-    element: <Sale/>
+    path: "/sale",
+    element: <Sale />,
   },
   {
-    path: "/cart", 
-    element: <Cart/>
+    path: "/cart",
+    element: <Cart />,
   },
   {
-    path: "/create", 
-    element: <Create/>
+    path: "/create",
+    element: <Create />,
   },
   {
     path: "/history",
@@ -119,28 +119,32 @@ const router = createBrowserRouter([
     element: <Forgot />,
   },
 
- {
-  path: "/human", 
-  element: <Human/>
- },
- 
- {
-  path: "/order", 
-  element: <Order />
- },
- {
-  path: "/my", 
-  element: <My/>
- },
+  {
+    path: "/human",
+    element: <Human />,
+  },
 
- {
-  path: "/payment", 
-  element: <Payment/>
- }, 
-{
-  path: "/inquiry", 
-  element: <Inquiry/>
-},
+  {
+    path: "/order",
+    element: <Order />,
+  },
+  {
+    path: "/my",
+    element: <My />,
+  },
+
+  {
+    path: "/payment",
+    element: <Payment />,
+  },
+  {
+    path: "/inquiry",
+    element: <Inquiry />,
+  },
+  {
+    path: "/product_categories",
+    element: <ProductPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
