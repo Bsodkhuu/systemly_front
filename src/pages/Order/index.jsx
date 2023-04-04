@@ -34,6 +34,8 @@ const Order = () => {
               </a>
             </div>
           </div>
+           &nbsp;
+          <h1>Түүвэр захиалга </h1>
         </div>
       </div>
     </Layout>

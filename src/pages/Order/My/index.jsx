@@ -58,7 +58,7 @@ const My= () => {
 
                 {/* zahialga or-10002 ni back-end iimerhvv baidlaar hiine shvv */}
                 <Table.HeadCell> 
-                   Захиалга
+                   Захиалгын дугаар
                 </Table.HeadCell>
                 <Table.HeadCell> 
                    Нийлүүлэгч
@@ -77,10 +77,10 @@ const My= () => {
                 <Table.Cell>Meyle</Table.Cell>
                 <Table.Cell>11111</Table.Cell>
                 <Table.Cell>
-                Захиалга хийгдэж байгаа
-               
+                  <a href="/create">
+                     Захиалга баталгаажуулсан
+                  </a>
                 </Table.Cell>
-                
               </Table.Row>
             </Table.Body>
                </Table>

@@ -1,30 +1,33 @@
 
 import { TextInput, Button, Carousel, Card, Table, Select, Label, Avatar, ListGroup} from "flowbite-react";
-import Layout from "../../components/layout";
-import Cart from "../Order/Cart/index"; 
+import Layout from "../../components/layout"; 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
-
+import { useQuery } from "react-query";
+import { axiosClient } from "../../config/axios";
 
 const Zahialga = () => {
-
-  
   const [showSearch, setSearch] = useState(false);
-  const [showCancel, setCancel] = useState(false);
  
-  function cart(){
+  const {data, isLoading} = useQuery("products", getProducts);
 
-  }
+    async function getProducts(){
+      const response = await axiosClient.get("/products");
+      return response.data;
+    }
+
+    if(isLoading){
+      return <Layout></Layout>
+    }
+
+    console.log(data);
+  
   function Haih(){
       //fetch api
      setSearch(true);
   }
-  function cancel(){
-    //fetch api
-   setCancel(true);
-}
+ 
 const reviews = [
   {
      id: 1, 
@@ -105,9 +108,9 @@ const reviews = [
               <Card> 
                 <Table> 
                   <Table.Head className="uppercase">
-                    <Table.HeadCell>Сериал</Table.HeadCell>
-                    <Table.HeadCell>OE Брэнд</Table.HeadCell>
-                    <Table.HeadCell>Партын дугаар</Table.HeadCell>
+                   
+                    {/* <Table.HeadCell>Бүтээгдэхүүний ангилал</Table.HeadCell> */}
+                    <Table.HeadCell>Парт дугаар</Table.HeadCell>
                     <Table.HeadCell>Тайлбар</Table.HeadCell>
                     <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                     <Table.HeadCell>Валют</Table.HeadCell>
@@ -115,47 +118,70 @@ const reviews = [
                     <Table.HeadCell>Тоо, ширхэг сонгох</Table.HeadCell>
                     <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
+
                   <Table.Body>
-                    <Table.Row>
-                      <Table.Cell>
-                        <TextInput type="text" />
-                      </Table.Cell>
-                      <Table.Cell>
-                        <TextInput type="text"/>
-                        {/* niilegchin brendin ner orj irnee */}
-                      </Table.Cell>
-                      <Table.Cell>
-                        <TextInput type="text" />
-                      </Table.Cell>
-                      <Table.Cell>
-                        <TextInput type="text" />
-                      </Table.Cell>
-                      <Table.Cell>
-                        <TextInput type="text" />
-                      </Table.Cell>
-                      <Table.Cell>
-                        <TextInput type="text"/>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <TextInput type="text"/>
-                      </Table.Cell>
-                      <Table.Cell>
+                    {data.map((i) => (
+                      <Table.Row>
+                       
+                       
+                        {/* <Table.Cell>{i.productCategoryId.map((j) => j.en).join(",")}</Table.Cell> */}
+                        <Table.Cell>{i.part_number}</Table.Cell>
+                        <Table.Cell>{i.description}</Table.Cell>
+                        <Table.Cell>{i.netPrice}</Table.Cell>
+                        <Table.Cell>{i.currency}</Table.Cell>
+                        <Table.Cell>{i.fittingPostion}</Table.Cell>
+                       
+                        <Table.Cell>
                         <TextInput type="number"/>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <Button className="bg-blue-500" onClick={cart}>
+                        </Table.Cell>
+                        <Table.Cell>
+                        <Button className="bg-blue-500" onClick={getProducts}>
                           <FontAwesomeIcon icon={faCartShopping} />
                         </Button>
                       </Table.Cell>
-                    </Table.Row>
+                      </Table.Row>
+                    ))}
                   </Table.Body>
+                  
                 </Table>
               </Card>
             </div>
           </div>
           </div> 
         <div className="col-span">
-          <Cart/>
+        <div className="p-2"> 
+        <Card className="max-w-sm"> 
+           <h1 className="text-1xl">Сагс</h1>
+             <div className="w-50"> 
+              <ListGroup>
+                {data.map((i) => (
+                 <ListGroup.Item>
+                  Парт дугаар: {i.part_number}
+                  <ListGroup.Item></ListGroup.Item>
+                  Тайлбар: {i.description}
+                  <ListGroup.Item></ListGroup.Item>
+                  Нэгжийн үнэ: {i.netPrice}
+                  <ListGroup.Item></ListGroup.Item>
+                  Валют: {i.currency}
+                  <ListGroup.Item></ListGroup.Item>
+                  Fitting: {i.fittingPostion}
+                  <ListGroup.Item></ListGroup.Item>
+                  Тоо, ширхэг: {i.quantity}
+                  <ListGroup.Item></ListGroup.Item>
+                  <ListGroup.Item></ListGroup.Item>
+                  Нийт үнэ: {i.subtotal}
+                  </ListGroup.Item>
+                ))}
+            </ListGroup>
+             &nbsp;
+            <a href="/messej"> 
+            <Button  className="bg-blue-500"> 
+              Захиалга үүсгэх
+            </Button>
+            </a>
+            </div>
+        </Card>
+    </div>
         </div>
       </div>
         

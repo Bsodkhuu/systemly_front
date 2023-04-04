@@ -31,11 +31,26 @@ import Clock from "./pages/Settings/Clock";
 import Holiday from "./pages/Settings/Holiday";
 import Forgot from "./pages/Login/Forgot/forgot";
 import ProductPage from "./pages/Product";
+import Messej from "./pages/Order/Create/messej";
+import BackOrder from "./pages/BackOrder";
+import Online from "./pages/Online";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/online", 
+    element: <Online/>
+  },
+  {
+    path: "/backorder", 
+    element: <BackOrder/>
+  },
+  {
+    path:"/messej", 
+    element: <Messej/>
   },
   // Gishuun design
   {

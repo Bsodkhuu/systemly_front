@@ -1,12 +1,13 @@
 import Layout from "../../../components/layout";
-
 import { TextInput, Button, Card, Label, ListGroup, Avatar, Alert} from "flowbite-react";
-import { useState } from "react";
+
+import React, {Fragment, useState} from "react";
 const Checkbox = () => {
     const [showPayment, setPayment] = useState();
     function payment(){
        setPayment();
     }
+
     return (
         <Layout> 
             <div className="grid grid-cols-3 gap-4">
@@ -17,7 +18,7 @@ const Checkbox = () => {
                            <Alert color="failure" icon="">
                             <span>
                                 <span className="font-medium">
-                                    Захиалгаа хянаад баталгаажуулаарай / zahialgin statusin messej haragdana 
+                                    Захиалгаа баталгаажуулах  
                                 </span>
                             </span>
                            </Alert>
@@ -29,6 +30,7 @@ const Checkbox = () => {
                             </Button>
                         </div>
                     </div>
+                    
                     <div className="grid grid-cols-2">
                         <div className="p-4">
                             <Card>
@@ -47,11 +49,13 @@ const Checkbox = () => {
                         </div>
                         <div className="p-4">
                         <Card>
-                       <h3 className="text-1xl">Төлбөр төлөх</h3>
-                       <Label>Төлбөр:үнэ$</Label>
-                       <Label>Татвар:үнэ$</Label>
-                       <Label>Нийт төлбөр: нийт үнэ$</Label>
-                      
+                        <Alert color="success" rounded={false} withBorderAccent={true} additionalContent={<React.Fragment>
+                          <div className="mt-2 mb-4 text-sm text-green-700 dark:text-green-800">
+                            Төлбөрийг шилжүүлэхдээ тухайн өдрийн голомт банкны бэлэн бусын зарахын ханшаар төлнө</div></React.Fragment>}>
+                         <h3 className="text-lg font-medium text-green-700 dark:text-green-800">
+                            Төлбөр шилжүүлэх мэдээлэл.
+                          </h3>
+                        </Alert>
                         <Label>Банкны нэр:Голомт банк</Label>
                         <Label>Дансны дугаар:1415119905</Label>
                         <Label>Дансны нэр:Сүлд Юнайтед ХХК</Label>
