@@ -1,4 +1,4 @@
-import { Button,Card,Label,Avatar, TextInput, Textarea, ListGroup} from "flowbite-react";
+import { Button,Card,Label,Alert, TextInput, Textarea, ListGroup} from "flowbite-react";
 
 import Layout from "../../../components/layout";
 import {useForm } from "react-hook-form";
@@ -6,6 +6,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../../../config/axios";
 import { useQuery } from "react-query";
+import React, {Fragment, useState} from "react";
 
 const Create = () => {
     const navigate = useNavigate();
@@ -52,7 +53,14 @@ const Create = () => {
          
             <div className="flex gap-4">
               <a href="/backorder">
-              /Бэлэн болон бэлэн бус захиалга орсон гэдгийн мэссэжээр харуулана/ 
+              <Alert color="failure" rounded={false} withBorderAccent={true} additionalContent={<React.Fragment>
+                          <div className="mt-2 mb-4 text-sm text-red dark:text-red">
+                          Бэлэн бус захиалгад  5 ширхэг бараа  орсон байна </div></React.Fragment>}>
+                         <h3 className="text-lg font-medium text-red dark:text-red">
+                            Бэлэн бус захиалга
+                          </h3>
+                        </Alert>
+              /Бэлэн захиалга мэссэж ногоон өнгөөр харагдана / 
               <Button className="bg-blue-500">Бэлэн бус захиалга</Button>
               </a>
             </div>
@@ -156,28 +164,8 @@ const Create = () => {
                 ))}
             </ListGroup>
             &nbsp;
-            <ListGroup>
-                {data.map((i) => (
-                 <ListGroup.Item>
-                 Парт дугаар: {i.part_number}
-                 <ListGroup.Item></ListGroup.Item>
-                 Тайлбар: {i.description}
-                 <ListGroup.Item></ListGroup.Item>
-                 Нэгжийн үнэ: {i.netPrice}
-                 <ListGroup.Item></ListGroup.Item>
-                 Валют: {i.currency}
-                 <ListGroup.Item></ListGroup.Item>
-                 Fitting: {i.fittingPostion}
-                 
-                 <ListGroup.Item></ListGroup.Item>
-                 Тоо, ширхэг: {i.quantity}
-                 <ListGroup.Item></ListGroup.Item>
-                 
-                 Нийт үнэ: {i.subtotal}
-                 </ListGroup.Item>
-                ))}
-            </ListGroup>
-              &nbsp;
+            
+          
             <a href="/checkbox"> 
             <Button  className="bg-blue-500"> 
               Захиалга баталгаажуулах 

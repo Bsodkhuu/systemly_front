@@ -48,12 +48,13 @@ const My= () => {
                </a>
               
                </div>
-
+            захиалга баталгаажуулах Статусд орсон тохиолдолд захиалгаа баталгаажуулнаа
+            
                <Table> 
                <Table.Head>
-               {/* <Table.HeadCell className="!p-4">
+               <Table.HeadCell className="!p-4">
                <Checkbox />
-              </Table.HeadCell> */}
+              </Table.HeadCell>
              
 
                 {/* zahialga or-10002 ni back-end iimerhvv baidlaar hiine shvv */}
@@ -70,16 +71,13 @@ const My= () => {
                </Table.Head>
                 <Table.Body className="divide-y">
               <Table.Row>
-                {/* <Table.Cell className="p-4">
+                <Table.Cell className="p-4">
                 <Checkbox />
-                </Table.Cell> */}
-                
+                </Table.Cell>
                 <Table.Cell>Meyle</Table.Cell>
                 <Table.Cell>11111</Table.Cell>
                 <Table.Cell>
-                  <a href="/create">
-                     Захиалга баталгаажуулсан
-                  </a>
+                  Агуулахыг шалгаж дууссан захиалга баталгаажуулах гэсэн nofications илгээх 
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
