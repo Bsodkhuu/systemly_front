@@ -1,5 +1,5 @@
 import Layout from "../../../components/layout";
-import { TextInput, Button, Card, Label, ListGroup, Avatar, Alert} from "flowbite-react";
+import { TextInput, Button, Card, Label, ListGroup, Avatar, Alert, Table} from "flowbite-react";
 
 import React, {Fragment, useState} from "react";
 
@@ -82,6 +82,44 @@ const Checkbox = () => {
                        </Card>
                         </div>
                     </div>
+                    <div className="flex gap-4">
+                      <Table>
+                        <Table.Head className="uppercase"> 
+                        <Table.HeadCell>Партын дугаар</Table.HeadCell>
+                        <Table.HeadCell>Тайлбар</Table.HeadCell>
+                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                        <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
+                        <Table.HeadCell>Нийт үнэ</Table.HeadCell>
+                        <Table.HeadCell>Захиалгын он сар</Table.HeadCell>
+                        </Table.Head>
+                          <Table.Body className="divide-y">
+                            {data.map((i) => (
+                              <Table.Row>
+                                <Table.Cell>
+                                  {i.part_number}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {i.description}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {i.quantity}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {i.netPrice}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {i.subtotal}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {i.order_date}
+                                </Table.Cell>
+                              </Table.Row>
+                            ))}
+                          </Table.Body>
+                       
+                      </Table>
+                    </div>
+
                 </div>
               </div>
               <div className="col-span">

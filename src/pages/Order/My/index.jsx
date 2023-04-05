@@ -11,19 +11,7 @@ import { axiosClient } from "../../../config/axios";
 const My= () => {
 
     const [showSearch, setSearch] = useState();
-    const {data, isLoading } = useQuery("zamin-medee", getZaminMedee);
-
    
-
-    async function getZaminMedee(){
-      const response = await axiosClient.get("/zamin-medee");
-      return response.data;
-    }
-
-    if(isLoading){
-      return <Layout></Layout>
-    }
-    console.log(data);
 
     function Haih(){
         //fetch api
@@ -148,15 +136,7 @@ const My= () => {
                         </Table.Head>
                         <Table.Body className="divide-y"> 
                         <Table.Row> 
-                           {
-                            data.map((i) => (
-                              <Table.Row>
-                                <Table.Cell>{i.location}</Table.Cell>
-                                <Table.Cell>{i.date}</Table.Cell>
-                                <Table.Cell></Table.Cell>
-                                </Table.Row>
-                            ))
-                           }
+                          
                             <Table.Cell>Bad bentheim,GE</Table.Cell>
                             <Table.Cell>Ирсэн</Table.Cell>
                             <Table.Cell>2023.03.15</Table.Cell>
