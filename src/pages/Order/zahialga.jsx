@@ -122,8 +122,6 @@ const reviews = [
                   <Table.Body>
                     {data.map((i) => (
                       <Table.Row>
-                       
-                       
                         {/* <Table.Cell>{i.productCategoryId.map((j) => j.en).join(",")}</Table.Cell> */}
                         <Table.Cell>{i.part_number}</Table.Cell>
                         <Table.Cell>{i.description}</Table.Cell>

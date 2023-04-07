@@ -27,7 +27,7 @@ const ProductPage = () => {
           <Table.HeadCell>SubCategories</Table.HeadCell>
         </Table.Head>
         <Table.Body>
-          {data.map((i) => (
+          {data?.data.map((i) => (
             <Table.Row>
               <Table.Cell>{i.id}</Table.Cell>
               <Table.Cell>{i.en}</Table.Cell>

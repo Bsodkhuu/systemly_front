@@ -34,6 +34,7 @@ import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
 import BackOrder from "./pages/BackOrder";
 import Online from "./pages/Online";
+import Logout from "./pages/Login/Logout";
 
 const router = createBrowserRouter([
   {
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path:"/logout",
+    element:<Logout/>
   },
   {
     path: "/forgot",
