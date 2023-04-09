@@ -3,8 +3,6 @@ import Layout from "../../components/layout";
 import {
     Button,
     Table,
-    Label,
-    Card,
     TextInput,
     Alert,
   } from "flowbite-react";
