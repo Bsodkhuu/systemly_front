@@ -6,28 +6,38 @@ import {
   Modal,
   Card,
   TextInput,
-  Select,
-  ListGroup,
-  Avatar,
-  Dropdown, Textarea, FileInput, Checkbox
+  FileInput, Checkbox
 } from "flowbite-react";
 
-import {useState, useEffect} from "react";
+import {useState} from "react";
+import { useForm } from "react-hook-form";
+import { useMutation, useQuery } from "react-query";
+import { axiosClient } from "../../config/axios";
 
   const Human = ()=> {
 
     const [showModal, setShowModal] = useState(false);
-    const [showSearch, setShowSearch] = useState();
-    const [employee, setEmployee] = useState({
-      employee_ovog: '', 
-      employee_name: '',
-      phone: '', 
-      email: '',
-      image: '',
-    });
-
-    const [employeeList, setEmployeeList] = useState([]);
-    
+    const { register, handleSubmit } = useForm();
+    const { mutateAsync } = useMutation("createCustomer", createCustomer);
+    const { data: serviceHistory } = useQuery(
+      "getServiceHistory",
+      getServiceHistory
+    );
+  
+    async function getServiceHistory() {
+      const response = await axiosClient.get("/service_histories");
+      return response.data;
+    }
+  
+    async function createCustomer(values) {
+      const response = await axiosClient.post("/affiliate_employees", values);
+      return response.data;
+    }
+  
+    async function onSubmit(values) {
+      await mutateAsync(values);
+      closeModal();
+    }
     function openModal(){
       setShowModal(true);
     }
@@ -35,69 +45,13 @@ import {useState, useEffect} from "react";
       setShowModal(false);
     }
 
-    function createHuman(){
-      console.log("employee");
-      console.log(employee);
-      fetch("http://localhost:3000/human/aff", {
-        method: "POST", 
-        headers:{
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        },
-        body: JSON.stringify(employee)
-      }).then(res => res.json()).then(data => {
-        console.log(data);
-      })
-      closeModal();
+    const { data: employeesList} = useQuery("getEmployees", getEmployees);
+    async function getEmployees(){
+      const response = await axiosClient.get("/affiliate_employees");
+      response.data;
     }
 
-    //employee get
-
-    function fetchData(){
-      console.log("нийт ажилчдын бүртгэл");
-      fetch("http://localhost:3000/human/gishuun", {
-        headers:{
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      }).then(res => res.json()).then(data => {
-        console.log(data);
-        setEmployeeList(data);
-      });
-    }
-
-    useEffect(() => {
-      fetchData();
-    }, [""]);
-
-    
-
-    function onChangeEmployeeName(event){
-      employee.employee_name = event.target.value;
-    }
-    function onChangeEmployeeOvog(event){
-      employee.employee_ovog = event.target.value;
-    }
-    function onChangePhone(event){
-      employee.phone = event.target.value;
-    }
-    function onChangeEmployeeEmail(event){
-      employee.email = event.target.value;
-    }
-    function onChangeEmployeeImage(event){
-      employee.image = event.target.value;
-    }
-    function onChangeEmployeePosition(event){
-      employee.position_name = event.target.value;
-    }
-    function onChangeEmployeeNumbers(event){
-      employee.register_number = event.target.value;
-    }
-    function search(){
-      setShowSearch();
-    }
-
-   
+  
     // function checkAllEmployees(event) {
     //   const employeeRows = Array.from(document.getElementsByClassName('employee_row'));
     //   employeeRows.forEach((row) => {
@@ -169,17 +123,15 @@ import {useState, useEffect} from "react";
               <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="employee_ovog" value="Овог" />
+                    <Label htmlFor="ovog" value="Овог" />
                   </div>
-                  <TextInput id="employee_ovog"
-                    onChange={onChangeEmployeeOvog}/>
+                  <TextInput id="ovog" {...register("ovog")}/>
                 </div>
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="employee_name" value="Нэр"/>
+                    <Label htmlFor="name" value="Нэр"/>
                   </div>
-                  <TextInput id="firstName" type="text"
-                    onChange={onChangeEmployeeName}/>
+                  <TextInput id="name" {...register("name")}/>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -187,38 +139,22 @@ import {useState, useEffect} from "react";
                   <div className="mb-2 block">
                     <Label htmlFor="phone" value="Утасны дугаар" />
                   </div>
-                  <TextInput id="phone"
-                    onChange={onChangePhone}/>
+                  <TextInput id="phone" {...register("phone")}/>
                 </div>
                 <div className="w-1/2">
                   <div className="mb-2 block">
                     <Label htmlFor="email" value="Имэйл"/>
                   </div>
-                  <TextInput id="email"
-                    onChange={onChangeEmployeeEmail}/>
+                  <TextInput id="email" {...register("email")}/>
                 </div>
               </div>
               <div className="flex gap-4">
+              
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="register_number" value="Регистрийн дугаар" />
+                    <Label htmlFor="name" value="Албан тушаал"/>
                   </div>
-                  <TextInput id="register_number"
-                    onChange={onChangeEmployeeNumbers}/>
-                </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    <Label htmlFor="image" value="Ажилчдын зураг" /> 
-                  </div>
-                  <FileInput id="image"
-                    onChange={onChangeEmployeeImage}/>
-                </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    <Label htmlFor="position_name" value="Албан тушаал"/>
-                  </div>
-                  <TextInput type="position_name"
-                    onChange={onChangeEmployeePosition}/>
+                  <TextInput type="name" {...register("name")}/>
                 </div>
                 
               </div>
@@ -229,7 +165,7 @@ import {useState, useEffect} from "react";
             <Button onClick={closeModal} className="bg-gray-400">
               Буцах
             </Button>
-            <Button onClick={createHuman} className="bg-blue-500">
+            <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">
               Хадгалах
             </Button>
           </Modal.Footer>
@@ -243,7 +179,7 @@ import {useState, useEffect} from "react";
                 <TextInput id="startDate" type="date"/>
                 -
                 <TextInput id="endDate" type="date"/>
-                <Button className="bg-blue-500" onClick={search}>
+                <Button className="bg-blue-500">
                   Хайх
                 </Button>
                 <Button className="bg-blue-500" onClick={openModal}>
@@ -269,30 +205,16 @@ import {useState, useEffect} from "react";
                       <Table.HeadCell>Овог</Table.HeadCell>
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Мэргэжил</Table.HeadCell>
-                      <Table.HeadCell>Ажилтаны зураг</Table.HeadCell>
+                      
                     </Table.Head>
                     <Table.Body>
-                      {
-                        employeeList.map((employee, index)=>
+                      {employeesList?.map((affiliate, index) => (
                         <Table.Row key={index}>
-                          <Table.Cell>
-                           <Checkbox/>
-                          </Table.Cell>
-                         
-                          <Table.Cell>
-                            {employee.employee_ovog}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {employee.employee_name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {employee.position_name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {employee.image}
-                          </Table.Cell>
-                        </Table.Row>)
-                      }
+                          <Table.Cell>{affiliate.ovog}</Table.Cell>
+                          <Table.Cell>{affiliate.name}</Table.Cell>
+                          <Table.Cell>{affiliate.position.name}</Table.Cell>
+                        </Table.Row>
+                      ))}
                     </Table.Body>
                   </Table>
                 </Card>
@@ -343,27 +265,16 @@ import {useState, useEffect} from "react";
                       <Table.HeadCell>Нийт</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                     
-                          <Table.Row>
-                            <Table.Cell>
-                              example
-                            </Table.Cell>
-                            <Table.Cell>
-                             1
-                            </Table.Cell>
-                            <Table.Cell>
-                             12.45
-                            </Table.Cell>
-                            <Table.Cell>
-                             example
-                            </Table.Cell>
-                            <Table.Cell>
-                             12%
-                            </Table.Cell>
-                            <Table.Cell>
-                              Үнэ
-                            </Table.Cell>
-                          </Table.Row>
+                       {serviceHistory?.map((serviceHistory, index) => (
+                        <Table.Row key={index}>
+                          <Table.Cell>{serviceHistory.service.name}</Table.Cell>
+                          <Table.Cell>{serviceHistory.quantity}</Table.Cell>
+                          <Table.Cell>{serviceHistory.service.price}</Table.Cell>
+                          <Table.Cell>{serviceHistory.ajilGuitsetgesenAjiltan.name}</Table.Cell>
+                          <Table.Cell>{serviceHistory.discount}</Table.Cell>
+                          <Table.Cell></Table.Cell>
+                        </Table.Row>
+                       ))}
                     </Table.Body>
                   </Table>
                 </Card>

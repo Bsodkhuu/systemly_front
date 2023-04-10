@@ -13,7 +13,7 @@ const CustomerModal = ({ showModal, closeModal }) => {
   const { mutateAsync } = useMutation("createCustomer", createCustomer);
 
   async function createCustomer(values) {
-    const response = await axiosClient.post("/garage-customer-owners", values);
+    const response = await axiosClient.post("/garage-customer-owners", values); 
     return response.data;
   }
 
@@ -99,6 +99,7 @@ const Customer = () => {
       `/garage-customer-owners?lastname=${params.lastname}`
     );
     return (await response).data;
+    
   }
 
   async function getVehicleMakeModels() {
@@ -107,9 +108,12 @@ const Customer = () => {
   }
 
   async function getGarageCustomerVehicles() {
+    
     const response = await axiosClient.get("/garage_customer_vehicles");
     return response.data;
   }
+
+
 
   function openModal() {
     setShowModal(true);
@@ -170,8 +174,8 @@ const Customer = () => {
                     <Table.Body>
                       {customerList?.map((customer, index) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{customer.firstName}</Table.Cell>
                           <Table.Cell>{customer.lastName}</Table.Cell>
+                          <Table.Cell>{customer.firstName}</Table.Cell>
                           <Table.Cell>{customer.phoneNumber}</Table.Cell>
                         </Table.Row>
                       ))}
@@ -237,9 +241,9 @@ const Customer = () => {
                   {garageCustomerVehicles?.map((customerVehicles, index) => (
                     <Table.Row key={index}>
                       <Table.Cell>{customerVehicles.vinNumber}</Table.Cell>
-                      <Table.Cell></Table.Cell>
+                      <Table.Cell>{customerVehicles.vehicleCategory.mn}</Table.Cell>
                       <Table.Cell>
-                        {customerVehicles.manufacturedYear}
+                        {customerVehicles.manufacturerYear}
                       </Table.Cell>
                       <Table.Cell>{customerVehicles.importedYear}</Table.Cell>
                       <Table.Cell>{customerVehicles.color.mn}</Table.Cell>

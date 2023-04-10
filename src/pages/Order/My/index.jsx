@@ -6,20 +6,11 @@ import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 
 const My = () => {
+  const {data: zaminMedee} = useQuery("getZaminMedee", getZaminMedee);
 
-  const {data, isLoading} = useQuery("zamin_medees", getZaminMedees);
-
-    async function getZaminMedees(){
-      const response = await axiosClient.get("/zamin_medees");
-      return response.data;
-    }
-    if(isLoading){
-      return <Layout></Layout>
-    }
-
-    console.log(data);
-
-
+  async function getZaminMedee(){
+    const response = await axiosClient.get("/zamin_medees")
+  }
   return(
     <Layout>
       <Table>
@@ -29,10 +20,10 @@ const My = () => {
           <Table.HeadCell>Он сар</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {data.map((i) => (
+          {zaminMedee?.map((i) => (
             <Table.Row>
               <Table.Cell>{i.location}</Table.Cell>
-              <Table.Cell>{i.zamStatusType.map((j) => j.statusTypeName).join(",")}</Table.Cell>
+              {/* <Table.Cell>{i.zamStatusType.statusTypeName}</Table.Cell> */}
               <Table.Cell>{i.date}</Table.Cell>
             </Table.Row>
           ))}

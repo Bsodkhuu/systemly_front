@@ -120,7 +120,7 @@ const reviews = [
                   </Table.Head>
 
                   <Table.Body>
-                    {data.map((i) => (
+                    {data?.map((i) => (
                       <Table.Row>
                         {/* <Table.Cell>{i.productCategoryId.map((j) => j.en).join(",")}</Table.Cell> */}
                         <Table.Cell>{i.part_number}</Table.Cell>
@@ -152,7 +152,7 @@ const reviews = [
            <h1 className="text-1xl">Сагс</h1>
              <div className="w-50"> 
               <ListGroup>
-                {data.map((i) => (
+                {data?.map((i) => (
                  <ListGroup.Item>
                   Парт дугаар: {i.part_number}
                   <ListGroup.Item></ListGroup.Item>

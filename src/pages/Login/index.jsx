@@ -11,10 +11,7 @@ const Login = () => {
   const { mutateAsync } = useMutation("login", loginUser);
 
   async function loginUser(values) {
-    const data = await axiosClient.post("/login", values, {
-      withCredentials: true,
-    });
-
+    const data = await axiosClient.post("/login", values);
     return data.data;
   }
 

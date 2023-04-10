@@ -93,16 +93,18 @@ const ZaswarService = () => {
                     {serviceHistory?.map((serviceHistory, index) => (
                       <Table.Row key={index}>
                         <Table.Cell>
-                          {serviceHistory.serviceType.name}
+                          {serviceHistory.service.name}
                         </Table.Cell>
-                        <Table.Cell>{serviceHistory.quantity}</Table.Cell>
+                        <Table.Cell>ç</Table.Cell>
                         <Table.Cell>
-                          {serviceHistory.serviceType.price}
+                          {serviceHistory.service.price}
                         </Table.Cell>
                         <Table.Cell>
-                          {serviceHistory.AffliateEmployee.name}
+                          {serviceHistory.ajilGuitsetgesenAjiltan.name}
                         </Table.Cell>
                         <Table.Cell>{serviceHistory.discount}</Table.Cell>
+                        <Table.Cell></Table.Cell>
+                        <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
                       </Table.Row>
                     ))}
                   </Table.Body>
@@ -116,18 +118,28 @@ const ZaswarService = () => {
             <Card className="max-w-sm">
               <h1 className="text-1xl">Засварын хуудас</h1>
               <ListGroup>
-                <ListGroup.Item>Ажлын хөлс: Нийлбэр</ListGroup.Item>
-                <ListGroup.Item>Материал: Нийлбэр</ListGroup.Item>
-                <ListGroup.Item>Хямдрал урамшуулал: Дүн</ListGroup.Item>
-                <ListGroup.Item>Нийт: Дүн</ListGroup.Item>
-                <ListGroup.Item>
-                  Төлбөр төлөх хэлбэр
+
+                {serviceHistory?.map((serviceHistory, index)=> (
+                  <ListGroup.Item>
+                    Ажлын хөлс: {serviceHistory.quantity}
+                    <ListGroup.Item>
+                    Материал: {serviceHistory.service.price}
+                    <ListGroup.Item>
+                    Хямдрал: {serviceHistory.discount}
+                    </ListGroup.Item>
+                    Нийт: {serviceHistory.discount}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Төлбөр төлөх хэлбэр
                   <Select>
                     <option value="bill">Бэлэн</option>
                     <option value="cart">Карт</option>
                     <option value="transfer">Шилжүүлэг</option>
                   </Select>
-                </ListGroup.Item>
+                </ListGroup.Item> 
+                  </ListGroup.Item>
+                ))}
+                
               </ListGroup>
             </Card>
           </div>

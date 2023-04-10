@@ -1,9 +1,20 @@
 import { TextInput, Button, Select, ListGroup, Table, Card, Checkbox} from "flowbite-react";
 import Layout from "../../../components/layout";
 import {useState} from "react";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../../config/axios";
+import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
 
  const Sale = () => {
    const [showSearch, setShowSearch] = useState();
+
+   
+   const { data: serviceHistory} = useQuery("getServiceHistory", getServiceHistory);
+
+   async function getServiceHistory(){
+    const response = await axiosClient.get("/service_histories");
+    return response.data;
+   }
 
    function search(){
        setShowSearch()
@@ -46,14 +57,14 @@ import {useState} from "react";
                                 </Table.HeadCell>
                             </Table.Head>
                             <Table.Body className="divide-y bg-scroll">
-                                <Table.Cell>
-                                 <Checkbox />
-                                </Table.Cell>
-                                <Table.Cell>Наклад солих</Table.Cell>
-                                <Table.Cell>2</Table.Cell>
-                                <Table.Cell>
-                                    21000
-                                </Table.Cell>
+                              {serviceHistory?.map((serviceHistory, index)=> (
+                                <Table.Row key={index}>
+                                     <Table.Cell><Checkbox /></Table.Cell>
+                                    <Table.Cell>{serviceHistory.service.name}</Table.Cell>
+                                    <Table.Cell>{serviceHistory.quantity}</Table.Cell>
+                                    <Table.Cell>{serviceHistory.service.price}</Table.Cell>
+                                </Table.Row>
+                              ))}
                             </Table.Body>
                         </Table>
                      </Card>
@@ -90,23 +101,18 @@ import {useState} from "react";
 
                             </Table.Head>
                             <Table.Body className="divide-y">
-                              
-                                <Table.Cell>Наклад солих</Table.Cell>
-                                <Table.Cell>hyzaarf</Table.Cell>
-                                <Table.Cell>2</Table.Cell>
-                                <Table.Cell>
-                                    21000
-                                </Table.Cell>
-
-                                <Table.Cell>
-                                    Calculate
-                                </Table.Cell>
-                                <Table.Cell>
-                                    Calculate
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <TextInput type="date"/>
-                                </Table.Cell>
+                              {serviceHistory?.map((serviceHistory, index) => (
+                                <Table.Row key={index}>
+                                  <Table.Cell>{serviceHistory.service.name}</Table.Cell>
+                                  <Table.Cell>{serviceHistory.ajilGuitsetgesenAjiltan.name}</Table.Cell>
+                                  <Table.Cell>{serviceHistory.quantity}</Table.Cell>
+                                  <Table.Cell>{serviceHistory.service.price}</Table.Cell>
+                                  <Table.Cell>{serviceHistory.discount}</Table.Cell>
+                                  <Table.Cell></Table.Cell>
+                                  <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
+                                </Table.Row>
+                              ))}
+                               
                             </Table.Body>
                         </Table>
                     </Card>
@@ -118,27 +124,31 @@ import {useState} from "react";
                   <Card className="max-w-sm">
                         <h1 className="text-1xl">Засварын хуудас</h1>
                         <ListGroup> 
-                            <ListGroup.Item>
-                                Ажлын хөлс: Нийлбэр
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                Материал: Нийлбэр
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                Хямдрал урамшуулал: Дүн
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                Нийт: Дүн
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                Төлбөр төлөх хэлбэр
-                                <Select>
-                                    <option value="bill">Бэлэн</option>
-                                    <option value="cart">Карт</option>
-                                    <option value="transfer">Шилжүүлэг</option>
-                                </Select>
-
-                            </ListGroup.Item>
+                        {serviceHistory?.map((serviceHistory, index)=> (
+                  <ListGroup.Item>
+                    Ажлын хөлс: {serviceHistory.quantity}
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item>
+                    Материал: {serviceHistory.service.price}
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    Хямдрал: {serviceHistory.discount}
+                    </ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    Нийт: {serviceHistory.discount}
+                    
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Төлбөр төлөх хэлбэр
+                  <Select>
+                    <option value="bill">Бэлэн</option>
+                    <option value="cart">Карт</option>
+                    <option value="transfer">Шилжүүлэг</option>
+                  </Select>
+                </ListGroup.Item> 
+                  </ListGroup.Item>
+                ))}
                         </ListGroup>
                     </Card>
                   </div>

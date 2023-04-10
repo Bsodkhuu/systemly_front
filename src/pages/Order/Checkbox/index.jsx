@@ -8,8 +8,7 @@ import { useQuery } from "react-query";
 
 const Checkbox = () => {
    
-  const {data, isLoading} = useQuery("products",  getProducts);
-  const [addressList, setAddressList] = useState([]);
+  const {data, isLoading} = useQuery("products",getProducts);
 
   
   async function getProducts(){
@@ -22,7 +21,7 @@ const Checkbox = () => {
   }
   console.log(data);
 
-
+   
 
     return (
         <Layout> 
@@ -44,21 +43,9 @@ const Checkbox = () => {
                     <div className="grid grid-cols-2">
                         <div className="p-4">
                             <Card>
-                                buruu 
-                                <h3 className="text-1xl">Хүргэлтийн хаяг</h3>
-                               {
-                                addressList.map((i, index) => 
-                                <Label key={index}>{i.firsname}
-                                <Label>{i.lastname}</Label>
-                                <Label>{i.email}</Label>
-                                <Label>{i.phone}</Label>
-                                <Label>{i.city}</Label>
-                                <Label>{i.state}</Label>
-                                <Label>{i.country}</Label>
-                                <Label>{i.order_note}</Label>
-                                </Label>
                                 
-                                )}
+                                <h3 className="text-1xl">Хүргэлтийн хаяг</h3>
+                               
                             </Card>
                         </div>
                         <div className="p-4">
@@ -133,7 +120,6 @@ const Checkbox = () => {
                                     <ListGroup>
                                         {data.map((i) => (
                                         <ListGroup.Item>
-                                        
                                         Парт дугаар: {i.part_number}
                                         <ListGroup.Item></ListGroup.Item>
                                         Тайлбар: {i.description}

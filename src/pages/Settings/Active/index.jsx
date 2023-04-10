@@ -4,34 +4,22 @@ import React, {useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../../config/axios";
 
 const Active = () => {
   const [showSearch, setShowSearch] = useState();
-  const [serviceList, setServiceList] = useState([]);
+  const { data: priceList } = useQuery("getPrice", getPrice);
+
+  async function getPrice(){
+    const response = await axiosClient.get("/service-types");
+    return response.data;
+  }
 
   function search() {
     setShowSearch(true);
   }
-  function fetchData() {
-    console.log("onload");
-    fetch(
-      "http://localhost:3000/settings/zaswar",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      }
-    ).then(res => res.json()
-    ).then(data => {
-      console.log(data);
-      setServiceList(data);
-    });
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [""]);
+  
 
   return(
     <Layout> 
@@ -54,22 +42,13 @@ const Active = () => {
               {/* <Table.HeadCell>Үйлдэл</Table.HeadCell> */}
             </Table.Head>
             <Table.Body className="divide-y">
-              {
-                serviceList.map((service, index) =>
-                  <Table.Row key={index}>
-                    <Table.Cell>
-                      {service.service_type_name}
-                    </Table.Cell>
-                    <Table.Cell>
-                      {service.price}
-                    </Table.Cell>
-                    <Table.Cell>
-                      {service.currency}
-                    </Table.Cell>
-                   
-                  </Table.Row>
-                )
-              }
+              {priceList?.map((price, index) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{price.name}</Table.Cell>
+                  <Table.Cell>{price.price}</Table.Cell>
+                  <Table.Cell>{price.currency}</Table.Cell>
+                </Table.Row>
+              ))}
               <Table.Row> 
                 <Table.Cell>
                   Наклад

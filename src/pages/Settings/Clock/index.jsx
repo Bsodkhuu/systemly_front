@@ -6,11 +6,10 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Clock= () => {
-  const [work, setWork] = useState({
-    weekend: '', 
+  const [works, setWorks] = useState({
+    name: '', 
     open:'', 
     close:'',
-    work_checkbox: ''
   });
   const [workList, setWorkList] = useState([]);
 
@@ -20,7 +19,7 @@ const Clock= () => {
       console.log("Ажлын цагийн хуваарь post request");
       console.log(work);
       
-      fetch("http://localhost:3000/settings/work", {
+      fetch("http://localhost:4000/works", {
         method: "POST",
         headers:{
           "Content-Type": "application/json",
@@ -54,12 +53,8 @@ const Clock= () => {
   function fetchData(){
     
     console.log("Ажлын цагийн хуваарь get");
-    fetch("http://localhost:3000/settings/ajil", 
+    fetch("http://localhost:4000/works", 
     {
-      headers:{
-        "Content-Type":"application/json",
-        "Access-Control-Allow-Origin": "*"
-      }
     }).then(res => res.json()
     ).then(data => {
       console.log(data);
@@ -106,9 +101,9 @@ const Clock= () => {
                 <Table.Cell>
                   <TextInput type="time" onChange={onChangeClose}/>
                 </Table.Cell>
-                <Table.Cell>
+                {/* <Table.Cell>
                   <TextInput type="text" onChange={onChangeWorkCheckbox}/>
-                </Table.Cell>
+                </Table.Cell> */}
                 <Table.Cell>
                   <Button className="bg-blue-500" onClick={save}>Хадгалах</Button>
                 </Table.Cell>
@@ -116,19 +111,19 @@ const Clock= () => {
             </Table.Body>
                 <Table.Body className="divide-y">
                  {
-                  workList.map((work, index) => 
+                  workList.map((works, index) => 
                   <Table.Row key={index}>
                     <Table.Cell>
-                      {work.weekend}
+                      {works.name}
                     </Table.Cell>
                     <Table.Cell>
-                      {work.open}
+                      {works.open}
                     </Table.Cell>
                     <Table.Cell>
-                      {work.close}
+                      {works.close}
                     </Table.Cell>
                     <Table.Cell>
-                      {work.work_checkbox}
+                     
                     </Table.Cell>
                     <Table.Cell className="text-xl space-x-2">
                   <FontAwesomeIcon icon={faPenToSquare} />
