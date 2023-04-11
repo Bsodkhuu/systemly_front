@@ -3,18 +3,19 @@ import Layout from "../../../components/layout";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
+import { ServiceType } from "../Price";
 
 const Active = () => {
-  const [showSearch, setShowSearch] = useState();
+  const [showSearch, setShowSearch] = useState(false);
   const { data: priceList } = useQuery("getPrice", getPrice);
 
   async function getPrice() {
     const response = await axiosClient.get("/service-types");
-    return response.data;
+    return response.data as ServiceType[];
   }
 
   function search() {
-    setShowSearch(undefined);
+    setShowSearch(true);
   }
 
   return (
@@ -38,18 +39,13 @@ const Active = () => {
               {/* <Table.HeadCell>Үйлдэл</Table.HeadCell> */}
             </Table.Head>
             <Table.Body className="divide-y">
-              {priceList?.map((price: any, index: number) => (
+              {priceList?.map((price: ServiceType, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>{price.name}</Table.Cell>
                   <Table.Cell>{price.price}</Table.Cell>
                   <Table.Cell>{price.currency}</Table.Cell>
                 </Table.Row>
               ))}
-              <Table.Row>
-                <Table.Cell>Наклад</Table.Cell>
-                <Table.Cell>10000</Table.Cell>
-                <Table.Cell>$</Table.Cell>
-              </Table.Row>
             </Table.Body>
           </Table>
         </div>

@@ -1,19 +1,47 @@
 import Layout from "../../../components/layout";
-import { TextInput, Button, Table, Select, Checkbox } from "flowbite-react";
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { TextInput, Button, Table, Select } from "flowbite-react";
+import React from "react";
+import { axiosClient } from "../../../config/axios";
+import { useForm } from "react-hook-form";
+import { useMutation, useQuery } from "react-query";
+export interface Work{
+  id: string;
+  createdAt: string;
+  updateAt: string;
+  name: string;
+  open: string;
+  close: string;
+  description: string;
+  serviceAppointmentId?: string;
+}
 
+interface FormValues{
+  name: string;
+  open: string;
+  close: string;
+  description: string;
+}
 const Clock = () => {
-  const [works, setWorks] = useState({
-    name: "",
-    open: "",
-    close: "",
-  });
-  const [workList, setWorkList] = useState([]);
+  
+  const WEEKS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday"];
 
-  const WEEKS = ["Monday", "Tuesday", "Wednesday", "Thursday"];
+  const { register, handleSubmit} = useForm<FormValues>();
+  const { mutateAsync } = useMutation("work", work);
+  const { data: works} = useQuery("getWorks", getWorks);
+
+  async function getWorks() {
+    const response = await axiosClient.get("/works");
+    return response.data as Work[];
+  }
+
+  async function work(values: FormValues) {
+    const response = await axiosClient.post("/works", values);
+    return response.data;
+  }
+
+  async function onSubmit(values: FormValues) {
+    await mutateAsync(values);
+  }
 
   return (
     <Layout>
@@ -30,7 +58,7 @@ const Clock = () => {
             </div>
           </div>
           <div className="p-4">
-            <Table>
+            <Table onClick={handleSubmit(onSubmit)}>
               <Table.Head className="uppercase">
                 <Table.HeadCell>7 хоног</Table.HeadCell>
                 <Table.HeadCell>Нээх</Table.HeadCell>
@@ -48,30 +76,26 @@ const Clock = () => {
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="time" />
+                    <TextInput type="time" {...register("open")}/>
                   </Table.Cell>
                   <Table.Cell>
-                    <TextInput type="time" />
+                    <TextInput type="time" {...register("close")}/>
                   </Table.Cell>
-                  {/* <Table.Cell>
-                  <TextInput type="text" onChange={onChangeWorkCheckbox}/>
-                </Table.Cell> */}
                   <Table.Cell>
-                    <Button className="bg-blue-500">Хадгалах</Button>
+                  <TextInput type="text" {...register("description")}/>
+                </Table.Cell>
+                  <Table.Cell>
+                    <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Хадгалах</Button>
                   </Table.Cell>
                 </Table.Row>
               </Table.Body>
               <Table.Body className="divide-y">
-                {workList.map((works: any, index: number) => (
+                {works?.map((works, index) => (
                   <Table.Row key={index}>
                     <Table.Cell>{works.name}</Table.Cell>
                     <Table.Cell>{works.open}</Table.Cell>
                     <Table.Cell>{works.close}</Table.Cell>
-                    <Table.Cell></Table.Cell>
-                    <Table.Cell className="text-xl space-x-2">
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                      <FontAwesomeIcon icon={faTrash} />
-                    </Table.Cell>
+                    <Table.Cell>{works.description}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>

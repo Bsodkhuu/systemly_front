@@ -152,7 +152,7 @@ const Zahialga = () => {
                                   if (j.id === i.id) {
                                     return {
                                       ...j,
-                                      quantity: +e.currentTarget.value,
+                                      quantity: +e.currentTarget,
                                     };
                                   } else {
                                     return j;
@@ -194,10 +194,26 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Fitting: {i.fittingPostion}
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо, ширхэг: {i.quantity}
+                      Тоо, ширхэг: <TextInput
+                            onChange={(e) =>
+                              setProductQuantities((l) =>
+                                l?.map((j) => {
+                                  if (j.id === i.id) {
+                                    return {
+                                      ...j,
+                                      quantity: +e.currentTarget,
+                                    };
+                                  } else {
+                                    return j;
+                                  }
+                                })
+                              )
+                            }
+                            type="number"
+                          />
                       <ListGroup.Item></ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт үнэ: {i.subtotal}
+                      Нийт үнэ: {i.netPrice * i.quantity}
                     </ListGroup.Item>
                   ))}
                 </ListGroup>

@@ -5,22 +5,38 @@ import Layout from "../../../components/layout";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 
+interface FormValues{
+  name: string;
+  openDate: Date;
+  closeDate: Date;
+  description: string;
+
+}
+ interface Holiday{
+  id: string;
+  createdAt: string;
+  updateAt: string;
+  name: string;
+  openDate: Date;
+  closeDate: Date;
+  description: string;
+ }
 const Holiday = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormValues>();
   const { mutateAsync } = useMutation("holiday", holiday);
 
   const { data: holidayList } = useQuery("getHoliday", getHoliday);
 
   async function getHoliday() {
     const response = await axiosClient.get("/holidays");
-    return response.data;
+    return response.data as Holiday[];
   }
 
-  async function holiday(values: any) {
+  async function holiday(values: FormValues) {
     const response = await axiosClient.post("/holidays", values);
     return response.data;
   }
-  async function onSubmit(values: any) {
+  async function onSubmit(values: FormValues) {
     await mutateAsync(values);
   }
   return (
@@ -36,7 +52,7 @@ const Holiday = () => {
           </div>
 
           <Table>
-            <Table.Head className="uppercase">
+            <Table.Head onClick={handleSubmit(onSubmit)} className="uppercase">
               <Table.HeadCell>Эхлэх он сар</Table.HeadCell>
               <Table.HeadCell>Дуусах он сар</Table.HeadCell>
               <Table.HeadCell>Тайлбар</Table.HeadCell>
@@ -54,10 +70,7 @@ const Holiday = () => {
                   <TextInput type="text" {...register("description")} />
                 </Table.Cell>
                 <Table.Cell>
-                  <Button
-                    onClick={handleSubmit(onSubmit)}
-                    className="bg-blue-500"
-                  >
+                  <Button onClick={handleSubmit(onSubmit)}className="bg-blue-500">
                     Хадгалах
                   </Button>
                 </Table.Cell>

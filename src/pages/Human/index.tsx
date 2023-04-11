@@ -14,22 +14,41 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-
-interface EmployeePosition {
+interface ServiceHistory extends ServiceType{
+  serviceDate: string;
+  quantity: number;
+  discount: number;
+  [name: string]: any;
+  [price: number]: any;
+  
+}
+interface ServiceType{
+  mainCategory: string;
+  subCategory: string;
+  name: string;
+  price: number;
+  currency: string;
+}
+interface EmployeePosition{
+  name: string;
+}
+interface AffiliateEmployee extends EmployeePosition{
+  [name: string]: any;
   id: string;
   name: string;
   ovog: string;
   phone: string;
   email: string;
-  positionId: string;
-  createdAt: Date;
-  updatedAt: Date;
+  positionId?: string;
+  createdAt: string;
+  updatedAt: string;
 }
+
 
 const Human = () => {
   const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit } =
-    useForm<Omit<EmployeePosition, "id" | "createdAt" | "updatedAt">>();
+    useForm<Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">>();
   const { mutateAsync } = useMutation("createCustomer", createCustomer);
   const { data: serviceHistory } = useQuery(
     "getServiceHistory",
@@ -47,18 +66,18 @@ const Human = () => {
 
   async function getEmployeePositions() {
     const response = await axiosClient.get("/employee_positions");
-    return response.data as EmployeePosition[];
+    return response.data as AffiliateEmployee[];
   }
 
   async function createCustomer(
-    values: Omit<EmployeePosition, "id" | "createdAt" | "updatedAt">
+    values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
   ) {
     const response = await axiosClient.post("/affiliate_employees", values);
     return response.data;
   }
 
   async function onSubmit(
-    values: Omit<EmployeePosition, "id" | "createdAt" | "updatedAt">
+    values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
   ) {
     await mutateAsync(values);
     closeModal();
@@ -76,68 +95,7 @@ const Human = () => {
     return response.data;
   }
 
-  // function checkAllEmployees(event) {
-  //   const employeeRows = Array.from(document.getElementsByClassName('employee_row'));
-  //   employeeRows.forEach((row) => {
-  //     var checkbox = row.childNodes[0].childNodes[0];
-  //     if (event.target.checked == false) {
-  //       checkbox.checked = false;
-  //     } else {
-  //       checkbox.checked = true;
-  //     }
-  //   });
-  // }
-  // function checkAllServices(event) {
-  //   const serviceRows = Array.from(document.getElementsByClassName('service_row'));
-  //   serviceRows.forEach((row) => {
-  //     var checkbox = row.childNodes[0].childNodes[0];
-  //     if (event.target.checked == false) {
-  //       checkbox.checked = false;
-  //     } else {
-  //       checkbox.checked = true;
-  //     }
-  //   });
-  // }
-  /*    function employeeChecked(event, register) {
-      console.log(event.target.checked);
-      console.log(register);
-      var foundEmployee = employeeList.find((employee) => employee.register == register);
-      foundEmployee.checked = event.target.checked;
-      console.log(employeeList);
-    }
-*/
-  // function employeeService() {
-  //   const employeeRows = Array.from(
-  //     document.getElementsByClassName('employee_row')
-  //   );
-  //   var tempList = [];
-  //   employeeRows.forEach(employee => {
-  //     var checked = employee.childNodes[0].childNodes[0].checked;
-  //     if (checked == true) {
-  //       var foundServices = serviceList.filter(service => service.employeeId == employee.id);
-  //       tempList = tempList.concat(foundServices);
-  //     }
-  //   });
-  //   setShowServiceList(tempList);
-  // }
 
-  // function serviceDetails() {
-  //   const serviceRows = Array.from(document.getElementsByClassName('service_row'));
-  //   var tempList = [];
-  //   serviceRows.forEach(serviceNode => {
-  //     var checked = serviceNode.childNodes[0].childNodes[0].checked;
-  //     if (checked == true) {
-  //       var foundServices = serviceList.filter(service => service.id == serviceNode.id);
-  //       tempList = tempList.concat(foundServices);
-  //     }
-  //   });
-  //   setShowServiceDetailList(tempList);
-  // }
-  // function checkService(event, id) {
-  //   console.log(event.target.checked);
-  //   var foundService = serviceList.find((service) => service.id == id);
-  //   foundService.checked = event.target.checked;
-  // }
   return (
     <Layout>
       <Modal show={showModal} onClose={closeModal}>
@@ -225,7 +183,7 @@ const Human = () => {
                 <div className="flex gap-4">
                   <a href="#">Идэвхитэй</a>
                   <a href="/employee_history">Түүх</a>
-                  <Button className="bg-blue-500">Үйлчилгээ</Button>
+                  
                 </div>
                 <Table>
                   <Table.Head className="uppercase">
@@ -238,11 +196,13 @@ const Human = () => {
                     <Table.HeadCell>Мэргэжил</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
-                    {employeesList?.map((affiliate: any, index: number) => (
+                    {employeesList?.map((affiliate: AffiliateEmployee, index: number) => (
                       <Table.Row key={index}>
+                        <Table.Cell><Checkbox /></Table.Cell>
                         <Table.Cell>{affiliate.ovog}</Table.Cell>
                         <Table.Cell>{affiliate.name}</Table.Cell>
                         <Table.Cell>{affiliate.position.name}</Table.Cell>
+                     
                       </Table.Row>
                     ))}
                   </Table.Body>
@@ -289,7 +249,7 @@ const Human = () => {
                 <Table.HeadCell>Нийт</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                {serviceHistory?.map((serviceHistory: any, index: number) => (
+                {serviceHistory?.map((serviceHistory: ServiceHistory, index: number) => (
                   <Table.Row key={index}>
                     <Table.Cell>{serviceHistory.service.name}</Table.Cell>
                     <Table.Cell>{serviceHistory.quantity}</Table.Cell>
@@ -298,7 +258,12 @@ const Human = () => {
                       {serviceHistory.ajilGuitsetgesenAjiltan.name}
                     </Table.Cell>
                     <Table.Cell>{serviceHistory.discount}</Table.Cell>
-                    <Table.Cell></Table.Cell>
+                    <Table.Cell>
+                      
+                   {/* {serviceHistory.quantity *
+                              serviceHistory.serive.price *
+                              (100 - serviceHistory.discount / 100)} */}
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
@@ -310,3 +275,67 @@ const Human = () => {
   );
 };
 export default Human;
+
+
+  // function checkAllEmployees(event) {
+  //   const employeeRows = Array.from(document.getElementsByClassName('employee_row'));
+  //   employeeRows.forEach((row) => {
+  //     var checkbox = row.childNodes[0].childNodes[0];
+  //     if (event.target.checked == false) {
+  //       checkbox.checked = false;
+  //     } else {
+  //       checkbox.checked = true;
+  //     }
+  //   });
+  // }
+  // function checkAllServices(event) {
+  //   const serviceRows = Array.from(document.getElementsByClassName('service_row'));
+  //   serviceRows.forEach((row) => {
+  //     var checkbox = row.childNodes[0].childNodes[0];
+  //     if (event.target.checked == false) {
+  //       checkbox.checked = false;
+  //     } else {
+  //       checkbox.checked = true;
+  //     }
+  //   });
+  // }
+  /*    function employeeChecked(event, register) {
+      console.log(event.target.checked);
+      console.log(register);
+      var foundEmployee = employeeList.find((employee) => employee.register == register);
+      foundEmployee.checked = event.target.checked;
+      console.log(employeeList);
+    }
+*/
+  // function employeeService() {
+  //   const employeeRows = Array.from(
+  //     document.getElementsByClassName('employee_row')
+  //   );
+  //   var tempList = [];
+  //   employeeRows.forEach(employee => {
+  //     var checked = employee.childNodes[0].childNodes[0].checked;
+  //     if (checked == true) {
+  //       var foundServices = serviceList.filter(service => service.employeeId == employee.id);
+  //       tempList = tempList.concat(foundServices);
+  //     }
+  //   });
+  //   setShowServiceList(tempList);
+  // }
+
+  // function serviceDetails() {
+  //   const serviceRows = Array.from(document.getElementsByClassName('service_row'));
+  //   var tempList = [];
+  //   serviceRows.forEach(serviceNode => {
+  //     var checked = serviceNode.childNodes[0].childNodes[0].checked;
+  //     if (checked == true) {
+  //       var foundServices = serviceList.filter(service => service.id == serviceNode.id);
+  //       tempList = tempList.concat(foundServices);
+  //     }
+  //   });
+  //   setShowServiceDetailList(tempList);
+  // }
+  // function checkService(event, id) {
+  //   console.log(event.target.checked);
+  //   var foundService = serviceList.find((service) => service.id == id);
+  //   foundService.checked = event.target.checked;
+  // }

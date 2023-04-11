@@ -4,18 +4,42 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+export interface ServiceType{
+  id: string;
+  createdAt: string;
+  updateAt: string;
+  mainCategory: string;
+  subCategory: string;
+  name: string;
+  affiliateId?: string;
+  price: GLfloat;
+  currency: string;
+
+}
+
+interface FormValues{
+  mainCategory: string;
+  subCategory: string;
+  name: string;
+  affiliateId?: string;
+  price: GLfloat;
+  currency: string;
+}
 
 const PriceModal = ({ showModal, closeModal }: any) => {
-  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<FormValues>();
   const { mutateAsync } = useMutation("createPrice", createPrice);
 
-  async function createPrice(values: any) {
+  async function createPrice(values: FormValues) {
     const response = await axiosClient.post("/service-types", values);
     return response.data;
   }
 
-  async function onSubmit(values: any) {
+  async function onSubmit(values: FormValues) {
     await mutateAsync(values);
+    navigate("/active");
     closeModal();
   }
   return (
@@ -106,7 +130,7 @@ const Price = () => {
               <Table.HeadCell>Үйлдэл</Table.HeadCell>
             </Table.Head>
             <Table.Body>
-              {service?.map((service: any, index: number) => (
+              {service?.map((service: ServiceType, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>
                     <Select>
