@@ -35,7 +35,7 @@ export interface InquiryDetail extends Supplier{
   [supplierList: string]: any;
 }
 
-interface Supplier{
+ export interface Supplier{
   supplierList: string;
   vehicleManufacturerId?: string
 }
@@ -109,7 +109,7 @@ const My = () => {
                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                        <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                        <Table.HeadCell>Currency</Table.HeadCell>
-                       <Table.HeadCell>Нийт үнэ</Table.HeadCell>
+                       {/* <Table.HeadCell>Нийт үнэ</Table.HeadCell> */}
                       </Table.Head>
                       <Table.Body className="divide-y">
                        {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number)=> (
@@ -119,7 +119,7 @@ const My = () => {
                          <Table.Cell>{inquiryDetail.quantity}</Table.Cell>
                          <Table.Cell>{inquiryDetail.netPrice}</Table.Cell>
                          <Table.Cell>{inquiryDetail.currency}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.quantity * inquiryDetail.netPrice}</Table.Cell>
+                         {/* <Table.Cell>{inquiryDetail.quantity * inquiryDetail.netPrice}</Table.Cell> */}
                        </Table.Row>
                        ))}
                       </Table.Body>

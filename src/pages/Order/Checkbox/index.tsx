@@ -14,9 +14,27 @@ import React from "react";
 import { axiosClient } from "../../../config/axios";
 import { useQuery } from "react-query";
 
+export interface Address{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  city: string;
+  state: string;
+  country: string;
+  order_note: string;
+}
 const Checkbox = () => {
   const { data, isLoading } = useQuery("products", getProducts);
+  const { data: address } = useQuery("getAddress", getAddress);
 
+  async function getAddress() {
+    const response = await axiosClient.get("/addresses");
+    return response.data as Address[];
+  }
   async function getProducts() {
     const response = await axiosClient.get("/products");
     return response.data;
@@ -44,6 +62,31 @@ const Checkbox = () => {
               <div className="p-4">
                 <Card>
                   <h3 className="text-1xl">Хүргэлтийн хаяг</h3>
+                  <Table>
+                <Table.Head className="uppercase">
+                  <Table.HeadCell>Овог</Table.HeadCell>
+                  <Table.HeadCell>Нэр</Table.HeadCell>
+                  <Table.HeadCell>Имэйл</Table.HeadCell>
+                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
+                  <Table.HeadCell>Улс</Table.HeadCell>
+                  <Table.HeadCell>Хот</Table.HeadCell>
+                  <Table.HeadCell>Захиалгийн тэмдэглэл</Table.HeadCell>
+                </Table.Head>
+                <Table.Body className="divide-y">
+                  {address?.map((address: Address, index: number) => (
+                    <Table.Row key={index}>
+                      <Table.Cell>{address.firstname}</Table.Cell>
+                      <Table.Cell>{address.lastname}</Table.Cell>
+                      <Table.Cell>{address.email}</Table.Cell>
+                      <Table.Cell>{address.phone}</Table.Cell>
+                      <Table.Cell>{address.country}</Table.Cell>
+                      <Table.Cell>{address.city}</Table.Cell>
+                      <Table.Cell>{address.order_note}</Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table>
+                  
                 </Card>
               </div>
               <div className="p-4">
@@ -94,7 +137,7 @@ const Checkbox = () => {
                       <Table.Cell>{i.description}</Table.Cell>
                       <Table.Cell>{i.quantity}</Table.Cell>
                       <Table.Cell>{i.netPrice}</Table.Cell>
-                      <Table.Cell>{i.subtotal}</Table.Cell>
+                      <Table.Cell>{i.quantity * i.netPrice}</Table.Cell>
                       <Table.Cell>{i.order_date}</Table.Cell>
                     </Table.Row>
                   ))}

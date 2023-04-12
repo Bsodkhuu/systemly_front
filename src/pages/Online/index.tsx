@@ -1,72 +1,47 @@
 import React from "react";
 
 import Layout from "../../components/layout";
+import { Carousel } from "flowbite-react";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../config/axios";
+
+interface Online{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  image: string;
+  link: string;
+}
 const Online = () => {
-  const strategic = [
-    {
-      id: 1,
-      image: "",
-      link: "https://bilsteingroup.com/it/",
-    },
-    {
-      id: 2,
-      image: "",
-      link: "https://www.bosch.com/products-and-services/mobility/",
-    },
-    {
-      id: 3,
-      image: "",
-      link: "https://www.brembo.com/en/",
-    },
-    {
-      id: 4,
-      image: "",
-      link: "https://www.clarios.com",
-    },
-    {
-      id: 5,
-      image: "",
-      link: "https://www.continental-automotive.com",
-    },
-    {
-      id: 6,
-      image: "",
-      link: "https://www.delphiautoparts.com/en-gb",
-    },
-    {
-      id: 7,
-      image: "",
-      link: "https://www.densoautoparts.com",
-    },
-    {
-      id: 8,
-      image: "",
-      link: "https://www.driv.com",
-    },
-    {
-      id: 9,
-      image: "",
-      link: "https://www.elring.us",
-    },
-    {
-      id: 10,
-      image: "",
-      link: "https://www.exide.com/en",
-    },
-    {
-      id: 11,
-      image: "",
-      link: "https://hc-cargo.com/com-en",
-    },
-    {
-      id: 12,
-      image: "",
-      link: "",
-    },
-  ];
+  const { data: online } = useQuery("getOnline", getOnline);
+
+  async function getOnline() {
+    const response = await axiosClient.get("/onlines");
+    return response.data as Online[];
+  }
   return (
     <Layout>
-      <h1>Стратегийн нийлүүлэгчид</h1>
+     <div className="grid grid-cols-3 gap-4">
+      <div className="p-2 bg-gray-200 h-screen w-full">
+        <div className="bg-white p-2 rounded-lg">
+          <div className="flex justify-between mb-4">
+            <h4 className="text-1xl">Онлайн кателоги</h4>
+          </div>
+        </div>
+        {/* Carousel */}
+        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+              <Carousel>
+                {online?.map((online: Online, index: number) => (
+                  <img
+                    className="d-block w-50"
+                    src={online.image}
+                    alt={online.link}
+                  />
+                ))}
+              </Carousel>
+            </div>
+      </div>
+     </div>
     </Layout>
   );
 };

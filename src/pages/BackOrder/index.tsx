@@ -1,8 +1,47 @@
 import React from "react";
 import Layout from "../../components/layout";
 import { Button, Table, TextInput, Alert } from "flowbite-react";
-
+import { useQuery } from "react-query";
+import { axiosClient } from "../../config/axios";
+export interface Order{
+  createdDate: string;
+  [supplierList: string]: any;
+}
+interface Supplier{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  supplierList: string;
+  vehicleManufacturerId?: string
+}
+export interface User extends Order{
+  email: string;
+  password: string;
+  companyName: string;
+  firstName: string;
+  lastName: string;
+}
+export interface BackOrder extends Order{
+  [createdDate: string]: any;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  orderId?:  string;
+  supplierId?: string;
+  description: string;
+  quantity: number;
+  netPrice: number;
+  date: string;
+  userId?: string;
+  orderDate: string;
+}
 const BackOrder = () => {
+  const { data: backOrder } = useQuery("getBackOrder", getBackOrder);
+
+  async function getBackOrder() {
+    const response = await axiosClient.get("/back-orders");
+    return response.data as BackOrder[];
+  }
   return (
     <Layout>
       <div className="p-2 bg-gray-200 h-screen col-span-2">
@@ -48,15 +87,19 @@ const BackOrder = () => {
               <Table.HeadCell>Захиалганд орсон он сар өдөр</Table.HeadCell>
             </Table.Head>
             <Table.Body>
-              <Table.Cell>2023-04-05</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>example</Table.Cell>
-              <Table.Cell>2023-04-05</Table.Cell>
+              {backOrder?.map((backOrder: BackOrder, index: number) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{backOrder.order.createdDate}</Table.Cell>
+                  <Table.Cell></Table.Cell>
+                  <Table.Cell>{backOrder.description}</Table.Cell>
+                  <Table.Cell>{backOrder.quantity}</Table.Cell>
+                  <Table.Cell>{backOrder.netPrice}</Table.Cell>
+                  <Table.Cell>{backOrder.quantity * backOrder.netPrice}</Table.Cell>
+                  <Table.Cell>{backOrder.date}</Table.Cell>
+                  <Table.Cell>{backOrder.user.companyName}</Table.Cell>
+                  <Table.Cell>{backOrder.orderDate}</Table.Cell>
+                </Table.Row>
+              ))}
             </Table.Body>
           </Table>
         </div>
