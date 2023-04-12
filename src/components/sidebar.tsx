@@ -39,7 +39,7 @@ const SidebarComponent = () => {
             <Item href="/price">Засварын үнийн тохиргоо</Item>
             <Item href="/clock">Ажлын цагийн хуваарь</Item>
           </Collapse>
-          <Item href="/product_categories">Жишээ шүү Барааны категори</Item>
+          {/* <Item href="/product_categories">Жишээ шүү Барааны категори</Item> */}
           <Item onClick={logOut}>Системээс гарах</Item>
         </ItemGroup>
       </Items>

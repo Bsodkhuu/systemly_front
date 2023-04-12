@@ -200,8 +200,8 @@ const Customer = () => {
                     <Table.Body>
                       {customerList?.map((customer: any, index: number) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{customer.lastName}</Table.Cell>
                           <Table.Cell>{customer.firstName}</Table.Cell>
+                          <Table.Cell>{customer.lastName}</Table.Cell>
                           <Table.Cell>{customer.phoneNumber}</Table.Cell>
                         </Table.Row>
                       ))}

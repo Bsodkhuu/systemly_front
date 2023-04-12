@@ -19,9 +19,7 @@ const App = () => {
   return (
     <Layout>
       <div className="h-screen p-6 flex gap-4">
-        <h1>Захиалгын тайлан</h1>
-        <h1>борлуулалтын тайлан</h1>
-        <h1>Нарядын тайлан</h1>
+       
         <Card className="w-2/5 h-96">
           <Bar
             data={{
@@ -52,6 +50,8 @@ const App = () => {
             }}
           />
         </Card>
+
+        
       </div>
     </Layout>
   );
