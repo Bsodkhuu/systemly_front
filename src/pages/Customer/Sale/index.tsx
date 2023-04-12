@@ -108,9 +108,9 @@ const Sale = () => {
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.discount}</Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.quantity *
+                            {/* {serviceHistory.quantity *
                               serviceHistory.serive.price *
-                              (100 - serviceHistory.discount / 100)}
+                              (100 - serviceHistory.discount / 100)} */}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
                         </Table.Row>

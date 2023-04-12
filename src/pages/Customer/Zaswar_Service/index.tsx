@@ -68,7 +68,7 @@ const ZaswarService = () => {
                     <Table.HeadCell>Имэйл</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
-                    {garageCustomerOwner?.map((garageCustomerOwner, index) => (
+                    {garageCustomerOwner?.map((garageCustomerOwner, index: number) => (
                       <Table.Row key={index}>
                         <Table.Cell>{garageCustomerOwner.firstName}</Table.Cell>
                         <Table.Cell>{garageCustomerOwner.lastName}</Table.Cell>
@@ -105,7 +105,7 @@ const ZaswarService = () => {
                       (serviceHistory: any, index: number) => (
                         <Table.Row key={index}>
                           <Table.Cell>{serviceHistory.service.name}</Table.Cell>
-                          <Table.Cell>ç</Table.Cell>
+                          <Table.Cell>{serviceHistory.quantity}</Table.Cell>
                           <Table.Cell>
                             {serviceHistory.service.price}
                           </Table.Cell>
@@ -113,7 +113,7 @@ const ZaswarService = () => {
                             {serviceHistory.ajilGuitsetgesenAjiltan.name}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.discount}</Table.Cell>
-                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{serviceHistory.quantity * serviceHistory.service.price}</Table.Cell>
                           <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
                         </Table.Row>
                       )
@@ -137,7 +137,7 @@ const ZaswarService = () => {
                       <ListGroup.Item>
                         Хямдрал: {serviceHistory.discount}
                       </ListGroup.Item>
-                      Нийт: {serviceHistory.discount}
+                      Нийт: {serviceHistory.quantity * serviceHistory.service.price}
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Төлбөр төлөх хэлбэр

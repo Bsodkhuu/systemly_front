@@ -1,14 +1,17 @@
 import Layout from "../../../components/layout";
 import { TextInput, Button, Table, Select } from "flowbite-react";
 import React from "react";
-import { useState } from "react";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../../config/axios";
+import { InquiryDetail } from "../My";
+
 
 const History = () => {
-  const [showSearch, setSearch] = useState(false);
+  const { data: inquiryDetail } = useQuery("getInquiryDetail", getInquiryDetail);
 
-  function Haih() {
-    //fetch api
-    setSearch(true);
+  async function getInquiryDetail() {
+    const response = await axiosClient.get("/inquiry_details");
+    return response.data as InquiryDetail[];
   }
   return (
     <Layout>
@@ -18,7 +21,7 @@ const History = () => {
             <h5 className="text-1xl">Захиалгийн Түүх</h5>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500" onClick={Haih}>
+              <Button className="bg-blue-500">
                 Хайх
               </Button>
             </div>
@@ -27,16 +30,16 @@ const History = () => {
             <Table.Head>
               <Table.HeadCell>Захиалга</Table.HeadCell>
               <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
-              <Table.HeadCell>Статус</Table.HeadCell>
+              <Table.HeadCell>Статус төрөл</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-              <Table.Row>
-                <Table.Cell>Meyle</Table.Cell>
-                <Table.Cell>11111</Table.Cell>
-                <Table.Cell>
-                  <Table.Cell>Төлбөр төлөгдсөн</Table.Cell>
-                </Table.Cell>
+            {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number) => (
+               <Table.Row key={index}>
+                  <Table.Cell>{inquiryDetail.orderDetail.order_id}</Table.Cell>
+                  <Table.Cell>{inquiryDetail.supplier.supplierList}</Table.Cell>
+                  <Table.Cell>{inquiryDetail.statusType.statusName}</Table.Cell>
               </Table.Row>
+             ))}
             </Table.Body>
           </Table>
         </div>

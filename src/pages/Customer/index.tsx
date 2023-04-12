@@ -76,7 +76,30 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
     </Modal>
   );
 };
-
+interface VehicleCategory{
+  en: string;
+  mn: string;
+}
+interface VehicleColor {
+  en: string;
+  mn: string;
+}
+interface GarageCustomerVehicle extends VehicleCategory, VehicleColor{
+  [mn: string]: any;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  vinNumber: string;
+  manufacturerYear: string;
+  importedYear: string;
+  licensePlateNumber: string;
+  vehicleId?: string;
+  colorId?: string;
+  makeId?: string;
+  modelId?:string;
+  ownerId?: string;
+  affiliateId?:string;
+}
 const Customer = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchParams] = useSearchParams();
@@ -115,7 +138,7 @@ const Customer = () => {
 
   async function getGarageCustomerVehicles() {
     const response = await axiosClient.get("/garage_customer_vehicles");
-    return response.data;
+    return response.data as GarageCustomerVehicle;
   }
 
   function openModal() {
@@ -244,19 +267,20 @@ const Customer = () => {
                 </Table.Head>
                 <Table.Body className="divide-y">
                   {garageCustomerVehicles?.map(
-                    (customerVehicles: any, index: number) => (
+                    (garageCustomerVehicles: GarageCustomerVehicle, index: number) => (
                       <Table.Row key={index}>
-                        <Table.Cell>{customerVehicles.vinNumber}</Table.Cell>
+                        <Table.Cell>{garageCustomerVehicles.vinNumber}</Table.Cell>
                         <Table.Cell>
-                          {customerVehicles.vehicleCategory.mn}
+                          {/* {garageCustomerVehicles.vehicleCategory.mn} */}
                         </Table.Cell>
                         <Table.Cell>
-                          {customerVehicles.manufacturerYear}
+                          {garageCustomerVehicles.manufacturerYear}
                         </Table.Cell>
-                        <Table.Cell>{customerVehicles.importedYear}</Table.Cell>
-                        <Table.Cell>{customerVehicles.color.mn}</Table.Cell>
+                        <Table.Cell>{garageCustomerVehicles.importedYear}</Table.Cell>
+                        {/* <Table.Cell>{customerVehicles.color.mn}</Table.Cell> */}
+                        <Table.Cell></Table.Cell>
                         <Table.Cell>
-                          {customerVehicles.licensePlateNumber}
+                          {garageCustomerVehicles.licensePlateNumber}
                         </Table.Cell>
                       </Table.Row>
                     )

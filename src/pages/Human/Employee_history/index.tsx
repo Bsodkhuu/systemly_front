@@ -1,14 +1,16 @@
 import React from "react";
-import { TextInput, Button, Table, Avatar } from "flowbite-react";
+import { Table} from "flowbite-react";
 import Layout from "../../../components/layout";
-import { useState } from "react";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../../config/axios";
+import { AffiliateEmployee } from "..";
 
 const EmployeeHistory = () => {
-  const [showSearch, setShowSearch] = useState(false);
   
-  function search() {
-    // fetch('/api/customer')
-    setShowSearch(false);
+  const {data: employeeHistory} = useQuery("getEmployeeHistory", getEmployeeHistory);
+  async function getEmployeeHistory() {
+    const response = await axiosClient.get("/affiliate_employees");
+    return response.data as AffiliateEmployee[]
   }
   return (
     <Layout>
@@ -16,12 +18,7 @@ const EmployeeHistory = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
             <h4 className="text-1xl">Ажилтны түүх</h4>
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500" onClick={search}>
-                Хайх
-              </Button>
-            </div>
+            
           </div>
           <Table>
             <Table.Head className="uppercase">
@@ -32,19 +29,17 @@ const EmployeeHistory = () => {
               <Table.HeadCell>Мэргэжил</Table.HeadCell>
               <Table.HeadCell>Ажилд орсон он сар</Table.HeadCell>
             </Table.Head>
-            <Table.Body>
-             
-                <Table.Row>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell>
-                  
-                  </Table.Cell>
+            <Table.Body className="divide-y">
+              {employeeHistory?.map((employeeHistory: AffiliateEmployee, index: number) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{employeeHistory.image}</Table.Cell>
+                  <Table.Cell>{employeeHistory.ovog}</Table.Cell>
+                  <Table.Cell>{employeeHistory.name}</Table.Cell>
+                  <Table.Cell>{employeeHistory.phone}</Table.Cell>
+                  <Table.Cell>{employeeHistory.position.name}</Table.Cell>
+                  <Table.Cell>{employeeHistory.jobDate}</Table.Cell>
                 </Table.Row>
-             
+              ))}
             </Table.Body>
           </Table>
         </div>

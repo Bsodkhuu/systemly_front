@@ -8,6 +8,7 @@ import {
   TextInput,
   Checkbox,
   Select,
+  FileInput,
 } from "flowbite-react";
 
 import React, { useState } from "react";
@@ -32,14 +33,23 @@ interface ServiceType{
 interface EmployeePosition{
   name: string;
 }
-interface AffiliateEmployee extends EmployeePosition{
+export interface AffiliateEmployee extends EmployeePosition{
   [name: string]: any;
   id: string;
   name: string;
   ovog: string;
   phone: string;
   email: string;
+  image: string;
+  jobDate: string;
   positionId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface OrderDetail{
+  id: string;
+  order_id: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -58,10 +68,18 @@ const Human = () => {
     "getEmployeePositions",
     getEmployeePositions
   );
+  
+  const { data: orderDetails } = useQuery(
+    "getOrderDetails", getOrderDetails
+  );
 
+  async function getOrderDetails() {
+    const response = await axiosClient.get("/order-details");
+    return response.data as OrderDetail;
+  }
   async function getServiceHistory() {
     const response = await axiosClient.get("/service_histories");
-    return response.data;
+    return response.data as ServiceHistory;
   }
 
   async function getEmployeePositions() {
@@ -142,6 +160,7 @@ const Human = () => {
                 <TextInput id="email" {...register("email")} />
               </div>
             </div>
+
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -149,6 +168,21 @@ const Human = () => {
                 </div>
                 <TextInput type="name" {...register("name")} />
               </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="jobDate" value="Ажилд орсон огноо"/>
+                </div>
+                <TextInput type="date"/>
+              </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                    <Label htmlFor="image" value="Ажилтны зураг "/>
+                  </div>
+                  <FileInput/>
+                </div>
+              
             </div>
           </form>
         </Modal.Body>
@@ -222,13 +256,14 @@ const Human = () => {
                     <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
+                   
                     <Table.Row>
-                      <Table.Cell>
-                        <Checkbox />
-                      </Table.Cell>
-                      <Table.Cell>12345</Table.Cell>
-                      <Table.Cell>12345EDS</Table.Cell>
-                    </Table.Row>
+                    <Table.Cell>
+                      <Checkbox />
+                    </Table.Cell>
+                    <Table.Cell>daraa ni zasna</Table.Cell>
+                    <Table.Cell>daraa ni zasna</Table.Cell>
+                  </Table.Row>
                   </Table.Body>
                 </Table>
               </Card>
