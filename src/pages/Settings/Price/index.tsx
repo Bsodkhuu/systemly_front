@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { useSearchParams } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface ServiceType{
   id: string;
@@ -20,13 +20,22 @@ interface ServiceType{
 
 const Price = () => {
   const { register, handleSubmit }=useForm<ServiceType>();
+  const [searchParams] = useSearchParams();
   const { mutateAsync } = useMutation("serviceType", serviceType);
 
   const { data: serviceList} = useQuery("getServiceType", () => 
-  getServiceType({
-    makeId: getSearchParams.get("makeId") || "",
+    getServiceType({
+      makeId: getSearchParams.get("makeId") || "",
+    })
+  );
+
+  const makeId = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (makeId.current) {
+      makeIdRef.current.val
+    }
   })
-);
    
   async function getServiceType() {
     const response = await axiosClient.get("/service-types");
