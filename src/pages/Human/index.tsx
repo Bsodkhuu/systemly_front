@@ -75,7 +75,7 @@ const Human = () => {
 
   async function getOrderDetails() {
     const response = await axiosClient.get("/order-details");
-    return response.data as OrderDetail;
+    return response.data as OrderDetail[];
   }
   async function getServiceHistory() {
     const response = await axiosClient.get("/service_histories");
@@ -113,7 +113,11 @@ const Human = () => {
     return response.data;
   }
 
-
+  // {employeePositions?.map((i) => (
+  //   <option key={`employee_position_${i.id}`} value={i.id}>
+  //     {i.name}
+  //   </option>
+  // ))}
   return (
     <Layout>
       <Modal show={showModal} onClose={closeModal}>
@@ -124,63 +128,64 @@ const Human = () => {
             className="flex flex-col gap-4 max-h-96 overflow-y-auto"
           >
             <div>
-              <Select>
-                {employeePositions?.map((i) => (
-                  <option key={`employee_position_${i.id}`} value={i.id}>
-                    {i.name}
-                  </option>
-                ))}
-              </Select>
+              
             </div>
             <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="ovog" value="Овог" />
-                </div>
-                <TextInput id="ovog" {...register("ovog")} />
-              </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="name" value="Нэр" />
                 </div>
                 <TextInput id="name" {...register("name")} />
               </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="ovog" value="Овог" />
+                </div>
+                <TextInput id="ovog" {...register("ovog")} />
+              </div>
             </div>
             <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="name" value="Албан тушаал" />
+                </div>
+                <Select>
+                {employeePositions?.map((i) => (
+                  <option>
+                    {i.name}
+                  </option>
+                ))}
+              </Select>
+              </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phone" value="Утасны дугаар" />
                 </div>
                 <TextInput id="phone" {...register("phone")} />
               </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="email" value="Имэйл" />
-                </div>
-                <TextInput id="email" {...register("email")} />
-              </div>
             </div>
 
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="name" value="Албан тушаал" />
+                  <Label htmlFor="email" value="Имэйл" />
                 </div>
-                <TextInput type="name" {...register("name")} />
+                <TextInput type="text" {...register("email")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="jobDate" value="Ажилд орсон огноо"/>
+                  <Label htmlFor="image" value="Ажилтны зураг"/>
                 </div>
-                <TextInput type="date"/>
+                <TextInput type="text" {...register("image")}/>
               </div>
               </div>
               <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="image" value="Ажилтны зураг "/>
+                    <Label htmlFor="jobDate" value="Ажилд орсон огноо "/>
                   </div>
-                  <FileInput/>
+                  {/* <FileInput/> */}
+                  <TextInput type="text" {...register("jobDate")}/>
                 </div>
               
             </div>
@@ -257,13 +262,16 @@ const Human = () => {
                   </Table.Head>
                   <Table.Body>
                    
-                    <Table.Row>
-                    <Table.Cell>
-                      <Checkbox />
-                    </Table.Cell>
-                    <Table.Cell>daraa ni zasna</Table.Cell>
-                    <Table.Cell>daraa ni zasna</Table.Cell>
-                  </Table.Row>
+                   
+                      {orderDetails?.map((orderDetails: OrderDetail, index: number) => (
+                        <Table.Row key={index}>
+                          <Table.Cell><Checkbox /></Table.Cell>
+                          <Table.Cell>{orderDetails.order_id}</Table.Cell>
+                          <Table.Cell>{orderDetails.order_id}</Table.Cell>
+                        </Table.Row>
+                      ))}
+                    
+                
                   </Table.Body>
                 </Table>
               </Card>

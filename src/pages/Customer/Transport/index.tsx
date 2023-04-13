@@ -5,32 +5,33 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { axiosClient } from "../../../config/axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import internal from "stream";
 
-interface FormValues {
+interface VehicleMakeModel{
   makeId: string;
-  modelId?: string;
+  modelId: string;
   modelName: string;
-  vehicleProductionYearFrom?: number;
-  vehicleProductionYearTo?: number;
-  vehicleClassId?: string;
-  vehicleBodyTypeId?: string;
-  featuredCheck?: boolean;
+  vehicleProductionYearFrom: number;
+  vehicleProductionYearTo: number;
+  vehicleClassId: string;
+  vehicleBodyTypeId: string;
+  featuredCheck: boolean;
 }
 
 const Transport = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<VehicleMakeModel>();
   const { mutateAsync } = useMutation(
     "createVehicleMakeModel",
     createVehicleMakeModel
   );
 
-  async function createVehicleMakeModel(values: FormValues) {
+  async function createVehicleMakeModel(values: VehicleMakeModel) {
     const response = await axiosClient.post("/vehicle_make_models", values);
     return response.data;
   }
 
-  async function onSubmit(values: FormValues) {
+  async function onSubmit(values: VehicleMakeModel) {
     await mutateAsync(values);
     navigate("/customer");
   }
@@ -43,9 +44,7 @@ const Transport = () => {
             <h4 className="text-1xl">Тээврийн хэрэгсэл</h4>
           </div>
           <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-4"
-          >
+            onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">

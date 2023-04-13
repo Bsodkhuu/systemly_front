@@ -19,15 +19,13 @@ const Messej = () => {
               <a href="/my">
                 <button
                   type="button"
-                  className="mr-2 inline-flex items-center rounded-lg bg-green-700 px-3 py-1.5 text-center text-xs font-medium text-white hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-800 dark:hover:bg-green-900"
-                >
+                  className="mr-2 inline-flex items-center rounded-lg bg-green-700 px-3 py-1.5 text-center text-xs font-medium text-white hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-800 dark:hover:bg-green-900">
                   Миний захиалга харах
                 </button>
               </a>
             </div>
           </React.Fragment>
-        }
-      >
+        }>
         <h3 className="text-lg font-medium text-green-700 dark:text-green-800">
           Агуулахын үлдэгдэл шалгаж байна.
         </h3>

@@ -2,8 +2,9 @@ import Layout from "../../../components/layout";
 import { TextInput, Button, Table, Select } from "flowbite-react";
 import React from "react";
 import { axiosClient } from "../../../config/axios";
-import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
+import { useForm } from "react-hook-form";
+
 export interface Work{
   id: string;
   createdAt: string;
@@ -15,18 +16,14 @@ export interface Work{
   serviceAppointmentId?: string;
 }
 
-interface FormValues{
-  name: string;
-  open: string;
-  close: string;
-  description: string;
-}
+
 const Clock = () => {
   
   const WEEKS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "Saturday", "Sunday"];
 
-  const { register, handleSubmit} = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<Work>();
   const { mutateAsync } = useMutation("work", work);
+
   const { data: works} = useQuery("getWorks", getWorks);
 
   async function getWorks() {
@@ -34,12 +31,12 @@ const Clock = () => {
     return response.data as Work[];
   }
 
-  async function work(values: FormValues) {
+  async function work(values: Work) {
     const response = await axiosClient.post("/works", values);
     return response.data;
   }
 
-  async function onSubmit(values: FormValues) {
+  async function onSubmit(values: Work) {
     await mutateAsync(values);
   }
 
@@ -58,39 +55,29 @@ const Clock = () => {
             </div>
           </div>
           <div className="p-4">
-            <Table onClick={handleSubmit(onSubmit)}>
+
+           <form onSubmit={handleSubmit(onSubmit)}>
+           <Select>
+              {WEEKS.map((i) => (
+                <option value={i} {...register("name")}>{i}</option>))}
+           </Select>&nbsp;
+           <TextInput type="time" {...register("open")}/>&nbsp;
+           <TextInput type="time" {...register("close")}/>&nbsp;
+           <TextInput type="text" {...register("description")}/>&nbsp;
+           <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Хадгалах</Button>
+           </form>
+           &nbsp;&nbsp;
+            <Table>
               <Table.Head className="uppercase">
                 <Table.HeadCell>7 хоног</Table.HeadCell>
                 <Table.HeadCell>Нээх</Table.HeadCell>
                 <Table.HeadCell>Хаах</Table.HeadCell>
                 <Table.HeadCell>Ажиллах эсэх</Table.HeadCell>
-                <Table.HeadCell>Үйлдэл</Table.HeadCell>
+                
               </Table.Head>
+              
               <Table.Body className="divide-y">
-                <Table.Row>
-                  <Table.Cell>
-                    <Select>
-                      {WEEKS.map((i) => (
-                        <option value={i}>{i}</option>
-                      ))}
-                    </Select>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="time" {...register("open")}/>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <TextInput type="time" {...register("close")}/>
-                  </Table.Cell>
-                  <Table.Cell>
-                  <TextInput type="text" {...register("description")}/>
-                </Table.Cell>
-                  <Table.Cell>
-                    <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Хадгалах</Button>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-              <Table.Body className="divide-y">
-                {works?.map((works, index) => (
+                {works?.map((works: any, index) => (
                   <Table.Row key={index}>
                     <Table.Cell>{works.name}</Table.Cell>
                     <Table.Cell>{works.open}</Table.Cell>

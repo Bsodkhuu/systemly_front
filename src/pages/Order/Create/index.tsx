@@ -5,18 +5,17 @@ import {
   Alert,
   TextInput,
   Textarea,
-  ListGroup,
+  ListGroup,Table,
 } from "flowbite-react";
 
 import Layout from "../../../components/layout";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../../../config/axios";
 import { useQuery } from "react-query";
 import React from "react";
 
-interface FormValues {
+interface Address {
   firstname: string;
   lastname: string;
   email: string;
@@ -28,31 +27,32 @@ interface FormValues {
 }
 
 const Create = () => {
-  const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm<FormValues>();
-  const { mutateAsync } = useMutation("address", addressUser);
+  const { register, handleSubmit } = useForm<Address>();
+  const { mutateAsync } = useMutation("address", address);
   const { data, isLoading } = useQuery("products", getProducts);
+  const { data: address1 } = useQuery("getAddress", getAddress);
+
+  async function getAddress() {
+    const response = await axiosClient.get("/addresses");
+    return response.data as Address[];
+  }
 
   async function getProducts() {
     const response = await axiosClient.get("/products");
     return response.data;
   }
 
-  async function addressUser(values: FormValues) {
-    const data = await axiosClient.post("/address", values);
-    return data;
-  }
   if (isLoading) {
     return <Layout></Layout>;
   }
+  async function address(values: Address) {
+    const response = await axiosClient.post("/addresses", values);
+    return response.data;
+  }
 
-  async function onSubmit(values: FormValues) {
-    const data = await mutateAsync(values);
-
-    if (data) {
-      navigate("/checkbox");
-    }
+  async function onSubmit(values: Address) {
+    await mutateAsync(values);
   }
   return (
     <Layout>
@@ -89,13 +89,10 @@ const Create = () => {
               </a>
             </div>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <div className="grid grid-cols-2">
+            <div className="grid-cols-2">
               <div>
                 <Card>
-                  <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col gap-4"
-                  >
+                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                     <div className="flex gap-4">
                       <div className="w-1/2">
                         <div className="mb-2 block">
@@ -158,13 +155,36 @@ const Create = () => {
                       </div>
                     </div>
                     <Button
+                    onClick={handleSubmit(onSubmit)}
                       type="submit"
-                      className="btn btn-success"
-                      onClick={handleSubmit(onSubmit)}
-                    >
+                      className="btn btn-success">
                       Хадгалах
                     </Button>
                   </form>
+                  <Table>
+                  <Table.Head className="uppercase">
+                  <Table.HeadCell>Овог</Table.HeadCell>
+                  <Table.HeadCell>Нэр</Table.HeadCell>
+                  <Table.HeadCell>Имэйл</Table.HeadCell>
+                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
+                  <Table.HeadCell>Улс</Table.HeadCell>
+                  <Table.HeadCell>Хот</Table.HeadCell>
+                  <Table.HeadCell>Захиалгийн тэмдэглэл</Table.HeadCell>
+                </Table.Head>
+                <Table.Body className="divide-y">
+                  {address1?.map((address: Address, index: number) => (
+                    <Table.Row key={index}>
+                      <Table.Cell>{address.firstname}</Table.Cell>
+                      <Table.Cell>{address.lastname}</Table.Cell>
+                      <Table.Cell>{address.email}</Table.Cell>
+                      <Table.Cell>{address.phone}</Table.Cell>
+                      <Table.Cell>{address.country}</Table.Cell>
+                      <Table.Cell>{address.city}</Table.Cell>
+                      <Table.Cell>{address.order_note}</Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table>
                 </Card>
               </div>
             </div>
