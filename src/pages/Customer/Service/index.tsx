@@ -1,9 +1,64 @@
 import React from "react";
 import { TextInput, Button, Table, Card } from "flowbite-react";
-
 import Layout from "../../../components/layout";
+import { useQuery } from "react-query";
+import { axiosClient } from "../../../config/axios";
+import { DatePicker } from "./datepicker";
 
+
+interface ServiceAppointment extends GarageCustomerOwner{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  startTime: string;
+  endTime: string;
+  customerId?: string;
+  vehicleId?: string;
+  serviceTypeId?: string;
+  mechanicId?: string;
+  nemeltMedeelel: string;
+  [lastName: string]: any;
+}
+
+interface ServiceType extends ServiceAppointment {
+  mainCategory: string;
+  subCategory: string;
+  name: string;
+  affiliateId?: string;
+  price: number;
+  currency: string;
+}
+interface GarageCustomerOwner extends GarageCustomerVehicle{
+  lastName: string;
+  firstName: string;
+  phoneNumber: string;
+  email: string;
+}
+interface GarageCustomerVehicle{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  vinNumber: string;
+  makeId?:string;
+  modelId?: string;
+  manufacturerYear: string;
+  importedYear: string;
+  colorId?: string;
+  licensePlateNumber: string;
+  ownerId?: string;
+  affiliateId?: string;
+  vehicleId?: string;
+}
 const Service = () => {
+
+  const { data: serviceAppointment } = useQuery("getServiceAppointment",
+  getServiceAppointment);
+
+  async function getServiceAppointment() {
+    const response = await axiosClient.get("/service_appointments");
+    return response.data as ServiceAppointment[];
+  }
+
   return (
     <Layout>
       <div className="p-4 bg-gray-200 h-screen w-full">
@@ -11,10 +66,8 @@ const Service = () => {
           <div className="flex justify-between mb-4">
             <h4 className="text-1xl">Үйлчилгээний цаг авах</h4>
             <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-
-              <Button className="bg-blue-500">Хайх</Button>
               <TextInput id="date" type="date" />
+              <Button className="bg-blue-500">Хайх</Button>
             </div>
           </div>
           {/* calendar */}
@@ -34,16 +87,20 @@ const Service = () => {
                     <Table.HeadCell>Цаг авсан</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
-                    <Table.Row>
-                      <Table.Cell>example</Table.Cell>
-                      <Table.Cell>example</Table.Cell>
-                      <Table.Cell>08:00</Table.Cell>
-                    </Table.Row>
+                    {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
+                      <Table.Row key={index}>
+                        <Table.Cell>{serviceAppointment.customer.lastName}</Table.Cell>
+                        <Table.Cell>{serviceAppointment.serviceType.name}</Table.Cell>
+                        <Table.Cell>{serviceAppointment.startTime}</Table.Cell>
+                      </Table.Row>
+                    ))}
                   </Table.Body>
                 </Table>
               </Card>
             </div>
-            <div className="p-3">calendar</div>
+            <div className="p-3">
+             <DatePicker/>
+            </div>
           </div>
           <div className="p-4">
             <Card className="max-w-sm">
@@ -56,7 +113,11 @@ const Service = () => {
                   <Table.HeadCell>Хуваарь</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  <Table.Cell>Үйлчилгээний цаг</Table.Cell>
+                  {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
+                    <Table.Row key={index}>
+                      <Table.Cell>{serviceAppointment.startTime}</Table.Cell>
+                    </Table.Row>
+                  ))}
                 </Table.Body>
               </Table>
             </Card>

@@ -109,14 +109,14 @@ const Customer = () => {
     })
   );
   const { data: vehicleMakeModels } = useQuery(
-    "getVehicleMakeModels",
-    getVehicleMakeModels
+    "getVehicleMakeModels",getVehicleMakeModels
   );
   const { data: garageCustomerVehicles } = useQuery(
     "getGarageCustomerVehicles",
     getGarageCustomerVehicles
   );
   const lastnameRef = useRef<HTMLInputElement>(null);
+ 
 
   useEffect(() => {
     if (lastnameRef.current) {
