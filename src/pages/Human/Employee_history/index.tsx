@@ -1,5 +1,5 @@
 import React from "react";
-import { Table} from "flowbite-react";
+import { Avatar, Table} from "flowbite-react";
 import Layout from "../../../components/layout";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
@@ -32,7 +32,9 @@ const EmployeeHistory = () => {
             <Table.Body className="divide-y">
               {employeeHistory?.map((employeeHistory: AffiliateEmployee, index: number) => (
                 <Table.Row key={index}>
-                  <Table.Cell>{employeeHistory.image}</Table.Cell>
+                  <Table.Cell>
+                    <Avatar img={employeeHistory.image}/>
+                  </Table.Cell>
                   <Table.Cell>{employeeHistory.ovog}</Table.Cell>
                   <Table.Cell>{employeeHistory.name}</Table.Cell>
                   <Table.Cell>{employeeHistory.phone}</Table.Cell>

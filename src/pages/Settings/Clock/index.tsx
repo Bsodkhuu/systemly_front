@@ -9,12 +9,13 @@ export interface Work{
   id: string;
   createdAt: string;
   updateAt: string;
-  name: string;
+  name: Week;
   open: string;
   close: string;
   description: string;
   serviceAppointmentId?: string;
 }
+type Week = any;
 
 
 const Clock = () => {

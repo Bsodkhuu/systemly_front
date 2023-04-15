@@ -114,6 +114,7 @@ const Inquiry = () => {
               <div className="p-2">
                 <Card>
                   <FileInput />
+                  <Button className="bg-blue-500">Сэлбэгийн үнийн санал</Button>
                   <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
                   <Table>
                     <Table.Head className="uppercase">

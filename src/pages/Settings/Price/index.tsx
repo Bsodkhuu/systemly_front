@@ -3,7 +3,6 @@ import Layout from "../../../components/layout";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useRef } from "react";
 
 interface ServiceType{
