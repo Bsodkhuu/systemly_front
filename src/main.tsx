@@ -34,11 +34,21 @@ import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
 import BackOrder from "./pages/BackOrder";
 import Online from "./pages/Online";
+import Suld from "./pages/Suld";
+import Asuulguud from "./pages/Suld/order/asuulguud";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:"/suld", 
+    element: <Suld/>
+  },
+  {
+    path:"/asuulguud", 
+    element:<Asuulguud/>
   },
   {
     path: "/online",

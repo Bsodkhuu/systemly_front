@@ -39,16 +39,18 @@ const Online = () => {
               </Carousel>
             </div> */}
 
-            <div className="slideshow-container">
-              <div className="mySlides fade">
-                &nbsp;
+            
+              <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+              
+                <Carousel>
                 {online?.map((online: Online, index: number) => (
                   <a href={online.link}>
-                    <img key={index} src={online.image} className="width:100%"/>
+                    <img key={index} src={online.image} className="padding-bottom:100%"/>
                   </a>
                 ))}
+                </Carousel>
               </div>
-            </div>
+            
       </div>
     </Layout>
   );

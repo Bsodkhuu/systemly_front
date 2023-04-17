@@ -48,41 +48,41 @@ const Transport = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="make_id" value="Загвар" />
+                  <Label htmlFor="makeId" value="Загвар" />
                 </div>
-                <TextInput id="make_id" {...register("makeId")} />
+                <TextInput id="makeId" {...register("makeId")} />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="model_name" value="Модел" />
+                  <Label htmlFor="modelName" value="Модел" />
                 </div>
-                <TextInput id="model_name" {...register("modelName")} />
+                <TextInput id="modelName" {...register("modelName")} />
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="vehicle_production_year_from"
+                    htmlFor="vehicleProductionYearFrom"
                     value="Машин үйлдвэрлэсэн оноос хойш"
                   />
                 </div>
                 <TextInput
                   type="number"
-                  id="vehicle_production_year_from"
+                  id="vehicleProductionYearFrom"
                   {...register("vehicleProductionYearFrom")}
                 />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="vehicle_production_year_to"
+                    htmlFor="vehicleProductionYearTo"
                     value="Машин үйлдвэрлэсэн оноос өмнө"
                   />
                 </div>
                 <TextInput
                   type="number"
-                  id="vehicle_production_year_to"
+                  id="vehicleProductionYearTo"
                   {...register("vehicleProductionYearTo")}
                 />
               </div>
@@ -90,19 +90,19 @@ const Transport = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="vehicle_class_id" value="Машины анги" />
+                  <Label htmlFor="vehicleClassId" value="Машины анги" />
                 </div>
                 <TextInput
-                  id="vehicle_class_id"
+                  id="vehicleClassId"
                   {...register("vehicleClassId")}
                 />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="vehicle_body_type_id" value="Машины төрөл" />
+                  <Label htmlFor="vehicleBodyTypeId" value="Машины төрөл" />
                 </div>
                 <TextInput
-                  id="vehicle_body_type_id"
+                  id="vehicleBodyTypeId"
                   {...register("vehicleBodyTypeId")}
                 />
               </div>

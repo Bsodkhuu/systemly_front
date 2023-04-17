@@ -41,6 +41,36 @@ const SidebarComponent = () => {
           </Collapse>
           {/* <Item href="/product_categories">Жишээ шүү Барааны категори</Item> */}
           <Item onClick={logOut}>Системээс гарах</Item>
+          
+          <Item href="/suld">Сүлд ERP</Item>
+          
+          <Collapse label="Захиалга">
+          <Item href="/asuulguud">Асуулгууд</Item>
+          <Item href="#">Захиалгууд</Item>
+          <Item href="#">Тээврийн захиалга</Item>
+          </Collapse>
+          <Collapse label="Захиалгийн систем">
+          <Item href="#">Сэлбэгийн удирдлага</Item>
+          <Item href="#">Нийлүүлэгчийн үнэ</Item>
+          </Collapse>
+          <Collapse label="Хүний нөөц">
+          <Item href="#">Ажилчид</Item>
+          </Collapse>
+          <Collapse label="CRM">
+          <Item href="#">Харилцагчийн бүртгэл</Item>
+          <Item href="#">Харилцагчийн ажилчид</Item>
+          <Item href="#">N! гишүүд</Item>
+          <Item href="#">Нийлүүлэгчид</Item>
+          </Collapse>
+          <Collapse label="NEXUS!">
+          <Item href="#">Сургалт</Item>
+          <Item href="#">Брэнд бүүк</Item>
+          </Collapse>
+          <Collapse label="Тохиргоо">
+          <Item href="#">Үнийн тохиргоо</Item>
+          <Item href="#">Хэрэглэгчийн тохиргоо</Item>
+          </Collapse>
+         
         </ItemGroup>
       </Items>
     </Sidebar>
