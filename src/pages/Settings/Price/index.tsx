@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React, { useEffect, useRef } from "react";
 
-interface ServiceType{
+export interface ServiceType{
   id: string;
   createdAt: string;
   updateAt: string;
@@ -14,6 +14,9 @@ interface ServiceType{
   name: string;
   affiliateId?: string;
   price: number;
+  averagePrice: number;
+  suudalPrice: number;
+  achaaPrice: number;
   currency: string;
 }
 
@@ -27,15 +30,13 @@ const Price = () => {
     getServiceType
   );
 
- 
-   
   async function getServiceType() {
     const response = await axiosClient.get("/service-types");
     return response.data as ServiceType[];
   }
 
   async function serviceType(values: ServiceType) {
-    const response = await axiosClient.post("/service-types", values);
+    const response = await axiosClient.post("/service-types",{values, price:parseInt(values.price)});
     return response.data;
   }
   async function onSubmit(values: ServiceType) {
@@ -56,15 +57,8 @@ const Price = () => {
               </a>
             </div>
           </div>
-          {/* <Select>
-                {employeePositions?.map((i) => (
-                  <option key={`employee_position_${i.id}`} value={i.id}>
-                    {i.name}
-                  </option>
-                ))}
-              </Select>  */}
+       
             <form onSubmit={handleSubmit(onSubmit)}>
-              
                 <Select>
                   {serviceList?.map((i) => (
                     <option value={i.id}>
@@ -88,9 +82,9 @@ const Price = () => {
                 ))}
               </Select>&nbsp;
              <TextInput type="number" {...register("price")}/>&nbsp;
-             <TextInput type="number" {...register("price")}/>&nbsp;
-             <TextInput type="number" {...register("price")}/>&nbsp;
-             <TextInput type="number" {...register("price")}/>&nbsp;
+             <TextInput type="number" {...register("averagePrice")}/>&nbsp;
+             <TextInput type="number" {...register("suudalPrice")}/>&nbsp;
+             <TextInput type="number" {...register("achaaPrice")}/>&nbsp;
              <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Хадгалах</Button>
             </form>
             &nbsp;&nbsp;
@@ -99,13 +93,11 @@ const Price = () => {
               <Table.HeadCell>Main Group</Table.HeadCell>
               <Table.HeadCell>Sub Group</Table.HeadCell>
               <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
-              <Table.HeadCell>Том оврийн</Table.HeadCell>
-              <Table.HeadCell>SUV</Table.HeadCell>
-              <Table.HeadCell>Дунд гарын</Table.HeadCell>
+              <Table.HeadCell>Том</Table.HeadCell>
+              <Table.HeadCell>Дунд</Table.HeadCell>
               <Table.HeadCell>Суудлын</Table.HeadCell>
+              <Table.HeadCell>Ачааны</Table.HeadCell>
             </Table.Head>
-            
-            
             <Table.Body className="divide-y">
               {serviceList?.map((service: ServiceType, index: number) => (
                 <Table.Row key={index}>
@@ -127,9 +119,9 @@ const Price = () => {
                     </Select>
                   </Table.Cell>
                   <Table.Cell>{service.price}</Table.Cell>
-                  <Table.Cell>{service.price}</Table.Cell>
-                  <Table.Cell>{service.price}</Table.Cell>
-                  <Table.Cell>{service.price}</Table.Cell>
+                  <Table.Cell>{service.averagePrice}</Table.Cell>
+                  <Table.Cell>{service.suudalPrice}</Table.Cell>
+                  <Table.Cell>{service.achaaPrice}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>

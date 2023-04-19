@@ -68,10 +68,8 @@ const SidebarComponent = () => {
           </Collapse>
           <Collapse label="Тохиргоо">
           <Item href="#">Үнийн тохиргоо</Item>
-          <Item href="/role">Хэрэглэгчийн тохиргоо</Item>
-
-         
           </Collapse>
+          <Item href="/role">Үндсэн тохиргоо</Item>
           <Item onClick={logOut}>Системээс гарах</Item>
         </ItemGroup>
       </Items>
