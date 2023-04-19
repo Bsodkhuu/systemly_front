@@ -26,7 +26,7 @@ const EmployeeHistory = () => {
               <Table.HeadCell>Овог</Table.HeadCell>
               <Table.HeadCell>Нэр</Table.HeadCell>
               <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-              <Table.HeadCell>Мэргэжил</Table.HeadCell>
+              {/* <Table.HeadCell>Мэргэжил</Table.HeadCell> */}
               <Table.HeadCell>Ажилд орсон он сар</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
@@ -38,7 +38,7 @@ const EmployeeHistory = () => {
                   <Table.Cell>{employeeHistory.ovog}</Table.Cell>
                   <Table.Cell>{employeeHistory.name}</Table.Cell>
                   <Table.Cell>{employeeHistory.phone}</Table.Cell>
-                  <Table.Cell>{employeeHistory.position.name}</Table.Cell>
+                  {/* <Table.Cell>{employeeHistory.position.name}</Table.Cell> */}
                   <Table.Cell>{employeeHistory.jobDate}</Table.Cell>
                 </Table.Row>
               ))}

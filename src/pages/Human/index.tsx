@@ -30,21 +30,22 @@ interface ServiceType{
   price: number;
   currency: string;
 }
-interface EmployeePosition{
-  name: string;
-}
-export interface AffiliateEmployee extends EmployeePosition{
-  [name: string]: any;
+
+export interface AffiliateEmployee{
   id: string;
+  createdAt: string;
+  updatedAt: string;
+  affiliateId?: string;
   name: string;
   ovog: string;
   phone: string;
   email: string;
   image: string;
   jobDate: string;
-  positionId?: string;
-  createdAt: string;
-  updatedAt: string;
+}
+
+interface EmployeePosition{
+  name: string;
 }
 
 interface OrderDetail{
@@ -113,11 +114,6 @@ const Human = () => {
     return response.data;
   }
 
-  // {employeePositions?.map((i) => (
-  //   <option key={`employee_position_${i.id}`} value={i.id}>
-  //     {i.name}
-  //   </option>
-  // ))}
   return (
     <Layout>
       <Modal show={showModal} onClose={closeModal}>
@@ -145,18 +141,18 @@ const Human = () => {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-1/2">
+              {/* <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="name" value="Албан тушаал" />
-                </div>
-                <Select>
+                </div> */}
+                {/* <Select>
                 {employeePositions?.map((i) => (
                   <option>
                     {i.name}
                   </option>
                 ))}
-              </Select>
-              </div>
+              </Select> */}
+              {/* </div> */}
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phone" value="Утасны дугаар" />
@@ -232,15 +228,15 @@ const Human = () => {
 
                     <Table.HeadCell>Овог</Table.HeadCell>
                     <Table.HeadCell>Нэр</Table.HeadCell>
-                    <Table.HeadCell>Мэргэжил</Table.HeadCell>
+                    {/* <Table.HeadCell>Мэргэжил</Table.HeadCell> */}
                   </Table.Head>
                   <Table.Body>
-                    {employeesList?.map((affiliate: AffiliateEmployee, index: number) => (
+                    {employeesList?.map((employeesList: AffiliateEmployee, index: number) => (
                       <Table.Row key={index}>
                         <Table.Cell><Checkbox /></Table.Cell>
-                        <Table.Cell>{affiliate.ovog}</Table.Cell>
-                        <Table.Cell>{affiliate.name}</Table.Cell>
-                        <Table.Cell>{affiliate.position.name}</Table.Cell>
+                        <Table.Cell>{employeesList.ovog}</Table.Cell>
+                        <Table.Cell>{employeesList.name}</Table.Cell>
+                        {/* <Table.Cell>{employeesList.position.name}</Table.Cell> */}
                      
                       </Table.Row>
                     ))}
@@ -270,8 +266,6 @@ const Human = () => {
                           <Table.Cell>{orderDetails.order_id}</Table.Cell>
                         </Table.Row>
                       ))}
-                    
-                
                   </Table.Body>
                 </Table>
               </Card>

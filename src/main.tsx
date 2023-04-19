@@ -40,6 +40,7 @@ import Orders from "./pages/Suld/order/Orders";
 import Zam from "./pages/Suld/order/zam";
 import Nemelt from "./pages/Suld/order/nemelt";
 import Role from "./pages/Suld/Tohirgoo/role";
+import Notifications from "./pages/Suld/Tohirgoo/notifications";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path:"/asuulguud", 
     element:<Asuulguud/>
+  },
+  {
+    path: "/notifications", 
+    element: <Notifications/>
   },
   {
     path: "/role", 
