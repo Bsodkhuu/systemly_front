@@ -36,7 +36,13 @@ const Price = () => {
   }
 
   async function serviceType(values: ServiceType) {
-    const response = await axiosClient.post("/service-types",{values, price:parseInt(values.price)});
+    const response = await axiosClient.post("/service-types", {
+        ...values,
+        price: parseInt(values.price.toString()),
+        averagePrice: parseInt(values.averagePrice.toString()),
+        suudalPrice: parseInt(values.suudalPrice.toString()),
+        achaaPrice: parseInt(values.achaaPrice.toString()),
+      });
     return response.data;
   }
   async function onSubmit(values: ServiceType) {
