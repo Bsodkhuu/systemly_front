@@ -36,6 +36,10 @@ import BackOrder from "./pages/BackOrder";
 import Online from "./pages/Online";
 import Suld from "./pages/Suld";
 import Asuulguud from "./pages/Suld/order/asuulguud";
+import Orders from "./pages/Suld/order/Orders";
+import Zam from "./pages/Suld/order/zam";
+import Nemelt from "./pages/Suld/order/nemelt";
+import Role from "./pages/Suld/Tohirgoo/role";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +53,22 @@ const router = createBrowserRouter([
   {
     path:"/asuulguud", 
     element:<Asuulguud/>
+  },
+  {
+    path: "/role", 
+    element:<Role/>
+  },
+  {
+    path:"/orders",
+    element:<Orders/>
+  },
+  {
+    path: "/zam", 
+    element:<Zam/>
+  },
+  {
+    path: "/nemelt", 
+    element:<Nemelt/>
   },
   {
     path: "/online",

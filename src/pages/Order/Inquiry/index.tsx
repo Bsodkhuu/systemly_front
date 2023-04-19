@@ -21,6 +21,7 @@ interface Inquiry extends InquiryDetail{
   createdAt: string;
   updatedAt: string;
   createdDate: string;
+  inquiryNumber: string;
   userId?: string;
 }
 

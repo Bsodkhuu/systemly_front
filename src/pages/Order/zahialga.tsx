@@ -7,7 +7,7 @@ import {
   Table,
   Select,
   Label,
-  ListGroup,
+  ListGroup, 
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,15 +17,55 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
+interface Supplier{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  supplierList: string;
+  vehicleManufacturerId?: string;
+}
+
+interface ProductCategory{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  en: string;
+}
+
+interface ProductSubCategory{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  en: string;
+  productCategoryId?: string;
+}
 
 const Zahialga = () => {
   const { data, isLoading } = useQuery("products", getProducts);
+
+  const {data: supplier} = useQuery("getSupplier", getSupplier);
+  async function getSupplier() {
+    const response = await axiosClient.get("/suppliers");
+    return response.data as Supplier[];
+  }
+
+  const {data: productCategory} = useQuery("getProductCategory", getProductCategory);
+  async function getProductCategory() {
+    const response = await axiosClient.get("/product_categories");
+    return response.data as ProductCategory[];
+  }
+
+  const {data: productSub} = useQuery("getProductSub", getProductSub);
+
+  async function getProductSub() {
+    const response = await axiosClient.get("/product_subcategories");
+    return response.data as ProductSubCategory[];
+  }
   const [productQuantities, setProductQuantities] = useState<
     {
       id: string;
       quantity: number;
-    }[]
-  >();
+    }[]>();
 
   async function getProducts() {
     const response = await axiosClient.get("/products");
@@ -66,16 +106,24 @@ const Zahialga = () => {
                   <div className="mb-2 block">
                     <Label htmlFor="brand" value="Брэнд" />
                   </div>
-                  <Select id="brand">
-                    <option value="meyle">Meyle</option>
+                  <Select>
+                   {supplier?.map((i) => (
+                    <option value={i.id}>
+                      {i.supplierList}
+                    </option>
+                   ))}
                   </Select>
                 </div>
                 <div className="w-1/2">
                   <div className="mb-2 block">
                     <Label htmlFor="category" value="Ангилал" />
                   </div>
-                  <Select id="category">
-                    <option value="Engine">Engine</option>
+                  <Select>
+                    {productCategory?.map((i) => (
+                      <option value={i.id}>
+                        {i.en}
+                      </option>
+                    ))}
                   </Select>
                 </div>
                 <div className="w-1/2">
@@ -91,18 +139,30 @@ const Zahialga = () => {
               <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="category" value="Engine" />
+                  {productCategory?.map((i) => (
+                      <Label htmlFor="category" value={i.en} />
+                    ))}
                   </div>
-                  <Select id="category" required={true}>
-                    <option value="gasket">Gasket timing case</option>
+                  <Select>
+                    {productSub?.map((i) => (
+                      <option value={i.id}>
+                        {i.en}
+                      </option>
+                    ))}
                   </Select>
                 </div>
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="category" value="Engine" />
+                    {productCategory?.map((i) => (
+                      <Label htmlFor="category" value={i.en} />
+                    ))}
                   </div>
-                  <Select id="category" required={true}>
-                    <option value="gasket">Gasket timing case</option>
+                  <Select>
+                    {productSub?.map((i) => (
+                      <option value={i.id}>
+                        {i.en}
+                      </option>
+                    ))}
                   </Select>
                 </div>
               </div>

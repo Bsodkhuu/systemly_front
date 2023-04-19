@@ -40,13 +40,13 @@ const SidebarComponent = () => {
             <Item href="/clock">Ажлын цагийн хуваарь</Item>
           </Collapse>
           {/* <Item href="/product_categories">Жишээ шүү Барааны категори</Item> */}
-          <Item onClick={logOut}>Системээс гарах</Item>
+          
           
           <Item href="/suld">Сүлд ERP</Item>
           
           <Collapse label="Захиалга">
           <Item href="/asuulguud">Асуулгууд</Item>
-          <Item href="#">Захиалгууд</Item>
+          <Item href="/orders">Захиалгууд</Item>
           <Item href="#">Тээврийн захиалга</Item>
           </Collapse>
           <Collapse label="Захиалгийн систем">
@@ -68,9 +68,11 @@ const SidebarComponent = () => {
           </Collapse>
           <Collapse label="Тохиргоо">
           <Item href="#">Үнийн тохиргоо</Item>
-          <Item href="#">Хэрэглэгчийн тохиргоо</Item>
-          </Collapse>
+          <Item href="/role">Хэрэглэгчийн тохиргоо</Item>
+
          
+          </Collapse>
+          <Item onClick={logOut}>Системээс гарах</Item>
         </ItemGroup>
       </Items>
     </Sidebar>
