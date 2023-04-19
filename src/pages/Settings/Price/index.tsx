@@ -36,9 +36,10 @@ const Price = () => {
   }
 
   async function serviceType(values: ServiceType) {
-    const response = await axiosClient.post("/service-types",{values, price:parseInt(values.price)});
+    const response = await axiosClient.post("/service-types");
     return response.data;
   }
+  
   async function onSubmit(values: ServiceType) {
     await mutateAsync(values);
   }

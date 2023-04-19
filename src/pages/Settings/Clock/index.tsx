@@ -13,7 +13,6 @@ export interface Work{
   open: string;
   close: string;
   description: string;
-  serviceAppointmentId?: string;
 }
 type Week = any;
 

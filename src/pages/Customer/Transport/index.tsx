@@ -11,8 +11,8 @@ interface VehicleMakeModel{
   makeId: string;
   modelId: string;
   modelName: string;
-  vehicleProductionYearFrom: number;
-  vehicleProductionYearTo: number;
+  vehicleProductionYearFrom: string;
+  vehicleProductionYearTo: string;
   vehicleClassId: string;
   vehicleBodyTypeId: string;
   featuredCheck: boolean;

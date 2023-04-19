@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import SidebarComponent from "./sidebar";
-import { Navbar, Dropdown, Avatar, Footer, Select, Label} from "flowbite-react";
-import { useQuery } from "react-query";
-import { axiosClient } from "../config/axios";
+import { Navbar, Dropdown, Avatar, Footer} from "flowbite-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   children?: React.ReactNode;
@@ -19,9 +19,6 @@ interface User{
   updatedAt: string;
 }
 const Layout: FC<Props> = ({ children }) => {
-
-
-  
   return (
     <div className="h-screen">
       <Navbar fluid={true} rounded={true}>
@@ -35,9 +32,9 @@ const Layout: FC<Props> = ({ children }) => {
             NexusAuto
           </span>
         </Navbar.Brand>
-        
+
         <div className="flex md:order-2">
-        
+        <FontAwesomeIcon icon={faBell} />
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -47,9 +44,9 @@ const Layout: FC<Props> = ({ children }) => {
                 img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                 rounded={true}
               />
-            }
-          ></Dropdown>
-          
+            }>
+            
+          </Dropdown>
         </div>
       </Navbar>
       <div className="flex">
@@ -64,5 +61,4 @@ const Layout: FC<Props> = ({ children }) => {
     </div>
   );
 };
-
 export default Layout;
