@@ -36,7 +36,6 @@ const Price = () => {
   }
 
   async function serviceType(values: ServiceType) {
-<<<<<<< HEAD
     const response = await axiosClient.post("/service-types", {
         ...values,
         price: parseInt(values.price.toString()),
@@ -44,9 +43,9 @@ const Price = () => {
         suudalPrice: parseInt(values.suudalPrice.toString()),
         achaaPrice: parseInt(values.achaaPrice.toString()),
       });
-=======
-    const response = await axiosClient.post("/service-types");
->>>>>>> 08e5a391e0efbc5c15266f228737bbcc0a52d88d
+
+    // const response1 = await axiosClient.post("/service-types");
+
     return response.data;
   }
   
@@ -61,42 +60,41 @@ const Price = () => {
             <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
             <div className="flex gap-4">
               <TextInput type="search" placeholder="Хайлт" />
-              <Button className="bg-blue-500">Хайх</Button>
+              <Button className="bg-orange-500">Хайх</Button>
               
               <a href="/active">
-                <Button className="bg-blue-500">Идэвхитэй</Button>
+                <Button className="bg-orange-500">Идэвхитэй</Button>
               </a>
             </div>
           </div>
        
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Select>
+              <Label htmlFor="mainCategory" value="Main Group"/>
+              <TextInput type="text" {...register("mainCategory")}/>
+                {/* <Select>
                   {serviceList?.map((i) => (
                     <option value={i.id}>
                       {i.mainCategory}
                     </option>
                   ))}
-                </Select> 
+                </Select>  */}
                 &nbsp;
-              <Select>
-               {serviceList?.map((i) => (
-                <option value={i.id}>
-                  {i.subCategory}
-                </option>
-               ))}
-              </Select>&nbsp;
-              <Select>
-                {serviceList?.map((i) => (
-                  <option value={i.id}>
-                    {i.name}
-                  </option>
-                ))}
-              </Select>&nbsp;
+                <Label htmlFor="subCategory" value="Sub Group"/>
+                <TextInput type="text" {...register("subCategory")}/>&nbsp;
+              
+              <Label htmlFor="name" value="Үйлчилгээ нэр"/>
+              <TextInput type="text" {...register("name")}/>&nbsp;
+              <Label htmlFor="price" value="Том"/>
              <TextInput type="number" {...register("price")}/>&nbsp;
+             <Label htmlFor="averagePrice" value="Дунд"/>
              <TextInput type="number" {...register("averagePrice")}/>&nbsp;
+             <Label htmlFor="suudalPrice" value="Суудлын"/>
              <TextInput type="number" {...register("suudalPrice")}/>&nbsp;
+             <Label htmlFor="achaaPrice" value="Ачааны"/>
              <TextInput type="number" {...register("achaaPrice")}/>&nbsp;
-             <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Хадгалах</Button>
+              <Label htmlFor="currency" value="Валют"/>
+             <TextInput type="text"   {...register("currency")}/>&nbsp;
+             <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
             </form>
             &nbsp;&nbsp;
           <Table>
@@ -108,6 +106,7 @@ const Price = () => {
               <Table.HeadCell>Дунд</Table.HeadCell>
               <Table.HeadCell>Суудлын</Table.HeadCell>
               <Table.HeadCell>Ачааны</Table.HeadCell>
+              <Table.HeadCell>Валют</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
               {serviceList?.map((service: ServiceType, index: number) => (
@@ -133,6 +132,7 @@ const Price = () => {
                   <Table.Cell>{service.averagePrice}</Table.Cell>
                   <Table.Cell>{service.suudalPrice}</Table.Cell>
                   <Table.Cell>{service.achaaPrice}</Table.Cell>
+                  <Table.Cell>{service.currency}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>
@@ -145,60 +145,3 @@ const Price = () => {
 
 export default Price;
 
-
-// const PriceModal: FC<ModalProps> = ({ showModal, closeModal }) => {
-//   const navigate = useNavigate();
-//   const { register, handleSubmit } = useForm<ServiceType>();
-//   const { mutateAsync } = useMutation("createPrice", createPrice);
-
-//   async function createPrice(values: ServiceType) {
-//     const response = await axiosClient.post("/service-types", values);
-//     return response.data;
-//   }
-
-//   async function onSubmit(values: ServiceType) {
-//     await mutateAsync(values);
-//     navigate("/active");
-//     closeModal();
-//   }
-//   return (
-//     <Modal show={showModal} onClose={closeModal}>
-//       <Modal.Header>Үйлчилгээний бүртгэл</Modal.Header>
-//       <Modal.Body>
-//         <form
-//           onSubmit={handleSubmit(onSubmit)}
-//           className="flex flex-col gap-4 max-h-96 overflow-y-auto"
-//         >
-//           <div className="flex gap-4">
-//             <div className="w-1/2">
-//               <div className="mb-2 block">
-//                 <Label htmlFor="name" value="Үйлчилгээний нэр" />
-//               </div>
-//               <TextInput id="name" {...register("name")} />
-//             </div>
-//             <div className="w-1/2">
-//               <div className="mb-2 block">
-//                 <Label htmlFor="price" value="Үнэ" />
-//               </div>
-//               <TextInput id="price" {...register("price")} />
-//             </div>
-//             <div className="w-1/2">
-//               <div className="mb-2 block">
-//                 <Label htmlFor="currency" value="Валют" />
-//               </div>
-//               <TextInput id="currency" {...register("currency")} />
-//             </div>
-//           </div>
-//         </form>
-//       </Modal.Body>
-//       <Modal.Footer>
-//         <Button onClick={closeModal} className="bg-gray-400">
-//           Буцах
-//         </Button>
-//         <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">
-//           Хадгалах
-//         </Button>
-//       </Modal.Footer>
-//     </Modal>
-//   );
-// };

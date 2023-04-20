@@ -39,7 +39,7 @@ const Sale = () => {
               <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-blue-500" onClick={search}>
+                <Button className="bg-orange-500" onClick={search}>
                   Хайх
                 </Button>
               </div>

@@ -63,7 +63,7 @@ const Create = () => {
               <h5 className="text-1xl">Хүргэлтийн хаяг</h5>
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-blue-500">Хайх</Button>
+                <Button className="bg-orange-500">Хайх</Button>
               </div>
             </div>
             <div className="flex gap-4">
@@ -85,7 +85,7 @@ const Create = () => {
                   </h3>
                 </Alert>
                 /Бэлэн захиалга мэссэж ногоон өнгөөр харагдана /
-                <Button className="bg-blue-500">Бэлэн бус захиалга</Button>
+                <Button className="bg-orange-500">Бэлэн бус захиалга</Button>
               </a>
             </div>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -222,7 +222,7 @@ const Create = () => {
                 </a>
                 &nbsp;
                 <a href="/zahialga">
-                  <Button className="bg-blue-500">Сэлбэг хайх</Button>
+                  <Button className="bg-orange-500">Сэлбэг хайх</Button>
                 </a>
               </div>
             </Card>

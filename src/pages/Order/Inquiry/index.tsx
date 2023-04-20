@@ -23,6 +23,7 @@ interface Inquiry extends InquiryDetail{
   createdDate: string;
   inquiryNumber: string;
   userId?: string;
+  [partNumber: string]: any;
 }
 
 interface InquiryDetail{
@@ -37,46 +38,60 @@ interface InquiryDetail{
   orderDetailId?: string;
   statusTypeId?: string;
 }
+
+export interface Description{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  body: string
+}
 const Inquiry = () => {
-  const { register, handleSubmit } = useForm();
-  const { mutateAsync } = useMutation("createInquiry", createInquiry);
+  const { register, handleSubmit } = useForm<Description>();
+  
+  const { mutateAsync } = useMutation("descriptions", descriptions);
   const { data: inquiry } = useQuery("getInquiry", getInquiry);
   
   async function getInquiry() {
     const response = await axiosClient.get("/inquiries");
     return response.data as Inquiry[];
   }
-  async function createInquiry(values: Inquiry) {
-    const response = await axiosClient.post("/", values);
+  
+  async function descriptions(values: Description) {
+    const response = await axiosClient.post("/descriptions", values);
     return response.data;
   }
 
-  async function onSubmit(values: Inquiry) {
+  async function onSubmit(values: Description) {
     await mutateAsync(values);
-
   }
+
   const reviews = [
     {
       id: 1,
-      image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+      image: "https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/02/13/autoparts.png",
       link: "",
     },
     {
       id: 2,
       link: "",
-      image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+      image: "https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/02/13/geo-experts.png",
+    },
+    {
+      id: 3, 
+      link:"", 
+      image:"https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/02/13/200-570-autoservice.png",
     },
   ];
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="p-4 bg-gray-200 h-screen col-span-2">
+      
+        <div className="p-4 bg-gray-200 h-screen w-full">
           <div className="bg-white p-6 rounded-lg">
             <div className="flex justify-between mb-4">
               <h5 className="text-1xl">Үнийн санал</h5>
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-blue-500">
+                <Button className="bg-orange-500">
                   Хайх
                 </Button>
               </div>
@@ -88,7 +103,6 @@ const Inquiry = () => {
                   <Carousel>
                     {reviews.map((review) => (
                       <img
-                        className="d-block w-50"
                         src={review.image}
                         alt={review.link}
                       />
@@ -100,12 +114,12 @@ const Inquiry = () => {
               <div className="flex">
                 <div className="p-4">
                   <Card className="max-w-lg">
-                    <form  className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-h-96 overflow-y-auto">
                     <div className="mb-2 block">
                       <Label htmlFor="description" value="Тайлбар бичих" />
-                      <Textarea id="description" />
+                      <Textarea id="description" {...register("body")}/>
                       &nbsp;
-                      <Button className="ml-auto">Хүсэлт илгээх</Button>
+                      <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хүсэлт илгээх</Button>
                     </div>
                     </form>
                   </Card>
@@ -115,11 +129,10 @@ const Inquiry = () => {
               <div className="p-2">
                 <Card>
                   <FileInput />
-                  <Button className="bg-blue-500">Сэлбэгийн үнийн санал</Button>
+                  <Button className="bg-orange-500">Сэлбэгийн үнийн санал</Button>
                   <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
                   <Table>
                     <Table.Head className="uppercase">
-
                       <Table.HeadCell>Партын дугаар</Table.HeadCell>
                       <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                       <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
@@ -147,10 +160,10 @@ const Inquiry = () => {
             </div>
           </div>
         </div>
-        <div className="col-span">
+        {/* <div className="col-span">
           <Cart />
-        </div>
-      </div>
+        </div> */}
+      
     </Layout>
   );
 };

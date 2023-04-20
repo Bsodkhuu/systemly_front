@@ -21,7 +21,7 @@ const History = () => {
             <h5 className="text-1xl">Захиалгийн Түүх</h5>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500">
+              <Button className="bg-orange-500">
                 Хайх
               </Button>
             </div>

@@ -17,7 +17,13 @@ const Active = () => {
   const { mutateAsync } = useMutation("active", active);
 
   async function active(values: ServiceType) {
-    const response = await axiosClient.post("/service-types", values);
+    const response = await axiosClient.post("/service-types", {
+      ...values, 
+      price: parseInt(values.price.toString()),
+      averagePrice: parseInt(values.averagePrice.toString()),
+      suudalPrice: parseInt(values.suudalPrice.toString()),
+      achaaPrice: parseInt(values.achaaPrice.toString()),
+    });
     return response.data;
   }
   async function onSubmit(values: ServiceType) {
@@ -32,22 +38,31 @@ const Active = () => {
             <h4 className="text-1xl">Үйлчилгээний нэр (Идэвхитэй)</h4>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500">
+              <Button className="bg-orange-500">
                 Хайх
               </Button>
             </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Label>Үйлчилгээний нэр</Label>
-            <TextInput type="text" {...register("name")}/>&nbsp;
-            <Label>Үнэ</Label>
-            <TextInput type="text" {...register("price")}/>&nbsp;
-            <Label>Валют</Label>
-            <TextInput type="text" {...register("currency")}/>&nbsp;
-            <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">
-              Хадгалах
-            </Button>
-          </form>
+              <Label htmlFor="mainCategory" value="Main Group"/>
+              <TextInput type="text" {...register("mainCategory")}/>
+                &nbsp;
+              <Label htmlFor="subCategory" value="Sub Group"/>
+              <TextInput type="text" {...register("subCategory")}/>&nbsp;
+              <Label htmlFor="name" value="Үйлчилгээ нэр"/>
+              <TextInput type="text" {...register("name")}/>&nbsp;
+              <Label htmlFor="price" value="Том"/>
+             <TextInput type="number" {...register("price")}/>&nbsp;
+             <Label htmlFor="averagePrice" value="Дунд"/>
+             <TextInput type="number" {...register("averagePrice")}/>&nbsp;
+             <Label htmlFor="suudalPrice" value="Суудлын"/>
+             <TextInput type="number" {...register("suudalPrice")}/>&nbsp;
+             <Label htmlFor="achaaPrice" value="Ачааны"/>
+             <TextInput type="number" {...register("achaaPrice")}/>&nbsp;
+              <Label htmlFor="currency" value="Валют"/>
+             <TextInput type="text"   {...register("currency")}/>&nbsp;
+             <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
+            </form>
           <Table>
             <Table.Head className="uppercase">
               <Table.HeadCell>Засвар үйлчилгээний нэр</Table.HeadCell>

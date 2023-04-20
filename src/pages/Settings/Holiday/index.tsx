@@ -42,7 +42,7 @@ const Holiday = () => {
             <h4 className="text-1xl">Бүх нийтийн амралтын өдөр</h4>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайлт" />
-              <Button className="bg-blue-500">Хайх</Button>
+              <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
           
@@ -50,7 +50,7 @@ const Holiday = () => {
                 <TextInput type="date" {...register("openDate")} />&nbsp;
                 <TextInput type="date" {...register("closeDate")} />&nbsp;
                 <TextInput type="text" {...register("description")} />&nbsp;
-                <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">
+                <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
                   Хадгалах
                 </Button>
           </form>

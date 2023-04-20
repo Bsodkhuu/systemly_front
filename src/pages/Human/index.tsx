@@ -121,8 +121,7 @@ const Human = () => {
         <Modal.Body>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-4 max-h-96 overflow-y-auto"
-          >
+            className="flex flex-col gap-4 max-h-96 overflow-y-auto">
             <div>
               
             </div>
@@ -191,7 +190,7 @@ const Human = () => {
           <Button onClick={closeModal} className="bg-gray-400">
             Буцах
           </Button>
-          <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">
+          <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
             Хадгалах
           </Button>
         </Modal.Footer>
@@ -205,8 +204,8 @@ const Human = () => {
               <TextInput id="startDate" type="date" />
               -
               <TextInput id="endDate" type="date" />
-              <Button className="bg-blue-500">Хайх</Button>
-              <Button className="bg-blue-500" onClick={openModal}>
+              <Button className="bg-orange-500">Хайх</Button>
+              <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
             </div>

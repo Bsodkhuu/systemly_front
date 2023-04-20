@@ -109,7 +109,7 @@ const Transport = () => {
             </div>
             <div className="flex gap-4">
               <Button className="bg-gray-400">Буцах</Button>
-              <Button onClick={handleSubmit(onSubmit)} className="bg-gray-400">
+              <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
                 Хадгалах
               </Button>
             </div>

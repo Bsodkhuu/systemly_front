@@ -59,7 +59,7 @@ const Login = () => {
           </div>
           <Button
             type="submit"
-            className="btn btn-success"
+            className="bg-orange-500"
             onClick={handleSubmit(onSubmit)}
           >
             Нэвтрэх

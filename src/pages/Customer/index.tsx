@@ -69,7 +69,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
         <Button onClick={closeModal} className="bg-gray-400">
           Буцах
         </Button>
-        <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">
+        <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
           Хадгалах
         </Button>
       </Modal.Footer>
@@ -162,12 +162,12 @@ const Customer = () => {
                   type="search"
                   placeholder="Улсын,арлын,утасны дугаараар хайх"
                 />
-                <Button className="bg-blue-500">Хайх</Button>
-                <Button className="bg-blue-500" onClick={openModal}>
+                <Button className="bg-orange-500">Хайх</Button>
+                <Button className="bg-orange-500" onClick={openModal}>
                   Харилцагч нэмэх
                 </Button>
                 <a href="/transport">
-                  <Button className="bg-blue-500">
+                  <Button className="bg-orange-500">
                     Тээврийн хэрэгсэл нэмэх
                   </Button>
                 </a>
@@ -187,7 +187,7 @@ const Customer = () => {
                       placeholder=" Хэрэглэгч хайх"
                       ref={lastnameRef}
                     />
-                    <Button type="submit" className="bg-blue-500">
+                    <Button type="submit" className="bg-orange-500">
                       Хайх
                     </Button>
                   </form>
@@ -218,7 +218,7 @@ const Customer = () => {
                       type="search"
                       placeholder="Тээврийн хэрэгсэл хайх"
                     />
-                    <Button className="bg-blue-500">Хайх</Button>
+                    <Button className="bg-orange-500">Хайх</Button>
                   </div>
                   <Table>
                     <Table.Head className="uppercase">
@@ -251,10 +251,10 @@ const Customer = () => {
                   type="search"
                   placeholder="Автомашин хайх"
                 />
-                <Button className="bg-blue-500">Хайх</Button>
+                <Button className="bg-orange-500">Хайх</Button>
               </div>
               <a href="/zaswar_service">
-                <Button className="bg-blue-500">Засвар эхлүүлэх</Button>
+                <Button className="bg-orange-500">Засвар эхлүүлэх</Button>
               </a>
               <Table>
                 <Table.Head className="uppercase">

@@ -51,7 +51,7 @@ const Clock = () => {
             </a>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайлт" />
-              <Button className="bg-blue-500">Хайх</Button>
+              <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
           <div className="p-4">
@@ -64,7 +64,7 @@ const Clock = () => {
            <TextInput type="time" {...register("open")}/>&nbsp;
            <TextInput type="time" {...register("close")}/>&nbsp;
            <TextInput type="text" {...register("description")}/>&nbsp;
-           <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Хадгалах</Button>
+           <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
            </form>
            &nbsp;&nbsp;
             <Table>

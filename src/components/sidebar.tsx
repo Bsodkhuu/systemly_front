@@ -69,6 +69,7 @@ const SidebarComponent = () => {
           <Collapse label="Тохиргоо">
           <Item href="#">Үнийн тохиргоо</Item>
           <Item href="/notifications">Мэдэгдэл илгээх</Item>
+          <Item href="/feedback">Санал хүсэлт</Item>
           </Collapse>
           <Item href="/role">Үндсэн тохиргоо</Item>
           <Item onClick={logOut}>Системээс гарах</Item>

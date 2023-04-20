@@ -77,7 +77,7 @@ const Spare = () => {
           <Button onClick={closeModal} className="bg-gray-400">
             Буцах
           </Button>
-          <Button onClick={spare} className="bg-blue-500">
+          <Button onClick={spare} className="bg-orange-500">
             Хадгалах
           </Button>
         </Modal.Footer>
@@ -92,10 +92,10 @@ const Spare = () => {
                 type="search"
                 placeholder="Сэлбэгний үлдэгдэл хайх"
               />
-              <Button className="bg-blue-500" onClick={search}>
+              <Button className="bg-orange-500" onClick={search}>
                 Хайх
               </Button>
-              <Button className="bg-blue-500" onClick={openModal}>
+              <Button className="bg-orange-500" onClick={openModal}>
                 Сэлбэг нэмэх
               </Button>
             </div>
@@ -120,11 +120,11 @@ const Spare = () => {
               <div className="p-4">
                 <Card>
                   <div className="flex gap-4">
-                    <Button className="bg-blue-500" onClick={nexus}>
+                    <Button className="bg-orange-500" onClick={nexus}>
                       Nexus
                       {/* supplier selbeg medeelliig table helwereer haruulah  */}
                     </Button>
-                    <Button className="bg-blue-500" onClick={all}>
+                    <Button className="bg-orange-500" onClick={all}>
                       Бусад
                       {/* excel file orj irsen medeelliig table helwereer haruulaj  */}
                     </Button>

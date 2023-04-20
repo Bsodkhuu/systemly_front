@@ -50,7 +50,7 @@ const BackOrder = () => {
             <h4 className="text-1xl">Back Order </h4>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-blue-500">Хайх</Button>
+              <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
           <Alert

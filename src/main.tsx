@@ -41,6 +41,7 @@ import Zam from "./pages/Suld/order/zam";
 import Nemelt from "./pages/Suld/order/nemelt";
 import Role from "./pages/Suld/Tohirgoo/role";
 import Notifications from "./pages/Suld/Tohirgoo/notifications";
+import FeedBack from "./pages/Suld/feedback";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/notifications", 
     element: <Notifications/>
+  },
+  {
+    path: "/feedback", 
+    element: <FeedBack/>
   },
   {
     path: "/role", 

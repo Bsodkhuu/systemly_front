@@ -37,7 +37,7 @@ const Checkbox = () => {
               <h5 className="text-1xl">Захиалга баталгаажуулах</h5>
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-blue-500">Хайх</Button>
+                <Button className="bg-orange-500">Хайх</Button>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ const Checkbox = () => {
                     Гүйлгээний утга: 2023031644 утгаа backend automataar awah
                   </Label>
                   <a href="/payment">
-                    <Button className="bg-blue-500">Захиалга батлах</Button>
+                    <Button className="bg-orange-500">Захиалга батлах</Button>
                   </a>
                 </Card>
               </div>

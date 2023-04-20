@@ -85,13 +85,13 @@ const Zahialga = () => {
   const reviews = [
     {
       id: 1,
-      image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+      image: "https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/09/30/obo_customs_400x141.png",
       link: "",
     },
     {
       id: 2,
       link: "",
-      image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+      image: "https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/02/13/supply-solution.png",
     },
   ];
   return (
