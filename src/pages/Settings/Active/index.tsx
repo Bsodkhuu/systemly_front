@@ -43,26 +43,7 @@ const Active = () => {
               </Button>
             </div>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-              <Label htmlFor="mainCategory" value="Main Group"/>
-              <TextInput type="text" {...register("mainCategory")}/>
-                &nbsp;
-              <Label htmlFor="subCategory" value="Sub Group"/>
-              <TextInput type="text" {...register("subCategory")}/>&nbsp;
-              <Label htmlFor="name" value="Үйлчилгээ нэр"/>
-              <TextInput type="text" {...register("name")}/>&nbsp;
-              <Label htmlFor="price" value="Том"/>
-             <TextInput type="number" {...register("price")}/>&nbsp;
-             <Label htmlFor="averagePrice" value="Дунд"/>
-             <TextInput type="number" {...register("averagePrice")}/>&nbsp;
-             <Label htmlFor="suudalPrice" value="Суудлын"/>
-             <TextInput type="number" {...register("suudalPrice")}/>&nbsp;
-             <Label htmlFor="achaaPrice" value="Ачааны"/>
-             <TextInput type="number" {...register("achaaPrice")}/>&nbsp;
-              <Label htmlFor="currency" value="Валют"/>
-             <TextInput type="text"   {...register("currency")}/>&nbsp;
-             <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
-            </form>
+         
           <Table>
             <Table.Head className="uppercase">
               <Table.HeadCell>Засвар үйлчилгээний нэр</Table.HeadCell>

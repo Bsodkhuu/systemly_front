@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useRef} from "react";
 import { TextInput, Button, Table, Card } from "flowbite-react";
 import Layout from "../../../components/layout";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { DatePicker } from "./datepicker";
+import { useSearchParams } from "react-router-dom";
 
 
 interface ServiceAppointment extends GarageCustomerOwner{
@@ -50,13 +51,19 @@ interface GarageCustomerVehicle{
   vehicleId?: string;
 }
 const Service = () => {
+  const [searchParams] = useSearchParams();
 
-  const { data: serviceAppointment } = useQuery("getServiceAppointment",
-  getServiceAppointment);
+  const { data: serviceAppointment } = useQuery("getServiceAppointment",()=> 
+    getServiceAppointment({
+      startTime: searchParams.get("startTime") || "",
+    })
+  );
 
-  async function getServiceAppointment() {
-    const response = await axiosClient.get("/service_appointments");
-    return response.data as ServiceAppointment[];
+  const startTimeRef = useRef<HTMLInputElement>(null);
+
+  async function getServiceAppointment(params: { startTime: string }) {
+    const response = axiosClient.get(`/service_appointments?startTime=${params.startTime}`);
+    return (await response).data;
   }
 
   return (

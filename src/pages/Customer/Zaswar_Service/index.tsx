@@ -48,10 +48,7 @@ const ZaswarService = () => {
           <div className="bg-white p-6 rounded-lg">
             <div className="flex justify-between mb-4">
               <h4 className="text-1xl">Засвар үйлчилгээний бүртгэл</h4>
-              <div className="flex gap-4">
-                <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-orange-500">Хайх</Button>
-              </div>
+             
             </div>
 
             {/* ezamshigchin details,  */}

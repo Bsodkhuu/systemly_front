@@ -227,7 +227,7 @@ const Human = () => {
 
                     <Table.HeadCell>Овог</Table.HeadCell>
                     <Table.HeadCell>Нэр</Table.HeadCell>
-                    {/* <Table.HeadCell>Мэргэжил</Table.HeadCell> */}
+                    <Table.HeadCell>Мэргэжил</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
                     {employeesList?.map((employeesList: AffiliateEmployee, index: number) => (

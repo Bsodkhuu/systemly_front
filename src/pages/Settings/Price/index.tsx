@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React, { useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export interface ServiceType{
   id: string;
@@ -22,17 +23,28 @@ export interface ServiceType{
 
 const Price = () => {
   const { register, handleSubmit }=useForm<ServiceType>();
- 
+  const [searchParams] = useSearchParams();
+
   const { mutateAsync } = useMutation("serviceType", serviceType);
 
   
-  const { data: serviceList} = useQuery("getServiceType", 
-    getServiceType
+  const { data: serviceList} = useQuery("getServiceType", () => 
+    getServiceType({
+      name: searchParams.get("name") || "", 
+    })
   );
 
-  async function getServiceType() {
-    const response = await axiosClient.get("/service-types");
-    return response.data as ServiceType[];
+  const nameRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (nameRef.current) {
+      nameRef.current.value = searchParams.get("name") || ""
+    }
+  }, []);
+
+  async function getServiceType(params: { name: string }) {
+    const response = axiosClient.get(`/service-types?name=${params.name}`);
+    return (await response).data;
   }
 
   async function serviceType(values: ServiceType) {
@@ -59,7 +71,7 @@ const Price = () => {
           <div className="flex justify-between mb-4">
             <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
             <div className="flex gap-4">
-              <TextInput type="search" placeholder="Хайлт" />
+              <TextInput type="search" name="name" placeholder="Хайлт" ref={nameRef}/>
               <Button className="bg-orange-500">Хайх</Button>
               
               <a href="/active">

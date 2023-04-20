@@ -11,7 +11,7 @@ const Nemelt = () => {
                         <h4 className="text-1xl">Нэмэлт мэдээлэл</h4>
                         <div className="flex gap-4">
                          <TextInput id="search" type="search" placeholder="Хайлт" />
-                         <Button className="bg-blue-500">Хайх</Button>
+                         <Button className="bg-orange-500">Хайх</Button>
                         </div>
                     </div>
                     <form>
@@ -21,7 +21,7 @@ const Nemelt = () => {
                         <TextInput type="text"/>&nbsp;
                         <Label htmlFor="" value="Тээврийн төрөл"/>
                         <TextInput type="text"/>&nbsp;
-                        <Button className="bg-blue-500">Хадгалах</Button>
+                        <Button className="bg-orange-500">Хадгалах</Button>
                     </form>
                 </div>
             </div>

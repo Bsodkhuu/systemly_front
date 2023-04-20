@@ -262,7 +262,7 @@ const Asuulguud = () => {
                                 ))}
                             </Table.Body>
                         </Table>
-                        <Button className="bg-blue-500">Захиалга үүсгэх</Button>
+                        <Button className="bg-orange-500">Захиалга үүсгэх</Button>
                     </Card>
                 </div>
             </div>

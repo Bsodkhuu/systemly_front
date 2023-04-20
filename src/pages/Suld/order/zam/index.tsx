@@ -4,7 +4,6 @@ import { Button, Table, TextInput } from "flowbite-react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 
-
 interface ZamiinMedee extends ZamiinMedeeStatusType{
     id: string;
     createdAt: string;
@@ -35,7 +34,7 @@ const Zam = () => {
                         <h4 className="text-1xl">Замын мэдээ</h4>
                         <div className="flex gap-4">
                          <TextInput id="search" type="search" placeholder="Хайлт" />
-                         <Button className="bg-blue-500">Хайх</Button>
+                         <Button className="bg-orange-500">Хайх</Button>
                         </div>
                     </div>
                     <form>

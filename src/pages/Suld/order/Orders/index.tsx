@@ -133,7 +133,7 @@ const Orders = () => {
                                     <div className="mb-2 block">
                                         <Label htmlFor="zarlaga" value="Зарлагын падаан"/>
                                     </div>
-                                    <Button className="bg-500">Хэвлэх</Button>
+                                    <Button className="bg-orange-500">Хэвлэх</Button>
                                 </div>
                                 <a href="/zam">Замын мэдээ оруулах</a>
                             </div>

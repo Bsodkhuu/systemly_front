@@ -12,10 +12,10 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Sale = () => {
-  const [showSearch, setShowSearch] = useState(false);
-
+  const [searchParams] = useSearchParams();
   const { data: serviceHistory } = useQuery(
     "getServiceHistory",
     getServiceHistory
@@ -25,11 +25,6 @@ const Sale = () => {
     const response = await axiosClient.get("/service_histories");
     return response.data;
   }
-
-  function search() {
-    setShowSearch(true);
-  }
-
   return (
     <Layout>
       <div className="grid grid-cols-3 gap-4">
@@ -38,17 +33,12 @@ const Sale = () => {
             <div className="flex justify-between mb-4">
               <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
               <div className="flex gap-4">
-                <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-orange-500" onClick={search}>
+              <TextInput type="date" />
+                <Button className="bg-orange-500">
                   Хайх
                 </Button>
               </div>
             </div>
-            {/* Огнооны slicer */}
-            <div className="flex gap-4">
-              <TextInput type="date" />
-            </div>
-
             <div className="p-4">
               <Card>
                 <h4 className="text-1xl">Үйлчилгээний жагсаалт</h4>
