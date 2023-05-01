@@ -3,34 +3,40 @@ import SidebarComponent from "./sidebar";
 import { Navbar, Dropdown, Avatar, Footer} from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-
+import { useQuery } from "react-query";
+import { axiosClient } from "../config/axios";
+import { Drawer } from "flowbite";
+import logo from '../images/logo.png';
 interface Props {
   children?: React.ReactNode;
 }
 
-interface User{
+export interface Notifications{
   id: string;
-  email: string;
-  password: string;
-  companyName: string;
-  firstName: string;
-  lastName: string;
   createdAt: string;
   updatedAt: string;
+  medeelel: string;
+  postId: string
 }
 const Layout: FC<Props> = ({ children }) => {
+
+  const { data: notification} = useQuery("getNotifications", getNotifications);
+
+  async function getNotifications() {
+    const response = await axiosClient.get("/notifications");
+    return response.data as Notifications[];
+  }
   return (
     <div className="h-screen">
       <Navbar fluid={true} rounded={true}>
         <Navbar.Brand>
           <img
-            src="https://nexusautomn.s3.amazonaws.com/static/img/logo.png"
+            src={logo}
             className="mr-3 h-6 sm:h-9"
             alt="Flowbite Logo"
           />
         </Navbar.Brand>
-        <div className="flex md:order-2">
-        <FontAwesomeIcon icon={faBell} />
+     
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -41,9 +47,7 @@ const Layout: FC<Props> = ({ children }) => {
                 rounded={true}
               />
             }>
-            
           </Dropdown>
-        </div>
       </Navbar>
       <div className="flex">
         <SidebarComponent />

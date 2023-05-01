@@ -1,35 +1,77 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   TextInput,
   Button,
   FileInput,
   Modal,
   Label,
-  Select,
   Carousel,
   Card,
-  Table,
-  Avatar,
+  Table
 } from "flowbite-react";
 import { useState } from "react";
 import Layout from "../../../components/layout";
+import { useSearchParams } from "react-router-dom";
+import { useMutation, useQuery } from "react-query";
+import { axiosClient } from "../../../config/axios";
+import { useForm } from "react-hook-form";
+import { fileURLToPath } from "url";
 
+export interface Inventory{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  purchasedFrom: string;
+  supplier: string;
+  mainCategoryId?: string;
+  subCategoryId?:string;
+  cost: number;
+  quantity: number;
+}
 const Spare = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const [showNexus, setShowNexus] = useState(false);
-  const [showAll, setShowAll] = useState(false);
+  const [searchParams] = useSearchParams();
 
+  const { register, handleSubmit } = useForm<Inventory>();
+
+  const { mutateAsync } = useMutation("inventories", inventories);
+
+  async function inventories(values: Inventory) {
+    const response = await axiosClient.post("/inventories", {
+      ...values, 
+      quantity: parseInt(values.quantity.toString()), 
+      cost: parseInt(values.cost.toString()),
+    }
+      // purchasedFrom: fileURLToPath(values.purchasedFrom.toString()),
+    );
+    return response.data;
+  }
+
+  const { data: inventory } = useQuery("getInventory",() => 
+    getInventory({
+      purchasedFrom: searchParams.get("purchasedFrom") || "",
+    })
+  );
+
+  const purchasedFromRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (purchasedFromRef.current) {
+      purchasedFromRef.current.value = searchParams.get("purchasedFrom") || "";
+    }
+  }, []);
+
+  async function getInventory(params: { purchasedFrom: string }) {
+    const response = axiosClient.get(`/inventories?purchasedFrom=${params.purchasedFrom}`);
+    return (await response).data;
+  }
   function nexus() {
     // supplier selbeg medeelliig table helwereer haruulah
     //fetch api
-    setShowNexus(true);
+   
   }
-
   function all() {
-    //excel file orj irsen medeelliig table helwereer haruulaj
-    //fetch api
-    setShowAll(true);
+   
   }
 
   function openModal() {
@@ -38,12 +80,11 @@ const Spare = () => {
   function closeModal() {
     setShowModal(false);
   }
-  function spare() {
-    setShowModal(false);
+
+  async function onSubmit(values: Inventory) {
+    await mutateAsync(values);
   }
-  function search() {
-    setShowSearch(false);
-  }
+  
 
   const reviews = [
     {
@@ -62,13 +103,13 @@ const Spare = () => {
       <Modal show={showModal} onClose={closeModal}>
         <Modal.Header>Сэлбэг нэмэх</Modal.Header>
         <Modal.Body>
-          <form className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-h-96 overflow-y-auto">
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="fileName" value="Файл оруулах" />
+                  <Label htmlFor="purchasedFrom" value="Файл оруулах" />
                 </div>
-                <FileInput id="fileName" />
+                <FileInput id="purchasedFrom" {...register("purchasedFrom")}/>
               </div>
             </div>
           </form>
@@ -77,7 +118,7 @@ const Spare = () => {
           <Button onClick={closeModal} className="bg-gray-400">
             Буцах
           </Button>
-          <Button onClick={spare} className="bg-orange-500">
+          <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
             Хадгалах
           </Button>
         </Modal.Footer>
@@ -88,11 +129,11 @@ const Spare = () => {
             <h3 className="text-1xl">Сэлбэгийн үлдэгдэл</h3>
             <div className="flex gap-4">
               <TextInput
-                id="search"
+                name="purchasedFrom"
                 type="search"
-                placeholder="Сэлбэгний үлдэгдэл хайх"
+                placeholder="Сэлбэгний үлдэгдэл хайх" ref={purchasedFromRef}
               />
-              <Button className="bg-orange-500" onClick={search}>
+              <Button type="submit" className="bg-orange-500">
                 Хайх
               </Button>
               <Button className="bg-orange-500" onClick={openModal}>
@@ -130,28 +171,41 @@ const Spare = () => {
                     </Button>
                   </div>
                   {/* too,shirheg, zarah vne garaas oruulj ogno shvv  */}
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <Label htmlFor="supplier" value="Нийлүүлэгч"/>
+                    <TextInput type="text" {...register("supplier")}/>&nbsp;
+                    <Label htmlFor="purchasedFrom" value="Хаанаас"/>
+                    <TextInput type="text" {...register("purchasedFrom")}/>&nbsp;
+                    <Label htmlFor="quantity" value="Тоо ширхэг"/>
+                    <TextInput type="text" {...register("quantity")}/>&nbsp;
+                    <Label htmlFor="cost" value="Зарах үнэ"/>
+                    <TextInput type="text" {...register("cost")}/>&nbsp;
+                    <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
+                  </form>
                   <Table>
                     <Table.Head className="uppercase">
-                      <Table.HeadCell>Партын дугаар</Table.HeadCell>
                       <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
-                      <Table.HeadCell>Тайлбар</Table.HeadCell>
-                      <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
-                      <Table.HeadCell>Валют</Table.HeadCell>
                       <Table.HeadCell>Хаанаас</Table.HeadCell>
                       <Table.HeadCell>Тоо, ширхэг</Table.HeadCell>
                       <Table.HeadCell>Зарах үнэ</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      <Table.Row>
-                        <Table.Cell>12345</Table.Cell>
-                        <Table.Cell>{/* <Avatar src="" /> */}</Table.Cell>
-                        <Table.Cell>example</Table.Cell>
-                        <Table.Cell>10</Table.Cell>
-                        <Table.Cell>$</Table.Cell>
-                        <Table.Cell>Nexus</Table.Cell>
-                        <Table.Cell>1</Table.Cell>
-                        <Table.Cell>10.000</Table.Cell>
+                     {inventory?.map((inventory: Inventory, index: number) => (
+                      <Table.Row key={index}>
+                        <Table.Cell>
+                          {inventory.supplier}
+                        </Table.Cell>
+                        <Table.Cell>
+                          {inventory.purchasedFrom}
+                        </Table.Cell>
+                        <Table.Cell>
+                          {inventory.quantity}
+                        </Table.Cell>
+                        <Table.Cell>
+                          {inventory.cost}
+                        </Table.Cell>
                       </Table.Row>
+                     ))}
                     </Table.Body>
                   </Table>
                 </Card>
