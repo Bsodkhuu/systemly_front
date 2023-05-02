@@ -80,33 +80,69 @@ const Price = () => {
             </div>
           </div>
        
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Label htmlFor="mainCategory" value="Main Group"/>
-              <TextInput type="text" {...register("mainCategory")}/>
-                {/* <Select>
-                  {serviceList?.map((i) => (
-                    <option value={i.id}>
-                      {i.mainCategory}
-                    </option>
-                  ))}
-                </Select>  */}
-                &nbsp;
-                <Label htmlFor="subCategory" value="Sub Group"/>
-                <TextInput type="text" {...register("subCategory")}/>&nbsp;
-              
-              <Label htmlFor="name" value="Үйлчилгээ нэр"/>
-              <TextInput type="text" {...register("name")}/>&nbsp;
-              <Label htmlFor="price" value="Том"/>
-             <TextInput type="number" {...register("price")}/>&nbsp;
-             <Label htmlFor="averagePrice" value="Дунд"/>
-             <TextInput type="number" {...register("averagePrice")}/>&nbsp;
-             <Label htmlFor="suudalPrice" value="Суудлын"/>
-             <TextInput type="number" {...register("suudalPrice")}/>&nbsp;
-             <Label htmlFor="achaaPrice" value="Ачааны"/>
-             <TextInput type="number" {...register("achaaPrice")}/>&nbsp;
-              <Label htmlFor="currency" value="Валют"/>
-             <TextInput type="text"   {...register("currency")}/>&nbsp;
-             <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+              <div className="flex gap-4">
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                  <Label htmlFor="mainCategory" value="Main Group"/>
+                  </div>
+                  <TextInput type="text" {...register("mainCategory")}/>
+                </div>
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+                  <Label htmlFor="subCategory" value="Sub Group"/>
+                  </div>
+                  <TextInput type="text" {...register("subCategory")}/>
+                </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="name" value="Үйлчилгээ нэр"/>
+                    </div>
+                    <TextInput type="text" {...register("name")}/>
+                    </div>
+                    <div className="w-1/2">
+                      <div className="mb-2 block">
+                      <Label htmlFor="price" value="Том"/>
+                      </div>
+                      <TextInput type="number" {...register("price")}/>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                        <div className="w-1/2">
+                          <div className="mb-2 block">
+                          <Label htmlFor="averagePrice" value="Дунд"/>
+                          </div>
+                          <TextInput type="number" {...register("averagePrice")}/>
+                    </div>
+                    <div className="w-1/2">
+                      <div className="mb-2 block">
+                      <Label htmlFor="suudalPrice" value="Суудлын"/>
+                      </div>
+                      <TextInput type="number" {...register("suudalPrice")}/>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                        <div className="w-1/2">
+                          <div className="mb-2 block">
+                          <Label htmlFor="achaaPrice" value="Ачааны"/>
+                          </div>
+                          <TextInput type="number" {...register("achaaPrice")}/>
+                    </div>
+                    <div className="w-1/2">
+                      <div className="mb-2 block">
+                      <Label htmlFor="currency" value="Валют"/>
+                      </div>
+                      <TextInput type="text"   {...register("currency")}/>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <Button className="bg-gray-400">Буцах</Button>
+                    <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
+                      Хадгалах
+                    </Button>
+                </div>
             </form>
             &nbsp;&nbsp;
           <Table>

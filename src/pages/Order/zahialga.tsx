@@ -15,8 +15,10 @@ import {
   faCartShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
+import { useForm } from "react-hook-form";
+
 interface Supplier{
   id: string;
   createdAt: string;
@@ -32,7 +34,7 @@ interface ProductCategory{
   en: string;
 }
 
-interface ProductSubCategory{
+interface ProductSubCategory extends ProductCategory{
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -40,7 +42,28 @@ interface ProductSubCategory{
   productCategoryId?: string;
 }
 
+interface Product extends ProductSubCategory{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  manufacturerId: string;
+  description: string;
+  netPrice: number;
+  currency: string;
+  subCategoryId?:string;
+  part_number: string;
+  fittingPostion: string;
+  makeModelFit: string;
+  quantity: number;
+  order_date: string;
+  mainCategoryId?:string;
+  [en: string]: any
+}
+
 const Zahialga = () => {
+  const { register, handleSubmit } = useForm<Product>();
+  const { mutateAsync } = useMutation("product", product);
+
   const { data, isLoading } = useQuery("products", getProducts);
 
   const {data: supplier} = useQuery("getSupplier", getSupplier);
@@ -69,12 +92,6 @@ const Zahialga = () => {
 
   async function getProducts() {
     const response = await axiosClient.get("/products");
-    setProductQuantities(
-      response.data.map((i: any) => ({
-        id: i.id,
-        quantity: i.quantity,
-      }))
-    );
     return response.data;
   }
 
@@ -82,6 +99,17 @@ const Zahialga = () => {
     return <Layout></Layout>;
   }
 
+  async function product(values: Product) {
+    const response = await axiosClient.post("/products", {
+      ...values, 
+      quantity: parseInt(values.quantity.toString()), 
+      netPrice: parseInt(values.netPrice.toString()),
+    });
+    return response.data;
+  }
+  async function onSubmit(values: Product) {
+    await mutateAsync(values);
+  }
   const reviews = [
     {
       id: 1,
@@ -182,6 +210,55 @@ const Zahialga = () => {
             {/* сэлбэгийн жагсаалт */}
             <div className="p-4">
               <Card>
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                <div className="flex gap-4">
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="part_number" value="Парт дугаар"/>
+                    </div>
+                    <TextInput type="text" {...register("part_number")}/>
+                  </div>
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="description" value="Тайлбар"/>
+                    </div>
+                    <TextInput type="text" {...register("description")}/>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="netPrice" value="Нэгжийн үнэ"/>
+                    </div>
+                    <TextInput type="text" {...register("netPrice")}/>
+                  </div>
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="currency" value="Валют"/>
+                    </div>
+                    <TextInput type="text" {...register("currency")}/>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="fittingPostion" value="Fitting"/>
+                    </div>
+                    <TextInput type="text" {...register("fittingPostion")}/>
+                  </div>
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="quantity" value="Тоо, ширхэг"/>
+                    </div>
+                    <TextInput type="text" {...register("quantity")}/>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
+                    Сагслах
+                  </Button>
+            </div>
+                </form>
                 <Table>
                   <Table.Head className="uppercase">
                     {/* <Table.HeadCell>Бүтээгдэхүүний ангилал</Table.HeadCell> */}
@@ -190,8 +267,8 @@ const Zahialga = () => {
                     <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                     <Table.HeadCell>Валют</Table.HeadCell>
                     <Table.HeadCell>Fitting</Table.HeadCell>
-                    <Table.HeadCell>Тоо, ширхэг сонгох</Table.HeadCell>
-                    <Table.HeadCell>Үйлдэл</Table.HeadCell>
+                    <Table.HeadCell>Тоо, ширхэг</Table.HeadCell>
+                    {/* <Table.HeadCell>Үйлдэл</Table.HeadCell> */}
                   </Table.Head>
 
                   <Table.Body>
@@ -205,29 +282,13 @@ const Zahialga = () => {
                         <Table.Cell>{i.fittingPostion}</Table.Cell>
 
                         <Table.Cell>{i.quantity}
-                          {/* <TextInput
-                            onChange={(e) =>
-                              setProductQuantities((l) =>
-                                l?.map((j) => {
-                                  if (j.id === i.id) {
-                                    return {
-                                      ...j,
-                                      quantity: +e.currentTarget,
-                                    };
-                                  } else {
-                                    return j;
-                                  }
-                                })
-                              )
-                            }
-                            type="number"
-                          /> */}
+                          
                         </Table.Cell>
-                        <Table.Cell>
+                        {/* <Table.Cell>
                           <Button className="bg-blue-500">
                             <FontAwesomeIcon icon={faCartShopping} />
                           </Button>
-                        </Table.Cell>
+                        </Table.Cell> */}
                       </Table.Row>
                     ))}
                   </Table.Body>

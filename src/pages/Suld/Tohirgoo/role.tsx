@@ -22,9 +22,7 @@ const RoleList = () => {
                     <div className="flex justify-between mb-4">
                         <h4 className="text-1xl">Систем хэрэглэгч</h4>
                         <div className="flex gap-4">
-                            <TextInput name="" type="search" placeholder="Хайх"/>
-                            <Button type="submit" className="bg-orange-500"> Хайх
-                            </Button>
+                           
                             <a href="/createRole">
                             <Button type="submit" className="bg-orange-500">Шинэ эрх үүсгэх</Button>
                             </a>
