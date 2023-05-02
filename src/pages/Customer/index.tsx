@@ -271,7 +271,7 @@ const Customer = () => {
                       <Table.Row key={index}>
                         <Table.Cell>{garageCustomerVehicles.vinNumber}</Table.Cell>
                         <Table.Cell>
-                          {/* {garageCustomerVehicles.vehicleCategory.mn} */}
+                          {/* {garageCustomerVehicles.vehicleCategory.en} */}
                         </Table.Cell>
                         <Table.Cell>
                           {garageCustomerVehicles.manufacturerYear}

@@ -82,6 +82,8 @@ export interface ServiceType{
   achaaPrice: number;
   currency: string;
 }
+
+
 const App = () => {
 
 

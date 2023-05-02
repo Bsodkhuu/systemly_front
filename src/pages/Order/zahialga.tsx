@@ -204,8 +204,8 @@ const Zahialga = () => {
                         <Table.Cell>{i.currency}</Table.Cell>
                         <Table.Cell>{i.fittingPostion}</Table.Cell>
 
-                        <Table.Cell>
-                          <TextInput
+                        <Table.Cell>{i.quantity}
+                          {/* <TextInput
                             onChange={(e) =>
                               setProductQuantities((l) =>
                                 l?.map((j) => {
@@ -221,7 +221,7 @@ const Zahialga = () => {
                               )
                             }
                             type="number"
-                          />
+                          /> */}
                         </Table.Cell>
                         <Table.Cell>
                           <Button className="bg-blue-500">
@@ -254,7 +254,8 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Fitting: {i.fittingPostion}
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо, ширхэг: <TextInput
+                      Тоо, ширхэг: {i.quantity}
+                      {/* <TextInput
                             onChange={(e) =>
                               setProductQuantities((l) =>
                                 l?.map((j) => {
@@ -270,7 +271,7 @@ const Zahialga = () => {
                               )
                             }
                             type="number"
-                          />
+                          /> */}
                       <ListGroup.Item></ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
                       Нийт үнэ: {i.netPrice * i.quantity}

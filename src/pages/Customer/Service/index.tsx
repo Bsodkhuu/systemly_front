@@ -3,7 +3,7 @@ import { TextInput, Button, Table, Card } from "flowbite-react";
 import Layout from "../../../components/layout";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { DatePicker } from "./datepicker";
+
 import { useSearchParams } from "react-router-dom";
 
 
@@ -105,9 +105,7 @@ const Service = () => {
                 </Table>
               </Card>
             </div>
-            <div className="p-3">
-             <DatePicker/>
-            </div>
+           
           </div>
           <div className="p-4">
             <Card className="max-w-sm">

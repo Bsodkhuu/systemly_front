@@ -39,14 +39,19 @@ import Asuulguud from "./pages/Suld/order/asuulguud";
 import Orders from "./pages/Suld/order/Orders";
 import Zam from "./pages/Suld/order/zam";
 import Nemelt from "./pages/Suld/order/nemelt";
-import Role from "./pages/Suld/Tohirgoo/role";
 import Notifications from "./pages/Suld/Tohirgoo/notifications";
 import FeedBack from "./pages/Suld/feedback";
+import CreateRole from "./pages/Suld/Tohirgoo/createRole";
+import RoleList from "./pages/Suld/Tohirgoo/role";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:"/createRole", 
+    element: <CreateRole/>
   },
   {
     path:"/suld", 
@@ -66,7 +71,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/role", 
-    element:<Role/>
+    element:<RoleList/>
   },
   {
     path:"/orders",
