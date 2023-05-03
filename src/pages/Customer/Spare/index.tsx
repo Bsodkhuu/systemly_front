@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { ChangeEvent, useEffect, useRef } from "react";
 import {
   TextInput,
   Button,
@@ -12,38 +12,42 @@ import {
 import { useState } from "react";
 import Layout from "../../../components/layout";
 import { useSearchParams } from "react-router-dom";
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { useForm } from "react-hook-form";
 import { Inventory } from "../../../App";
 
 const Spare = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchParams] = useSearchParams();
 
-  const { register, handleSubmit } = useForm<Inventory>();
+  // const { register, handleSubmit } = useForm<Inventory>();
 
-  const { mutateAsync } = useMutation("inventories", inventories);
+  // const { mutateAsync } = useMutation("inventories", inventories);
 
-  async function inventories(values: Inventory) {
+  // async function inventories(values: Inventory) {
+  //   const formData = new FormData();
+  //   formData.set("file", values.purchasedFrom);
+
+  //   const fileResponse = await axiosClient.post("/file_upload", formData);
+  //   return fileResponse.data;
+  // }
+  const [fileSelected, setFileSelected] = useState<File>();
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFileSelected(e.target.files[0]);
+    }
+  };
+
+  async function  handleUploadClick () {
+    if (!fileSelected) {
+      return;
+    }
     const formData = new FormData();
-    formData.set("file", values.purchasedFrom);
-
-    const fileResponse = await axiosClient.post("/file_upload", formData);
-
-    const response = await axiosClient.post(
-      "/inventories",
-      {
-        ...values,
-        quantity: parseInt(values.quantity.toString()),
-        cost: parseInt(values.cost.toString()),
-        purchasedFrom: fileResponse.data.url,
-      }
-      // purchasedFrom: fileURLToPath(values.purchasedFrom.toString()),
-    );
-    return response.data;
-  }
-
+    
+    const fileResponse = await axiosClient.post("http://localhost:3000/file_upload", formData);
+    return fileResponse.data;
+  };
   const { data: inventory } = useQuery("getInventory", () =>
     getInventory({
       purchasedFrom: searchParams.get("purchasedFrom") || "",
@@ -77,9 +81,7 @@ const Spare = () => {
     setShowModal(false);
   }
 
-  async function onSubmit(values: Inventory) {
-    await mutateAsync(values);
-  }
+
 
   const reviews = [
     {
@@ -99,15 +101,13 @@ const Spare = () => {
         <Modal.Header>Сэлбэг нэмэх</Modal.Header>
         <Modal.Body>
           <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-4 max-h-96 overflow-y-auto"
-          >
+            className="flex flex-col gap-4 max-h-96 overflow-y-auto">
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="purchasedFrom" value="Файл оруулах" />
                 </div>
-                <FileInput id="purchasedFrom" {...register("purchasedFrom")} />
+                <FileInput id="purchasedFrom"  />
               </div>
             </div>
           </form>
@@ -116,7 +116,7 @@ const Spare = () => {
           <Button onClick={closeModal} className="bg-gray-400">
             Буцах
           </Button>
-          <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
+          <Button  className="bg-orange-500">
             Хадгалах
           </Button>
         </Modal.Footer>
@@ -157,6 +157,7 @@ const Spare = () => {
                   ))}
                 </Carousel>
               </div>
+
               <div className="p-4">
                 <Card>
                   <div className="flex gap-4">
@@ -170,26 +171,10 @@ const Spare = () => {
                     </Button>
                   </div>
                   {/* too,shirheg, zarah vne garaas oruulj ogno shvv  */}
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <Label htmlFor="supplier" value="Нийлүүлэгч" />
-                    <TextInput type="text" {...register("supplier")} />
-                    &nbsp;
-                    <Label htmlFor="purchasedFrom" value="Хаанаас" />
-                    <TextInput type="text" {...register("purchasedFrom")} />
-                    &nbsp;
-                    <Label htmlFor="quantity" value="Тоо ширхэг" />
-                    <TextInput type="text" {...register("quantity")} />
-                    &nbsp;
-                    <Label htmlFor="cost" value="Зарах үнэ" />
-                    <TextInput type="text" {...register("cost")} />
-                    &nbsp;
-                    <Button
-                      onClick={handleSubmit(onSubmit)}
-                      className="bg-orange-500"
-                    >
-                      Хадгалах
-                    </Button>
-                  </form>
+                <TextInput type="file" onChange={handleFileChange}/>
+                <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
+                <Button onClick={handleUploadClick}>Upload</Button>
+                &nbsp;&nbsp;&nbsp;
                   <Table>
                     <Table.Head className="uppercase">
                       <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
