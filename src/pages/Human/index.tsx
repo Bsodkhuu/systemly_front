@@ -42,11 +42,9 @@ export interface AffiliateEmployee{
   email: string;
   image: string;
   jobDate: string;
+  position_name: string;
 }
 
-interface EmployeePosition{
-  name: string;
-}
 
 interface OrderDetail{
   id: string;
@@ -65,11 +63,7 @@ const Human = () => {
     "getServiceHistory",
     getServiceHistory
   );
-  const { data: employeePositions } = useQuery(
-    "getEmployeePositions",
-    getEmployeePositions
-  );
-  
+
   const { data: orderDetails } = useQuery(
     "getOrderDetails", getOrderDetails
   );
@@ -83,10 +77,7 @@ const Human = () => {
     return response.data as ServiceHistory;
   }
 
-  async function getEmployeePositions() {
-    const response = await axiosClient.get("/employee_positions");
-    return response.data as AffiliateEmployee[];
-  }
+
 
   async function createCustomer(
     values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
@@ -111,7 +102,7 @@ const Human = () => {
   const { data: employeesList } = useQuery("getEmployees", getEmployees);
   async function getEmployees() {
     const response = await axiosClient.get("/affiliate_employees");
-    return response.data;
+    return response.data as AffiliateEmployee[];
   }
 
   return (
@@ -140,18 +131,12 @@ const Human = () => {
               </div>
             </div>
             <div className="flex gap-4">
-              {/* <div className="w-1/2">
+              <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="name" value="Албан тушаал" />
-                </div> */}
-                {/* <Select>
-                {employeePositions?.map((i) => (
-                  <option>
-                    {i.name}
-                  </option>
-                ))}
-              </Select> */}
-              {/* </div> */}
+                  <Label htmlFor="position_name" value="Албан тушаал" />
+                </div>
+                <TextInput id="position_name" {...register("position_name")} />
+               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phone" value="Утасны дугаар" />
@@ -235,8 +220,7 @@ const Human = () => {
                         <Table.Cell><Checkbox /></Table.Cell>
                         <Table.Cell>{employeesList.ovog}</Table.Cell>
                         <Table.Cell>{employeesList.name}</Table.Cell>
-                        {/* <Table.Cell>{employeesList.position.name}</Table.Cell> */}
-                     
+                        <Table.Cell>{employeesList.position_name}</Table.Cell>
                       </Table.Row>
                     ))}
                   </Table.Body>
@@ -256,8 +240,6 @@ const Human = () => {
                     <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
-                   
-                   
                       {orderDetails?.map((orderDetails: OrderDetail, index: number) => (
                         <Table.Row key={index}>
                           <Table.Cell><Checkbox /></Table.Cell>
@@ -295,10 +277,7 @@ const Human = () => {
                     </Table.Cell>
                     <Table.Cell>{serviceHistory.discount}</Table.Cell>
                     <Table.Cell>
-                      
-                   {/* {serviceHistory.quantity *
-                              serviceHistory.serive.price *
-                              (100 - serviceHistory.discount / 100)} */}
+                    {serviceHistory.service.price * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
                     </Table.Cell>
                   </Table.Row>
                 ))}

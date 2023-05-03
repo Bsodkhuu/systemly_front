@@ -43,11 +43,17 @@ import Notifications from "./pages/Suld/Tohirgoo/notifications";
 import FeedBack from "./pages/Suld/feedback";
 import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
+import Vilchilgee from "./pages/Customer/Sale/service";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:"/vilchilgee", 
+    element: <Vilchilgee/>
   },
   {
     path:"/createRole", 

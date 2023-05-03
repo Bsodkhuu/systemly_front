@@ -135,9 +135,7 @@ const Spare = () => {
               <Button type="submit" className="bg-orange-500">
                 Хайх
               </Button>
-              <Button className="bg-orange-500" onClick={openModal}>
-                Сэлбэг нэмэх
-              </Button>
+              
             </div>
           </div>
 
@@ -160,20 +158,11 @@ const Spare = () => {
 
               <div className="p-4">
                 <Card>
-                  <div className="flex gap-4">
-                    <Button className="bg-orange-500" onClick={nexus}>
-                      Nexus
-                      {/* supplier selbeg medeelliig table helwereer haruulah  */}
-                    </Button>
-                    <Button className="bg-orange-500" onClick={all}>
-                      Бусад
-                      {/* excel file orj irsen medeelliig table helwereer haruulaj  */}
-                    </Button>
-                  </div>
+                 
                   {/* too,shirheg, zarah vne garaas oruulj ogno shvv  */}
                 <TextInput type="file" onChange={handleFileChange}/>
                 <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
-                <Button onClick={handleUploadClick}>Upload</Button>
+                <Button onClick={handleUploadClick} className="">Сэлбэг нэмэх</Button>
                 &nbsp;&nbsp;&nbsp;
                   <Table>
                     <Table.Head className="uppercase">

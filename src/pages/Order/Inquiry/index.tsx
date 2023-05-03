@@ -12,7 +12,7 @@ import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import Cart from "../Cart";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
@@ -64,6 +64,23 @@ const Inquiry = () => {
   async function onSubmit(values: Description) {
     await mutateAsync(values);
   }
+  const [fileSelected, setFileSelected] = useState<File>();
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFileSelected(e.target.files[0]);
+    }
+  };
+
+  async function  handleUploadClick () {
+    if (!fileSelected) {
+      return;
+    }
+    const formData = new FormData();
+    
+    const fileResponse = await axiosClient.post("http://localhost:3000/file_upload", formData);
+    return fileResponse.data;
+  };
 
   const reviews = [
     {
@@ -128,8 +145,9 @@ const Inquiry = () => {
               {/* сэлбэгийн жагсаалт харуулах  */}
               <div className="p-2">
                 <Card>
-                  <FileInput />
-                  <Button className="bg-orange-500">Сэлбэгийн үнийн санал</Button>
+                  <FileInput onChange={handleFileChange}/>
+                  <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
+                  <Button onClick={handleUploadClick} className="bg-orange-500">Сэлбэгийн үнийн санал</Button>
                   <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
                   <Table>
                     <Table.Head className="uppercase">
@@ -142,7 +160,7 @@ const Inquiry = () => {
                     </Table.Head>
                     <Table.Body className="divide-y">
                       {inquiry?.map((inquiry: Inquiry, index: number)=>(
-                         <Table.Row>
+                         <Table.Row key={index}>
                          <Table.Cell>{inquiry.partNumber}</Table.Cell>
                          <Table.Cell>{inquiry.createdDate}</Table.Cell>
                          <Table.Cell>{inquiry.quantity}</Table.Cell>

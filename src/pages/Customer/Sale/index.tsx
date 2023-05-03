@@ -8,7 +8,6 @@ import {
   Checkbox,
 } from "flowbite-react";
 import Layout from "../../../components/layout";
-import { useState } from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React from "react";
@@ -37,6 +36,9 @@ const Sale = () => {
                 <Button className="bg-orange-500">
                   Хайх
                 </Button>
+                <a href="/vilchilgee"><Button className="bg-orange-500">
+                  Үйлчилгээ бүртгэх
+                </Button></a>
               </div>
             </div>
             <div className="p-4">
@@ -98,9 +100,7 @@ const Sale = () => {
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.discount}</Table.Cell>
                           <Table.Cell>
-                            {/* {serviceHistory.quantity *
-                              serviceHistory.serive.price *
-                              (100 - serviceHistory.discount / 100)} */}
+                          {serviceHistory.service.price * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
                         </Table.Row>
@@ -119,17 +119,20 @@ const Sale = () => {
               <ListGroup>
                 {serviceHistory?.map((serviceHistory: any, index: number) => (
                   <ListGroup.Item key={index}>
-                    Ажлын хөлс: {serviceHistory.quantity}
+                    Ажлын хөлс: {serviceHistory.service.price}
                     <ListGroup.Item></ListGroup.Item>
                     <ListGroup.Item>
-                      Материал: {serviceHistory.service.price}
+                      Материал: {serviceHistory.quantity}
                       <ListGroup.Item></ListGroup.Item>
                       <ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         Хямдрал: {serviceHistory.discount}
                       </ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт: {serviceHistory.discount}
+                      Нийт: {serviceHistory.service.price * serviceHistory.quantity * (100 -serviceHistory.discount / 100)}
+                      {/* {serviceHistory.quantity *
+                              serviceHistory.serive.price *
+                              (100 - serviceHistory.discount / 100)} */}
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Төлбөр төлөх хэлбэр

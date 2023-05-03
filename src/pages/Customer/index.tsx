@@ -84,7 +84,7 @@ interface VehicleColor {
   en: string;
   mn: string;
 }
-interface GarageCustomerVehicle extends VehicleCategory, VehicleColor{
+interface GarageCustomerVehicle extends VehicleColor{
   [mn: string]: any;
   id: string;
   createdAt: string;
@@ -109,18 +109,25 @@ const Customer = () => {
     })
   );
   const { data: vehicleMakeModels } = useQuery(
-    "getVehicleMakeModels",getVehicleMakeModels
+    "getVehicleMakeModels",() => getVehicleMakeModels({
+      makeId: searchParams.get("makeId") || "",
+    })
   );
   const { data: garageCustomerVehicles } = useQuery(
     "getGarageCustomerVehicles",
     getGarageCustomerVehicles
   );
   const lastnameRef = useRef<HTMLInputElement>(null);
- 
+  const makeIdRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (lastnameRef.current) {
       lastnameRef.current.value = searchParams.get("lastname") || "";
+    }
+  }, []);
+  useEffect(() => {
+    if (makeIdRef.current) {
+      makeIdRef.current.value = searchParams.get("makeId") || "";
     }
   }, []);
 
@@ -131,9 +138,11 @@ const Customer = () => {
     return (await response).data;
   }
 
-  async function getVehicleMakeModels() {
-    const response = await axiosClient.get("/vehicle_make_models");
-    return response.data;
+  async function getVehicleMakeModels(params: { makeId : string }) {
+    const response = await axiosClient.get(
+      `/vehicle_make_models?makeId=${params.makeId}`
+      );
+    return (await response).data;
   }
 
   async function getGarageCustomerVehicles() {
@@ -171,6 +180,7 @@ const Customer = () => {
                     Тээврийн хэрэгсэл нэмэх
                   </Button>
                 </a>
+               
               </div>
             </div>
 
@@ -215,10 +225,10 @@ const Customer = () => {
                   <div className="flex gap-4">
                     <TextInput
                       id="search"
-                      type="search"
-                      placeholder="Тээврийн хэрэгсэл хайх"
+                      name="makeId"
+                      placeholder="Тээврийн хэрэгсэл хайх" ref={makeIdRef}
                     />
-                    <Button className="bg-orange-500">Хайх</Button>
+                    <Button type="submit" className="bg-orange-500">Хайх</Button>
                   </div>
                   <Table>
                     <Table.Head className="uppercase">
@@ -259,7 +269,6 @@ const Customer = () => {
               <Table>
                 <Table.Head className="uppercase">
                   <Table.HeadCell>Vin дугаар</Table.HeadCell>
-                  <Table.HeadCell>Төрөл</Table.HeadCell>
                   <Table.HeadCell>Үйлдвэрлэсэн он</Table.HeadCell>
                   <Table.HeadCell>Импортлосон он</Table.HeadCell>
                   <Table.HeadCell>Өнгө</Table.HeadCell>
@@ -270,15 +279,13 @@ const Customer = () => {
                     (garageCustomerVehicles: GarageCustomerVehicle, index: number) => (
                       <Table.Row key={index}>
                         <Table.Cell>{garageCustomerVehicles.vinNumber}</Table.Cell>
-                        <Table.Cell>
-                          {/* {garageCustomerVehicles.vehicleCategory.en} */}
-                        </Table.Cell>
+                       
                         <Table.Cell>
                           {garageCustomerVehicles.manufacturerYear}
                         </Table.Cell>
                         <Table.Cell>{garageCustomerVehicles.importedYear}</Table.Cell>
-                        {/* <Table.Cell>{customerVehicles.color.mn}</Table.Cell> */}
-                        <Table.Cell></Table.Cell>
+                        <Table.Cell>{garageCustomerVehicles.color.mn}</Table.Cell>
+                        
                         <Table.Cell>
                           {garageCustomerVehicles.licensePlateNumber}
                         </Table.Cell>

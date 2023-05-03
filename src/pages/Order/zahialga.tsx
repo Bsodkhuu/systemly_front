@@ -42,7 +42,7 @@ interface ProductSubCategory extends ProductCategory{
   productCategoryId?: string;
 }
 
-interface Product extends ProductSubCategory{
+interface Product{
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -50,14 +50,11 @@ interface Product extends ProductSubCategory{
   description: string;
   netPrice: number;
   currency: string;
-  subCategoryId?:string;
   part_number: string;
   fittingPostion: string;
   makeModelFit: string;
   quantity: number;
   order_date: string;
-  mainCategoryId?:string;
-  [en: string]: any
 }
 
 const Zahialga = () => {
@@ -254,45 +251,26 @@ const Zahialga = () => {
                   </div>
                 </div>
                 <div className="flex gap-4">
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="manufacturerId" value="Үйлдвэрлэгч"/>
+                    </div>
+                    <TextInput type="text" {...register("manufacturerId")}/>
+                  </div>
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                    <Label htmlFor="makeModelFit" value="Model Fit"/>
+                    </div>
+                    <TextInput type="text" {...register("makeModelFit")}/>
+                  </div>
+                </div>
+                <div className="flex gap-4">
                   <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
                     Сагслах
                   </Button>
             </div>
                 </form>
-                <Table>
-                  <Table.Head className="uppercase">
-                    {/* <Table.HeadCell>Бүтээгдэхүүний ангилал</Table.HeadCell> */}
-                    <Table.HeadCell>Парт дугаар</Table.HeadCell>
-                    <Table.HeadCell>Тайлбар</Table.HeadCell>
-                    <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
-                    <Table.HeadCell>Валют</Table.HeadCell>
-                    <Table.HeadCell>Fitting</Table.HeadCell>
-                    <Table.HeadCell>Тоо, ширхэг</Table.HeadCell>
-                    {/* <Table.HeadCell>Үйлдэл</Table.HeadCell> */}
-                  </Table.Head>
-
-                  <Table.Body>
-                    {data?.map((i: any) => (
-                      <Table.Row>
-                        {/* <Table.Cell>{i.productCategoryId.map((j) => j.en).join(",")}</Table.Cell> */}
-                        <Table.Cell>{i.part_number}</Table.Cell>
-                        <Table.Cell>{i.description}</Table.Cell>
-                        <Table.Cell>{i.netPrice}</Table.Cell>
-                        <Table.Cell>{i.currency}</Table.Cell>
-                        <Table.Cell>{i.fittingPostion}</Table.Cell>
-
-                        <Table.Cell>{i.quantity}
-                          
-                        </Table.Cell>
-                        {/* <Table.Cell>
-                          <Button className="bg-blue-500">
-                            <FontAwesomeIcon icon={faCartShopping} />
-                          </Button>
-                        </Table.Cell> */}
-                      </Table.Row>
-                    ))}
-                  </Table.Body>
-                </Table>
+               
               </Card>
             </div>
           </div>
@@ -316,23 +294,6 @@ const Zahialga = () => {
                       Fitting: {i.fittingPostion}
                       <ListGroup.Item></ListGroup.Item>
                       Тоо, ширхэг: {i.quantity}
-                      {/* <TextInput
-                            onChange={(e) =>
-                              setProductQuantities((l) =>
-                                l?.map((j) => {
-                                  if (j.id === i.id) {
-                                    return {
-                                      ...j,
-                                      quantity: +e.currentTarget,
-                                    };
-                                  } else {
-                                    return j;
-                                  }
-                                })
-                              )
-                            }
-                            type="number"
-                          /> */}
                       <ListGroup.Item></ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
                       Нийт үнэ: {i.netPrice * i.quantity}
