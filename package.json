@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "serve dist -s -n -L $PORT",
+    "start": "serve dist -s -n -L -p $PORT",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview"
