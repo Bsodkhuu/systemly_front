@@ -92,15 +92,15 @@ const App = () => {
   const {data: serviceType } = useQuery("getServiceType", getServiceType);
 
   async function getServiceType() {
-    const response = await axiosClient.get("service-types");
+    const response = await axiosClient.get("/service-types");
     return response.data as ServiceType[];
   }
   async function getInventory() {
-    const response = await axiosClient.get("inventories");
+    const response = await axiosClient.get("/inventories");
     return response.data as Inventory[];
   }
   async function getProduct() {
-    const response = await axiosClient.get("products");
+    const response = await axiosClient.get("/products");
     return response.data as Product[];
   }
   return (

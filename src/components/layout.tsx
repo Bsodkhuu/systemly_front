@@ -20,7 +20,7 @@ const Layout: FC<Props> = ({ children }) => {
   const { data: notification} = useQuery("getNotifications", getNotifications);
 
   async function getNotifications() {
-    const response = await axiosClient.get("notifications");
+    const response = await axiosClient.get("/notifications");
     return response.data as Notifications[];
   }
   return (
