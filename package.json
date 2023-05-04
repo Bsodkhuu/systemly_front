@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "npx http-server ./dist",
+    "start": "serve dist -s -n -L $PORT",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview"
@@ -27,6 +27,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.9.0",
     "react-slick": "^0.29.0",
+    "serve": "^14.2.0",
     "typescript": "^5.0.4"
   },
   "devDependencies": {
