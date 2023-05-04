@@ -1,12 +1,9 @@
 import React, { FC } from "react";
 import SidebarComponent from "./sidebar";
 import { Navbar, Dropdown, Avatar, Footer} from "flowbite-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../config/axios";
 import { Drawer } from "flowbite";
-import logo from '../images/logo.png';
 interface Props {
   children?: React.ReactNode;
 }
@@ -23,7 +20,7 @@ const Layout: FC<Props> = ({ children }) => {
   const { data: notification} = useQuery("getNotifications", getNotifications);
 
   async function getNotifications() {
-    const response = await axiosClient.get("/notifications");
+    const response = await axiosClient.get("notifications");
     return response.data as Notifications[];
   }
   return (
@@ -31,7 +28,6 @@ const Layout: FC<Props> = ({ children }) => {
       <Navbar fluid={true} rounded={true}>
         <Navbar.Brand>
           <img
-            src={logo}
             className="mr-3 h-6 sm:h-9"
             alt="Flowbite Logo"
           />

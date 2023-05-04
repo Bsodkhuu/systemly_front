@@ -20,7 +20,6 @@ import Sale from "./pages/Customer/Sale";
 import Spare from "./pages/Customer/Spare";
 import Settings from "./pages/Settings";
 import Price from "./pages/Settings/Price";
-
 import EmployeeHistory from "./pages/Human/Employee_history";
 import Active from "./pages/Settings/Active";
 import Transport from "./pages/Customer/Transport";
@@ -103,7 +102,7 @@ const router = createBrowserRouter([
     path: "/messej",
     element: <Messej />,
   },
-  // Gishuun design
+  
   {
     path: "/holiday",
     element: <Holiday />,
