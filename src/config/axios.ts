@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const axiosClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://systemlyerp-production.up.railway.app",
   withCredentials: true,
 });
