@@ -27,22 +27,21 @@ Chart.register(LineElement);
 Chart.register(Tooltip);
 Chart.register(Legend);
 
-
 export const options = {
   responsive: true,
-  plugins:{
+  plugins: {
     legend: {
-      position: 'top' as const,
-    }, 
-    title:{
+      position: "top" as const,
+    },
+    title: {
       display: true,
-      text: '',
+      text: "",
     },
   },
 };
- export interface Product{
+export interface Product {
   id: string;
-  manufacturerId: string; 
+  manufacturerId: string;
   description: string;
   netPrice: string;
   currency: string;
@@ -54,21 +53,21 @@ export const options = {
   order_date: string;
   createdAt: string;
   updatedAt: string;
-  mainCategoryId?:string;
-  backOrderId?:string
+  mainCategoryId?: string;
+  backOrderId?: string;
 }
-export interface Inventory{
+export interface Inventory {
   id: string;
   createdAt: string;
   updatedAt: string;
   purchasedFrom: string;
   supplier: string;
   mainCategoryId?: string;
-  subCategoryId?:string;
+  subCategoryId?: string;
   cost: number;
   quantity: number;
 }
-export interface ServiceType{
+export interface ServiceType {
   id: string;
   createdAt: string;
   updateAt: string;
@@ -83,13 +82,10 @@ export interface ServiceType{
   currency: string;
 }
 
-
 const App = () => {
-
-
-  const {data: product } = useQuery("getProduct", getProduct);
-  const {data: inventory } = useQuery("getInventory", getInventory);
-  const {data: serviceType } = useQuery("getServiceType", getServiceType);
+  const { data: product } = useQuery("getProduct", getProduct);
+  const { data: inventory } = useQuery("getInventory", getInventory);
+  const { data: serviceType } = useQuery("getServiceType", getServiceType);
 
   async function getServiceType() {
     const response = await axiosClient.get("/service-types");
@@ -108,57 +104,58 @@ const App = () => {
       <div className="p-4 bg-gray-200 h-screen w-full">
         <div className="bg-white p-6 rounded-lg">
           <div className="h-screen p-6 flex gap-4">
-           <Card className="w-2/5 h-96">
-            <Bar
-            data={{
-              labels: inventory?.map((i => i.purchasedFrom)),
-              datasets: [
-                {
-                  label: "Сэлбэгийн үлдэгдэл",
-                  data: inventory?.map((i => i.quantity)),
-                  borderWidth: 1,
-                  backgroundColor: "#FFA500",
-                },
-              ],
-            }}
-          />
-        </Card>
-        <Card className="w-2/5 h-96">
-          <Pie options={options}
-            data={{
-              labels: serviceType?.map((i => i.name)),
-              datasets: [
-                {
-                  label: "Засварын үнийн тохиргоо",
-                  data: serviceType?.map((i => i.price)),
-                  borderWidth: 1,
-                  borderColor: 'rgb(255, 99, 132)', 
-                  backgroundColor: "#FFA500",
-                },
-              ],
-            }}
-          />
-        </Card>
-        
-        <Card className="w-2/5 h-96">
-          <Line options={options}
-          
-            data={{
-              labels: product?.map((i => i.description)),
-              datasets: [
-                {
-                  label: "Захиалга",
-                  data: product?.map((i => i.quantity)),
-                  borderWidth: 1,
-                  backgroundColor: "#FFA500",
-                  borderColor: 'rgb(255, 99, 132)', 
-                },
-              ],
-            }}
-          />
-        </Card>
-      </div>
-      </div>
+            <Card className="w-2/5 h-96">
+              <Bar
+                data={{
+                  labels: inventory?.map((i) => i.purchasedFrom),
+                  datasets: [
+                    {
+                      label: "Сэлбэгийн үлдэгдэл",
+                      data: inventory?.map((i) => i.quantity),
+                      borderWidth: 1,
+                      backgroundColor: "#FFA500",
+                    },
+                  ],
+                }}
+              />
+            </Card>
+            <Card className="w-2/5 h-96">
+              <Pie
+                options={options}
+                data={{
+                  labels: serviceType?.map((i) => i.name),
+                  datasets: [
+                    {
+                      label: "Засварын үнийн тохиргоо",
+                      data: serviceType?.map((i) => i.price),
+                      borderWidth: 1,
+                      borderColor: "rgb(255, 99, 132)",
+                      backgroundColor: "#FFA500",
+                    },
+                  ],
+                }}
+              />
+            </Card>
+
+            <Card className="w-2/5 h-96">
+              <Line
+                options={options}
+                data={{
+                  labels: product?.map((i) => i.description),
+                  datasets: [
+                    {
+                      label: "Захиалга",
+                      data: product?.map((i) => i.quantity),
+                      borderWidth: 1,
+                      backgroundColor: "#FFA500",
+                      borderColor: "rgb(255, 99, 132)",
+                    },
+                  ],
+                }}
+              />
+            </Card>
+          </div>
+        </div>
       </div>
     </Layout>
   );
