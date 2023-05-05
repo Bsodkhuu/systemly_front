@@ -162,7 +162,7 @@ const Spare = () => {
                   {/* too,shirheg, zarah vne garaas oruulj ogno shvv  */}
                 <TextInput type="file" onChange={handleFileChange}/>
                 <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
-                <Button onClick={handleUploadClick} className="">Сэлбэг нэмэх</Button>
+                <Button onClick={handleUploadClick} className="bg-orange-500">Сэлбэг нэмэх</Button>
                 &nbsp;&nbsp;&nbsp;
                   <Table>
                     <Table.Head className="uppercase">
