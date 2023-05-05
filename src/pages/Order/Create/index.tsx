@@ -157,7 +157,7 @@ const Create = () => {
                     <Button
                     onClick={handleSubmit(onSubmit)}
                       type="submit"
-                      className="btn btn-success">
+                      className="bg-orange-500">
                       Хадгалах
                     </Button>
                   </form>
@@ -216,7 +216,7 @@ const Create = () => {
                 </ListGroup>
                 &nbsp;
                 <a href="/checkbox">
-                  <Button className="bg-blue-500">
+                  <Button className="bg-orange-500">
                     Захиалга баталгаажуулах
                   </Button>
                 </a>

@@ -97,8 +97,7 @@ const Checkbox = () => {
               </Table>
             </div>
           </div>
-        </div>
-        <div className="col-span">
+          <div className="col-span">
           <div className="p-4">
             <Card>
               <h3 className="text-1xl">Захиалгын сэлбэгүүдийг хянах</h3>
@@ -130,6 +129,8 @@ const Checkbox = () => {
               </div>
             </Card>
           </div>
+        </div>
+      
         </div>
       
     </Layout>
