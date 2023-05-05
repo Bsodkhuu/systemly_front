@@ -16,27 +16,27 @@ import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-interface Inquiry extends InquiryDetail{
+
+
+export interface InquiryDetail extends Supplier{
   id: string;
   createdAt: string;
   updatedAt: string;
-  createdDate: string;
-  inquiryNumber: string;
-  userId?: string;
-  [partNumber: string]: any;
-}
-
-interface InquiryDetail{
   affiliateId: string;
   partNumber: string;
   quantity: number;
   netPrice: number;
-  currency: string;
   productId?: string;
   supplierId?: string;
   inquiryId?: string;
   orderDetailId?: string;
   statusTypeId?: string;
+  [supplierList: string]: any;
+}
+
+ export interface Supplier{
+  supplierList: string;
+  vehicleManufacturerId?: string
 }
 
 export interface Description{
@@ -49,11 +49,11 @@ const Inquiry = () => {
   const { register, handleSubmit } = useForm<Description>();
   
   const { mutateAsync } = useMutation("descriptions", descriptions);
-  const { data: inquiry } = useQuery("getInquiry", getInquiry);
-  
-  async function getInquiry() {
-    const response = await axiosClient.get("/inquiries");
-    return response.data as Inquiry[];
+  const { data: inquiryDetail } = useQuery("getInquiryDetail", getInquiryDetail);
+
+  async function getInquiryDetail(){
+    const response = await axiosClient.get("/inquiry_details");
+    return response.data as InquiryDetail[];
   }
   
   async function descriptions(values: Description) {
@@ -159,13 +159,13 @@ const Inquiry = () => {
                       <Table.HeadCell>Үйлдэл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      {inquiry?.map((inquiry: Inquiry, index: number)=>(
+                      {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number)=>(
                          <Table.Row key={index}>
-                         <Table.Cell>{inquiry.partNumber}</Table.Cell>
-                         <Table.Cell>{inquiry.createdDate}</Table.Cell>
-                         <Table.Cell>{inquiry.quantity}</Table.Cell>
-                         <Table.Cell>{inquiry.netPrice}</Table.Cell>
-                         <Table.Cell>{inquiry.currency}</Table.Cell>
+                         <Table.Cell>{inquiryDetail.partNumber}</Table.Cell>
+                         <Table.Cell>{inquiryDetail.supplier.supplierList}</Table.Cell>
+                         <Table.Cell>{inquiryDetail.quantity}</Table.Cell>
+                         <Table.Cell>{inquiryDetail.netPrice}</Table.Cell>
+                         <Table.Cell>{inquiryDetail.currency}</Table.Cell>
                          <Table.Cell className="text-1xl">
                            <FontAwesomeIcon icon={faCartShopping} />
                          </Table.Cell>
