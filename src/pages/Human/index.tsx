@@ -271,7 +271,7 @@ const Human = () => {
                   <Table.Row key={index}>
                     <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
                     <Table.Cell>{serviceHistory.quantity}</Table.Cell>
-                    <Table.Cell>{serviceHistory.price}</Table.Cell>
+                    <Table.Cell>{serviceHistory.netPrice}</Table.Cell>
                     <Table.Cell>
                       {serviceHistory.ajilGuitsetgesenAjiltan.name}
                     </Table.Cell>
