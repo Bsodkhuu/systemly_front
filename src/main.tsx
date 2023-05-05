@@ -51,6 +51,26 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: "/my",
+    element: <My />,
+  },
+  {
+    path: "/order",
+    element: <Order />,
+  },
+  {
+    path: "/inquiry",
+    element: <Inquiry />,
+  },
+  {
+    path: "/online",
+    element: <Online />,
+  },
+  {
+    path: "/backorder",
+    element: <BackOrder />,
+  },
+  {
     path:"/vilchilgee", 
     element: <Vilchilgee/>
   },
@@ -90,14 +110,7 @@ const router = createBrowserRouter([
     path: "/nemelt", 
     element:<Nemelt/>
   },
-  {
-    path: "/online",
-    element: <Online />,
-  },
-  {
-    path: "/backorder",
-    element: <BackOrder />,
-  },
+  
   {
     path: "/messej",
     element: <Messej />,
@@ -172,6 +185,21 @@ const router = createBrowserRouter([
     path: "/checkbox",
     element: <Checkbox />,
   },
+  
+  {
+    path: "/human",
+    element: <Human />,
+  },
+
+  
+  {
+    path: "/payment",
+    element: <Payment />,
+  },
+  {
+    path: "/product_categories",
+    element: <ProductPage />,
+  },
   {
     path: "/login",
     element: <Login />,
@@ -181,32 +209,6 @@ const router = createBrowserRouter([
     element: <Forgot />,
   },
 
-  {
-    path: "/human",
-    element: <Human />,
-  },
-
-  {
-    path: "/order",
-    element: <Order />,
-  },
-  {
-    path: "/my",
-    element: <My />,
-  },
-
-  {
-    path: "/payment",
-    element: <Payment />,
-  },
-  {
-    path: "/inquiry",
-    element: <Inquiry />,
-  },
-  {
-    path: "/product_categories",
-    element: <ProductPage />,
-  },
 ]);
 
 const queryClient = new QueryClient();

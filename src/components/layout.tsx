@@ -29,7 +29,8 @@ const Layout: FC<Props> = ({ children }) => {
         <Navbar.Brand>
           <img
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt="Flowbite Logo" src="https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/09/New-nexus-logo-01.svg"
+            
           />
         </Navbar.Brand>
      
