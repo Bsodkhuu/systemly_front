@@ -101,7 +101,7 @@ const ZaswarService = () => {
                     {serviceHistory?.map(
                       (serviceHistory: any, index: number) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{serviceHistory.service.name}</Table.Cell>
+                          <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
                           <Table.Cell>{serviceHistory.quantity}</Table.Cell>
                           <Table.Cell>
                             {serviceHistory.service.price}
