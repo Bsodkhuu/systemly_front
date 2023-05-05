@@ -40,8 +40,6 @@ const Checkbox = () => {
                 <Button className="bg-orange-500">Хайх</Button>
               </div>
             </div>
-
-         
               <div className="p-4">
                 <Card>
                   <Alert
@@ -101,7 +99,7 @@ const Checkbox = () => {
           </div>
         </div>
         <div className="col-span">
-          <div className="p-2">
+          <div className="p-4">
             <Card>
               <h3 className="text-1xl">Захиалгын сэлбэгүүдийг хянах</h3>
               <div className="p-2">
