@@ -104,13 +104,13 @@ const ZaswarService = () => {
                           <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
                           <Table.Cell>{serviceHistory.quantity}</Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.service.price}
+                            {serviceHistory.netPrice}
                           </Table.Cell>
                           <Table.Cell>
                             {serviceHistory.ajilGuitsetgesenAjiltan.name}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.discount}</Table.Cell>
-                          <Table.Cell>{serviceHistory.service.price * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}</Table.Cell>
+                          <Table.Cell>{serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}</Table.Cell>
                           <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
                         </Table.Row>
                       )
@@ -128,13 +128,13 @@ const ZaswarService = () => {
               <ListGroup>
                 {serviceHistory?.map((serviceHistory: any, index: number) => (
                   <ListGroup.Item>
-                    Ажлын хөлс: {serviceHistory.service.price}
+                    Ажлын хөлс: {serviceHistory.netPrice}
                     <ListGroup.Item>
                       Материал: {serviceHistory.quantity}
                       <ListGroup.Item>
                         Хямдрал: {serviceHistory.discount}
                       </ListGroup.Item>
-                      Нийт: {serviceHistory.service.price * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
+                      Нийт: {serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Төлбөр төлөх хэлбэр

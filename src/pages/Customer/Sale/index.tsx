@@ -58,10 +58,10 @@ const Sale = () => {
                           <Table.Cell>
                             <Checkbox />
                           </Table.Cell>
-                          <Table.Cell>{serviceHistory.service.name}</Table.Cell>
+                          <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
                           <Table.Cell>{serviceHistory.quantity}</Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.service.price}
+                            {serviceHistory.netPrice}
                           </Table.Cell>
                         </Table.Row>
                       )
@@ -90,17 +90,17 @@ const Sale = () => {
                     {serviceHistory?.map(
                       (serviceHistory: any, index: number) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{serviceHistory.service.name}</Table.Cell>
+                          <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
                           <Table.Cell>
                             {serviceHistory.ajilGuitsetgesenAjiltan.name}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.quantity}</Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.service.price}
+                            {serviceHistory.netPrice}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.discount}</Table.Cell>
                           <Table.Cell>
-                          {serviceHistory.service.price * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
+                          {serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
                           </Table.Cell>
                           <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
                         </Table.Row>
@@ -119,7 +119,7 @@ const Sale = () => {
               <ListGroup>
                 {serviceHistory?.map((serviceHistory: any, index: number) => (
                   <ListGroup.Item key={index}>
-                    Ажлын хөлс: {serviceHistory.service.price}
+                    Ажлын хөлс: {serviceHistory.netPrice}
                     <ListGroup.Item></ListGroup.Item>
                     <ListGroup.Item>
                       Материал: {serviceHistory.quantity}
@@ -129,7 +129,7 @@ const Sale = () => {
                         Хямдрал: {serviceHistory.discount}
                       </ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт: {serviceHistory.service.price * serviceHistory.quantity * (100 -serviceHistory.discount / 100)}
+                      Нийт: {serviceHistory.netPrice * serviceHistory.quantity * (100 -serviceHistory.discount / 100)}
                       {/* {serviceHistory.quantity *
                               serviceHistory.serive.price *
                               (100 - serviceHistory.discount / 100)} */}
