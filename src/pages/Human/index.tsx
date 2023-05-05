@@ -15,14 +15,22 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-interface ServiceHistory extends ServiceType{
+
+ interface ServiceHistory extends AffiliateEmployee{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  vinNumberId?: string;  //garagacustomervehicles 
   serviceDate: string;
+  serviceAffiliateId?: string; //user
+  ajilGuitsetgesenAjiltanId?: string; // affiliateemployee
   quantity: number;
   discount: number;
-  [name: string]: any;
-  [price: number]: any;
-  
+  netPrice: number;
+  serviceName: string;
+  [name: string] : any;
 }
+
 interface ServiceType{
   mainCategory: string;
   subCategory: string;
@@ -277,7 +285,7 @@ const Human = () => {
                     </Table.Cell>
                     <Table.Cell>{serviceHistory.discount}</Table.Cell>
                     <Table.Cell>
-                    {serviceHistory.service.price * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
+                    {serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
                     </Table.Cell>
                   </Table.Row>
                 ))}
