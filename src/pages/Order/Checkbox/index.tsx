@@ -63,7 +63,8 @@ const Checkbox = () => {
                   <Label>Дансны дугаар:1415119905</Label>
                   <Label>Дансны нэр:Сүлд Юнайтед ХХК</Label>
                   <Label>
-                    Гүйлгээний утга: 2023031644 утгаа backend automataar awah
+                    Гүйлгээний утга: 2023031644 
+                    {/* Гүйлгээний утгаа backend automataar awah */}
                   </Label>
                   <a href="/payment">
                     <Button className="bg-orange-500">Захиалга батлах</Button>
