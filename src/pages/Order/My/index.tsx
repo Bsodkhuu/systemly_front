@@ -91,7 +91,7 @@ const My = () => {
                             <Table.Cell></Table.Cell>
                             <Table.Cell>{inquiryDetail.orderDetail.order_id}</Table.Cell>
                             <Table.Cell>{inquiryDetail.supplier.supplierList}</Table.Cell>
-                            <Table.Cell><a href="/">{inquiryDetail.statusType.statusName}</a></Table.Cell>
+                            <Table.Cell><a href="/create">{inquiryDetail.statusType.statusName}</a></Table.Cell>
                           </Table.Row>
                         ))}
                       </Table.Body>
