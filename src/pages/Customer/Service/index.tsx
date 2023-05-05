@@ -74,7 +74,7 @@ const Service = () => {
             <h4 className="text-1xl">Үйлчилгээний цаг авах</h4>
             <div className="flex gap-4">
               <TextInput id="date" type="date" />
-              <Button className="bg-blue-500">Хайх</Button>
+              <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
           {/* calendar */}
@@ -84,7 +84,7 @@ const Service = () => {
                 <h5 className="text-1xl">Цаг авсан жагсаалт</h5>
                 <div className="flex gap-4">
                   <TextInput id="search" type="search" placeholder="Хайх" />
-                  <Button className="bg-blue-500">Хайх</Button>
+                  <Button className="bg-orange-500">Хайх</Button>
                 </div>
                 <Table>
                   <Table.Head className="uppercase">
@@ -111,7 +111,7 @@ const Service = () => {
             <Card className="max-w-sm">
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
-                <Button className="bg-blue-500">Хайх</Button>
+                <Button className="bg-orange-500">Хайх</Button>
               </div>
               <Table>
                 <Table.Head className="uppercase">
