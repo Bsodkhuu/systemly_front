@@ -105,7 +105,6 @@ const My = () => {
                   <div className="flex gap-4">
                     <Table>
                       <Table.Head className="uppercase">
-                       <Table.HeadCell>Захиалга</Table.HeadCell>
                        <Table.HeadCell>Партын дугаар</Table.HeadCell>
                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                        <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>

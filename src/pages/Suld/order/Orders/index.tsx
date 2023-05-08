@@ -6,6 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
+import { Product } from "../../../../App";
 
 interface OrderDetail extends TeevriinZahialga{
     id: string;
@@ -78,6 +79,12 @@ interface Affiliate{
 }
 
 const Orders = () => {
+
+    const { data: product } = useQuery("getProduct", getProduct);
+    async function getProduct() {
+        const response = await axiosClient.get("/products");
+        return response.data as Product[];
+    }
     const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
 
     async function getOrderDetail() {
@@ -120,18 +127,7 @@ const Orders = () => {
                         <div className="flex justify-between mb-4">
                             
                             <div className="flex gap-4">
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
-                                        <Label htmlFor="order" value="Захиалгийн дугаар"/>
-                                    </div>
-                                    <Select>
-                                        {orderDetail?.map((i) => (
-                                            <option value={i.id}>
-                                                {i.order_id}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                </div>
+                               
                                 <div className="w-1/2">
                                     <div className="mb-2 block">
                                         <Label htmlFor="supplier" value="Нийлүүлэгч" />
@@ -214,14 +210,14 @@ const Orders = () => {
                                             <Table.HeadCell>Нийт дүн</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
-                                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
+                                        {product?.map((product: Product, index: number) => (
                                             <Table.Row key={index}>
-                                                <Table.Cell>{orderDetail.product.part_number}</Table.Cell>
-                                                <Table.Cell>{orderDetail.product.description}</Table.Cell>
-                                                <Table.Cell>{orderDetail.product.netPrice}</Table.Cell>
-                                                <Table.Cell>{orderDetail.product.fittingPostion}</Table.Cell>
-                                                <Table.Cell>{orderDetail.product.quantity}</Table.Cell>
-                                                <Table.Cell>{orderDetail.product.netPrice * orderDetail.product.quantity}</Table.Cell>
+                                                <Table.Cell>{product.part_number}</Table.Cell>
+                                                <Table.Cell>{product.description}</Table.Cell>
+                                                <Table.Cell>{product.netPrice}</Table.Cell>
+                                                <Table.Cell>{product.fittingPostion}</Table.Cell>
+                                                <Table.Cell>{product.quantity}</Table.Cell>
+                                                <Table.Cell>{product.netPrice * product.quantity}</Table.Cell>
                                             </Table.Row>
                                           ))}
                                         </Table.Body>
