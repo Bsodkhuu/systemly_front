@@ -115,12 +115,12 @@ const My = () => {
                       <Table.Body className="divide-y">
                        {product?.map((product: Product, index: number) => (
                          <Table.Row key={index}>
-                         <Table.Cell></Table.Cell>
+                         <Table.Cell>{product.Order.order_id}</Table.Cell>
                          <Table.Cell>{product.part_number}</Table.Cell>
                          <Table.Cell>{product.quantity}</Table.Cell>
                          <Table.Cell>{product.netPrice}</Table.Cell>
                          <Table.Cell>{product.currency}</Table.Cell>
-                         {/* <Table.Cell>{product.netPrice * product.quantity}</Table.Cell> */}
+                         <Table.Cell></Table.Cell>
                        </Table.Row>
                         ))}
                       </Table.Body>

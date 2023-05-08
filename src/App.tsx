@@ -40,6 +40,7 @@ export const options = {
   },
 };
 export interface Product {
+  Order: any;
   id: string;
   manufacturerId: string;
   description: string;
