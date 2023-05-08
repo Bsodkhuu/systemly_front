@@ -1,17 +1,18 @@
 import Layout from "../../../components/layout";
-import { TextInput, Button, Table, Select } from "flowbite-react";
+import { TextInput, Button, Table} from "flowbite-react";
 import React from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { InquiryDetail } from "../My";
+import { OrderDetail } from "../My";
+
 
 
 const History = () => {
-  const { data: inquiryDetail } = useQuery("getInquiryDetail", getInquiryDetail);
+  const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
 
-  async function getInquiryDetail() {
-    const response = await axiosClient.get("/inquiry_details");
-    return response.data as InquiryDetail[];
+  async function getOrderDetail() {
+    const response = await axiosClient.get("/order-details");
+    return response.data as OrderDetail[];
   }
   return (
     <Layout>
@@ -33,12 +34,13 @@ const History = () => {
               <Table.HeadCell>Статус төрөл</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-            {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number) => (
-               <Table.Row key={index}>
-                  <Table.Cell>{inquiryDetail.orderDetail.order_id}</Table.Cell>
-                  <Table.Cell>{inquiryDetail.supplier.supplierList}</Table.Cell>
-                  <Table.Cell>{inquiryDetail.statusType.statusName}</Table.Cell>
-              </Table.Row>
+            {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
+                           <Table.Row key={index} >
+                          
+                           <Table.Cell>{orderDetail.order_id}</Table.Cell>
+                           <Table.Cell>{orderDetail.supplier.supplierList}</Table.Cell>
+                           <Table.Cell><a href="/create">{orderDetail.statusType.statusName}</a></Table.Cell>
+                         </Table.Row>
              ))}
             </Table.Body>
           </Table>
