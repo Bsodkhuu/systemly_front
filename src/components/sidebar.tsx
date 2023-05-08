@@ -42,7 +42,7 @@ const SidebarComponent = () => {
           {/* <Item href="/product_categories">Жишээ шүү Барааны категори</Item> */}
           
           
-          {/* <Item href="/suld">Сүлд ERP</Item>
+          <Item href="/suld">Сүлд ERP</Item>
           
           <Collapse label="Захиалга">
           <Item href="/asuulguud">Асуулгууд</Item>
@@ -65,13 +65,13 @@ const SidebarComponent = () => {
           <Collapse label="NEXUS!">
           <Item href="#">Сургалт</Item>
           <Item href="#">Брэнд бүүк</Item>
-          </Collapse> */}
-          {/* <Collapse label="Тохиргоо">
-          <Item href="#">Үнийн тохиргоо</Item> */}
+          </Collapse>
+          <Collapse label="Тохиргоо">
+          <Item href="#">Үнийн тохиргоо</Item>
           <Item href="/notifications">Мэдэгдэл илгээх</Item>
           <Item href="/feedback">Санал хүсэлт</Item>
-          {/* </Collapse> */}
-          {/* <Item href="/role">Үндсэн тохиргоо</Item> */}
+          </Collapse>
+          <Item href="/role">Үндсэн тохиргоо</Item>
           <Item onClick={logOut}>Системээс гарах</Item>
         </ItemGroup>
       </Items>
