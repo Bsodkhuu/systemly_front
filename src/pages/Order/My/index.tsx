@@ -107,7 +107,7 @@ const My = () => {
                       <Table.Body className="divide-y">
                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
                          <Table.Row key={index}>
-                         <Table.Cell>{orderDetail.orders.numbOfProd}</Table.Cell>
+                         <Table.Cell>{orderDetail.product.id}</Table.Cell>
                          <Table.Cell>{orderDetail.product.part_number}</Table.Cell>
                          <Table.Cell>{orderDetail.product.quantity}</Table.Cell>
                          <Table.Cell>{orderDetail.product.netPrice}</Table.Cell>
