@@ -120,7 +120,7 @@ const My = () => {
                          <Table.Cell>{product.quantity}</Table.Cell>
                          <Table.Cell>{product.netPrice}</Table.Cell>
                          <Table.Cell>{product.currency}</Table.Cell>
-                         <Table.Cell>{product.quantity} * {product.netPrice}</Table.Cell>
+                         <Table.Cell>{product.quantity * product.netPrice}</Table.Cell>
                        </Table.Row>
                         ))}
                       </Table.Body>

@@ -45,13 +45,13 @@ export interface Product {
   id: string;
   manufacturerId: string;
   description: string;
-  netPrice: string;
+  netPrice: number;
   currency: string;
   subCategoryId?: string;
   part_number: string;
   fittingPostion: string;
   makeModelFit: string;
-  quantity: string;
+  quantity: number;
   order_date: string;
   createdAt: string;
   updatedAt: string;
