@@ -3,6 +3,7 @@ import Layout from "../../../components/layout";
 import React from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
+import { Product } from "../../../App";
 
 
 interface ZamiinMedee extends ZamiinMedeeStatusType{
@@ -44,6 +45,13 @@ interface Supplier {
 const My = () => {
   const { data: zaminMedee } = useQuery("getZaminMedee", getZaminMedee);
   const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
+  const { data: product } = useQuery("getProducts", getProducts);
+  
+
+  async function getProducts() {
+    const response = await axiosClient.get("/products");
+    return response.data as Product[];
+  }
 
   async function getOrderDetail() {
     const response = await axiosClient.get("/order-details");
@@ -105,14 +113,14 @@ const My = () => {
                        <Table.HeadCell>Нийт үнэ</Table.HeadCell>
                       </Table.Head>
                       <Table.Body className="divide-y">
-                       {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
+                       {product?.map((product: Product, index: number) => (
                          <Table.Row key={index}>
-                         <Table.Cell>{orderDetail.product.id}</Table.Cell>
-                         <Table.Cell>{orderDetail.product.part_number}</Table.Cell>
-                         <Table.Cell>{orderDetail.product.quantity}</Table.Cell>
-                         <Table.Cell>{orderDetail.product.netPrice}</Table.Cell>
-                         <Table.Cell>{orderDetail.product.currency}</Table.Cell>
-                         <Table.Cell>{orderDetail.product.quantity * orderDetail.product.netPrice}</Table.Cell>
+                         <Table.Cell></Table.Cell>
+                         <Table.Cell>{product.part_number}</Table.Cell>
+                         <Table.Cell>{product.quantity}</Table.Cell>
+                         <Table.Cell>{product.netPrice}</Table.Cell>
+                         <Table.Cell>{product.currency}</Table.Cell>
+                         {/* <Table.Cell>{product.netPrice * product.quantity}</Table.Cell> */}
                        </Table.Row>
                         ))}
                       </Table.Body>
