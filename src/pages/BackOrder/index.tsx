@@ -7,12 +7,14 @@ export interface Order{
   createdDate: string;
   [supplierList: string]: any;
 }
-interface Supplier{
+interface Supplier extends BackOrder{
   id: string;
   createdAt: string;
   updatedAt: string;
   supplierList: string;
-  vehicleManufacturerId?: string
+  vehicleManufacturerId?: string;
+  [description: string]: any;
+
 }
 export interface User extends Order{
   email: string;
@@ -90,7 +92,7 @@ const BackOrder = () => {
               {backOrder?.map((backOrder: BackOrder, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>{backOrder.order.createdDate}</Table.Cell>
-                  <Table.Cell></Table.Cell>
+                  <Table.Cell>{backOrder.supplierList.supplierList}</Table.Cell>
                   <Table.Cell>{backOrder.description}</Table.Cell>
                   <Table.Cell>{backOrder.quantity}</Table.Cell>
                   <Table.Cell>{backOrder.netPrice}</Table.Cell>

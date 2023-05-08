@@ -18,43 +18,36 @@ interface ZamiinMedeeStatusType{
   statusTypeId: string;
   statusTypeName: string;
 }
-
-export interface InquiryDetail extends Supplier{
+ export interface OrderDetail extends Supplier{
   id: string;
   createdAt: string;
   updatedAt: string;
-  affiliateId: string;
-  partNumber: string;
-  quantity: number;
-  netPrice: number;
+  order_id: string;
   productId?: string;
-  supplierId?: string;
-  inquiryId?: string;
-  orderDetailId?: string;
+  userId?: string;
+  supplierId?:string;
+  orderId?: string;
+  teevriinzahialgaId?: string;
   statusTypeId?: string;
   [supplierList: string]: any;
 }
 
- export interface Supplier{
+interface Supplier {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
   supplierList: string;
-  vehicleManufacturerId?: string
+  vehicleManufacturerId?: string;
 }
-interface OrderDetail extends InquiryDetail{
-  order_id: string;
-  userId?: string;
-  teevriinzahialgaId?: string;
-}
-interface StatusType extends InquiryDetail{
-  statusName: string;
-}
+
+
 const My = () => {
   const { data: zaminMedee } = useQuery("getZaminMedee", getZaminMedee);
+  const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
 
-  const { data: inquiryDetail } = useQuery("getInquiryDetail", getInquiryDetail);
-
-  async function getInquiryDetail(){
-    const response = await axiosClient.get("/inquiry_details");
-    return response.data as InquiryDetail[];
+  async function getOrderDetail() {
+    const response = await axiosClient.get("/order-details");
+    return response.data as OrderDetail[];
   }
   async function getZaminMedee() {
     const response = await axiosClient.get("/zamin_medees");
@@ -86,13 +79,13 @@ const My = () => {
                      
                       </Table.Head>
                       <Table.Body className="divide-y">
-                        {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number) => (
-                          <Table.Row key={index}>
-                            <Table.Cell></Table.Cell>
-                            <Table.Cell>{inquiryDetail.orderDetail.order_id}</Table.Cell>
-                            <Table.Cell>{inquiryDetail.supplier.supplierList}</Table.Cell>
-                            <Table.Cell><a href="/create">{inquiryDetail.statusType.statusName}</a></Table.Cell>
-                          </Table.Row>
+                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
+                           <Table.Row key={index} >
+                           <Table.Cell></Table.Cell>
+                           <Table.Cell>{orderDetail.order_id}</Table.Cell>
+                           <Table.Cell>{orderDetail.supplier.supplierList}</Table.Cell>
+                           <Table.Cell><a href="/create">{orderDetail.statusType.statusName}</a></Table.Cell>
+                         </Table.Row>
                         ))}
                       </Table.Body>
                     </Table>
@@ -109,19 +102,19 @@ const My = () => {
                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                        <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                        <Table.HeadCell>Currency</Table.HeadCell>
-                       {/* <Table.HeadCell>Нийт үнэ</Table.HeadCell> */}
+                       <Table.HeadCell>Нийт үнэ</Table.HeadCell>
                       </Table.Head>
                       <Table.Body className="divide-y">
-                       {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number)=> (
+                       {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
                          <Table.Row key={index}>
-                         <Table.Cell>{inquiryDetail.orderDetail.order_id}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.partNumber}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.quantity}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.netPrice}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.currency}</Table.Cell>
-                         {/* <Table.Cell>{inquiryDetail.quantity * inquiryDetail.netPrice}</Table.Cell> */}
+                         <Table.Cell>{orderDetail.orders.numbOfProd}</Table.Cell>
+                         <Table.Cell>{orderDetail.product.part_number}</Table.Cell>
+                         <Table.Cell>{orderDetail.product.quantity}</Table.Cell>
+                         <Table.Cell>{orderDetail.product.netPrice}</Table.Cell>
+                         <Table.Cell>{orderDetail.product.currency}</Table.Cell>
+                         <Table.Cell>{orderDetail.product.quantity * orderDetail.product.netPrice}</Table.Cell>
                        </Table.Row>
-                       ))}
+                        ))}
                       </Table.Body>
                     </Table>
                   </div>
