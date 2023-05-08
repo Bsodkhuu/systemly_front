@@ -12,9 +12,12 @@ interface OrderDetail extends TeevriinZahialga{
     createdAt: string;
     updatedAt: string;
     order_id: string;
+    productId?: string;
     userId?: string;
+    supplierId?:string;
+    orderId?: string;
     teevriinzahialgaId?: string;
-    supplierId?: string;
+    statusTypeId?: string;
     [teevriinZahialgaId: string]: any;
 }
 
@@ -42,7 +45,37 @@ interface Affiliate{
     updatedAt: string;
     affiliateName: string;
 }
-
+ export interface Order extends StatusType{
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    productId?: string;
+    numbOfProd: string;
+    prodmetricId?: string;
+    prodAllTotal: string;
+    manufacturerPrice: number;
+    deliveryPrice: number;
+    memberPrice: number;
+    tax: number;
+    otherPrice: number;
+    totalPrice: number;
+    activeFlag: string;
+    deleteFlag: string;
+    insertDate: string;
+    insertUser: number;
+    updateUser: number;
+    deleteDate: string;
+    deleteUser: number;
+    confirmFlag: string;
+    orderedDate: string;
+    historyId: string;
+    packageId: string;
+    receiveDate: string;
+    receiverDate: string;
+    inquiryId?: string;
+    statusTypeId?: string;
+    [statusName: string]: any;
+}
 
 const Orders = () => {
     const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
@@ -66,6 +99,12 @@ const Orders = () => {
         return response.data as Affiliate[];
     }
 
+    const { data: order } = useQuery("getOrders", getOrders);
+
+    async function getOrders() {
+        const response = await axiosClient.get("/orders");
+        return response.data as Order[];
+    }
     
 
     const { data: teevriinZahialga } = useQuery("getTeevrinZahialga", getTeevrinZahialga);
@@ -153,9 +192,9 @@ const Orders = () => {
                                             {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
                                                 <Table.Row key={index}>
                                                     <Table.Cell>{orderDetail.order_id}</Table.Cell>
-                                                    <Table.Cell></Table.Cell>
+                                                    <Table.Cell>{orderDetail.createdAt}</Table.Cell>
                                                     <Table.Cell>{orderDetail.supplier.supplierList}</Table.Cell>
-                                                    <Table.Cell></Table.Cell>
+                                                    <Table.Cell>{orderDetail.statusType.statusName}</Table.Cell>
                                                 </Table.Row>
                                             ))}
                                         </Table.Body>
@@ -175,16 +214,16 @@ const Orders = () => {
                                             <Table.HeadCell>Нийт дүн</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
-                                           
-                                            <Table.Row>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
+                                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
+                                            <Table.Row key={index}>
+                                                <Table.Cell>{orderDetail.product.part_number}</Table.Cell>
+                                                <Table.Cell>{orderDetail.product.description}</Table.Cell>
+                                                <Table.Cell>{orderDetail.product.netPrice}</Table.Cell>
+                                                <Table.Cell>{orderDetail.product.fittingPostion}</Table.Cell>
+                                                <Table.Cell>{orderDetail.product.quantity}</Table.Cell>
+                                                <Table.Cell>{orderDetail.product.netPrice * orderDetail.product.quantity}</Table.Cell>
                                             </Table.Row>
-                                          
+                                          ))}
                                         </Table.Body>
                                     </Table>
                                 </Card>
@@ -204,12 +243,14 @@ const Orders = () => {
                                 <Table.HeadCell>Статус</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
-                                <Table.Row>
-                                    <Table.Cell>1</Table.Cell>
-                                    <Table.Cell>1</Table.Cell>
-                                    <Table.Cell>1</Table.Cell>
-                                    <Table.Cell>1</Table.Cell>
+                                {order?.map((order: Order, index: number) => (
+                                    <Table.Row key={index}>
+                                    <Table.Cell></Table.Cell>
+                                    <Table.Cell>{order.memberPrice}</Table.Cell>
+                                    <Table.Cell>{order.totalPrice}</Table.Cell>
+                                    <Table.Cell>{order.statusType.statusName}</Table.Cell>
                                 </Table.Row>
+                                ))}
                             </Table.Body>
                         </Table>
                     </Card>
