@@ -234,10 +234,10 @@ const Orders = () => {
                 <div className="col-span">
                 <div className="p-2">
                     <Card className="max-w-sm">
-                        <h1 className="text-1xl">Захиалгын хураангуй</h1>
+                        <h1 className="text-1xl">Захиалгын хураангуй (Гишүүд)</h1>
                         <Table>
                             <Table.Head className="uppercase">
-                                <Table.HeadCell>Брэндийн нэр(Нийлүүлэгч нэр)</Table.HeadCell>
+                                <Table.HeadCell>Гишүүд</Table.HeadCell>
                                 <Table.HeadCell>Гишүүн Нийт дүн</Table.HeadCell>
                                 <Table.HeadCell>Нийт захиалгийн дүн</Table.HeadCell>
                                 <Table.HeadCell>Статус</Table.HeadCell>
