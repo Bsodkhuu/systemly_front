@@ -241,9 +241,9 @@ const Orders = () => {
                             <Table.Body>
                                 {order?.map((order: Order, index: number) => (
                                     <Table.Row key={index}>
-                                    <Table.Cell></Table.Cell>
+                                    <Table.Cell>Plus MB</Table.Cell>
                                     <Table.Cell>{order.memberPrice}</Table.Cell>
-                                    <Table.Cell>{order.totalPrice}</Table.Cell>
+                                    <Table.Cell>{order.product.quantity * order.product.netPrice}</Table.Cell>
                                     <Table.Cell>{order.statusType.statusName}</Table.Cell>
                                 </Table.Row>
                                 ))}
