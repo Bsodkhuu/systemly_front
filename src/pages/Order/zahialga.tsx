@@ -205,9 +205,13 @@ const Zahialga = () => {
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </div>
                   <TextInput id="search" type="search" placeholder="Хайх" />
-                  <Button className="bg-orange-500" onClick={openModal}>
-                  Харилцагч нэмэх
-                </Button>
+                 
+                </div>
+                <div className="w-1/2">
+                  <div className="mb-2 block">
+
+                  </div>
+                  <Button className="bg-orange-500" onClick={openModal}>Онлайн кателоги</Button>
                 </div>
               </div>
             </div>
@@ -361,6 +365,7 @@ const Zahialga = () => {
           </div>
         </div>
       </div>
+      <ZahialgaModal showModal={showModal} closeModal={closeModal} />
     </Layout>
   );
 };
