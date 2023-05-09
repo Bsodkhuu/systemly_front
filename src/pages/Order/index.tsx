@@ -10,10 +10,7 @@ const Order = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
             <h1 className="text-1xl">Захиалга хийх </h1>
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-orange-500">Хайх</Button>
-            </div>
+            
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <div>

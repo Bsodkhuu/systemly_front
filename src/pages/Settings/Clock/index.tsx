@@ -49,10 +49,7 @@ const Clock = () => {
             <a href="/holiday">
               <h4 className="text-1xl">Бүх нийтийн амралтын өдөр</h4>
             </a>
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайлт" />
-              <Button className="bg-orange-500">Хайх</Button>
-            </div>
+           
           </div>
           <div className="p-4">
 

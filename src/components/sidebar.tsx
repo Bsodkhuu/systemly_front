@@ -22,7 +22,6 @@ const SidebarComponent = () => {
             <Item href="/my">Миний захиалга</Item>
             <Item href="/order">Захиалга хийх</Item>
             <Item href="/backorder">Бэлэн бус захиалга</Item>
-            <Item href="/online">Онлайн кателоги</Item>
           </Collapse>
 
           <Collapse label="Засвар Борлуулалт">
@@ -35,7 +34,7 @@ const SidebarComponent = () => {
             <Item href="/human">Нийт ажилчдын бүртгэл</Item>
           </Collapse>
           <Collapse label="Тохиргоо">
-            <Item href="/settings">Засвар</Item>
+            {/* <Item href="/settings">Засвар</Item> */}
             <Item href="/price">Засварын үнийн тохиргоо</Item>
             <Item href="/clock">Ажлын цагийн хуваарь</Item>
           </Collapse>
