@@ -75,6 +75,7 @@ interface Affiliate{
     receiverDate: string;
     inquiryId?: string;
     statusTypeId?: string;
+    affiliateId?: string;
     [statusName: string]: any;
 }
 
@@ -241,7 +242,7 @@ const Orders = () => {
                             <Table.Body>
                                 {order?.map((order: Order, index: number) => (
                                     <Table.Row key={index}>
-                                    <Table.Cell>Plus MB</Table.Cell>
+                                    <Table.Cell>{order.affiliate.affiliateName}</Table.Cell>
                                     <Table.Cell>{order.memberPrice}</Table.Cell>
                                     <Table.Cell>{order.product.quantity * order.product.netPrice}</Table.Cell>
                                     <Table.Cell>{order.statusType.statusName}</Table.Cell>
