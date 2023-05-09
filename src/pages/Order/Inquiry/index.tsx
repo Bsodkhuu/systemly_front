@@ -11,7 +11,6 @@ import {
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import Cart from "../Cart";
 import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";

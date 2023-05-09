@@ -19,7 +19,7 @@ import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useForm } from "react-hook-form";
 
-interface Supplier{
+ export interface Supplier{
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -42,7 +42,7 @@ interface ProductSubCategory extends ProductCategory{
   productCategoryId?: string;
 }
 
-interface Product{
+ export interface Product{
   id: string;
   createdAt: string;
   updatedAt: string;

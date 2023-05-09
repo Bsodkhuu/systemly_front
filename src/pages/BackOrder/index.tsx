@@ -14,7 +14,6 @@ interface Supplier extends BackOrder{
   supplierList: string;
   vehicleManufacturerId?: string;
   [description: string]: any;
-
 }
 export interface User extends Order{
   email: string;

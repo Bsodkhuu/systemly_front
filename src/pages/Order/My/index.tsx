@@ -33,7 +33,7 @@ interface ZamiinMedeeStatusType{
   [supplierList: string]: any;
 }
 
-interface Supplier {
+export interface Supplier {
   id: string;
   createdAt: string;
   updatedAt: string;

@@ -5,11 +5,63 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
+import { Product, Supplier } from "../../Order/zahialga";
+import { Order } from "./Orders";
 
+export interface Inquiry extends Affiliate{
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    createdDate: string;
+    inquiryNumber: string;
+    userId?: string;
+    affiliateId?: string;
+    supplierId?: string;
+    [affiliateName: string]: any;
+}
+export interface Affiliate{
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    affiliateName: string;
+}
 const Asuulguud = () => {
 
+   const { data: supplier } = useQuery("getSupplier", getSupplier);
    
+   async function getSupplier() {
+    const response = await axiosClient.get("/suppliers");
+    return response.data as Supplier[];
+   }
+
+   const { data: affiliate } =  useQuery("getAffiliate", getAffiliate);
+
+   async function getAffiliate() {
+    const response = await axiosClient.get("/affilies");
+    return response.data as Affiliate[];
+   }
+
+   const { data: inquiry } = useQuery("getInquiry", getInquiry);
+
+   async function getInquiry() {
+    const response = await axiosClient.get("/inquiries");
+    return response.data as Inquiry[];
+   }
  
+   const { data: product } = useQuery("getProduct", getProduct);
+
+   async function getProduct() {
+    const response = await axiosClient.get("/products");
+    return response.data as Product[];
+   }
+
+   const { data: order } = useQuery("getOrder", getOrder);
+   
+   async function getOrder() {
+    const response = await axiosClient.get("/orders");
+    return response.data as Order[];
+   }
+
     return (
         <Layout>
             <div className="grid grid-cols-3 gap-4">
@@ -23,11 +75,11 @@ const Asuulguud = () => {
                                         <Label htmlFor="inquiry" value="Inquiry дугаар" />
                                     </div>
                                     <Select>
-                                        {/* {inquiry?.map((i) => (
+                                        {inquiry?.map((i) => (
                                             <option value={i.id}>
                                                 {i.inquiryNumber}
                                             </option>
-                                        ))} */}
+                                        ))}
                                     </Select>
                                 </div>
                                 <div className="w-1/2">
@@ -35,11 +87,11 @@ const Asuulguud = () => {
                                         <Label htmlFor="supplier" value="Нийлүүлэгч" />
                                     </div>
                                     <Select>
-                                        {/* {supplier?.map((i)=> (
+                                        {supplier?.map((i)=> (
                                             <option value={i.id}>
                                                 {i.supplierList}
                                             </option>
-                                        ))} */}
+                                        ))}
                                     </Select>
                                 </div>
                                 <div className="w-1/2">
@@ -47,11 +99,11 @@ const Asuulguud = () => {
                                         <Label htmlFor="order" value="Захиалагч"/>
                                     </div>
                                     <Select>
-                                        {/* {affiliate?.map((i) => (
+                                        {affiliate?.map((i) => (
                                             <option value={i.id}>
                                                 {i.affiliateName}
                                             </option>
-                                        ))} */}
+                                        ))}
                                     </Select>
                                 </div>
                                 <div className="w-1/2">
@@ -75,14 +127,14 @@ const Asuulguud = () => {
                                     <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                                 </Table.Head>
                                 <Table.Body>
-                                   
-                                    <Table.Row>
-                                        <Table.Cell></Table.Cell>
-                                        <Table.Cell></Table.Cell>
-                                        <Table.Cell></Table.Cell>
-                                        <Table.Cell>Нийлүүлэгч</Table.Cell>
+                                   {inquiry?.map((inquiry: Inquiry, index: number) => (
+                                    <Table.Row key={index}>
+                                        <Table.Cell>{inquiry.inquiryNumber}</Table.Cell>
+                                        <Table.Cell>{inquiry.affiliate.affiliateName}</Table.Cell>
+                                        <Table.Cell>{inquiry.createdDate}</Table.Cell>
+                                        <Table.Cell>{inquiry.supplier.supplierList}</Table.Cell>
                                     </Table.Row>
-                                   
+                                   ))}
                                 </Table.Body>
                             </Table>
                             </div>
@@ -104,17 +156,17 @@ const Asuulguud = () => {
                                     <Table.HeadCell>ETA(Хэрэв байхгүй бол бэлэн болох хугацаа)</Table.HeadCell>
                                 </Table.Head>
                                 <Table.Body>
-                                    
-                                        <Table.Row>
-                                            <Table.Cell></Table.Cell>
-                                            <Table.Cell></Table.Cell>
-                                            <Table.Cell></Table.Cell>
-                                            <Table.Cell></Table.Cell>
-                                            <Table.Cell></Table.Cell>
+                                    {product?.map((product: Product, index: number) => (
+                                        <Table.Row key={index}>
+                                            <Table.Cell>{product.part_number}</Table.Cell>
+                                            <Table.Cell>{product.description}</Table.Cell>
+                                            <Table.Cell>{product.netPrice}</Table.Cell>
+                                            <Table.Cell>{product.fittingPostion}</Table.Cell>
+                                            <Table.Cell>{product.quantity}</Table.Cell>
                                             <Table.Cell></Table.Cell>
                                             <Table.Cell></Table.Cell>
                                         </Table.Row>
-                                    
+                                    ))}
                                 </Table.Body>
                             </Table>
                             </div>
@@ -134,12 +186,12 @@ const Asuulguud = () => {
                                 <Table.HeadCell>Нийт дүн</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
-                                
-                                    <Table.Row>
-                                    <Table.Cell></Table.Cell>
-                                    <Table.Cell></Table.Cell>
+                                {order?.map((order: Order, index: number) => (
+                                    <Table.Row key={index}>
+                                    <Table.Cell>{order.affiliate.affiliateName}</Table.Cell>
+                                    <Table.Cell>{order.totalPrice}</Table.Cell>
                                 </Table.Row>
-                                
+                                ))}
                             </Table.Body>
                         </Table>
                         <Button className="bg-orange-500">Захиалга үүсгэх</Button>
