@@ -1,23 +1,30 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import {
   TextInput,
   Button,
   Carousel,
   Card,
-  Table,
   Select,
   Label,
-  ListGroup, 
+  ListGroup,
+  Modal, 
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCartShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useForm } from "react-hook-form";
+
+export interface Online{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  image: string;
+  link: string;
+}
 
  export interface Supplier{
   id: string;
@@ -57,7 +64,39 @@ interface ProductSubCategory extends ProductCategory{
   order_date: string;
 }
 
+
+interface ModalProps{
+  showModal: boolean;
+  closeModal: () => void;
+}
+
+const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
+  const { data: online } = useQuery("getOnline", getOnline);
+
+  async function getOnline() {
+    const response = await axiosClient.get("/onlines");
+    return response.data as Online[];
+  }
+  return (
+    <Modal show={showModal} onClose={closeModal}>
+      <Modal.Header>Онлайн кателоги</Modal.Header>
+      <Modal.Body>
+      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+              
+              <Carousel>
+              {online?.map((online: Online, index: number) => (
+                <a href={online.link}>
+                  <img key={index} src={online.image} className="padding-bottom:100%"/>
+                </a>
+              ))}
+              </Carousel>
+            </div>
+      </Modal.Body>
+    </Modal>
+  );
+}
 const Zahialga = () => {
+  const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit } = useForm<Product>();
   const { mutateAsync } = useMutation("product", product);
 
@@ -107,6 +146,15 @@ const Zahialga = () => {
   async function onSubmit(values: Product) {
     await mutateAsync(values);
   }
+
+  function openModal() {
+    setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
+  }
+
   const reviews = [
     {
       id: 1,
@@ -127,6 +175,7 @@ const Zahialga = () => {
             <div className="flex justify-between mb-4">
               <h5 className="text-1xl">Захиалга</h5>
               <div className="flex gap-4">
+                
                 <div className="w-1/2">
                   <div className="mb-2 block">
                     <Label htmlFor="brand" value="Брэнд" />
@@ -156,6 +205,9 @@ const Zahialga = () => {
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </div>
                   <TextInput id="search" type="search" placeholder="Хайх" />
+                  <Button className="bg-orange-500" onClick={openModal}>
+                  Харилцагч нэмэх
+                </Button>
                 </div>
               </div>
             </div>

@@ -43,6 +43,7 @@ const BackOrder = () => {
     const response = await axiosClient.get("/back-orders");
     return response.data as BackOrder[];
   }
+
   return (
     <Layout>
       <div className="p-2 bg-gray-200 h-screen col-span-2">
@@ -91,7 +92,7 @@ const BackOrder = () => {
               {backOrder?.map((backOrder: BackOrder, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>{backOrder.order.createdDate}</Table.Cell>
-                  <Table.Cell>{backOrder.supplierList.supplierList}</Table.Cell>
+                  <Table.Cell>{backOrder.supplier.supplierList}</Table.Cell>
                   <Table.Cell>{backOrder.description}</Table.Cell>
                   <Table.Cell>{backOrder.quantity}</Table.Cell>
                   <Table.Cell>{backOrder.netPrice}</Table.Cell>
