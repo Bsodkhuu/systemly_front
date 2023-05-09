@@ -256,7 +256,7 @@ const Orders = () => {
                         <a href="/nemelt" className="text-1xl">Нэмэлт мэдээллүүд</a>
                         <ListGroup>
                             {teevriinZahialga?.map((teevriinZahialga: TeevriinZahialga, index: number) => (
-                                <ListGroupItem>
+                                <ListGroupItem key={index}>
                                     Тээвэрлэгч: 
                                     <ListGroupItem>
                                         Тээврийн захиалгийн дугаар: {teevriinZahialga.teevriinZahialgaId}
