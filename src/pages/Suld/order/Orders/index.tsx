@@ -22,12 +22,12 @@ interface OrderDetail extends TeevriinZahialga{
     [teevriinZahialgaId: string]: any;
 }
 
-export interface TeevriinZahialga extends StatusType{
+export interface TeevriinZahialga{
     statusTypeId?:string;
     date: string;
     teevriinZahialgaId: string;
+    statusName: string;
     name: string;
-    [statusName: string]: any;
 }
 interface StatusType{
     id: string;
@@ -265,7 +265,7 @@ const Orders = () => {
                                         Тээврийн захиалгийн дугаар: {teevriinZahialga.teevriinZahialgaId}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        Тээврийн төрөл: {teevriinZahialga.statusType.statusName}
+                                        Тээврийн төрөл: {teevriinZahialga.statusName}
                                     </ListGroupItem>
                                 </ListGroupItem>
                             ))}
