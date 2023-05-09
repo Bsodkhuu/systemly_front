@@ -9,7 +9,6 @@ const Nemelt = () => {
                 <div className="bg-white p-6 rounded-lg">
                     <div className="flex justify-between mb-4">
                         <h4 className="text-1xl">Нэмэлт мэдээлэл</h4>
-                        
                     </div>
                     <form>
                         <Label htmlFor="" value="Тээвэрлэгч"/>
