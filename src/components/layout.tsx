@@ -34,6 +34,7 @@ const Layout: FC<Props> = ({ children }) => {
           />
         </Navbar.Brand>
      
+          <a href="/profile">
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -45,6 +46,7 @@ const Layout: FC<Props> = ({ children }) => {
               />
             }>
           </Dropdown>
+          </a>
       </Navbar>
       <div className="flex">
         <SidebarComponent />

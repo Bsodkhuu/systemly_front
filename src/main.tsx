@@ -43,6 +43,7 @@ import FeedBack from "./pages/Suld/feedback";
 import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
 import Vilchilgee from "./pages/Customer/Sale/service";
+import Profile from "./pages/Profile";
 
 
 const router = createBrowserRouter([
@@ -208,6 +209,10 @@ const router = createBrowserRouter([
     path: "/forgot",
     element: <Forgot />,
   },
+  {
+    path: "/profile", 
+    element: <Profile />
+  }
 
 ]);
 

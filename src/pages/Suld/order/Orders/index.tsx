@@ -23,7 +23,6 @@ interface OrderDetail extends TeevriinZahialga{
 }
 
 export interface TeevriinZahialga{
-    statusTypeId?:string;
     date: string;
     teevriinZahialgaId: string;
     statusName: string;
