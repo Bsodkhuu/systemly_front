@@ -72,18 +72,6 @@ const Asuulguud = () => {
                             <div className="flex gap-4">
                                 <div className="w-1/2">
                                     <div className="mb-2 block">
-                                        <Label htmlFor="inquiry" value="Inquiry дугаар" />
-                                    </div>
-                                    <Select>
-                                        {inquiry?.map((i) => (
-                                            <option value={i.id}>
-                                                {i.inquiryNumber}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
                                         <Label htmlFor="supplier" value="Нийлүүлэгч" />
                                     </div>
                                     <Select>
