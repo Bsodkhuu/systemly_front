@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../../../components/layout";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, Select, TextInput } from "flowbite-react";
 import { axiosClient } from "../../../config/axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -50,13 +50,19 @@ const Transport = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="makeId" value="Загвар" />
                 </div>
-                <TextInput id="makeId" {...register("makeId")} />
+                <Select>
+                  <option value="makeId">
+                  </option>
+                </Select>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="modelName" value="Модел" />
                 </div>
-                <TextInput id="modelName" {...register("modelName")} />
+                <Select>
+                  <option value="modelName">
+                  </option>
+                </Select>
               </div>
             </div>
             <div className="flex gap-4">
@@ -67,11 +73,10 @@ const Transport = () => {
                     value="Машин үйлдвэрлэсэн оноос хойш"
                   />
                 </div>
-                <TextInput
-                  type="number"
-                  id="vehicleProductionYearFrom"
-                  {...register("vehicleProductionYearFrom")}
-                />
+                <Select>
+                  <option value="vehicleProductionYearFrom">
+                  </option>
+                </Select>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -80,11 +85,10 @@ const Transport = () => {
                     value="Машин үйлдвэрлэсэн оноос өмнө"
                   />
                 </div>
-                <TextInput
-                  type="number"
-                  id="vehicleProductionYearTo"
-                  {...register("vehicleProductionYearTo")}
-                />
+                <Select>
+                  <option value="vehicleProductionYearTo">
+                  </option>
+                </Select>
               </div>
             </div>
             <div className="flex gap-4">
@@ -101,10 +105,10 @@ const Transport = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="vehicleBodyTypeId" value="Машины төрөл" />
                 </div>
-                <TextInput
-                  id="vehicleBodyTypeId"
-                  {...register("vehicleBodyTypeId")}
-                />
+                <Select>
+                  <option value="vehicleBodyTypeId">
+                  </option>
+                </Select>
               </div>
             </div>
             <div className="flex gap-4">

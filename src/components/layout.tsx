@@ -3,7 +3,7 @@ import SidebarComponent from "./sidebar";
 import { Navbar, Dropdown, Avatar, Footer} from "flowbite-react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../config/axios";
-import { Drawer } from "flowbite";
+
 interface Props {
   children?: React.ReactNode;
 }
@@ -34,7 +34,7 @@ const Layout: FC<Props> = ({ children }) => {
           />
         </Navbar.Brand>
      
-          <a href="/profile">
+         
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -46,7 +46,7 @@ const Layout: FC<Props> = ({ children }) => {
               />
             }>
           </Dropdown>
-          </a>
+          
       </Navbar>
       <div className="flex">
         <SidebarComponent />
