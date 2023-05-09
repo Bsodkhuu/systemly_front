@@ -252,8 +252,10 @@ const Orders = () => {
                         </Table>
                     </Card>
                     <div className="p-4">
-                    <Card className="max-w-sm">
-                        <a href="/nemelt" className="text-1xl">Нэмэлт мэдээллүүд</a>
+                    <Card className="max-w-sm"> 
+                     <Button>
+                     <a href="/nemelt" className="text-1xl">Тээвэрлэгч</a>
+                     </Button>
                         <ListGroup>
                             {teevriinZahialga?.map((teevriinZahialga: TeevriinZahialga, index: number) => (
                                 <ListGroupItem key={index}>
