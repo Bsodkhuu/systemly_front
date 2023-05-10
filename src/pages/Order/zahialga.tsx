@@ -235,24 +235,26 @@ const Zahialga = () => {
               <h1 className="text-1xl">Сагс</h1>
               <div className="w-50">
                 <ListGroup>
-                  
-                    <ListGroup.Item>
-                      
+                  {product?.map((product: Product, index:number) => (
+                    <ListGroup.Item key={index}>
+                      Үйлдвэрлэгч: {product.manufacturerId}
                       <ListGroup.Item></ListGroup.Item>
-                     
+                      Бүтээгдэхүүний код: {product.productCode}
                       <ListGroup.Item></ListGroup.Item>
-                      
+                      Бүтээгдэхүүний нэр: {product.productName}
                       <ListGroup.Item></ListGroup.Item>
-                      
+                      Тайлбар: {product.productDescription}
                       <ListGroup.Item></ListGroup.Item>
-                     
+                      Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
-                      
+                      Үндсэн үнэ: {product.priceMain}
                       <ListGroup.Item></ListGroup.Item>
+                      Тээврийн хэрэгсэл төрөл: {product.vehicleType}
                       <ListGroup.Item></ListGroup.Item>
-                      
+                      Тээврийн хэрэгслийн нэр: {product.nameEng}
+                      <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
-                
+                  ))}
                 </ListGroup>
                 &nbsp;
                 <a href="/messej">
