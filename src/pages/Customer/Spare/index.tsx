@@ -14,7 +14,8 @@ import Layout from "../../../components/layout";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { Inventory } from "../../../App";
+import { Inventory } from "../../API";
+
 
 const Spare = () => {
   const [showModal, setShowModal] = useState(false);

@@ -16,101 +16,51 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 
- interface ServiceHistory extends AffiliateEmployee{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  vinNumberId?: string;  //garagacustomervehicles 
-  serviceDate: string;
-  serviceAffiliateId?: string; //user
-  ajilGuitsetgesenAjiltanId?: string; // affiliateemployee
-  quantity: number;
-  discount: number;
-  netPrice: number;
-  serviceName: string;
-  [name: string] : any;
-}
-
-interface ServiceType{
-  mainCategory: string;
-  subCategory: string;
-  name: string;
-  price: number;
-  currency: string;
-}
-
-export interface AffiliateEmployee{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  affiliateId?: string;
-  name: string;
-  ovog: string;
-  phone: string;
-  email: string;
-  image: string;
-  jobDate: string;
-  position_name: string;
-}
-
-
-interface OrderDetail{
-  id: string;
-  order_id: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
 
 const Human = () => {
   const [showModal, setShowModal] = useState(false);
-  const { register, handleSubmit } =
-    useForm<Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">>();
-  const { mutateAsync } = useMutation("createCustomer", createCustomer);
-  const { data: serviceHistory } = useQuery(
-    "getServiceHistory",
-    getServiceHistory
-  );
+  // const { register, handleSubmit } =
+  //   useForm<Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">>();
+  // const { mutateAsync } = useMutation("createCustomer", createCustomer);
+  // const { data: serviceHistory } = useQuery(
+  //   "getServiceHistory",
+  //   getServiceHistory
+  // );
 
-  const { data: orderDetails } = useQuery(
-    "getOrderDetails", getOrderDetails
-  );
+  // const { data: orderDetails } = useQuery(
+  //   "getOrderDetails", getOrderDetails
+  // );
 
-  async function getOrderDetails() {
-    const response = await axiosClient.get("/order-details");
-    return response.data as OrderDetail[];
-  }
-  async function getServiceHistory() {
-    const response = await axiosClient.get("/service_histories");
-    return response.data as ServiceHistory;
-  }
+  // async function getOrderDetails() {
+  //   const response = await axiosClient.get("/order-details");
+  //   return response.data as OrderDetail[];
+  // }
+  // async function getServiceHistory() {
+  //   const response = await axiosClient.get("/service_histories");
+  //   return response.data as ServiceHistory;
+  // }
 
 
 
-  async function createCustomer(
-    values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
-  ) {
-    const response = await axiosClient.post("/affiliate_employees", values);
-    return response.data;
-  }
+  // async function createCustomer(
+  //   values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
+  // ) {
+  //   const response = await axiosClient.post("/affiliate_employees", values);
+  //   return response.data;
+  // }
 
-  async function onSubmit(
-    values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
-  ) {
-    await mutateAsync(values);
-    closeModal();
-  }
+  // async function onSubmit(
+  //   values: Omit<AffiliateEmployee, "id" | "createdAt" | "updatedAt">
+  // ) {
+  //   await mutateAsync(values);
+  //   closeModal();
+  // }
   function openModal() {
     setShowModal(true);
   }
   function closeModal() {
     setShowModal(false);
-  }
-
-  const { data: employeesList } = useQuery("getEmployees", getEmployees);
-  async function getEmployees() {
-    const response = await axiosClient.get("/affiliate_employees");
-    return response.data as AffiliateEmployee[];
   }
 
   return (
@@ -119,7 +69,7 @@ const Human = () => {
         <Modal.Header>Ажилчид нэмэх</Modal.Header>
         <Modal.Body>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+           // onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4 max-h-96 overflow-y-auto">
             <div>
               
@@ -129,13 +79,13 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="name" value="Нэр" />
                 </div>
-                <TextInput id="name" {...register("name")} />
+                <TextInput id="name"  />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="ovog" value="Овог" />
                 </div>
-                <TextInput id="ovog" {...register("ovog")} />
+                <TextInput id="ovog"  />
               </div>
             </div>
             <div className="flex gap-4">
@@ -143,13 +93,13 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="position_name" value="Албан тушаал" />
                 </div>
-                <TextInput id="position_name" {...register("position_name")} />
+                <TextInput id="position_name"  />
                </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phone" value="Утасны дугаар" />
                 </div>
-                <TextInput id="phone" {...register("phone")} />
+                <TextInput id="phone"  />
               </div>
             </div>
 
@@ -158,13 +108,13 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="email" value="Имэйл" />
                 </div>
-                <TextInput type="text" {...register("email")}/>
+                <TextInput type="text" />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="image" value="Ажилтны зураг"/>
                 </div>
-                <TextInput type="text" {...register("image")}/>
+                <TextInput type="text"/>
               </div>
               </div>
               <div className="flex gap-4">
@@ -173,7 +123,7 @@ const Human = () => {
                     <Label htmlFor="jobDate" value="Ажилд орсон огноо "/>
                   </div>
                   {/* <FileInput/> */}
-                  <TextInput type="text" {...register("jobDate")}/>
+                  <TextInput type="text" />
                 </div>
               
             </div>
@@ -183,7 +133,7 @@ const Human = () => {
           <Button onClick={closeModal} className="bg-gray-400">
             Буцах
           </Button>
-          <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
+          <Button  className="bg-orange-500">
             Хадгалах
           </Button>
         </Modal.Footer>
@@ -223,14 +173,7 @@ const Human = () => {
                     <Table.HeadCell>Мэргэжил</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
-                    {employeesList?.map((employeesList: AffiliateEmployee, index: number) => (
-                      <Table.Row key={index}>
-                        <Table.Cell><Checkbox /></Table.Cell>
-                        <Table.Cell>{employeesList.ovog}</Table.Cell>
-                        <Table.Cell>{employeesList.name}</Table.Cell>
-                        <Table.Cell>{employeesList.position_name}</Table.Cell>
-                      </Table.Row>
-                    ))}
+                    
                   </Table.Body>
                 </Table>
               </Card>
@@ -248,13 +191,7 @@ const Human = () => {
                     <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
-                      {orderDetails?.map((orderDetails: OrderDetail, index: number) => (
-                        <Table.Row key={index}>
-                          <Table.Cell><Checkbox /></Table.Cell>
-                          <Table.Cell>{orderDetails.order_id}</Table.Cell>
-                          <Table.Cell>{orderDetails.order_id}</Table.Cell>
-                        </Table.Row>
-                      ))}
+                      
                   </Table.Body>
                 </Table>
               </Card>
@@ -275,20 +212,7 @@ const Human = () => {
                 <Table.HeadCell>Нийт</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                {serviceHistory?.map((serviceHistory: ServiceHistory, index: number) => (
-                  <Table.Row key={index}>
-                    <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
-                    <Table.Cell>{serviceHistory.quantity}</Table.Cell>
-                    <Table.Cell>{serviceHistory.netPrice}</Table.Cell>
-                    <Table.Cell>
-                      {serviceHistory.ajilGuitsetgesenAjiltan.name}
-                    </Table.Cell>
-                    <Table.Cell>{serviceHistory.discount}</Table.Cell>
-                    <Table.Cell>
-                    {serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
+                
               </Table.Body>
             </Table>
           </Card>

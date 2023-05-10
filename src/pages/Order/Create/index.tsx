@@ -14,17 +14,8 @@ import { useMutation } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { useQuery } from "react-query";
 import React from "react";
+import { Address } from "../../API";
 
-interface Address {
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: string;
-  city: string;
-  state: string;
-  country: string;
-  order_note: string;
-}
 
 const Create = () => {
 
@@ -88,106 +79,7 @@ const Create = () => {
                 <Button className="bg-orange-500">Бэлэн бус захиалга</Button>
               </a>
             </div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <div className="grid-cols-2">
-              <div>
-                <Card>
-                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                    <div className="flex gap-4">
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="firstname" value="Овог" />
-                        </div>
-                        <TextInput id="firstname" {...register("firstname")} />
-                      </div>
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="lastname" value="Нэр" />
-                        </div>
-                        <TextInput id="lastname" {...register("lastname")} />
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="email" value="Имэйл" />
-                        </div>
-                        <TextInput id="email" {...register("email")} />
-                      </div>
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="phone" value="Утасны дугаар" />
-                        </div>
-                        <TextInput id="phone" {...register("phone")} />
-                      </div>
-                    </div>
-                    <div className="flex gap-4">
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="city" value="Хот" />
-                        </div>
-                        <TextInput id="city" {...register("city")} />
-                      </div>
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="state" value="Бүс" />
-                        </div>
-                        <TextInput id="state" {...register("state")} />
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label htmlFor="country" value="Улс" />
-                        </div>
-                        <TextInput id="country" {...register("country")} />
-                      </div>
-                      <div className="w-1/2">
-                        <div className="mb-2 block">
-                          <Label
-                            htmlFor="order_note"
-                            value="Захиалгийн тайлбар"
-                          />
-                        </div>
-                        <Textarea id="order_note" {...register("order_note")} />
-                      </div>
-                    </div>
-                    <Button
-                    onClick={handleSubmit(onSubmit)}
-                      type="submit"
-                      className="bg-orange-500">
-                      Хадгалах
-                    </Button>
-                  </form>
-                  <Table>
-                  <Table.Head className="uppercase">
-                  <Table.HeadCell>Овог</Table.HeadCell>
-                  <Table.HeadCell>Нэр</Table.HeadCell>
-                  <Table.HeadCell>Имэйл</Table.HeadCell>
-                  <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                  <Table.HeadCell>Улс</Table.HeadCell>
-                  <Table.HeadCell>Хот</Table.HeadCell>
-                  <Table.HeadCell>Захиалгийн тэмдэглэл</Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y">
-                  {address1?.map((address: Address, index: number) => (
-                    <Table.Row key={index}>
-                      <Table.Cell>{address.firstname}</Table.Cell>
-                      <Table.Cell>{address.lastname}</Table.Cell>
-                      <Table.Cell>{address.email}</Table.Cell>
-                      <Table.Cell>{address.phone}</Table.Cell>
-                      <Table.Cell>{address.country}</Table.Cell>
-                      <Table.Cell>{address.city}</Table.Cell>
-                      <Table.Cell>{address.order_note}</Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table.Body>
-              </Table>
-                </Card>
-              </div>
-            </div>
+           
           </div>
         </div>
         <div className="col-span">
@@ -196,23 +88,23 @@ const Create = () => {
               <h1 className="text-1xl">Сагс</h1>
               <div className="w-50">
                 <ListGroup>
-                  {data.map((i: any) => (
+                  
                     <ListGroup.Item>
-                      Парт дугаар: {i.part_number}
+                      Парт дугаар: 
                       <ListGroup.Item></ListGroup.Item>
-                      Тайлбар: {i.description}
+                      Тайлбар: 
                       <ListGroup.Item></ListGroup.Item>
-                      Нэгжийн үнэ: {i.netPrice}
+                      Нэгжийн үнэ: 
                       <ListGroup.Item></ListGroup.Item>
-                      Валют: {i.currency}
+                      Валют:
                       <ListGroup.Item></ListGroup.Item>
-                      Fitting: {i.fittingPostion}
+                      Fitting: 
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо, ширхэг: {i.quantity}
+                      Тоо, ширхэг: 
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт үнэ: {i.subtotal}
+                      Нийт үнэ:
                     </ListGroup.Item>
-                  ))}
+                
                 </ListGroup>
                 &nbsp;
                 <a href="/checkbox">

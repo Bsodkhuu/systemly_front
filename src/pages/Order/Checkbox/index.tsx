@@ -84,16 +84,7 @@ const Checkbox = () => {
                   <Table.HeadCell>Захиалгын он сар</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  {data.map((i: any) => (
-                    <Table.Row>
-                      <Table.Cell>{i.part_number}</Table.Cell>
-                      <Table.Cell>{i.description}</Table.Cell>
-                      <Table.Cell>{i.quantity}</Table.Cell>
-                      <Table.Cell>{i.netPrice}</Table.Cell>
-                      <Table.Cell>{i.quantity * i.netPrice}</Table.Cell>
-                      <Table.Cell>{i.order_date}</Table.Cell>
-                    </Table.Row>
-                  ))}
+                  
                 </Table.Body>
               </Table>
             </div>
@@ -107,23 +98,11 @@ const Checkbox = () => {
                   <h1 className="text-1xl">Сагс</h1>
                   <div className="w-50">
                     <ListGroup>
-                      {data.map((i: any) => (
+                      
                         <ListGroup.Item>
-                          Парт дугаар: {i.part_number}
-                          <ListGroup.Item></ListGroup.Item>
-                          Тайлбар: {i.description}
-                          <ListGroup.Item></ListGroup.Item>
-                          Нэгжийн үнэ: {i.netPrice}
-                          <ListGroup.Item></ListGroup.Item>
-                          Валют: {i.currency}
-                          <ListGroup.Item></ListGroup.Item>
-                          Fitting: {i.fittingPostion}
-                          <ListGroup.Item></ListGroup.Item>
-                          Тоо, ширхэг: {i.quantity}
-                          <ListGroup.Item></ListGroup.Item>
-                          Нийт үнэ: {i.subtotal}
+
                         </ListGroup.Item>
-                      ))}
+                      
                     </ListGroup>
                   </div>
                 </Card>

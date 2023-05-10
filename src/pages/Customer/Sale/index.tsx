@@ -15,15 +15,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Sale = () => {
   const [searchParams] = useSearchParams();
-  const { data: serviceHistory } = useQuery(
-    "getServiceHistory",
-    getServiceHistory
-  );
-
-  async function getServiceHistory() {
-    const response = await axiosClient.get("/service_histories");
-    return response.data;
-  }
+  
   return (
     <Layout>
       <div className="grid grid-cols-3 gap-4">
@@ -52,20 +44,18 @@ const Sale = () => {
                     <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y bg-scroll">
-                    {serviceHistory?.map(
-                      (serviceHistory: any, index: number) => (
-                        <Table.Row key={index}>
+                    
+                        <Table.Row>
                           <Table.Cell>
                             <Checkbox />
                           </Table.Cell>
-                          <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
-                          <Table.Cell>{serviceHistory.quantity}</Table.Cell>
+                          <Table.Cell></Table.Cell>
+                          <Table.Cell></Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.netPrice}
+                            
                           </Table.Cell>
                         </Table.Row>
-                      )
-                    )}
+                   
                   </Table.Body>
                 </Table>
               </Card>
@@ -87,25 +77,23 @@ const Sale = () => {
                     </Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
-                    {serviceHistory?.map(
-                      (serviceHistory: any, index: number) => (
-                        <Table.Row key={index}>
-                          <Table.Cell>{serviceHistory.serviceName}</Table.Cell>
+                   
+                        <Table.Row>
+                          <Table.Cell></Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.ajilGuitsetgesenAjiltan.name}
+                            
                           </Table.Cell>
-                          <Table.Cell>{serviceHistory.quantity}</Table.Cell>
+                          <Table.Cell></Table.Cell>
                           <Table.Cell>
-                            {serviceHistory.netPrice}
+                            
                           </Table.Cell>
-                          <Table.Cell>{serviceHistory.discount}</Table.Cell>
+                          <Table.Cell></Table.Cell>
                           <Table.Cell>
-                          {serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)}
+                          {/* {serviceHistory.netPrice * serviceHistory.quantity * (100 - serviceHistory.discount / 100)} */}
                           </Table.Cell>
-                          <Table.Cell>{serviceHistory.serviceDate}</Table.Cell>
+                          <Table.Cell></Table.Cell>
                         </Table.Row>
-                      )
-                    )}
+                    
                   </Table.Body>
                 </Table>
               </Card>
@@ -117,19 +105,19 @@ const Sale = () => {
             <Card className="max-w-sm">
               <h1 className="text-1xl">Засварын хуудас</h1>
               <ListGroup>
-                {serviceHistory?.map((serviceHistory: any, index: number) => (
-                  <ListGroup.Item key={index}>
-                    Ажлын хөлс: {serviceHistory.netPrice}
+                
+                  <ListGroup.Item>
+                    Ажлын хөлс: 
                     <ListGroup.Item></ListGroup.Item>
                     <ListGroup.Item>
-                      Материал: {serviceHistory.quantity}
+                      Материал: 
                       <ListGroup.Item></ListGroup.Item>
                       <ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
-                        Хямдрал: {serviceHistory.discount}
+                        Хямдрал: 
                       </ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт: {serviceHistory.netPrice * serviceHistory.quantity * (100 -serviceHistory.discount / 100)}
+                      {/* Нийт: {serviceHistory.netPrice * serviceHistory.quantity * (100 -serviceHistory.discount / 100)} */}
                       {/* {serviceHistory.quantity *
                               serviceHistory.serive.price *
                               (100 - serviceHistory.discount / 100)} */}
@@ -143,7 +131,7 @@ const Sale = () => {
                       </Select>
                     </ListGroup.Item>
                   </ListGroup.Item>
-                ))}
+              
               </ListGroup>
             </Card>
           </div>

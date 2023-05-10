@@ -3,43 +3,8 @@ import Layout from "../../../components/layout";
 import React from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { Product } from "../../../App";
+import { OrderDetail, Product, ZamiinMedee } from "../../API";
 
-
-interface ZamiinMedee extends ZamiinMedeeStatusType{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  location: string
-  date: string;
-  zamStatusTypeId?: string;
-  [statusTypeName: string]: any;
-}
-interface ZamiinMedeeStatusType{
-  statusTypeId: string;
-  statusTypeName: string;
-}
- export interface OrderDetail extends Supplier{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  order_id: string;
-  productId?: string;
-  userId?: string;
-  supplierId?:string;
-  orderId?: string;
-  teevriinzahialgaId?: string;
-  statusTypeId?: string;
-  [supplierList: string]: any;
-}
-
-export interface Supplier {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  supplierList: string;
-  vehicleManufacturerId?: string;
-}
 
 
 const My = () => {
@@ -90,9 +55,6 @@ const My = () => {
                         {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
                            <Table.Row key={index} >
                            <Table.Cell></Table.Cell>
-                           <Table.Cell>{orderDetail.order_id}</Table.Cell>
-                           <Table.Cell>{orderDetail.supplier.supplierList}</Table.Cell>
-                           <Table.Cell><a href="/create">{orderDetail.statusType.statusName}</a></Table.Cell>
                          </Table.Row>
                         ))}
                       </Table.Body>
@@ -112,16 +74,7 @@ const My = () => {
                        <Table.HeadCell>Нийт үнэ</Table.HeadCell>
                       </Table.Head>
                       <Table.Body className="divide-y">
-                       {product?.map((product: Product, index: number) => (
-                         <Table.Row key={index}>
-                         <Table.Cell></Table.Cell>
-                         <Table.Cell>{product.part_number}</Table.Cell>
-                         <Table.Cell>{product.quantity}</Table.Cell>
-                         <Table.Cell>{product.netPrice}</Table.Cell>
-                         <Table.Cell>{product.currency}</Table.Cell>
-                         <Table.Cell>{product.quantity * product.netPrice}</Table.Cell>
-                       </Table.Row>
-                        ))}
+                       
                       </Table.Body>
                     </Table>
                   </div>
@@ -143,13 +96,7 @@ const My = () => {
                           <Table.HeadCell>Он сар</Table.HeadCell>
                         </Table.Head>
                         <Table.Body className="divide-y">
-                          {zaminMedee?.map((zaminMedee: ZamiinMedee, index: number)=> (
-                            <Table.Row key={index}>
-                              <Table.Cell>{zaminMedee.location}</Table.Cell>
-                              <Table.Cell>{zaminMedee.zamStatusType.statusTypeName}</Table.Cell>
-                              <Table.Cell>{zaminMedee.date}</Table.Cell>
-                            </Table.Row>
-                          ))}
+                          
                         </Table.Body>
                       </Table>
                 </div>

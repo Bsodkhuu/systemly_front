@@ -3,7 +3,7 @@ import { TextInput, Button, Table} from "flowbite-react";
 import React from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { OrderDetail } from "../My";
+import { OrderDetail } from "../../API";
 
 
 
@@ -35,12 +35,9 @@ const History = () => {
             </Table.Head>
             <Table.Body className="divide-y">
             {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
-                           <Table.Row key={index} >
-                          
-                           <Table.Cell>{orderDetail.order_id}</Table.Cell>
-                           <Table.Cell>{orderDetail.supplier.supplierList}</Table.Cell>
-                           <Table.Cell><a href="/create">{orderDetail.statusType.statusName}</a></Table.Cell>
-                         </Table.Row>
+                <Table.Row key={index} >
+                  <Table.Cell>{orderDetail.order_id}</Table.Cell>        
+                </Table.Row>
              ))}
             </Table.Body>
           </Table>

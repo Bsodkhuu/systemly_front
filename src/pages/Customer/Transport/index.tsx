@@ -7,34 +7,9 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 
-interface VehicleMakeModel{
-  makeId: string;
-  modelId: string;
-  modelName: string;
-  vehicleProductionYearFrom: string;
-  vehicleProductionYearTo: string;
-  vehicleClassId: string;
-  vehicleBodyTypeId: string;
-  featuredCheck: boolean;
-}
-
 const Transport = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<VehicleMakeModel>();
-  const { mutateAsync } = useMutation(
-    "createVehicleMakeModel",
-    createVehicleMakeModel
-  );
-
-  async function createVehicleMakeModel(values: VehicleMakeModel) {
-    const response = await axiosClient.post("/vehicle_make_models", values);
-    return response.data;
-  }
-
-  async function onSubmit(values: VehicleMakeModel) {
-    await mutateAsync(values);
-    navigate("/customer");
-  }
+  navigate("/customer");
 
   return (
     <Layout>
@@ -44,19 +19,20 @@ const Transport = () => {
             <h4 className="text-1xl">Тээврийн хэрэгсэл</h4>
           </div>
           <form
-            onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            //onSubmit={handleSubmit(onSubmit)} 
+            className="flex flex-col gap-4">
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="makeId" value="Загвар" />
                 </div>
-                <TextInput id="makeId" {...register("makeId")} />
+                <TextInput id="makeId" />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="modelName" value="Модел" />
                 </div>
-                <TextInput id="modelName" {...register("modelName")} />
+                <TextInput id="modelName"  />
               </div>
             </div>
             <div className="flex gap-4">
@@ -70,7 +46,7 @@ const Transport = () => {
                 <TextInput
                   type="number"
                   id="vehicleProductionYearFrom"
-                  {...register("vehicleProductionYearFrom")}
+                  
                 />
               </div>
               <div className="w-1/2">
@@ -83,7 +59,7 @@ const Transport = () => {
                 <TextInput
                   type="number"
                   id="vehicleProductionYearTo"
-                  {...register("vehicleProductionYearTo")}
+                  
                 />
               </div>
             </div>
@@ -94,7 +70,7 @@ const Transport = () => {
                 </div>
                 <TextInput
                   id="vehicleClassId"
-                  {...register("vehicleClassId")}
+                 
                 />
               </div>
               <div className="w-1/2">
@@ -103,13 +79,13 @@ const Transport = () => {
                 </div>
                 <TextInput
                   id="vehicleBodyTypeId"
-                  {...register("vehicleBodyTypeId")}
+                  
                 />
               </div>
             </div>
             <div className="flex gap-4">
               <Button className="bg-gray-400">Буцах</Button>
-              <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
+              <Button className="bg-orange-400">
                 Хадгалах
               </Button>
             </div>

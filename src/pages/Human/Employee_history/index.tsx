@@ -3,15 +3,9 @@ import { Avatar, Table} from "flowbite-react";
 import Layout from "../../../components/layout";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { AffiliateEmployee } from "..";
 
 const EmployeeHistory = () => {
   
-  const {data: employeeHistory} = useQuery("getEmployeeHistory", getEmployeeHistory);
-  async function getEmployeeHistory() {
-    const response = await axiosClient.get("/affiliate_employees");
-    return response.data as AffiliateEmployee[]
-  }
   return (
     <Layout>
       <div className="p-4 bg-gray-200 h-screen w-full">
@@ -30,18 +24,7 @@ const EmployeeHistory = () => {
               <Table.HeadCell>Ажилд орсон он сар</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-              {employeeHistory?.map((employeeHistory: AffiliateEmployee, index: number) => (
-                <Table.Row key={index}>
-                  <Table.Cell>
-                    <Avatar img={employeeHistory.image}/>
-                  </Table.Cell>
-                  <Table.Cell>{employeeHistory.ovog}</Table.Cell>
-                  <Table.Cell>{employeeHistory.name}</Table.Cell>
-                  <Table.Cell>{employeeHistory.phone}</Table.Cell>
-                  {/* <Table.Cell>{employeeHistory.position.name}</Table.Cell> */}
-                  <Table.Cell>{employeeHistory.jobDate}</Table.Cell>
-                </Table.Row>
-              ))}
+              
             </Table.Body>
           </Table>
         </div>

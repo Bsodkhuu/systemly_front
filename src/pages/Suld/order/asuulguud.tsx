@@ -5,26 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { Product, Supplier } from "../../Order/zahialga";
-import { Order } from "./Orders";
+import { Affiliate, Inquiry, Order, Product, Supplier } from "../../API";
 
-export interface Inquiry extends Affiliate{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    createdDate: string;
-    inquiryNumber: string;
-    userId?: string;
-    affiliateId?: string;
-    supplierId?: string;
-    [affiliateName: string]: any;
-}
-export interface Affiliate{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    affiliateName: string;
-}
 const Asuulguud = () => {
 
    const { data: supplier } = useQuery("getSupplier", getSupplier);
@@ -115,14 +97,7 @@ const Asuulguud = () => {
                                     <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                                 </Table.Head>
                                 <Table.Body>
-                                   {inquiry?.map((inquiry: Inquiry, index: number) => (
-                                    <Table.Row key={index}>
-                                        <Table.Cell>{inquiry.inquiryNumber}</Table.Cell>
-                                        <Table.Cell>{inquiry.affiliate.affiliateName}</Table.Cell>
-                                        <Table.Cell>{inquiry.createdDate}</Table.Cell>
-                                        <Table.Cell>{inquiry.supplier.supplierList}</Table.Cell>
-                                    </Table.Row>
-                                   ))}
+                                   
                                 </Table.Body>
                             </Table>
                             </div>
@@ -144,17 +119,7 @@ const Asuulguud = () => {
                                     <Table.HeadCell>ETA(Хэрэв байхгүй бол бэлэн болох хугацаа)</Table.HeadCell>
                                 </Table.Head>
                                 <Table.Body>
-                                    {product?.map((product: Product, index: number) => (
-                                        <Table.Row key={index}>
-                                            <Table.Cell>{product.part_number}</Table.Cell>
-                                            <Table.Cell>{product.description}</Table.Cell>
-                                            <Table.Cell>{product.netPrice}</Table.Cell>
-                                            <Table.Cell>{product.fittingPostion}</Table.Cell>
-                                            <Table.Cell>{product.quantity}</Table.Cell>
-                                            <Table.Cell></Table.Cell>
-                                            <Table.Cell></Table.Cell>
-                                        </Table.Row>
-                                    ))}
+                                    
                                 </Table.Body>
                             </Table>
                             </div>
@@ -174,12 +139,7 @@ const Asuulguud = () => {
                                 <Table.HeadCell>Нийт дүн</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
-                                {order?.map((order: Order, index: number) => (
-                                    <Table.Row key={index}>
-                                    <Table.Cell>{order.affiliate.affiliateName}</Table.Cell>
-                                    <Table.Cell>{order.totalPrice}</Table.Cell>
-                                </Table.Row>
-                                ))}
+                                
                             </Table.Body>
                         </Table>
                         <Button className="bg-orange-500">Захиалга үүсгэх</Button>

@@ -17,53 +17,7 @@ import {
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useForm } from "react-hook-form";
-
-export interface Online{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  image: string;
-  link: string;
-}
-
- export interface Supplier{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  supplierList: string;
-  vehicleManufacturerId?: string;
-}
-
-interface ProductCategory{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  en: string;
-}
-
-interface ProductSubCategory extends ProductCategory{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  en: string;
-  productCategoryId?: string;
-}
-
- export interface Product{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  manufacturerId: string;
-  description: string;
-  netPrice: number;
-  currency: string;
-  part_number: string;
-  fittingPostion: string;
-  makeModelFit: string;
-  quantity: number;
-  order_date: string;
-}
-
+import { Online, Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
 
 interface ModalProps{
   showModal: boolean;
@@ -138,8 +92,8 @@ const Zahialga = () => {
   async function product(values: Product) {
     const response = await axiosClient.post("/products", {
       ...values, 
-      quantity: parseInt(values.quantity.toString()), 
-      netPrice: parseInt(values.netPrice.toString()),
+      // quantity: parseInt(values.quantity.toString()), 
+      // netPrice: parseInt(values.netPrice.toString()),
     });
     return response.data;
   }
@@ -260,73 +214,10 @@ const Zahialga = () => {
               </Carousel>
             </div>
 
-            {/* сэлбэгийн жагсаалт */}
+            
             <div className="p-4">
               <Card>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                <div className="flex gap-4">
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="part_number" value="Парт дугаар"/>
-                    </div>
-                    <TextInput type="text" {...register("part_number")}/>
-                  </div>
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="description" value="Тайлбар"/>
-                    </div>
-                    <TextInput type="text" {...register("description")}/>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="netPrice" value="Нэгжийн үнэ"/>
-                    </div>
-                    <TextInput type="text" {...register("netPrice")}/>
-                  </div>
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="currency" value="Валют"/>
-                    </div>
-                    <TextInput type="text" {...register("currency")}/>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="fittingPostion" value="Fitting"/>
-                    </div>
-                    <TextInput type="text" {...register("fittingPostion")}/>
-                  </div>
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="quantity" value="Тоо, ширхэг"/>
-                    </div>
-                    <TextInput type="text" {...register("quantity")}/>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="manufacturerId" value="Үйлдвэрлэгч"/>
-                    </div>
-                    <TextInput type="text" {...register("manufacturerId")}/>
-                  </div>
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="makeModelFit" value="Model Fit"/>
-                    </div>
-                    <TextInput type="text" {...register("makeModelFit")}/>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
-                    Сагслах
-                  </Button>
-            </div>
-                </form>
-               
+                
               </Card>
             </div>
           </div>
@@ -337,24 +228,24 @@ const Zahialga = () => {
               <h1 className="text-1xl">Сагс</h1>
               <div className="w-50">
                 <ListGroup>
-                  {data?.map((i: any) => (
+                  
                     <ListGroup.Item>
-                      Парт дугаар: {i.part_number}
+                      
                       <ListGroup.Item></ListGroup.Item>
-                      Тайлбар: {i.description}
+                     
                       <ListGroup.Item></ListGroup.Item>
-                      Нэгжийн үнэ: {i.netPrice}
+                      
                       <ListGroup.Item></ListGroup.Item>
-                      Валют: {i.currency}
+                      
                       <ListGroup.Item></ListGroup.Item>
-                      Fitting: {i.fittingPostion}
+                     
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо, ширхэг: {i.quantity}
+                      
                       <ListGroup.Item></ListGroup.Item>
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт үнэ: {i.netPrice * i.quantity}
+                      
                     </ListGroup.Item>
-                  ))}
+                
                 </ListGroup>
                 &nbsp;
                 <a href="/messej">

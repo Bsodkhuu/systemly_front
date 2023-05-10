@@ -6,64 +6,10 @@ import { axiosClient } from "../../../config/axios";
 import React, { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export interface ServiceType{
-  id: string;
-  createdAt: string;
-  updateAt: string;
-  mainCategory: string;
-  subCategory: string;
-  name: string;
-  affiliateId?: string;
-  price: number;
-  averagePrice: number;
-  suudalPrice: number;
-  achaaPrice: number;
-  currency: string;
-}
+
 
 const Price = () => {
-  const { register, handleSubmit }=useForm<ServiceType>();
-  const [searchParams] = useSearchParams();
 
-  const { mutateAsync } = useMutation("serviceType", serviceType);
-
-  
-  const { data: serviceList} = useQuery("getServiceType", () => 
-    getServiceType({
-      name: searchParams.get("name") || "", 
-    })
-  );
-
-  const nameRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (nameRef.current) {
-      nameRef.current.value = searchParams.get("name") || ""
-    }
-  }, []);
-
-  async function getServiceType(params: { name: string }) {
-    const response = axiosClient.get(`/service-types?name=${params.name}`);
-    return (await response).data;
-  }
-
-  async function serviceType(values: ServiceType) {
-    const response = await axiosClient.post("/service-types", {
-        ...values,
-        price: parseInt(values.price.toString()),
-        averagePrice: parseInt(values.averagePrice.toString()),
-        suudalPrice: parseInt(values.suudalPrice.toString()),
-        achaaPrice: parseInt(values.achaaPrice.toString()),
-      });
-
-    // const response1 = await axiosClient.post("/service-types");
-
-    return response.data;
-  }
-  
-  async function onSubmit(values: ServiceType) {
-    await mutateAsync(values);
-  }
   return (
     <Layout>
       <div className="p-2 bg-gray-200 h-screen w-full">
@@ -71,7 +17,8 @@ const Price = () => {
           <div className="flex justify-between mb-4">
             <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
             <div className="flex gap-4">
-              <TextInput type="search" name="name" placeholder="Хайлт" ref={nameRef}/>
+              <TextInput type="search" name="name" placeholder="Хайлт" />
+              
               <Button className="bg-orange-500">Хайх</Button>
               
               <a href="/active">
@@ -79,7 +26,7 @@ const Price = () => {
               </a>
             </div>
           </div>
-       
+{/*        
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
               <div className="flex gap-4">
                 <div className="w-1/2">
@@ -184,7 +131,7 @@ const Price = () => {
                 </Table.Row>
               ))}
             </Table.Body>
-          </Table>
+          </Table> */}
         </div>
       </div>
     </Layout>

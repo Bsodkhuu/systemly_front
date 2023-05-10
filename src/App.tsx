@@ -16,6 +16,7 @@ import {
 } from "chart.js";
 import { axiosClient } from "./config/axios";
 import { useQuery } from "react-query";
+import { Inventory, Product } from "./pages/API";
 
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
@@ -39,58 +40,11 @@ export const options = {
     },
   },
 };
-export interface Product {
-  id: string;
-  manufacturerId: string;
-  description: string;
-  netPrice: number;
-  currency: string;
-  subCategoryId?: string;
-  part_number: string;
-  fittingPostion: string;
-  makeModelFit: string;
-  quantity: number;
-  order_date: string;
-  createdAt: string;
-  updatedAt: string;
-  mainCategoryId?: string;
-  backOrderId?: string;
-}
-export interface Inventory {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  purchasedFrom: string;
-  supplier: string;
-  mainCategoryId?: string;
-  subCategoryId?: string;
-  cost: number;
-  quantity: number;
-}
-export interface ServiceType {
-  id: string;
-  createdAt: string;
-  updateAt: string;
-  mainCategory: string;
-  subCategory: string;
-  name: string;
-  affiliateId?: string;
-  price: number;
-  averagePrice: number;
-  suudalPrice: number;
-  achaaPrice: number;
-  currency: string;
-}
 
 const App = () => {
   const { data: product } = useQuery("getProduct", getProduct);
   const { data: inventory } = useQuery("getInventory", getInventory);
-  const { data: serviceType } = useQuery("getServiceType", getServiceType);
-
-  async function getServiceType() {
-    const response = await axiosClient.get("/service-types");
-    return response.data as ServiceType[];
-  }
+  
   async function getInventory() {
     const response = await axiosClient.get("/inventories");
     return response.data as Inventory[];
@@ -119,7 +73,7 @@ const App = () => {
                 }}
               />
             </Card>
-            <Card className="w-2/5 h-96">
+            {/* <Card className="w-2/5 h-96">
               <Pie
                 options={options}
                 data={{
@@ -135,17 +89,17 @@ const App = () => {
                   ],
                 }}
               />
-            </Card>
+            </Card> */}
 
             <Card className="w-2/5 h-96">
               <Line
                 options={options}
                 data={{
-                  labels: product?.map((i) => i.description),
+                  labels: product?.map((i) => i.productName),
                   datasets: [
                     {
                       label: "Захиалга",
-                      data: product?.map((i) => i.quantity),
+                      data: product?.map((i) => i.priceMain),
                       borderWidth: 1,
                       backgroundColor: "#FFA500",
                       borderColor: "rgb(255, 99, 132)",

@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
-import { GarageCustomerOwner } from "./Zaswar_Service";
 
 interface ModalProps {
   showModal: boolean;
@@ -14,38 +13,38 @@ interface ModalProps {
 }
 
 const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
-  const { register, handleSubmit } = useForm<GarageCustomerOwner>();
-  const { mutateAsync } = useMutation("createCustomer", createCustomer);
+  // const { register, handleSubmit } = useForm<GarageCustomerOwner>();
+  // const { mutateAsync } = useMutation("createCustomer", createCustomer);
 
-  async function createCustomer(values: GarageCustomerOwner) {
-    const response = await axiosClient.post("/garage-customer-owners", values);
-    return response.data;
-  }
+  // async function createCustomer(values: GarageCustomerOwner) {
+  //   const response = await axiosClient.post("/garage-customer-owners", values);
+  //   return response.data;
+  // }
 
-  async function onSubmit(values: GarageCustomerOwner) {
-    await mutateAsync(values);
-    closeModal();
-  }
+  // async function onSubmit(values: GarageCustomerOwner) {
+  //   await mutateAsync(values);
+  //   closeModal();
+  // }
 
   return (
     <Modal show={showModal} onClose={closeModal}>
       <Modal.Header>Харилцагч нэмэх</Modal.Header>
       <Modal.Body>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4 max-h-96 overflow-y-auto">
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="firstName" value="Овог" />
               </div>
-              <TextInput id="firstName" {...register("firstName")} />
+              <TextInput id="firstName" />
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="lastName" value="Нэр" />
               </div>
-              <TextInput id="lastName" {...register("lastName")} />
+              <TextInput id="lastName" />
             </div>
           </div>
           <div className="flex gap-4">
@@ -53,13 +52,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="phone" value="Утасны дугаар" />
               </div>
-              <TextInput id="phone" {...register("phoneNumber")} />
+              <TextInput id="phone"  />
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="email" value="Имэйл" />
               </div>
-              <TextInput id="email" {...register("email")} />
+              <TextInput id="email" />
             </div>
           </div>
         </form>
@@ -68,86 +67,65 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
         <Button onClick={closeModal} className="bg-gray-400">
           Буцах
         </Button>
-        <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
+        <Button 
+        // onClick={handleSubmit(onSubmit)} 
+        className="bg-orange-500">
           Хадгалах
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
-interface VehicleCategory{
-  en: string;
-  mn: string;
-}
-interface VehicleColor {
-  en: string;
-  mn: string;
-}
-interface GarageCustomerVehicle extends VehicleColor{
-  [mn: string]: any;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  vinNumber: string;
-  manufacturerYear: string;
-  importedYear: string;
-  licensePlateNumber: string;
-  vehicleId?: string;
-  colorId?: string;
-  makeId?: string;
-  modelId?:string;
-  ownerId?: string;
-  affiliateId?:string;
-}
+
 const Customer = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchParams] = useSearchParams();
-  const { data: customerList } = useQuery("getCustomers", () =>
-    getCustomer({
-      lastname: searchParams.get("lastname") || "",
-    })
-  );
-  const { data: vehicleMakeModels } = useQuery(
-    "getVehicleMakeModels",() => getVehicleMakeModels({
-      makeId: searchParams.get("makeId") || "",
-    })
-  );
-  const { data: garageCustomerVehicles } = useQuery(
-    "getGarageCustomerVehicles",
-    getGarageCustomerVehicles
-  );
-  const lastnameRef = useRef<HTMLInputElement>(null);
-  const makeIdRef = useRef<HTMLInputElement>(null);
+  // const { data: customerList } = useQuery("getCustomers", () =>
+  //   getCustomer({
+  //     lastname: searchParams.get("lastname") || "",
+  //   })
+  // );
+  // const { data: vehicleMakeModels } = useQuery(
+  //   "getVehicleMakeModels",() => getVehicleMakeModels({
+  //     makeId: searchParams.get("makeId") || "",
+  //   })
+  // );
+  // const { data: garageCustomerVehicles } = useQuery(
+  //   "getGarageCustomerVehicles",
+  //   getGarageCustomerVehicles
+  // );
+  // const lastnameRef = useRef<HTMLInputElement>(null);
+  // const makeIdRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (lastnameRef.current) {
-      lastnameRef.current.value = searchParams.get("lastname") || "";
-    }
-  }, []);
-  useEffect(() => {
-    if (makeIdRef.current) {
-      makeIdRef.current.value = searchParams.get("makeId") || "";
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (lastnameRef.current) {
+  //     lastnameRef.current.value = searchParams.get("lastname") || "";
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   if (makeIdRef.current) {
+  //     makeIdRef.current.value = searchParams.get("makeId") || "";
+  //   }
+  // }, []);
 
-  async function getCustomer(params: { lastname: string }) {
-    const response = axiosClient.get(
-      `/garage-customer-owners?lastname=${params.lastname}`
-    );
-    return (await response).data;
-  }
+  // async function getCustomer(params: { lastname: string }) {
+  //   const response = axiosClient.get(
+  //     `/garage-customer-owners?lastname=${params.lastname}`
+  //   );
+  //   return (await response).data;
+  // }
 
-  async function getVehicleMakeModels(params: { makeId : string }) {
-    const response = await axiosClient.get(
-      `/vehicle_make_models?makeId=${params.makeId}`
-      );
-    return (await response).data;
-  }
+  // async function getVehicleMakeModels(params: { makeId : string }) {
+  //   const response = await axiosClient.get(
+  //     `/vehicle_make_models?makeId=${params.makeId}`
+  //     );
+  //   return (await response).data;
+  // }
 
-  async function getGarageCustomerVehicles() {
-    const response = await axiosClient.get("/garage_customer_vehicles");
-    return response.data as GarageCustomerVehicle;
-  }
+  // async function getGarageCustomerVehicles() {
+  //   const response = await axiosClient.get("/garage_customer_vehicles");
+  //   return response.data as GarageCustomerVehicle;
+  // }
 
   function openModal() {
     setShowModal(true);
@@ -194,7 +172,7 @@ const Customer = () => {
                       type="search"
                       name="lastname"
                       placeholder=" Хэрэглэгч хайх"
-                      ref={lastnameRef}
+                      // ref={lastnameRef}
                     />
                     <Button type="submit" className="bg-orange-500">
                       Хайх
@@ -207,13 +185,13 @@ const Customer = () => {
                       <Table.HeadCell>Утасны дугаар</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
-                      {customerList?.map((customer: any, index: number) => (
-                        <Table.Row key={index}>
-                          <Table.Cell>{customer.firstName}</Table.Cell>
-                          <Table.Cell>{customer.lastName}</Table.Cell>
-                          <Table.Cell>{customer.phoneNumber}</Table.Cell>
+                      
+                        <Table.Row>
+                          <Table.Cell></Table.Cell>
+                          <Table.Cell></Table.Cell>
+                          <Table.Cell></Table.Cell>
                         </Table.Row>
-                      ))}
+                      
                     </Table.Body>
                   </Table>
                 </Card>
@@ -225,7 +203,8 @@ const Customer = () => {
                     <TextInput
                       id="search"
                       name="makeId"
-                      placeholder="Тээврийн хэрэгсэл хайх" ref={makeIdRef}
+                      placeholder="Тээврийн хэрэгсэл хайх" 
+                      //ref={makeIdRef}
                     />
                     <Button type="submit" className="bg-orange-500">Хайх</Button>
                   </div>
@@ -235,14 +214,12 @@ const Customer = () => {
                       <Table.HeadCell>Модел</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      {vehicleMakeModels?.map(
-                        (vehicleMake: any, index: number) => (
-                          <Table.Row key={index}>
-                            <Table.Cell>{vehicleMake.makeId}</Table.Cell>
-                            <Table.Cell>{vehicleMake.modelName}</Table.Cell>
+                      
+                          <Table.Row>
+                            <Table.Cell></Table.Cell>
+                            <Table.Cell></Table.Cell>
                           </Table.Row>
-                        )
-                      )}
+                     
                     </Table.Body>
                   </Table>
                 </Card>
@@ -274,23 +251,21 @@ const Customer = () => {
                   <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  {garageCustomerVehicles?.map(
-                    (garageCustomerVehicles: GarageCustomerVehicle, index: number) => (
-                      <Table.Row key={index}>
-                        <Table.Cell>{garageCustomerVehicles.vinNumber}</Table.Cell>
+                  
+                      <Table.Row>
+                        <Table.Cell></Table.Cell>
                        
                         <Table.Cell>
-                          {garageCustomerVehicles.manufacturerYear}
+                      
                         </Table.Cell>
-                        <Table.Cell>{garageCustomerVehicles.importedYear}</Table.Cell>
-                        <Table.Cell>{garageCustomerVehicles.color.mn}</Table.Cell>
+                        <Table.Cell></Table.Cell>
+                        <Table.Cell></Table.Cell>
                         
                         <Table.Cell>
-                          {garageCustomerVehicles.licensePlateNumber}
+                         
                         </Table.Cell>
                       </Table.Row>
-                    )
-                  )}
+                  
                 </Table.Body>
               </Table>
             </Card>
