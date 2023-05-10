@@ -84,10 +84,9 @@ export interface Prodmetric{
     deleteDate: string;
     deleteUser: number;
     updateUser: number;
-    productId?: string;
 }
 
-export interface Product{
+export interface Product extends Prodmetric{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -106,6 +105,8 @@ export interface Product{
     priceMain: number;
     vehicleType: string;
     nameEng: string;//vehicle name english
+    prodmetricId?: string;
+    [typeId: string]:any;
 }
 
 export interface Branch{

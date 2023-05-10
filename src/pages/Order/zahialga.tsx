@@ -12,12 +12,9 @@ import {
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass, faShoppingCart,
-} from "@fortawesome/free-solid-svg-icons";
+import {faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { useForm } from "react-hook-form";
 import { Online,  Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
 
 interface ModalProps{
@@ -77,7 +74,7 @@ const Zahialga = () => {
   const { data: product } = useQuery("getProduct", getProduct);
 
   async function getProduct() {
-    const response = await axiosClient.get("/orders");
+    const response = await axiosClient.get("/products");
     return response.data as Product[];
   }
   function openModal() {
@@ -199,9 +196,10 @@ const Zahialga = () => {
                 <Table>
                   <Table.Head className="uppercase">
                    <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
+                   <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
                    <Table.HeadCell>Тайлбар</Table.HeadCell>
-                   <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
+                   <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
                    <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
@@ -211,9 +209,10 @@ const Zahialga = () => {
                     {product?.map((product: Product, index: number) => (
                       <Table.Row key={index}>
                         <Table.Cell>{product.manufacturerId}</Table.Cell>
+                        <Table.Cell>{product.productCode}</Table.Cell>
                         <Table.Cell>{product.productName}</Table.Cell>
                         <Table.Cell>{product.productDescription}</Table.Cell>
-                        <Table.Cell>{product.productCode}</Table.Cell>
+                        <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
                         <Table.Cell>{product.priceMain}</Table.Cell>
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
