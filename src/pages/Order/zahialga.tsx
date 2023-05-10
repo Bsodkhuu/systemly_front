@@ -7,17 +7,18 @@ import {
   Select,
   Label,
   ListGroup,
-  Modal, 
+  Modal,
+  Table, 
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { useMutation, useQuery } from "react-query";
+import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useForm } from "react-hook-form";
-import { Online, Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
+import { Online,  Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
 
 interface ModalProps{
   showModal: boolean;
@@ -51,18 +52,16 @@ const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
 }
 const Zahialga = () => {
   const [showModal, setShowModal] = useState(false);
-  const { register, handleSubmit } = useForm<Product>();
-  const { mutateAsync } = useMutation("product", product);
-
-  const { data, isLoading } = useQuery("products", getProducts);
 
   const {data: supplier} = useQuery("getSupplier", getSupplier);
+
   async function getSupplier() {
     const response = await axiosClient.get("/suppliers");
     return response.data as Supplier[];
   }
 
   const {data: productCategory} = useQuery("getProductCategory", getProductCategory);
+
   async function getProductCategory() {
     const response = await axiosClient.get("/product_categories");
     return response.data as ProductCategory[];
@@ -74,33 +73,13 @@ const Zahialga = () => {
     const response = await axiosClient.get("/product_subcategories");
     return response.data as ProductSubCategory[];
   }
-  const [productQuantities, setProductQuantities] = useState<
-    {
-      id: string;
-      quantity: number;
-    }[]>();
+  //product=> сэлбэгийн жагсаалт юм байнаа
+  const { data: product } = useQuery("getProduct", getProduct);
 
-  async function getProducts() {
-    const response = await axiosClient.get("/products");
-    return response.data;
+  async function getProduct() {
+    const response = await axiosClient.get("/orders");
+    return response.data as Product[];
   }
-
-  if (isLoading) {
-    return <Layout></Layout>;
-  }
-
-  async function product(values: Product) {
-    const response = await axiosClient.post("/products", {
-      ...values, 
-      // quantity: parseInt(values.quantity.toString()), 
-      // netPrice: parseInt(values.netPrice.toString()),
-    });
-    return response.data;
-  }
-  async function onSubmit(values: Product) {
-    await mutateAsync(values);
-  }
-
   function openModal() {
     setShowModal(true);
   }
@@ -217,7 +196,30 @@ const Zahialga = () => {
             
             <div className="p-4">
               <Card>
-                
+                <Table>
+                  <Table.Head className="uppercase">
+                   <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
+                   <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
+                   <Table.HeadCell>Тайлбар</Table.HeadCell>
+                   <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
+                   <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
+                   <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
+                   <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
+                  </Table.Head>
+                  <Table.Body className="divide-y">
+                    {product?.map((product: Product, index: number) => (
+                      <Table.Row key={index}>
+                        <Table.Cell>{product.manufacturerId}</Table.Cell>
+                        <Table.Cell>{product.productName}</Table.Cell>
+                        <Table.Cell>{product.productDescription}</Table.Cell>
+                        <Table.Cell>{product.productCode}</Table.Cell>
+                        <Table.Cell>{product.priceMain}</Table.Cell>
+                        <Table.Cell>{product.vehicleType}</Table.Cell>
+                        <Table.Cell>{product.nameEng}</Table.Cell>
+                      </Table.Row>
+                    ))}
+                  </Table.Body>
+                </Table>
               </Card>
             </div>
           </div>

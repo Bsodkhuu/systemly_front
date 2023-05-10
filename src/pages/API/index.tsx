@@ -212,7 +212,7 @@ export interface Inquiry{
     createdDate: string;
     inquiryNumber: string;
     userId?: string;
-    affiliateId?: string;
+    branchId?: string;
     supplierId?: string;
 }
 

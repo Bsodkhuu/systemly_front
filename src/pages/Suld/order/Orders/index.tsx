@@ -6,9 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
-
 const Orders = () => {
-
     return(
         <Layout>
             <div className="grid grid-cols-3 gap-4">
