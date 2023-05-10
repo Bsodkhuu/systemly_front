@@ -13,7 +13,7 @@ import {
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMagnifyingGlass,
+  faMagnifyingGlass, faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
@@ -205,6 +205,7 @@ const Zahialga = () => {
                    <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
+                   <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {product?.map((product: Product, index: number) => (
@@ -216,6 +217,11 @@ const Zahialga = () => {
                         <Table.Cell>{product.priceMain}</Table.Cell>
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
+                        <Table.Cell>
+                          <Button className="bg-orange-500">
+                          <FontAwesomeIcon icon={faShoppingCart}/>
+                          </Button>
+                        </Table.Cell>
                       </Table.Row>
                     ))}
                   </Table.Body>
