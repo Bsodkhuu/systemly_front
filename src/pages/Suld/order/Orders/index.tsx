@@ -94,6 +94,7 @@ const Orders = () => {
                             <div className="p-4">
                                 <Card>
                                     <h1 className="text-1xl">Захиалгийн жагсаалт</h1>
+                                    <a href="/zahialga">Захиалга үүсгэх </a>
                                     <Table>
                                         <Table.Head className="uppercase">
                                             <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
