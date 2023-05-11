@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, ChangeEvent } from "react";
 import {
   TextInput,
   Button,
@@ -50,8 +50,6 @@ const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
 const Zahialga = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const [counter, setCounter] = useState<number>(0);
-
   const {data: supplier} = useQuery("getSupplier", getSupplier);
 
   async function getSupplier() {
@@ -79,6 +77,14 @@ const Zahialga = () => {
     const response = await axiosClient.get("/products");
     return response.data as Product[];
   }
+
+  const [inputText, setInputText] = useState("");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
+  };
+
+ 
   function openModal() {
     setShowModal(true);
   }
@@ -220,7 +226,8 @@ const Zahialga = () => {
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
                         <Table.Cell>
-                          <TextInput type="number"/>
+                          <TextInput type="text" onChange={handleChange} value={inputText}/>
+                          {inputText}
                         </Table.Cell>
                         <Table.Cell>
                           {/* cart button darahad cart medeelel haragdahaar hiih  */}
