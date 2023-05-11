@@ -39,16 +39,16 @@ const My = () => {
                       <Table.Head className="uppercase">
                       <Table.HeadCell><Checkbox/></Table.HeadCell>
                        <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
-                       <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
+                       <Table.HeadCell>Гишүүн</Table.HeadCell>
+                       {/* <Table.HeadCell>Нийлүүлэгч</Table.HeadCell> */}
                        <Table.HeadCell>Статус төрөл</Table.HeadCell>
-                     
                       </Table.Head>
                       <Table.Body className="divide-y">
                         {order?.map((order: Order, index: number) => (
                           <Table.Row key={index}>
                           <Table.Cell><Checkbox/></Table.Cell>
                           <Table.Cell>{order.numbOfProd}</Table.Cell>
-                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{order.branch.branchName}</Table.Cell>
                           <Table.Cell>{order.statusType.statusName}</Table.Cell>
                         </Table.Row>
                         ))}
@@ -67,7 +67,7 @@ const My = () => {
                        <Table.HeadCell>Тайлбар</Table.HeadCell>
                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                        <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
-                       
+                      <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
                       </Table.Head>
                       <Table.Body className="divide-y">
                         {order?.map((order: Order, index: number) => (
@@ -77,6 +77,7 @@ const My = () => {
                             <Table.Cell>{order.product.productDescription}</Table.Cell>
                             <Table.Cell>{order.prodAllTotal}</Table.Cell>
                             <Table.Cell>{order.product.priceMain}</Table.Cell>
+                            <Table.Cell>{order.prodmetric.typeId}</Table.Cell>
                           </Table.Row>
                         ))}
                       </Table.Body>

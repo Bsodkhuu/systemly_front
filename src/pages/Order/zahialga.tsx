@@ -220,7 +220,7 @@ const Zahialga = () => {
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
                         <Table.Cell>
-                          <TextInput type="number"/>
+                          <TextInput type="number"/>{counter}
                             
                         </Table.Cell>
                         <Table.Cell>
@@ -260,7 +260,8 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Тээврийн хэрэгслийн нэр: {product.nameEng}
                       <ListGroup.Item></ListGroup.Item>
-                      <Button onClick={() => setCounter(counter + 1)}> + </Button>
+                      Тоо ширхэг : 
+                      <Button onClick={() => setCounter(counter + 1)}> + </Button> 
                       <Button onClick={() => setCounter(counter - 1)}> - </Button>
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
