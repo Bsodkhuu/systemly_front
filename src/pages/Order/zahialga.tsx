@@ -220,9 +220,8 @@ const Zahialga = () => {
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
                         <Table.Cell>
-                          <TextInput type="number">
-                            {counter}
-                            </TextInput>
+                          <TextInput type="number"/>
+                            
                         </Table.Cell>
                         <Table.Cell>
                           <Button className="bg-orange-500">
