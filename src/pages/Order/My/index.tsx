@@ -65,7 +65,7 @@ const My = () => {
                        <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
                        <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
                        <Table.HeadCell>Тайлбар</Table.HeadCell>
-                       <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                       {/* <Table.HeadCell>Тоо ширхэг</Table.HeadCell> */}
                        <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                       <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
                       </Table.Head>
@@ -75,7 +75,8 @@ const My = () => {
                             <Table.Cell>{order.product.productCode}</Table.Cell>
                             <Table.Cell>{order.product.productName}</Table.Cell>
                             <Table.Cell>{order.product.productDescription}</Table.Cell>
-                            <Table.Cell>{order.prodAllTotal}</Table.Cell>
+                            {/* <Table.Cell>{order.prodAllTotal}</Table.Cell> */}
+                            {/* product niit too shirheg function bichij baij garch irnee  */}
                             <Table.Cell>{order.product.priceMain}</Table.Cell>
                             <Table.Cell>{order.prodmetric.typeId}</Table.Cell>
                           </Table.Row>
@@ -94,7 +95,7 @@ const My = () => {
               <Card className="max-w-sm">
                 <h5 className="text-1xl">Замын мэдээний дэлгэрэнгүй</h5>
                 <div className="flex gap-4">
-                <Table>
+                    <Table>
                         <Table.Head className="uppercase">
                           <Table.HeadCell>Байршил</Table.HeadCell>
                           <Table.HeadCell>Статус</Table.HeadCell>
@@ -109,7 +110,7 @@ const My = () => {
                             </Table.Row>
                           ))}
                         </Table.Body>
-                      </Table>
+                    </Table>
                 </div>
               </Card>
             </div>

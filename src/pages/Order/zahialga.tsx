@@ -220,8 +220,7 @@ const Zahialga = () => {
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
                         <Table.Cell>
-                          <TextInput type="number"/>{counter}
-                            
+                          <TextInput type="number"/>
                         </Table.Cell>
                         <Table.Cell>
                           <Button className="bg-orange-500">
@@ -239,8 +238,9 @@ const Zahialga = () => {
         <div className="col-span">
           <div className="p-2">
             <Card className="max-w-sm">
-              <h1 className="text-1xl">Сагс</h1>
+              
               <div className="w-50">
+                <a href="/cart">
                 <ListGroup>
                   {product?.map((product: Product, index:number) => (
                     <ListGroup.Item key={index}>
@@ -254,23 +254,18 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
-                      Үндсэн үнэ: {product.priceMain}
-                      <ListGroup.Item></ListGroup.Item>
-                      Тээврийн хэрэгсэл төрөл: {product.vehicleType}
-                      <ListGroup.Item></ListGroup.Item>
-                      Тээврийн хэрэгслийн нэр: {product.nameEng}
-                      <ListGroup.Item></ListGroup.Item>
                       Тоо ширхэг : 
-                      <Button onClick={() => setCounter(counter + 1)}> + </Button> 
-                      <Button onClick={() => setCounter(counter - 1)}> - </Button>
+                      {/* <Button onClick={() => setCounter(counter + 1)}> + </Button> 
+                      <Button onClick={() => setCounter(counter - 1)}> - </Button> */}
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
-                &nbsp;
+                </a>
+                {/* &nbsp;
                 <a href="/messej">
                   <Button className="bg-orange-500">Захиалга үүсгэх</Button>
-                </a>
+                </a> */}
               </div>
             </Card>
           </div>
