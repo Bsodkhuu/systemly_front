@@ -6,7 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
-import { Branch, Order, Supplier } from "../../../API";
+import { Branch, Order, Product, Supplier } from "../../../API";
 const Orders = () => {
 
     const {data: supplier} = useQuery("getSupplier", getSupplier);
@@ -28,6 +28,13 @@ const Orders = () => {
     async function getorder() {
         const response = await axiosClient.get("/orders");
         return response.data as Order[];
+    }
+
+    const {data: product } = useQuery("getProduct", getProduct);
+
+    async function getProduct() {
+        const response = await axiosClient("/products");
+        return response.data as Product[];
     }
 
     return(
@@ -118,18 +125,16 @@ const Orders = () => {
                                         <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                                         <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                                         <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
-                                        <Table.HeadCell>Нийт дүн</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
-                                        {order?.map((order: Order, index: number) => (
+                                        {product?.map((product: Product, index: number) => (
                                             <Table.Row key={index}>
-                                                <Table.Cell>{order.product.productCode}</Table.Cell>
-                                                <Table.Cell>{order.product.productName}</Table.Cell>
-                                                <Table.Cell>{order.product.productDescription}</Table.Cell>
-                                                <Table.Cell>{order.product.productCnt}</Table.Cell>
-                                                <Table.Cell>{order.product.priceMain}</Table.Cell>
-                                                <Table.Cell>{order.product.prodmetric.typeId}</Table.Cell>
-                                                <Table.Cell></Table.Cell>
+                                                <Table.Cell>{product.productCode}</Table.Cell>
+                                                <Table.Cell>{product.productName}</Table.Cell>
+                                                <Table.Cell>{product.productDescription}</Table.Cell>
+                                                <Table.Cell>{product.productCnt}</Table.Cell>
+                                                <Table.Cell>{product.priceMain}</Table.Cell>
+                                                <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
                                             </Table.Row>
                                         ))}
                                         </Table.Body>
@@ -147,15 +152,19 @@ const Orders = () => {
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Гишүүд</Table.HeadCell>
+                                <Table.HeadCell>Бүтээгдэхүүн</Table.HeadCell>
                                 <Table.HeadCell>Нийт захиалгийн дүн</Table.HeadCell>
                                 <Table.HeadCell>Статус</Table.HeadCell>
+                                <Table.HeadCell>Package</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
                                 {order?.map((order: Order, index: number) => (
                                     <Table.Row key={index}>
                                         <Table.Cell>{order.branch.branchName}</Table.Cell>
+                                        <Table.Cell>{order.product.productName}</Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell>{order.statusType.statusName}</Table.Cell>
+                                        <Table.Cell>{order.packageId}</Table.Cell>
                                     </Table.Row>
                                 ))}
                             </Table.Body>
