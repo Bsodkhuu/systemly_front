@@ -87,14 +87,13 @@ const Orders = () => {
                                     <Button className="bg-orange-500">Хэвлэх</Button>
                                 </div>
                                 <a href="/zam">Замын мэдээ оруулах</a>
-                                <a href="/product">Санал болгох бүтээгдэхүүн нэмэх</a>
+                                
                             </div>
                         </div>
                         <div className="grid grid-cols-2">
                             <div className="p-4">
                                 <Card>
-                                    {/* <h1 className="text-1xl">Захиалгийн жагсаалт</h1> */}
-                                    <a href="/zahialgacreate">Захиалга үүсгэх </a>
+                                    <h1 className="text-1xl">Захиалгийн жагсаалт</h1>
                                     <Table>
                                         <Table.Head className="uppercase">
                                             <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
@@ -136,7 +135,7 @@ const Orders = () => {
                                                 <Table.Cell>{product.productCode}</Table.Cell>
                                                 <Table.Cell>{product.productName}</Table.Cell>
                                                 <Table.Cell>{product.productDescription}</Table.Cell>
-                                                <Table.Cell>{product.productCnt}</Table.Cell>
+                                                <Table.Cell></Table.Cell>
                                                 <Table.Cell>{product.priceMain}</Table.Cell>
                                                 <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
                                             </Table.Row>

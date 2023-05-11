@@ -43,8 +43,7 @@ import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
 import Vilchilgee from "./pages/Customer/Sale/service";
 import Profile from "./pages/Profile";
-import Product from "./pages/Suld/order/product";
-import ZahialgaCreate from "./pages/Suld/order/zahialgaCreate";
+
 
 
 const router = createBrowserRouter([
@@ -52,14 +51,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  {
-    path: "/zahialgacreate", 
-    element: <ZahialgaCreate/>,
-  },
-  {
-    path: "/product",
-    element: <Product/>,
-  }, 
   {
     path: "/my",
     element: <My />,
