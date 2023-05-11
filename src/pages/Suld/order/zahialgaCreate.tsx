@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../../../components/layout"
 
 
-const Zahialga = () => {
+const ZahialgaCreate = () => {
     return (
         <Layout>
             <h1>Захиалга үүсгэх</h1>
@@ -10,4 +10,4 @@ const Zahialga = () => {
     );
 }
 
-export default Zahialga;
+export default ZahialgaCreate;
