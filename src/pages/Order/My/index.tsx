@@ -3,26 +3,18 @@ import Layout from "../../../components/layout";
 import React from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { OrderDetail, Product, ZamiinMedee } from "../../API";
-
-
-
+import { Order, ZamiinMedee } from "../../API";
 const My = () => {
-  const { data: zaminMedee } = useQuery("getZaminMedee", getZaminMedee);
-  const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
-  const { data: product } = useQuery("getProducts", getProducts);
-  
+  const { data: order } = useQuery("getOrder", getOrder);
 
-  async function getProducts() {
-    const response = await axiosClient.get("/products");
-    return response.data as Product[];
+  async function getOrder() {
+    const response = await axiosClient.get("/orders");
+    return response.data as Order[];
   }
 
-  async function getOrderDetail() {
-    const response = await axiosClient.get("/order-details");
-    return response.data as OrderDetail[];
-  }
-  async function getZaminMedee() {
+  const { data: zam } = useQuery("getZam", getZam);
+
+  async function getZam() {
     const response = await axiosClient.get("/zamin_medees");
     return response.data as ZamiinMedee[];
   }
@@ -52,10 +44,13 @@ const My = () => {
                      
                       </Table.Head>
                       <Table.Body className="divide-y">
-                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
-                           <Table.Row key={index} >
-                           <Table.Cell></Table.Cell>
-                         </Table.Row>
+                        {order?.map((order: Order, index: number) => (
+                          <Table.Row key={index}>
+                          <Table.Cell><Checkbox/></Table.Cell>
+                          <Table.Cell>{order.numbOfProd}</Table.Cell>
+                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{order.statusType.statusName}</Table.Cell>
+                        </Table.Row>
                         ))}
                       </Table.Body>
                     </Table>
@@ -67,14 +62,23 @@ const My = () => {
                   <div className="flex gap-4">
                     <Table>
                       <Table.Head className="uppercase">
-                       <Table.HeadCell>Партын дугаар</Table.HeadCell>
+                       <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
+                       <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
+                       <Table.HeadCell>Тайлбар</Table.HeadCell>
                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
-                       <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
-                       <Table.HeadCell>Currency</Table.HeadCell>
-                       <Table.HeadCell>Нийт үнэ</Table.HeadCell>
+                       <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
+                       
                       </Table.Head>
                       <Table.Body className="divide-y">
-                       
+                        {order?.map((order: Order, index: number) => (
+                          <Table.Row key={index}>
+                            <Table.Cell>{order.product.productCode}</Table.Cell>
+                            <Table.Cell>{order.product.productName}</Table.Cell>
+                            <Table.Cell>{order.product.productDescription}</Table.Cell>
+                            <Table.Cell>{order.prodAllTotal}</Table.Cell>
+                            <Table.Cell>{order.product.priceMain}</Table.Cell>
+                          </Table.Row>
+                        ))}
                       </Table.Body>
                     </Table>
                   </div>
@@ -96,7 +100,13 @@ const My = () => {
                           <Table.HeadCell>Он сар</Table.HeadCell>
                         </Table.Head>
                         <Table.Body className="divide-y">
-                          
+                          {zam?.map((zam: ZamiinMedee, index: number) => (
+                            <Table.Row key={index}>
+                              <Table.Cell>{zam.location}</Table.Cell>
+                              <Table.Cell>{zam.zamStatusType.statusTypeName}</Table.Cell>
+                              <Table.Cell>{zam.date}</Table.Cell>
+                            </Table.Row>
+                          ))}
                         </Table.Body>
                       </Table>
                 </div>

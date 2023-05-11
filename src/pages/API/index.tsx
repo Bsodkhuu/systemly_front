@@ -124,7 +124,7 @@ export interface Branch{
     deleteUser: number;
 }
  
-export interface Order{
+export interface Order extends StatusType{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -152,6 +152,7 @@ export interface Order{
     receiveDate: string;
     receiverDate: string;
     branchId?: string;
+    [statusName: string]: any;
 }
 
 export interface StatusType{
@@ -240,7 +241,7 @@ export interface TeevriinZahialga{
     name: string;
 }
 
-export interface ZamiinMedee{
+export interface ZamiinMedee extends ZamiinMedeeStatusType{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -248,6 +249,7 @@ export interface ZamiinMedee{
     date: string;
     insertDate: string;
     zamStatusTypeId?:string;
+    [statusTypeName: string]: any;
 }
 
 export interface ZamiinMedeeStatusType{
