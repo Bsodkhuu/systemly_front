@@ -223,6 +223,7 @@ const Zahialga = () => {
                           <TextInput type="number"/>
                         </Table.Cell>
                         <Table.Cell>
+                          {/* cart button darahad cart medeelel haragdahaar hiih  */}
                           <Button className="bg-orange-500">
                           <FontAwesomeIcon icon={faShoppingCart}/>
                           </Button>
@@ -240,7 +241,7 @@ const Zahialga = () => {
             <Card className="max-w-sm">
               
               <div className="w-50">
-                <a href="/cart">
+                <a href="/cart">Сагсанд нэмэгдсэн бүтээгдэхүүн 
                 <ListGroup>
                   {product?.map((product: Product, index:number) => (
                     <ListGroup.Item key={index}>
@@ -262,10 +263,6 @@ const Zahialga = () => {
                   ))}
                 </ListGroup>
                 </a>
-                {/* &nbsp;
-                <a href="/messej">
-                  <Button className="bg-orange-500">Захиалга үүсгэх</Button>
-                </a> */}
               </div>
             </Card>
           </div>

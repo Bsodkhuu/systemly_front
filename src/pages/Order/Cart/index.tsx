@@ -32,6 +32,7 @@ const Cart = () => {
               <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
               <Table.HeadCell>Тээврийн хэрэгсэл</Table.HeadCell>
               <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+              <Table.HeadCell>Үйлдэл</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
               {product?.map((product: Product, index: number) => (
