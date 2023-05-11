@@ -50,6 +50,8 @@ const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
 const Zahialga = () => {
   const [showModal, setShowModal] = useState(false);
 
+  const [counter, setCounter] = useState<number>(0);
+
   const {data: supplier} = useQuery("getSupplier", getSupplier);
 
   async function getSupplier() {
@@ -203,6 +205,7 @@ const Zahialga = () => {
                    <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
+                   <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                    <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
@@ -216,6 +219,11 @@ const Zahialga = () => {
                         <Table.Cell>{product.priceMain}</Table.Cell>
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
+                        <Table.Cell>
+                          <TextInput type="number">
+                            {counter}
+                            </TextInput>
+                        </Table.Cell>
                         <Table.Cell>
                           <Button className="bg-orange-500">
                           <FontAwesomeIcon icon={faShoppingCart}/>
@@ -252,6 +260,9 @@ const Zahialga = () => {
                       Тээврийн хэрэгсэл төрөл: {product.vehicleType}
                       <ListGroup.Item></ListGroup.Item>
                       Тээврийн хэрэгслийн нэр: {product.nameEng}
+                      <ListGroup.Item></ListGroup.Item>
+                      <Button onClick={() => setCounter(counter + 1)}> + </Button>
+                      <Button onClick={() => setCounter(counter - 1)}> - </Button>
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}
