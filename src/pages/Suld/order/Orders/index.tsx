@@ -93,7 +93,7 @@ const Orders = () => {
                         <div className="grid grid-cols-2">
                             <div className="p-4">
                                 <Card>
-                                    <h1 className="text-1xl">Захиалгийн жагсаалт</h1>
+                                    {/* <h1 className="text-1xl">Захиалгийн жагсаалт</h1> */}
                                     <a href="/zahialgacreate">Захиалга үүсгэх </a>
                                     <Table>
                                         <Table.Head className="uppercase">
