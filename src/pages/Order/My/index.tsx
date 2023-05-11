@@ -46,7 +46,7 @@ const My = () => {
                         {order?.map((order: Order, index: number) => (
                           <Table.Row key={index}>
                           <Table.Cell><Checkbox/></Table.Cell>
-                          <Table.Cell>{order.numbOfProd}</Table.Cell>
+                          <Table.Cell>{order.packageId}</Table.Cell>
                           <Table.Cell>{order.product.manufacturerId}</Table.Cell>
                           <Table.Cell>{order.statusType.statusName}</Table.Cell>
                         </Table.Row>
@@ -75,8 +75,7 @@ const My = () => {
                             <Table.Cell>{order.product.productCode}</Table.Cell>
                             <Table.Cell>{order.product.productName}</Table.Cell>
                             <Table.Cell>{order.product.productDescription}</Table.Cell>
-                            <Table.Cell></Table.Cell>
-                            {/* product niit too shirheg function bichij baij garch irnee  */}
+                            <Table.Cell>{order.product.productCnt}</Table.Cell>
                             <Table.Cell>{order.product.priceMain}</Table.Cell>
                             <Table.Cell>{order.prodmetric.typeId}</Table.Cell>
                           </Table.Row>

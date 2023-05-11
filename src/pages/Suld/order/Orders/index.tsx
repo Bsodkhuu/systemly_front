@@ -87,7 +87,7 @@ const Orders = () => {
                                     <Button className="bg-orange-500">Хэвлэх</Button>
                                 </div>
                                 <a href="/zam">Замын мэдээ оруулах</a>
-                                <a href="/product">Бүтээгдэхүүн нэмэх</a>
+                                <a href="/product">Санал болгох бүтээгдэхүүн нэмэх</a>
                             </div>
                         </div>
                         <div className="grid grid-cols-2">
@@ -101,8 +101,10 @@ const Orders = () => {
                                             <Table.HeadCell>Захиалга үүсгэсэн огноо</Table.HeadCell>
                                             <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                                             <Table.HeadCell>Статус</Table.HeadCell>
+                                            
                                         </Table.Head>
                                         <Table.Body>
+                                            {/* table post request ywnaa */}
                                             {order?.map((order: Order, index: number) => (
                                                 <Table.Row key={index}>
                                                     <Table.Cell>{order.numbOfProd}</Table.Cell>
@@ -128,6 +130,7 @@ const Orders = () => {
                                         <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
+                                            {/* Table post request ywnaa  */}
                                         {product?.map((product: Product, index: number) => (
                                             <Table.Row key={index}>
                                                 <Table.Cell>{product.productCode}</Table.Cell>
@@ -149,23 +152,24 @@ const Orders = () => {
                 <div className="p-2">
                     <Card className="max-w-sm">
                         <h1 className="text-1xl">Захиалгын хураангуй (Гишүүд)</h1>
-                       
+                       {/* table post request ywna  */}
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Гишүүд</Table.HeadCell>
                                 <Table.HeadCell>Бүтээгдэхүүн</Table.HeadCell>
+                                <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
                                 <Table.HeadCell>Нийт захиалгийн дүн</Table.HeadCell>
-                                <Table.HeadCell>Статус</Table.HeadCell>
-                                <Table.HeadCell>Package</Table.HeadCell>
+                                <Table.HeadCell>Гишүүн захиалгийн дугаар</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
                                 {order?.map((order: Order, index: number) => (
                                     <Table.Row key={index}>
                                         <Table.Cell>{order.branch.branchName}</Table.Cell>
                                         <Table.Cell>{order.product.productName}</Table.Cell>
+                                        <Table.Cell>{order.numbOfProd}</Table.Cell>
                                         <Table.Cell></Table.Cell>
-                                        <Table.Cell>{order.statusType.statusName}</Table.Cell>
                                         <Table.Cell>{order.packageId}</Table.Cell>
+                                        
                                     </Table.Row>
                                 ))}
                             </Table.Body>
