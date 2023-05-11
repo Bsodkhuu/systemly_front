@@ -312,14 +312,6 @@ export interface BackOrder{
     orderDate: string;
 }
 
-export interface Affiliate{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    affiliateName: string;
-}
-
-
 export interface Applications{
     id: string;
     createdAt: string;

@@ -6,26 +6,47 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
+import { Branch, Order, Supplier } from "../../../API";
 const Orders = () => {
+
+    const {data: supplier} = useQuery("getSupplier", getSupplier);
+
+    async function getSupplier() {
+        const response = await axiosClient.get("/suppliers");
+        return response.data as Supplier[];
+    }
+
+    const { data: branch } = useQuery("getBranch", getBranch);
+
+    async function getBranch() {
+        const response = await axiosClient.get("/branch");
+        return response.data as Branch[];
+    }
+
+    const {data: order } = useQuery("getorder", getorder);
+
+    async function getorder() {
+        const response = await axiosClient.get("/orders");
+        return response.data as Order[];
+    }
+
     return(
         <Layout>
             <div className="grid grid-cols-3 gap-4">
                 <div className="p-4 bg-gray-200 h-screen col-span-2">
                     <div className="bg-white p-6 rounded-lg">
                         <div className="flex justify-between mb-4">
-                            
                             <div className="flex gap-4">
-                               
                                 <div className="w-1/2">
                                     <div className="mb-2 block">
                                         <Label htmlFor="supplier" value="Нийлүүлэгч" />
                                     </div>
                                     <Select>
-                                        {/* {supplier?.map((i) => (
+                                        {supplier?.map((i) => (
                                             <option value={i.id}>
                                                 {i.supplierList}
                                             </option>
-                                        ))} */}
+                                        ))}
                                     </Select>
                                 </div>
                                 <div className="w-1/2">
@@ -33,11 +54,11 @@ const Orders = () => {
                                         <Label htmlFor="order" value="Захиалагч"/>
                                     </div>
                                     <Select>
-                                        {/* {affiliate?.map((i) => (
+                                        {branch?.map((i) => (
                                             <option value={i.id}>
-                                                {i.affiliateName}
+                                                {i.branchName}
                                             </option>
-                                        ))} */}
+                                        ))}
                                     </Select>
                                 </div>
                                 <div className="w-1/2">
@@ -59,6 +80,7 @@ const Orders = () => {
                                     <Button className="bg-orange-500">Хэвлэх</Button>
                                 </div>
                                 <a href="/zam">Замын мэдээ оруулах</a>
+                                <a href="/product">Бүтээгдэхүүн нэмэх</a>
                             </div>
                         </div>
                         <div className="grid grid-cols-2">
@@ -73,7 +95,14 @@ const Orders = () => {
                                             <Table.HeadCell>Статус</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
-                                            
+                                            {order?.map((order: Order, index: number) => (
+                                                <Table.Row key={index}>
+                                                    <Table.Cell>{order.numbOfProd}</Table.Cell>
+                                                    <Table.Cell>{order.orderedDate}</Table.Cell>
+                                                    <Table.Cell>{order.product.manufacturerId}</Table.Cell>
+                                                    <Table.Cell>{order.statusType.statusName}</Table.Cell>
+                                                </Table.Row>
+                                            ))}
                                         </Table.Body>
                                     </Table>
                                 </Card>
@@ -83,15 +112,26 @@ const Orders = () => {
                                     <h1 className="text-1xl">Захиалгийн дэлгэрэнгүй Гишүүн</h1>
                                     <Table>
                                         <Table.Head className="uppercase">
-                                            <Table.HeadCell>Партын дугаар</Table.HeadCell>
-                                            <Table.HeadCell>Тайлбар</Table.HeadCell>
-                                            <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
-                                            <Table.HeadCell>Fitting</Table.HeadCell>
-                                            <Table.HeadCell>Тоо хэмжээ</Table.HeadCell>
-                                            <Table.HeadCell>Нийт дүн</Table.HeadCell>
+                                        <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
+                                        <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
+                                        <Table.HeadCell>Тайлбар</Table.HeadCell>
+                                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                                        <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
+                                        <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
+                                        <Table.HeadCell>Нийт дүн</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
-                                        
+                                        {order?.map((order: Order, index: number) => (
+                                            <Table.Row key={index}>
+                                                <Table.Cell>{order.product.productCode}</Table.Cell>
+                                                <Table.Cell>{order.product.productName}</Table.Cell>
+                                                <Table.Cell>{order.product.productDescription}</Table.Cell>
+                                                <Table.Cell>{order.product.productCnt}</Table.Cell>
+                                                <Table.Cell>{order.product.priceMain}</Table.Cell>
+                                                <Table.Cell>{order.product.prodmetric.typeId}</Table.Cell>
+                                                <Table.Cell></Table.Cell>
+                                            </Table.Row>
+                                        ))}
                                         </Table.Body>
                                     </Table>
                                 </Card>
@@ -103,17 +143,24 @@ const Orders = () => {
                 <div className="p-2">
                     <Card className="max-w-sm">
                         <h1 className="text-1xl">Захиалгын хураангуй (Гишүүд)</h1>
+                       
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Гишүүд</Table.HeadCell>
-                                <Table.HeadCell>Гишүүн Нийт дүн</Table.HeadCell>
                                 <Table.HeadCell>Нийт захиалгийн дүн</Table.HeadCell>
                                 <Table.HeadCell>Статус</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
-                                
+                                {order?.map((order: Order, index: number) => (
+                                    <Table.Row key={index}>
+                                        <Table.Cell>{order.branch.branchName}</Table.Cell>
+                                        <Table.Cell></Table.Cell>
+                                        <Table.Cell>{order.statusType.statusName}</Table.Cell>
+                                    </Table.Row>
+                                ))}
                             </Table.Body>
                         </Table>
+                    
                     </Card>
                     <div className="p-4">
                     <Card className="max-w-sm"> 
