@@ -45,7 +45,7 @@ const Cart = () => {
                   <Table.Cell>{product.priceMain}</Table.Cell>
                   <Table.Cell>{product.vehicleType}</Table.Cell>
                   <Table.Cell>{product.nameEng}</Table.Cell>
-                  <Table.Cell>Тоо ширхэг</Table.Cell>
+                  <Table.Cell></Table.Cell>
                   <Table.Cell>
                     <a href="/messej">
                       <Button className="bg-orange-500">

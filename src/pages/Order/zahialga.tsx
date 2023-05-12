@@ -259,7 +259,7 @@ const Zahialga = () => {
             <Card className="max-w-sm">
               
               <div className="w-50">
-                <a href="/cart">Сагсанд нэмэгдсэн бүтээгдэхүүн 
+                <a href="#">Сагсанд нэмэгдсэн бүтээгдэхүүн 
                 <ListGroup>
                   {product?.map((product: Product, index:number) => (
                     <ListGroup.Item key={index}>
@@ -280,6 +280,9 @@ const Zahialga = () => {
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
+                <a href="/messej">
+                  <Button className="bg-orange-500">Захиалга үүсгэх</Button>
+                </a>
                 </a>
               </div>
             </Card>
