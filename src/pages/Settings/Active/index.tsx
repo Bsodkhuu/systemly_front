@@ -4,21 +4,15 @@ import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { useForm } from "react-hook-form";
+import { Service } from "../../API";
 
 const Active = () => {
- 
-  // async function active(values: ServiceType) {
-  //   const response = await axiosClient.post("/service-types", {
-  //     ...values, 
-  //     price: parseInt(values.price.toString()),
-  //     averagePrice: parseInt(values.averagePrice.toString()),
-  //     suudalPrice: parseInt(values.suudalPrice.toString()),
-  //     achaaPrice: parseInt(values.achaaPrice.toString()),
-  //   });
-  //   return response.data;
-  // }
-  
+  const { data: service } = useQuery("getService", getService);
 
+  async function getService() {
+    const response = await axiosClient.get("/services");
+    return response.data as Service[];
+  }
   return (
     <Layout>
       <div className="p-4 bg-gray-200 h-screen w-full">
@@ -37,10 +31,14 @@ const Active = () => {
             <Table.Head className="uppercase">
               <Table.HeadCell>Засвар үйлчилгээний нэр</Table.HeadCell>
               <Table.HeadCell>Үнэ</Table.HeadCell>
-              <Table.HeadCell>Валют</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-              
+              {service?.map((service: Service, index: number) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{service.serviceName}</Table.Cell>
+                  <Table.Cell>{service.price}</Table.Cell>
+                </Table.Row>
+              ))}
             </Table.Body>
           </Table>
         </div>

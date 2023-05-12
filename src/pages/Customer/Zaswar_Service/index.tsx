@@ -51,21 +51,17 @@ const ZaswarService = () => {
                 </Table>
               </Card>
             </div>
-            
             <div className="p-4">
               <Card>
-                <h1 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h1>
+                <h1 className="text-1xl">Үйлчилгээ</h1>
                 <Table>
                   <Table.Head className="uppercase">
                     <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
                     <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                     <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                     <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
-                    <Table.HeadCell>Хямдрал</Table.HeadCell>
+                    <Table.HeadCell>Төлөх дүн</Table.HeadCell>
                     <Table.HeadCell>Нийт</Table.HeadCell>
-                    <Table.HeadCell>
-                      Дараагийн үйлчилгээний хуваарь
-                    </Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                   </Table.Body>

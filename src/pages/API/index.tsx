@@ -524,7 +524,7 @@ export interface PersonVehicle extends Person {
     [lastName: string]: any;
 }
 
-export interface ServiceOrder{
+export interface ServiceOrder extends Service{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -542,6 +542,7 @@ export interface ServiceOrder{
     personId?:  string;
     personVehicleId?: string;
     status: string;
+    [serviceName: string]: any;
 }
 
 export interface Employee{
@@ -563,11 +564,11 @@ export interface Employee{
     deleteUser: number;
 }
 
-export interface ServiceEmployee{
+export interface ServiceEmployee extends ServiceOrder{
     id: string;
     createdAt: string;
     updatedAt: string;
-    employeeId?: string;
+    employeeId: string;
     branchId?:  string;
     serviceOrderId?: string;
     activeFlag: string;
@@ -577,6 +578,7 @@ export interface ServiceEmployee{
     updateUser: number;
     deleteDate: string;
     deleteUser: number;
+    
 }
 
 export interface ServiceOrderProduct{
