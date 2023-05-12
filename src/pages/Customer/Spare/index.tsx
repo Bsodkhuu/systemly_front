@@ -126,12 +126,7 @@ const Spare = () => {
                   ))}
                 </Carousel>
               </div>
-              <Alert color="success" rounded={false} withBorderAccent={true} additionalContent={
-                <React.Fragment>
-                 <div className="mt-2 mb-4 text-sm text-green-700 dark:text-green-800">
-                  Excel файлаар оруулж ирсэн тоо ширхэгийг үйлчилгээ хийсэн материал дээр үндсэн тоо ширхэгийг хасаж харуулж байна. 
-                 </div>
-                </React.Fragment>}></Alert>
+              
               <div className="p-4 md:block hidden ">
                 <Card>
                 <TextInput type="file" onChange={handleFileChange}/>

@@ -146,7 +146,6 @@ const Human = () => {
                 <div className="flex gap-4">
                   <a href="#">Идэвхитэй</a>
                   <a href="/employee_history">Түүх</a>
-                  
                 </div>
                 <Table>
                   <Table.Head className="uppercase">
@@ -161,8 +160,7 @@ const Human = () => {
                   <Table.Body>
                     {employee?.map((employee: Employee, index: number) => (
                       <Table.Row key={index}>
-                        <Table.Cell>{employee.filePath
-                        }</Table.Cell>
+                        <Table.Cell>{employee.filePath}</Table.Cell>
                         <Table.Cell>{employee.person.firstName}</Table.Cell>
                         <Table.Cell>{employee.person.lastName}</Table.Cell>
                         <Table.Cell>{employee.branch.branchName}</Table.Cell>
@@ -211,14 +209,12 @@ const Human = () => {
               <Table.Head className="uppercase">
                 <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
                 <Table.HeadCell>Нийт</Table.HeadCell>
-                <Table.HeadCell>Үйлдэл</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
                 {serviceEmployee?.map((serviceEmployee: ServiceEmployee, index: number) => (
                   <Table.Row key={index}> 
                   <Table.Cell>{serviceEmployee.employeeId}</Table.Cell>
                   <Table.Cell>{serviceEmployee.serviceOrder.paidAmount}</Table.Cell>
-                  <Table.Cell></Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
