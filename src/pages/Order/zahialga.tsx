@@ -16,11 +16,14 @@ import {faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-ico
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { Online,  Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
+import { useParams } from "react-router-dom";
 
 interface ModalProps{
   showModal: boolean;
   closeModal: () => void;
 }
+
+
 
 const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
   const { data: online } = useQuery("getOnline", getOnline);
@@ -78,13 +81,22 @@ const Zahialga = () => {
     return response.data as Product[];
   }
 
+  
+
   const [inputText, setInputText] = useState("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputText(event.target.value);
   };
 
- 
+  const [cart, setCart] = useState([]);
+
+  const handleClick = () => {
+    setCart((cart) => [
+    ...cart,
+    ]);
+  };
+
   function openModal() {
     setShowModal(true);
   }
@@ -226,12 +238,11 @@ const Zahialga = () => {
                         <Table.Cell>{product.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
                         <Table.Cell>
-                          <TextInput type="text" onChange={handleChange} value={inputText}/>
-                          {inputText}
+                          <TextInput onChange={handleChange} value={inputText}/>
                         </Table.Cell>
                         <Table.Cell>
-                          {/* cart button darahad cart medeelel haragdahaar hiih  */}
-                          <Button className="bg-orange-500">
+                          <Button className="bg-orange-500" onClick={handleClick}>
+                            
                           <FontAwesomeIcon icon={faShoppingCart}/>
                           </Button>
                         </Table.Cell>
@@ -262,7 +273,7 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо ширхэг : 
+                      Тоо ширхэг : {inputText}
                       {/* <Button onClick={() => setCounter(counter + 1)}> + </Button> 
                       <Button onClick={() => setCounter(counter - 1)}> - </Button> */}
                       <ListGroup.Item></ListGroup.Item>
