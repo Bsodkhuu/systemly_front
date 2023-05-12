@@ -259,7 +259,7 @@ const Zahialga = () => {
             <Card className="max-w-sm">
               
               <div className="w-50">
-                <a href="#">Сагсанд нэмэгдсэн бүтээгдэхүүн 
+                <h1>Сагсанд нэмэгдсэн бүтээгдэхүүн </h1>
                 <ListGroup>
                   {product?.map((product: Product, index:number) => (
                     <ListGroup.Item key={index}>
@@ -274,16 +274,14 @@ const Zahialga = () => {
                       Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
                       Тоо ширхэг : {inputText}
-                      {/* <Button onClick={() => setCounter(counter + 1)}> + </Button> 
-                      <Button onClick={() => setCounter(counter - 1)}> - </Button> */}
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}
+                 <a href="/messej">
+                    <Button className="bg-orange-500">Захиалга үүсгэх</Button>
+                </a>
                 </ListGroup>
-                <a href="/messej">
-                  <Button className="bg-orange-500">Захиалга үүсгэх</Button>
-                </a>
-                </a>
+                
               </div>
             </Card>
           </div>

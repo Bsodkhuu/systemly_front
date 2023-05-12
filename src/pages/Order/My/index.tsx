@@ -1,6 +1,6 @@
 import { Table, Card,Checkbox} from "flowbite-react";
 import Layout from "../../../components/layout";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { Order, ZamiinMedee } from "../../API";
@@ -19,6 +19,12 @@ const My = () => {
     return response.data as ZamiinMedee[];
   }
 
+
+  const [checked, setChecked] = useState(false);
+
+  const handleCheck = (event: ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+  }
   return (
     <Layout>
       <div className="grid grid-cols-3 gap-4">
