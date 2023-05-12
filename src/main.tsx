@@ -31,7 +31,6 @@ import Holiday from "./pages/Settings/Holiday";
 import Forgot from "./pages/Login/Forgot/forgot";
 import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
-import BackOrder from "./pages/BackOrder";
 import Suld from "./pages/Suld";
 import Asuulguud from "./pages/Suld/order/asuulguud";
 import Orders from "./pages/Suld/order/Orders";
@@ -62,11 +61,6 @@ const router = createBrowserRouter([
   {
     path: "/inquiry",
     element: <Inquiry />,
-  },
-
-  {
-    path: "/backorder",
-    element: <BackOrder />,
   },
   {
     path:"/vilchilgee", 

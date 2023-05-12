@@ -133,25 +133,7 @@ const Orders = () => {
                                         </Table.Body>
                                     </Table>
                                     </div>
-                                <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
-                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
-                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
-                                <div className="w-[50%]" >
-                                    <div className="font-bold text-black" >Захиалгийн дугаар</div>
-                                    <div className="font-bold">Захиалга үүсгэсэн огноо</div>
-                                    <div>Нийлүүлэгч</div>
-                                    <div>Статус</div>
-                                </div>
-                                <div className="w-[50%]" key={index} >
-                                    <div>{orderDetail.order_id}</div>
-                                        <div>{orderDetail.createdAt}</div>
-                                        <div>{orderDetail.supplier.supplierList}</div>
-                                        <div>{orderDetail.statusType.statusName}</div>
-                                    <div/>
-                                </div>
-                            </div>
-                            ))}
-                            </div>
+                                
                                 </Card>
                             </div>
                             <div className="md:p-4">
@@ -279,21 +261,7 @@ const Orders = () => {
                         </ListGroup>
                         </div>
                         <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
-                        {teevriinZahialga?.map((teevriinZahialga: TeevriinZahialga, index: number) => (
-                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
-                                <div className="w-[50%]" >
-                                    <div className="font-bold text-black" >Тээвэрлэгч</div>
-                                    <div className="font-bold">Тээврийн захиалгийн дугаар</div>
-                                    <div>Тээврийн төрөл:</div>
-                                </div>
-                                <div className="w-[50%]" key={index} >
-                                    <div>{teevriinZahialga.name}</div>
-                                    <div>{teevriinZahialga.teevriinZahialgaId}</div>
-                                    <div>{teevriinZahialga.statusName}</div>
-                                    <div/>
-                                </div>
-                            </div>
-                            ))}
+                        
                             </div>
                     </Card>
                     </div>
