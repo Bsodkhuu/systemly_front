@@ -75,7 +75,9 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
               </div>
-              <TextInput id="familyName" />
+              <Select>
+
+              </Select>
             </div>
           </div>
 
@@ -121,7 +123,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="historyId" value="Харилцагчийн түүх" />
               </div>
-              <TextInput id="historyId" placeholder="Харилцагчийн түүхийг үлдэнэ `Хэрэглэгчийн кодтой адилхан оруулахад болно`"/> 
+              <TextInput id="historyId" placeholder="Хэрэглэгчийн кодтой адилхан оруулахад болно"/> 
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
@@ -253,15 +255,15 @@ const Customer = () => {
                       <Table.HeadCell>Овог</Table.HeadCell>
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Утасны дугаар</Table.HeadCell>
+                      <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
-                      
                         <Table.Row>
                           <Table.Cell></Table.Cell>
                           <Table.Cell></Table.Cell>
                           <Table.Cell></Table.Cell>
+                          <Table.Cell></Table.Cell>
                         </Table.Row>
-                      
                     </Table.Body>
                   </Table>
                 </Card>
@@ -280,12 +282,16 @@ const Customer = () => {
                   </div>
                   <Table>
                     <Table.Head className="uppercase">
-                      <Table.HeadCell>Загвар</Table.HeadCell>
-                      <Table.HeadCell>Модел</Table.HeadCell>
+                      <Table.HeadCell>Марк</Table.HeadCell>
+                      <Table.HeadCell>Марк нэр</Table.HeadCell>
+                      <Table.HeadCell>Машины нэр</Table.HeadCell>
+                      <Table.HeadCell>Машины төрөл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
                       
                           <Table.Row>
+                            <Table.Cell></Table.Cell>
+                            <Table.Cell></Table.Cell>
                             <Table.Cell></Table.Cell>
                             <Table.Cell></Table.Cell>
                           </Table.Row>
@@ -314,28 +320,17 @@ const Customer = () => {
               </a>
               <Table>
                 <Table.Head className="uppercase">
-                  <Table.HeadCell>Vin дугаар</Table.HeadCell>
-                  <Table.HeadCell>Үйлдвэрлэсэн он</Table.HeadCell>
-                  <Table.HeadCell>Импортлосон он</Table.HeadCell>
-                  <Table.HeadCell>Өнгө</Table.HeadCell>
+                  <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
                   <Table.HeadCell>Улсын дугаар</Table.HeadCell>
+                  <Table.HeadCell>Машины нэр</Table.HeadCell>
+                  <Table.HeadCell>Машины төрөл</Table.HeadCell>
+                  <Table.HeadCell>Марк</Table.HeadCell>
+                  <Table.HeadCell>Өнгө</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  
-                      <Table.Row>
-                        <Table.Cell></Table.Cell>
-                       
-                        <Table.Cell>
-                      
-                        </Table.Cell>
-                        <Table.Cell></Table.Cell>
-                        <Table.Cell></Table.Cell>
-                        
-                        <Table.Cell>
-                         
-                        </Table.Cell>
-                      </Table.Row>
-                  
+                  <Table.Row>
+                    <Table.Cell></Table.Cell>
+                  </Table.Row>
                 </Table.Body>
               </Table>
             </Card>

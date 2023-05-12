@@ -24,65 +24,44 @@ const Transport = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="makeId" value="Загвар" />
+                  <Label htmlFor="vehicleName" value="Машины нэр" />
                 </div>
-                <TextInput id="makeId" />
+                <TextInput id="vehicleName" />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="modelName" value="Модел" />
+                  <Label htmlFor="vehicleType" value="Төрөл" />
                 </div>
-                <TextInput id="modelName"  />
+                <TextInput id="vehicleType"  />
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="vehicleProductionYearFrom"
-                    value="Машин үйлдвэрлэсэн оноос хойш"
+                    htmlFor="vehicleMark"
+                    value="Марк"
                   />
                 </div>
                 <TextInput
-                  type="number"
-                  id="vehicleProductionYearFrom"
+                  
+                  id="vehicleNameEng"
                   
                 />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="vehicleProductionYearTo"
-                    value="Машин үйлдвэрлэсэн оноос өмнө"
+                    htmlFor="vehicleNameEng"
+                    value="vehicle Name Eng"
                   />
                 </div>
                 <TextInput
-                  type="number"
-                  id="vehicleProductionYearTo"
-                  
+                  id="vehicleNameEng"
                 />
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="vehicleClassId" value="Машины анги" />
-                </div>
-                <TextInput
-                  id="vehicleClassId"
-                 
-                />
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="vehicleBodyTypeId" value="Машины төрөл" />
-                </div>
-                <TextInput
-                  id="vehicleBodyTypeId"
-                  
-                />
-              </div>
-            </div>
+            
             <div className="flex gap-4">
               <Button className="bg-gray-400">Буцах</Button>
               <Button className="bg-orange-400">

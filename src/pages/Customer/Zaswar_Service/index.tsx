@@ -11,8 +11,6 @@ import Layout from "../../../components/layout";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 
-
-
 const ZaswarService = () => {
 
   return (
@@ -22,11 +20,7 @@ const ZaswarService = () => {
           <div className="bg-white p-6 rounded-lg">
             <div className="flex justify-between mb-4">
               <h4 className="text-1xl">Засвар үйлчилгээний бүртгэл</h4>
-             
             </div>
-
-            {/* ezamshigchin details,  */}
-
             <div className="p-4">
               <Card>
                 <h4 className="text-1xl">Эзэмшигчийн дэлгэрэнгүй</h4>
@@ -36,7 +30,7 @@ const ZaswarService = () => {
                     <Table.HeadCell>Овог</Table.HeadCell>
                     <Table.HeadCell>Нэр</Table.HeadCell>
                     <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                    <Table.HeadCell>Имэйл</Table.HeadCell>
+                    <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                     
@@ -63,7 +57,6 @@ const ZaswarService = () => {
                     </Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
-                    
                   </Table.Body>
                 </Table>
               </Card>
