@@ -83,24 +83,7 @@ const Clock = () => {
             </div>
           </div>
         </div>
-        <div className="md:hidden" >
-        {works?.map((works: any, index) => (
-          <div className="bg-white rounded-md p-2 mt-2  text-[10px] flex w-full border border-2 border-orange-300" >
-            <div className="divide-y w-[50%] ">  
-                <div className="font-bold" >7 хоног</div>
-                <div>Нээх</div>
-                <div>Хаах</div>
-                <div>Ажиллах эсэх</div>
-              </div>
-              <div className="divide-y w-[50%]" key={index} >  
-                <div className="font-bold" >{works.name}</div>
-                <div>{works.open}</div>
-                <div>{works.close}</div>
-                <div>{works.description}</div>
-              </div>
-          </div>
-          ))}
-        </div>
+       
       </div>
     </Layout>
   );

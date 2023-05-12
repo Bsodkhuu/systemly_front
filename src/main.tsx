@@ -18,7 +18,6 @@ import Payment from "./pages/Order/Payment";
 import Inquiry from "./pages/Order/Inquiry";
 import Sale from "./pages/Customer/Sale";
 import Spare from "./pages/Customer/Spare";
-import Settings from "./pages/Settings";
 import Price from "./pages/Settings/Price";
 import EmployeeHistory from "./pages/Human/Employee_history";
 import Active from "./pages/Settings/Active";
@@ -144,10 +143,6 @@ const router = createBrowserRouter([
   {
     path: "/employee_history",
     element: <EmployeeHistory />,
-  },
-  {
-    path: "/settings",
-    element: <Settings />,
   },
   {
     path: "/price",

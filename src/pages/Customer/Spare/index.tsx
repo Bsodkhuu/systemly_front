@@ -184,24 +184,7 @@ const Spare = () => {
                   </Table>
                 </Card>
               </div>
-              <div className="md:hidden" >
-        {inventory?.map((inventory: Inventory, index: number) => (
-          <div className="w-full  bg-white p-2 mt-2 rounded-md text-[11px] flex">
-          <div className="w-full p-2">
-          <div>Нийлүүлэгч</div>
-                      <div>Хаанаас</div>
-                      <div>Тоо, ширхэг</div>
-                      <div>Зарах үнэ</div>
-          </div>
-          <div className="w-full p-2 text-right" key={index} > 
-          <div>{inventory.supplier}</div>
-                          <div>{inventory.purchasedFrom}</div>
-                          <div>{inventory.quantity}</div>
-                          <div>{inventory.cost}</div>
-          </div>
-          </div>
-          ))}
-        </div>
+              
             </div>
           </div>
         </div>

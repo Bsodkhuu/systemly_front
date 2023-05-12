@@ -19,8 +19,6 @@ import { ServiceEmployee, ServiceOrder } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-
-
 const Human = () => {
   const [showModal, setShowModal] = useState(false);
   function openModal() {

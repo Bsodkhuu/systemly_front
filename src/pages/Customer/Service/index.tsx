@@ -34,52 +34,7 @@ const Service = () => {
               <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
-          {/* calendar */}
-          <div className="md:grid md:grid-cols-2">
-            <div className="md:p-4">
-              <Card className="max-w-sm">
-                <h5 className="text-1xl">Цаг авсан жагсаалт</h5>
-                <div className="flex gap-4">
-                  <TextInput id="search" type="search" placeholder="Хайх" />
-                  <Button className="bg-orange-500">Хайх</Button>
-                </div>
-                <div className="md:hidden sm:block">
-                {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
-                     <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
-                     <div className="w-full p-2 space-y-2">
-                           <div>Нэр</div>                    
-                           <div>Үйлчилгээний төрөл</div>
-                           <div>Цаг авсан</div>
-                     </div>
-                       <div className="w-full p-2 text-right" key={index}>
-                       <div>{serviceAppointment.customer.lastName}</div>
-                               <div>{serviceAppointment.serviceType.name}</div>
-                               <div>{serviceAppointment.startTime}</div>
-                       </div>
-                     </div>
-                    ))}
-                    </div>
-                <Table className="hidden md:block">
-                  <Table.Head className="uppercase">
-                    {/* <Table.HeadCell></Table.HeadCell> */}
-                    <Table.HeadCell>Нэр</Table.HeadCell>
-                    <Table.HeadCell>Үйлчилгээний төрөл</Table.HeadCell>
-                    <Table.HeadCell>Цаг авсан</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body className="divide-y">
-                    {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
-                      <Table.Row key={index}>
-                        <Table.Cell></Table.Cell>
-                        <Table.Cell></Table.Cell>
-                        <Table.Cell>{serviceAppointment.startTime}</Table.Cell>
-                      </Table.Row>
-                    ))}
-                  </Table.Body>
-                </Table>
-              </Card>
-            </div>
-           
-          </div>
+          
           <div className="md:p-4">
             <Card className="max-w-sm">
               <div className="flex gap-4">
