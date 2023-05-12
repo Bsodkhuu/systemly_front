@@ -160,33 +160,44 @@ const Customer = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="p-2 bg-gray-200 h-screen col-span-2">
+      <div className="md:grid md:grid-cols-3 gap-4">
+        <div className="p-2 bg-gray-200 md:h-screen md:col-span-2">
           <div className="bg-white p-2 rounded-lg">
-            <div className="flex justify-between mb-4">
+            <div className="md:flex md:justify-normal  justify-between mb-4 space-y-2 ">
               <h4 className="text-1xl">Харилцагчийн бүртгэл</h4>
-              <div className="flex gap-4">
-                <TextInput
+              <div className="md:flex gap-4  space-y-2 ">
+                <div className="flex md:flex-none md:justify-normal justify-between items-center space-x-3 " >
+                  <div className="w-[70%]" >
+                  <TextInput
                   id="search"
                   type="search"
-                  placeholder="Улсын,арлын,утасны дугаараар хайх"
-                />
-                <Button className="bg-orange-500">Хайх</Button>
+                  placeholder="Улсын,арлын,утасны дугаараар хайх"/>
+                  </div>
+                  <Button className="bg-orange-500 w-[30%]"> <p className="text-[11px]">Хайх</p></Button>
+                </div>
+                <div className="flex space-x-2 justify-between" >
+                  <div className="">
                 <Button className="bg-orange-500" onClick={openModal}>
-                  Харилцагч нэмэх
+                  <p className="text-[11px]">Харилцагч нэмэх</p>
                 </Button>
+                </div>
+                <div>
                 <a href="/transport">
                   <Button className="bg-orange-500">
+                  <p className="text-[11px]">
                     Тээврийн хэрэгсэл нэмэх
+                    </p>
                   </Button>
                 </a>
+                </div>
+                </div>
                
               </div>
             </div>
 
             {/* owner, vehicle search and details  */}
 
-            <div className="grid grid-cols-2">
+            <div className="md:grid md:grid-cols-2">
               <div className="p-2">
                 <Card className="max-w-sm">
                   <h5 className="text-1xl">Харилцагчийн жагсаалт</h5>

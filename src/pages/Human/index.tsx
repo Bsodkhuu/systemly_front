@@ -188,22 +188,26 @@ const Human = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="p-4 bg-gray-200 h-screen w-full">
+      <div className="p-4 bg-gray-200 md:h-screen w-full space-y-3">
         <div className="bg-white p-6 rounded-lg">
-          <div className="flex justify-between mb-4">
-            <h4 className="text-1xl">Ажилчид</h4>
-
-            <div className="flex gap-4">
+          <div className="md:flex justify-between mb-4 space-y-3">
+            <div className="text-xl">Ажилчид</div>
+            <div className="md:flex gap-4 ">
               <TextInput id="startDate" type="date" />
               -
               <TextInput id="endDate" type="date" />
+            
+              <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
               <Button className="bg-orange-500">Хайх</Button>
               <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
             </div>
-          </div>
-          <div className="grid grid-cols-3">
+            </div>
+            
+            
+          </div> 
+          <div className="md:grid grid-cols-3">
             <div className="p-4">
               <Card>
                 <h4 className="text-1xl">Ажилчдын жагсаалт</h4>
@@ -234,7 +238,7 @@ const Human = () => {
                   </Table.Body>
                 </Table>
               </Card>
-            </div>
+            </div> 
             <div className="p-4">
               <Card>
                 <h4 className="text-1xl">Хийсэн үйлчилгээний жагсаалт</h4>
@@ -261,7 +265,7 @@ const Human = () => {
             </div>
           </div>
         </div>
-        <div className="p-4">
+        <div className="md:p-4">
           <Card>
             <h4 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h4>
             <Table>

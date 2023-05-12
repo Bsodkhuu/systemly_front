@@ -42,31 +42,36 @@ const Clock = () => {
 
   return (
     <Layout>
-      <div className="p-4 bg-gray-200 h-screen w-full">
-        <div className="bg-white p-6 rounded-lg">
-          <div className="flex justify-between mb-4">
+      <div className="p-4 bg-gray-200 md:h-screen w-full">
+        <div className="bg-white p-4 rounded-lg space-y-3">
+          <div className="md:flex justify-between space-y-3">
             <h4 className="text-1xl">Ажлын цагийн хуваарь</h4>
+            <div className="md:flex space-y-3 md:space-x-3 md:space-y-0" >
             <a href="/holiday">
-              <h4 className="text-1xl">Бүх нийтийн амралтын өдөр</h4>
+              <Button className="bg-orange-500 " ><div className="text-[11px]" >Бүх нийтийн амралтын өдөр</div></Button>
             </a>
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайлт" />
-              <Button className="bg-orange-500">Хайх</Button>
+            <div className="flex gap-2">
+              <TextInput id="search" type="search" placeholder="Хайлт" className="w-full" />
+              <Button className="bg-orange-500 "> <div className="text-[11px]" >Хайх</div> </Button>
+            </div>
             </div>
           </div>
-          <div className="p-4">
+          <div className="md:p-4 ">
 
            <form onSubmit={handleSubmit(onSubmit)}>
            <Select>
               {WEEKS.map((i) => (
                 <option value={i} {...register("name")}>{i}</option>))}
            </Select>&nbsp;
-           <TextInput type="time" {...register("open")}/>&nbsp;
+           <TextInput placeholder="asd" type="time" {...register("open")}/>&nbsp;
            <TextInput type="time" {...register("close")}/>&nbsp;
            <TextInput type="text" {...register("description")}/>&nbsp;
+           <div className="flex justify-end" >
            <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
+           </div>
            </form>
            &nbsp;&nbsp;
+           <div className="hidden md:block" >
             <Table>
               <Table.Head className="uppercase">
                 <Table.HeadCell>7 хоног</Table.HeadCell>
@@ -75,7 +80,6 @@ const Clock = () => {
                 <Table.HeadCell>Ажиллах эсэх</Table.HeadCell>
                 
               </Table.Head>
-              
               <Table.Body className="divide-y">
                 {works?.map((works: any, index) => (
                   <Table.Row key={index}>
@@ -87,7 +91,26 @@ const Clock = () => {
                 ))}
               </Table.Body>
             </Table>
+            </div>
           </div>
+        </div>
+        <div className="md:hidden" >
+        {works?.map((works: any, index) => (
+          <div className="bg-white rounded-md p-2 mt-2  text-[10px] flex w-full border border-2 border-orange-300" >
+            <div className="divide-y w-[50%] ">  
+                <div className="font-bold" >7 хоног</div>
+                <div>Нээх</div>
+                <div>Хаах</div>
+                <div>Ажиллах эсэх</div>
+              </div>
+              <div className="divide-y w-[50%]" key={index} >  
+                <div className="font-bold" >{works.name}</div>
+                <div>{works.open}</div>
+                <div>{works.close}</div>
+                <div>{works.description}</div>
+              </div>
+          </div>
+          ))}
         </div>
       </div>
     </Layout>

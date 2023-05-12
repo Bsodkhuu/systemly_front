@@ -122,29 +122,31 @@ const Orders = () => {
     }
     return(
         <Layout>
-            <div className="grid grid-cols-3 gap-4">
-                <div className="p-4 bg-gray-200 h-screen col-span-2">
+            <div className="md:grid grid-cols-3 gap-4">
+                <div className="p-4 bg-gray-200 md:h-screen col-span-2">
                     <div className="bg-white p-6 rounded-lg">
-                        <div className="flex justify-between mb-4">
-                            
-                            <div className="flex gap-4">
-                               
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                        <div className="md:flex justify-between mb-4">                            
+                            <div className="md:grid md:grid-cols-6 md:gap-4 space-y-2 md:space-y-0 w-full justify-between">
+                                <div className="md:col-span-1 flex md:flex-col  items-center">
+                                <div className="mb-2 block w-[40%]  md:w-full ">
                                         <Label htmlFor="supplier" value="Нийлүүлэгч" />
                                     </div>
+                                    <div className="w-[60%] md:w-full">
                                     <Select>
+                                        
                                         {supplier?.map((i) => (
                                             <option value={i.id}>
                                                 {i.supplierList}
                                             </option>
                                         ))}
                                     </Select>
+                                    </div>
                                 </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                                <div className="md:col-span-1 flex md:flex-col  items-center">
+                                <div className="mb-2 block w-[40%]  md:w-full ">
                                         <Label htmlFor="order" value="Захиалагч"/>
                                     </div>
+                                    <div className="w-[60%] md:w-full">
                                     <Select>
                                         {affiliate?.map((i) => (
                                             <option value={i.id}>
@@ -152,32 +154,47 @@ const Orders = () => {
                                             </option>
                                         ))}
                                     </Select>
+                                    </div>
                                 </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                                <div className="md:col-span-1 flex md:flex-col  items-center">
+                                <div className="mb-2 block w-[40%]  md:w-full ">
                                         <FontAwesomeIcon icon={faMagnifyingGlass}/>
                                     </div>
+                                    <div className="w-[60%] md:w-full">
                                     <TextInput id="search" type="search" placeholder="Хайх" />
+                                    </div>
+                                    
                                 </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                                <div className="md:col-span-1 flex md:flex-col  items-center">
+                                    <div className="mb-2 block w-[40%]  md:w-full ">
                                         <Label htmlFor="upload" value="Бичиг баримт"/>
                                     </div>
+                                    <div className="w-[60%] md:w-full  ">
                                     <FileInput />
+                                    </div>
+                                    
                                 </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                                <div className="md:col-span-1 flex md:flex-col  items-center">
+                                    <div className="mb-2 block w-[40%] md:w-full   ">
                                         <Label htmlFor="zarlaga" value="Зарлагын падаан"/>
                                     </div>
-                                    <Button className="bg-orange-500">Хэвлэх</Button>
+                                    <div className="w-[60%] md:w-full">
+                                        <Button className="bg-orange-500 w-full">Хэвлэх</Button>
+                                    </div>
+                                    
                                 </div>
-                                <a href="/zam">Замын мэдээ оруулах</a>
+                                <div className="md:col-span-1 flex md:flex-col justify-end items-center">
+                                <a href="/zam " className="w-full" >
+                                    <Button className="bg-orange-500 w-full" >Замын мэдээ оруулах</Button>
+                                </a>
+                                </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2">
-                            <div className="p-4">
+                        <div className="md:grid grid-cols-2 space-y-3 md:space-y-0  ">
+                            <div className="md:p-4">
                                 <Card>
                                     <h1 className="text-1xl">Захиалгийн жагсаалт</h1>
+                                    <div className="hidden md:block" >
                                     <Table>
                                         <Table.Head className="uppercase">
                                             <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
@@ -196,11 +213,32 @@ const Orders = () => {
                                             ))}
                                         </Table.Body>
                                     </Table>
+                                    </div>
+                                <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Захиалгийн дугаар</div>
+                                    <div className="font-bold">Захиалга үүсгэсэн огноо</div>
+                                    <div>Нийлүүлэгч</div>
+                                    <div>Статус</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div>{orderDetail.order_id}</div>
+                                        <div>{orderDetail.createdAt}</div>
+                                        <div>{orderDetail.supplier.supplierList}</div>
+                                        <div>{orderDetail.statusType.statusName}</div>
+                                    <div/>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
                                 </Card>
                             </div>
-                            <div className="p-4">
+                            <div className="md:p-4">
                                 <Card>
                                     <h1 className="text-1xl">Захиалгийн дэлгэрэнгүй Гишүүн</h1>
+                                    <div className="hidden md:block" >
                                     <Table>
                                         <Table.Head className="uppercase">
                                             <Table.HeadCell>Партын дугаар</Table.HeadCell>
@@ -223,15 +261,41 @@ const Orders = () => {
                                           ))}
                                         </Table.Body>
                                     </Table>
+                                    </div>
+
+                                    <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                                    {product?.map((product: Product, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Партын дугаар</div>
+                                    <div className="font-bold">Тайлбар</div>
+                                    <div>Нэгжийн үнэ</div>
+                                    <div>Fitting</div>
+                                    <div>Тоо хэмжээ</div>
+                                    <div>Нийт дүн</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div>{product.part_number}</div>
+                                        <div>{product.description}</div>
+                                        <div>{product.netPrice}</div>
+                                        <div>{product.fittingPostion}</div>
+                                        <div>{product.quantity}</div>
+                                        <div>{product.netPrice * product.quantity}</div>
+                                    <div/>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
+                                   
                                 </Card>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-span">
-                <div className="p-2">
-                    <Card className="max-w-sm">
+                <div className="p-4 space-y-3 bg-gray-200 ">
+                    <Card className="">
                         <h1 className="text-1xl">Захиалгын хураангуй (Гишүүд)</h1>
+                        <div className="hidden md:block" >
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Гишүүд</Table.HeadCell>
@@ -250,12 +314,35 @@ const Orders = () => {
                                 ))}
                             </Table.Body>
                         </Table>
+                        </div>
+                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {order?.map((order: Order, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Гишүүд</div>
+                                    <div className="font-bold">Гишүүн Нийт дүн</div>
+                                    <div>Нийт захиалгийн дүн</div>
+                                    <div>Fitting</div>
+                                    <div>Тоо хэмжээ</div>
+                                    <div>Статус</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div>{order.affiliate.affiliateName}</div>
+                                    <div>{order.memberPrice}</div>
+                                    <div>{order.product.quantity * order.product.netPrice}</div>
+                                    <div>{order.statusType.statusName}</div>
+                                    <div/>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
                     </Card>
-                    <div className="p-4">
-                    <Card className="max-w-sm"> 
+                    <div className="">
+                    <Card className=""> 
                      <Button className="bg-orange-500">
                      <a href="/nemelt" className="text-1xl">Тээвэрлэлтийн мэдээлэл</a>
                      </Button>
+                     <div className="hidden md:block" >
                         <ListGroup>
                             {teevriinZahialga?.map((teevriinZahialga: TeevriinZahialga, index: number) => (
                                 <ListGroupItem key={index}>
@@ -269,10 +356,27 @@ const Orders = () => {
                                 </ListGroupItem>
                             ))}
                         </ListGroup>
+                        </div>
+                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {teevriinZahialga?.map((teevriinZahialga: TeevriinZahialga, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Тээвэрлэгч</div>
+                                    <div className="font-bold">Тээврийн захиалгийн дугаар</div>
+                                    <div>Тээврийн төрөл:</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div>{teevriinZahialga.name}</div>
+                                    <div>{teevriinZahialga.teevriinZahialgaId}</div>
+                                    <div>{teevriinZahialga.statusName}</div>
+                                    <div/>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
                     </Card>
                     </div>
                 </div>
-            </div>
             </div>
         </Layout>
     );

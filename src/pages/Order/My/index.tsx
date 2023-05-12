@@ -64,17 +64,17 @@ const My = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="p-4 bg-gray-200 h-screen col-span-2">
-          <div className="bg-white p-6 rounded-lg">
+      <div className="grid grid-cols-3">
+        <div className="p-4 col-span-12 grid grid-cols-12 ">
+          <div className="bg-white col-span-12  p-6 rounded-lg flex-col">
             <div className="flex justify-between mb-4">
-              <h5 className="text-1xl">Миний захиалгууд</h5>
+              <h5 className="text-sm">Миний захиалгууд</h5>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="p-4">
+            <div className="md:grid md:grid-cols-2 space-y-2 md:space-4 ">
+              <div className="md:gap-4" >
                 <Card>
-                  <h5 className="text-1xl">Захиалгийн жагсаалт</h5>
-                  <div className="flex gap-4">
+                  <h5 className="text-sm">Захиалгийн жагсаалт</h5>
+                  <div className="flex gap-2">
                     <a href="#">Идэвхитэй</a>
                     <a href="/history">Түүх</a>
                   </div>
@@ -84,7 +84,6 @@ const My = () => {
                        <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
                        <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                        <Table.HeadCell>Статус төрөл</Table.HeadCell>
-                     
                       </Table.Head>
                       <Table.Body className="divide-y">
                         {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
@@ -99,10 +98,10 @@ const My = () => {
                     </Table>
                 </Card>
               </div>
-              <div className="p-4">
+              <div className="md:gap-4" >
                 <Card>
-                  <h5 className="text-1xl">Захиалгийн дэлгэрэнгүй</h5>
-                  <div className="flex gap-4">
+                  <h5 className="text-sm">Захиалгийн дэлгэрэнгүй</h5>
+                  <div className="flex gap-2">
                     <Table>
                       <Table.Head className="uppercase">
                        <Table.HeadCell>Партын дугаар</Table.HeadCell>
@@ -129,15 +128,14 @@ const My = () => {
               </div>
             </div>
           </div>
-          
         </div>
-        <div className="col-span">
+        <div className="col-span-12">
             <div className="p-4">
-              <Card className="max-w-sm">
-                <h5 className="text-1xl">Замын мэдээний дэлгэрэнгүй</h5>
+              <Card className="w-full">
+                <h5 className=" text-sm">Замын мэдээний дэлгэрэнгүй</h5>
                 <div className="flex gap-4">
-                <Table>
-                        <Table.Head className="uppercase">
+                      <Table>
+                        <Table.Head className="uppercase ">
                           <Table.HeadCell>Байршил</Table.HeadCell>
                           <Table.HeadCell>Статус</Table.HeadCell>
                           <Table.HeadCell>Он сар</Table.HeadCell>
@@ -155,9 +153,8 @@ const My = () => {
                 </div>
               </Card>
             </div>
-          </div>
+        </div>
       </div>
-      
     </Layout>
   );
 };

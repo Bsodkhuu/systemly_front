@@ -28,7 +28,7 @@ const RoleList = () => {
                             </a>
                         </div>
                     </div>
-                    
+                    <div className="hidden md:block">
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Нэр</Table.HeadCell>
@@ -52,7 +52,34 @@ const RoleList = () => {
                                 ))}
                             </Table.Body>
                         </Table>
+                        </div>
+                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {roleList?.map((roleList: Role, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex" key={index} >
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Нэр</div>
+                                    <div className="font-bold"></div>
+                                    <div>Үүсгэсэн огноо</div>
+                                    <div>Эрх</div>
+                                    <div>Үйлдэл</div>
+                                </div>
+                                <div className="w-[50%]">
+                                <div>{roleList.user.lastName}</div>
+                                    <div>{roleList.roleName}</div>
+                                    <div>{roleList.createdAt}</div>
+                                    <div>{roleList.user.companyName}</div>
+                                    <div className="space-2xl">
+                                        <FontAwesomeIcon icon={faPenToSquare}/> &nbsp;
+                                        <FontAwesomeIcon icon={faTrash}/>
+                                    </div>
+                                   
+                                    <div/>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
                     </div>
+                    
                 </div>
             
         </Layout>

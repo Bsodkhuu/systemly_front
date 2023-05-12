@@ -68,25 +68,41 @@ const Service = () => {
 
   return (
     <Layout>
-      <div className="p-4 bg-gray-200 h-screen w-full">
-        <div className="bg-white p-6 rounded-lg">
-          <div className="flex justify-between mb-4">
-            <h4 className="text-1xl">Үйлчилгээний цаг авах</h4>
+      <div className="p-4 bg-gray-200 md:h-screen w-full ">
+        <div className="bg-white md:p-6 p-4 rounded-lg space-y-4">
+          <div className="md:flex justify-between md:mb-4 space-y-2 ">
+            <h4 className="text-md">Үйлчилгээний цаг авах</h4>
             <div className="flex gap-4">
               <TextInput id="date" type="date" />
               <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
           {/* calendar */}
-          <div className="grid grid-cols-2">
-            <div className="p-4">
+          <div className="md:grid md:grid-cols-2">
+            <div className="md:p-4">
               <Card className="max-w-sm">
                 <h5 className="text-1xl">Цаг авсан жагсаалт</h5>
                 <div className="flex gap-4">
                   <TextInput id="search" type="search" placeholder="Хайх" />
                   <Button className="bg-orange-500">Хайх</Button>
                 </div>
-                <Table>
+                <div className="md:hidden sm:block">
+                {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
+                     <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
+                     <div className="w-full p-2 space-y-2">
+                           <div>Нэр</div>                    
+                           <div>Үйлчилгээний төрөл</div>
+                           <div>Цаг авсан</div>
+                     </div>
+                       <div className="w-full p-2 text-right" key={index}>
+                       <div>{serviceAppointment.customer.lastName}</div>
+                               <div>{serviceAppointment.serviceType.name}</div>
+                               <div>{serviceAppointment.startTime}</div>
+                       </div>
+                     </div>
+                    ))}
+                    </div>
+                <Table className="hidden md:block">
                   <Table.Head className="uppercase">
                     {/* <Table.HeadCell></Table.HeadCell> */}
                     <Table.HeadCell>Нэр</Table.HeadCell>
@@ -107,13 +123,13 @@ const Service = () => {
             </div>
            
           </div>
-          <div className="p-4">
+          <div className="md:p-4">
             <Card className="max-w-sm">
               <div className="flex gap-4">
                 <TextInput id="search" type="search" placeholder="Хайх" />
                 <Button className="bg-orange-500">Хайх</Button>
               </div>
-              <Table>
+              <Table className="hidden md:block">
                 <Table.Head className="uppercase">
                   <Table.HeadCell>Хуваарь</Table.HeadCell>
                 </Table.Head>
@@ -125,6 +141,18 @@ const Service = () => {
                   ))}
                 </Table.Body>
               </Table>
+              <div className="md:hidden">
+              {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
+                    <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
+                    <div className="w-full p-2 space-y-2">
+                          <div>Хуваарь</div>                    
+                    </div>
+                      <div className="w-full p-2 text-right" >
+                      <div>{serviceAppointment.startTime}</div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
             </Card>
           </div>
         </div>

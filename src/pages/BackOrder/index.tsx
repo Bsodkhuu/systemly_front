@@ -47,7 +47,7 @@ const BackOrder = () => {
     <Layout>
       <div className="p-2 bg-gray-200 h-screen col-span-2">
         <div className="bg-white p-2 rounded-lg">
-          <div className="flex justify-between mb-4">
+          <div className="flex justify-between  items-center mb-4">
             <h4 className="text-1xl">Back Order </h4>
             <div className="flex gap-4">
               <TextInput id="search" type="search" placeholder="Хайх" />
@@ -60,7 +60,7 @@ const BackOrder = () => {
             withBorderAccent={true}
             additionalContent={
               <React.Fragment>
-                <div className="mt-2 mb-4 text-sm text-green-700 dark:text-green-800">
+                <div className="mt-2 mb-4 md:text-sm text-[11px]  text-green-700 dark:text-green-800">
                   Шаардлага Back Order-с хасагдсан бүтээгдэхүүний шууд
                   устгалгүйгээр аль Захиалга руу орсон болох final invoice
                   дугаарыг бичих /эсвэл он сар өдөр/, тухайн захиалагч талыг
@@ -75,7 +75,8 @@ const BackOrder = () => {
           </Alert>
           &nbsp;&nbsp;&nbsp;
           {/* get data */}
-          <Table>
+          
+          <Table className="hidden md:block" >
             <Table.Head className="uppercase">
               <Table.HeadCell>Захиалгын он сар</Table.HeadCell>
               <Table.HeadCell>Meyle</Table.HeadCell>
@@ -104,6 +105,35 @@ const BackOrder = () => {
             </Table.Body>
           </Table>
         </div>
+        <div className="md:hidden" >
+        {backOrder?.map((backOrder: BackOrder, index: number) => (
+          <div className="w-full  bg-white p-2 mt-2 rounded-md text-[11px] flex">
+          <div className="w-full p-2">
+          <div>Захиалгын он сар</div>
+              <div>Meyle</div>
+              <div>Тайлбар</div>
+              <div>Тоо ширхэг</div>
+              <div>EUR нэгжийн үнэ</div>
+              <div>EUR нийт үнэ</div>
+              <div>Бэлэн болох хугацаа</div>
+              <div>Гишүүн </div>
+              <div>Захиалганд орсон он сар өдөр</div>
+          </div>
+          <div className="w-full p-2 text-right" key={index} > 
+                  <div>{backOrder.order.createdDate}</div>
+                  <div>{backOrder.supplierList.supplierList}</div>
+                  <div>{backOrder.description}</div>
+                  <div>{backOrder.quantity}</div>
+                  <div>{backOrder.netPrice}</div>
+                  <div>{backOrder.quantity * backOrder.netPrice}</div>
+                  <div>{backOrder.date}</div>
+                  <div>{backOrder.user.companyName}</div>
+                  <div>{backOrder.orderDate}</div>
+          </div>
+          </div>
+          ))}
+        </div>
+        
       </div>
     </Layout>
   );

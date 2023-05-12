@@ -103,10 +103,10 @@ const App = () => {
   }
   return (
     <Layout>
-      <div className="p-4 bg-gray-200 h-screen w-full">
-        <div className="bg-white p-6 rounded-lg">
-          <div className="h-screen p-6 flex gap-4">
-            <Card className="w-2/5 h-96">
+      <div className="p-4 pb-2 md:h-screen w-full ">
+        <div className="bg-white p-4 rounded-lg  space-y-2">
+          <div className="p-4 md:flex gap-4 space-y-3">
+            <Card className="md:w-2/5 md:h-96">
               <Bar
                 data={{
                   labels: inventory?.map((i) => i.purchasedFrom),
@@ -121,7 +121,7 @@ const App = () => {
                 }}
               />
             </Card>
-            <Card className="w-2/5 h-96">
+            <Card className="md:w-2/5 md:h-96">
               <Pie
                 options={options}
                 data={{
@@ -138,8 +138,8 @@ const App = () => {
                 }}
               />
             </Card>
-
-            <Card className="w-2/5 h-96">
+            
+            <Card className="md:w-2/5 md:h-96">
               <Line
                 options={options}
                 data={{
