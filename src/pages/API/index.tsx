@@ -545,7 +545,7 @@ export interface ServiceOrder extends Service{
     [serviceName: string]: any;
 }
 
-export interface Employee{
+export interface Employee extends Person {
     id: string;
     createdAt: string;
     updatedAt: string;
