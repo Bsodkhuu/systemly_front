@@ -27,7 +27,7 @@ const Price = () => {
               </a>
             </div>
           </div>
-{/*        
+{/*    
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
               <div className="flex gap-4">
                 <div className="w-1/2">
@@ -160,6 +160,7 @@ const Price = () => {
                 </div>
               </div>
               ))}
+               */}
         </div>
       </div>
     </Layout>
