@@ -437,7 +437,7 @@ export interface Service{
     deleteUser: number;
     employeeId: string;
 }
-export interface Vehicle{
+export interface Vehicle extends PersonVehicle{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -466,7 +466,7 @@ export interface Address{
     personId: string;
 }
 
-export interface Person{
+export interface Person extends PersonPhone{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -490,6 +490,7 @@ export interface Person{
     confirmFlag: string;
     customerCode: string;
     phoneId?: string;
+    [phone: string]: any;
 }
 export interface PersonPhone{
     id: string;
@@ -505,7 +506,7 @@ export interface PersonPhone{
     deleteUser: number;
 }
 
-export interface PersonVehicle{
+export interface PersonVehicle extends Person {
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -520,6 +521,7 @@ export interface PersonVehicle{
     updateUser: number;
     deleteDate: string;
     deleteUser: number;
+    [lastName: string]: any;
 }
 
 export interface ServiceOrder{

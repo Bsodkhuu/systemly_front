@@ -43,22 +43,16 @@ const Transport = () => {
                     value="Марк"
                   />
                 </div>
-                <TextInput
-                  
-                  id="vehicleNameEng"
-                  
-                />
+                <TextInput id="vehicleNameEng"/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
                     htmlFor="vehicleNameEng"
-                    value="vehicle Name Eng"
-                  />
+                    value="vehicle Name Eng"/>
                 </div>
                 <TextInput
-                  id="vehicleNameEng"
-                />
+                  id="vehicleNameEng"/>
               </div>
             </div>
             

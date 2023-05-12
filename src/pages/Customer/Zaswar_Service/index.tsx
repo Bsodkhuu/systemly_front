@@ -10,9 +10,15 @@ import {
 import Layout from "../../../components/layout";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
+import { Person } from "../../API";
 
 const ZaswarService = () => {
+  const {data: persons } = useQuery("getPerson", getPerson);
 
+  async function getPerson() {
+    const response = await axiosClient.get("/persons");
+    return response.data as Person[];
+  }
   return (
     <Layout>
       <div className="grid grid-cols-3 gap-4">
@@ -33,14 +39,19 @@ const ZaswarService = () => {
                     <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
-                    
+                    {persons?.map((persons: Person, index: number) => (
+                      <Table.Row key={index}>
+                        <Table.Cell>{persons.firstName}</Table.Cell>
+                        <Table.Cell>{persons.lastName}</Table.Cell>
+                        <Table.Cell>{persons.personPhone.phone}</Table.Cell>
+                        <Table.Cell>{persons.customerCode}</Table.Cell>
+                      </Table.Row>
+                    ))}
                   </Table.Body>
                 </Table>
               </Card>
             </div>
-
-            {/* service details, zaswarin tolwor */}
-
+            
             <div className="p-4">
               <Card>
                 <h1 className="text-1xl">Үйлчилгээний дэлгэрэнгүй</h1>

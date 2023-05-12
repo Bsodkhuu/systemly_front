@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
+import { Person, PersonVehicle, Vehicle } from "../API";
 
 interface ModalProps {
   showModal: boolean;
@@ -13,38 +14,45 @@ interface ModalProps {
 }
 
 const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
-  // const { register, handleSubmit } = useForm<GarageCustomerOwner>();
-  // const { mutateAsync } = useMutation("createCustomer", createCustomer);
+  const { register, handleSubmit } = useForm<Person>();
+  const { mutateAsync } = useMutation("createCustomer", createCustomer);
 
-  // async function createCustomer(values: GarageCustomerOwner) {
-  //   const response = await axiosClient.post("/garage-customer-owners", values);
-  //   return response.data;
-  // }
+  async function createCustomer(values: Person) {
+    const response = await axiosClient.post("/persons", values);
+    return response.data;
+  }
 
-  // async function onSubmit(values: GarageCustomerOwner) {
-  //   await mutateAsync(values);
-  //   closeModal();
-  // }
+  async function onSubmit(values: Person) {
+    await mutateAsync(values);
+    closeModal();
+  }
+
+  const {data: persons } = useQuery("getPerson", getPerson);
+
+  async function getPerson() {
+    const response = await axiosClient.get("/persons");
+    return response.data as Person[];
+  }
 
   return (
     <Modal show={showModal} onClose={closeModal}>
       <Modal.Header>Харилцагч нэмэх</Modal.Header>
       <Modal.Body>
         <form
-          // onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4 max-h-96 overflow-y-auto">
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="firstName" value="Овог" />
               </div>
-              <TextInput id="firstName" />
+              <TextInput id="firstName" {...register("firstName")}/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="lastName" value="Нэр" />
               </div>
-              <TextInput id="lastName" />
+              <TextInput id="lastName" {...register("lastName")}/>
             </div>
           </div>
           <div className="flex gap-4">
@@ -52,13 +60,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="birthdate" value="Төрсөн өдөр" />
               </div>
-              <TextInput type="datetime" id="birthdate"  />
+              <TextInput type="datetime" id="birthdate" {...register("birthdate")}/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="registerId" value="Регистрийн дугаар" />
               </div>
-              <TextInput id="registerId" />
+              <TextInput id="registerId" {...register("registerId")}/>
             </div>
           </div>
           <div className="flex gap-4">
@@ -67,16 +75,24 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 <Label htmlFor="gender" value="Хүйс" />
               </div>
               <Select>
-                <option value="gender">
-                </option>
+                {persons?.map((i) => (
+                  <option value={i.id}>
+                    {i.gender}
+                  </option>
+                ))}
               </Select>
+              
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
               </div>
               <Select>
-
+                {persons?.map((i) => (
+                  <option value={i.id}>
+                    {i.familyName}
+                  </option>
+                ))}
               </Select>
             </div>
           </div>
@@ -86,35 +102,34 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="email" value="Имэйл" />
               </div>
-              <TextInput id="email" placeholder="example@gmail.com гэж бичнэ үү"/> 
+              <TextInput id="email" placeholder="example@gmail.com гэж бичнэ үү" {...register("email")}/> 
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="personPhone" value="Утасны дугаар" />
               </div>
-              <TextInput id="personPhone" placeholder="Утасны дугаар"/>
+              <TextInput id="personPhone" placeholder="Утасны дугаар" {...register("personPhone")}/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="nationality" value="Иргэншил" />
               </div>
-              <TextInput id="nationality" placeholder="Халх, Дарьганга гэх мэт"/>
+              <TextInput id="nationality" placeholder="Халх, Дарьганга гэх мэт" {...register("nationality")}/>
             </div>
           </div>
-          
 
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="country" value="Улс" />
               </div>
-              <TextInput id="country" placeholder="Монгол"/> 
+              <TextInput id="country" placeholder="Монгол" {...register("country")}/> 
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="customerCode" value="Хэрэглэгчийн код" />
               </div>
-              <TextInput id="customerCode" placeholder="Хэрэглэгчийн кодоор бүх үйлчилгээ, засвараа харах боломжтой"/>
+              <TextInput id="customerCode" placeholder="Хэрэглэгчийн кодоор бүх үйлчилгээ, засвараа харах боломжтой" {...register("customerCode")}/>
             </div>
           </div>
 
@@ -123,13 +138,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="historyId" value="Харилцагчийн түүх" />
               </div>
-              <TextInput id="historyId" placeholder="Хэрэглэгчийн кодтой адилхан оруулахад болно"/> 
+              <TextInput id="historyId" placeholder="Хэрэглэгчийн кодтой адилхан оруулахад болно" {...register("historyId")}/> 
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />
               </div>
-              <TextInput id="confirmFlag" placeholder="Үгүй, Тийм"/>
+              <TextInput id="confirmFlag" placeholder="Үгүй, Тийм" {...register("confirmFlag")}/>
             </div>
           </div>
 
@@ -139,9 +154,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
         <Button onClick={closeModal} className="bg-gray-400">
           Буцах
         </Button>
-        <Button 
-        // onClick={handleSubmit(onSubmit)} 
-        className="bg-orange-500">
+        <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
           Хадгалах
         </Button>
       </Modal.Footer>
@@ -152,52 +165,40 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
 const Customer = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchParams] = useSearchParams();
-  // const { data: customerList } = useQuery("getCustomers", () =>
-  //   getCustomer({
-  //     lastname: searchParams.get("lastname") || "",
-  //   })
-  // );
-  // const { data: vehicleMakeModels } = useQuery(
-  //   "getVehicleMakeModels",() => getVehicleMakeModels({
-  //     makeId: searchParams.get("makeId") || "",
-  //   })
-  // );
-  // const { data: garageCustomerVehicles } = useQuery(
-  //   "getGarageCustomerVehicles",
-  //   getGarageCustomerVehicles
-  // );
-  // const lastnameRef = useRef<HTMLInputElement>(null);
-  // const makeIdRef = useRef<HTMLInputElement>(null);
+  const { data: customerList } = useQuery("getCustomers", () =>
+    getCustomer({
+      lastname: searchParams.get("lastname") || "",
+    })
+  );
+ 
+  const lastnameRef = useRef<HTMLInputElement>(null);
 
-  // useEffect(() => {
-  //   if (lastnameRef.current) {
-  //     lastnameRef.current.value = searchParams.get("lastname") || "";
-  //   }
-  // }, []);
-  // useEffect(() => {
-  //   if (makeIdRef.current) {
-  //     makeIdRef.current.value = searchParams.get("makeId") || "";
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (lastnameRef.current) {
+      lastnameRef.current.value = searchParams.get("lastname") || "";
+    }
+  }, []);
+ 
+  async function getCustomer(params: { lastname: string }) {
+    const response = axiosClient.get(
+      `/persons?lastname=${params.lastname}`
+    );
+    return (await response).data;
+  }
 
-  // async function getCustomer(params: { lastname: string }) {
-  //   const response = axiosClient.get(
-  //     `/garage-customer-owners?lastname=${params.lastname}`
-  //   );
-  //   return (await response).data;
-  // }
+  const { data: vehicle} = useQuery("getVehicle", getVehicle);
 
-  // async function getVehicleMakeModels(params: { makeId : string }) {
-  //   const response = await axiosClient.get(
-  //     `/vehicle_make_models?makeId=${params.makeId}`
-  //     );
-  //   return (await response).data;
-  // }
+  async function getVehicle() {
+    const response = await axiosClient.get("/vehicles");
+    return response.data as Vehicle[];
+  }
 
-  // async function getGarageCustomerVehicles() {
-  //   const response = await axiosClient.get("/garage_customer_vehicles");
-  //   return response.data as GarageCustomerVehicle;
-  // }
+  const { data: personVehicle } = useQuery("getPersonVehicle", getPersonVehicle);
+
+  async function getPersonVehicle() {
+    const response = await axiosClient.get("/person-vehicles");
+    return response.data as PersonVehicle[];
+  }
 
   function openModal() {
     setShowModal(true);
@@ -218,8 +219,7 @@ const Customer = () => {
                 <TextInput
                   id="search"
                   type="search"
-                  placeholder="Улсын,арлын,утасны дугаараар хайх"
-                />
+                  placeholder="Улсын,утасны дугаараар хайх"/>
                 <Button className="bg-orange-500">Хайх</Button>
                 <Button className="bg-orange-500" onClick={openModal}>
                   Харилцагч нэмэх
@@ -229,12 +229,8 @@ const Customer = () => {
                     Тээврийн хэрэгсэл нэмэх
                   </Button>
                 </a>
-               
               </div>
             </div>
-
-            {/* owner, vehicle search and details  */}
-
             <div className="grid grid-cols-2">
               <div className="p-2">
                 <Card className="max-w-sm">
@@ -244,8 +240,7 @@ const Customer = () => {
                       type="search"
                       name="lastname"
                       placeholder=" Хэрэглэгч хайх"
-                      // ref={lastnameRef}
-                    />
+                      ref={lastnameRef}/>
                     <Button type="submit" className="bg-orange-500">
                       Хайх
                     </Button>
@@ -258,12 +253,14 @@ const Customer = () => {
                       <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
-                        <Table.Row>
-                          <Table.Cell></Table.Cell>
-                          <Table.Cell></Table.Cell>
-                          <Table.Cell></Table.Cell>
-                          <Table.Cell></Table.Cell>
+                        {customerList?.map((customerList: Person, index: number) => (
+                          <Table.Row key={index}>
+                          <Table.Cell>{customerList.firstName}</Table.Cell>
+                          <Table.Cell>{customerList.lastName}</Table.Cell>
+                          <Table.Cell>{customerList.personPhone.phone}</Table.Cell>
+                          <Table.Cell>{customerList.customerCode}</Table.Cell>
                         </Table.Row>
+                        ))}
                     </Table.Body>
                   </Table>
                 </Card>
@@ -288,14 +285,14 @@ const Customer = () => {
                       <Table.HeadCell>Машины төрөл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      
-                          <Table.Row>
-                            <Table.Cell></Table.Cell>
-                            <Table.Cell></Table.Cell>
-                            <Table.Cell></Table.Cell>
-                            <Table.Cell></Table.Cell>
-                          </Table.Row>
-                     
+                      {vehicle?.map((vehicle: Vehicle, index: number) => (
+                        <Table.Row key={index}>
+                          <Table.Cell>{vehicle.vehicleMark}</Table.Cell>
+                          <Table.Cell>{vehicle.vehicleNameEng}</Table.Cell>
+                          <Table.Cell>{vehicle.vehicleName}</Table.Cell>
+                          <Table.Cell>{vehicle.vehicleType}</Table.Cell>
+                        </Table.Row>
+                      ))}
                     </Table.Body>
                   </Table>
                 </Card>
@@ -327,9 +324,15 @@ const Customer = () => {
                   <Table.HeadCell>Өнгө</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  <Table.Row>
-                    <Table.Cell></Table.Cell>
-                  </Table.Row>
+                  {personVehicle?.map((personVehicle: PersonVehicle, index: number) => (
+                    <Table.Row key={index}>
+                      <Table.Cell>{personVehicle.person.lastName}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicleNumber}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicle.vehicleName}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicle.vehicleMark}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicleColor}</Table.Cell>
+                    </Table.Row>
+                  ))}
                 </Table.Body>
               </Table>
             </Card>
