@@ -581,7 +581,7 @@ export interface ServiceEmployee extends ServiceOrder{
     
 }
 
-export interface ServiceOrderProduct{
+export interface ServiceOrderProduct extends ServiceOrder{
     id: string;
     createdAt: string;
     updatedAt: string;
