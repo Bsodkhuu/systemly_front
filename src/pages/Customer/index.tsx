@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
-import { Button, Table, Label, Modal, Card, TextInput } from "flowbite-react";
+import { Button, Table, Label, Modal, Card, TextInput, Select } from "flowbite-react";
 import Layout from "../../components/layout";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -50,17 +50,35 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="phone" value="Утасны дугаар" />
+                <Label htmlFor="birthdate" value="Төрсөн өдөр" />
               </div>
-              <TextInput id="phone"  />
+              <TextInput type="datetime" id="birthdate"  />
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="email" value="Имэйл" />
+                <Label htmlFor="registerId" value="Регистрийн дугаар" />
+              </div>
+              <TextInput id="registerId" />
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="gender" value="Хүйс" />
+              </div>
+              <Select>
+                <option value="gender">
+                </option>
+              </Select>
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="email" value="Имейл" />
               </div>
               <TextInput id="email" />
             </div>
           </div>
+
         </form>
       </Modal.Body>
       <Modal.Footer>
