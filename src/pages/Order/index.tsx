@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout";
-import { Button } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 const Order = () => {
   return (
     <Layout>
@@ -28,7 +28,6 @@ const Order = () => {
           &nbsp;
           </div>
           <div className="text-sm p-2 bg-white text-bold rounded-md shadow-xl col-span-10 ">Түүвэр захиалга </div>
-          
         </div>
       </div>
     </Layout>
