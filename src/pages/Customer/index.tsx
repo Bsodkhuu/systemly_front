@@ -73,12 +73,57 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="email" value="Имейл" />
+                <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
               </div>
-              <TextInput id="email" />
+              <TextInput id="familyName" />
             </div>
           </div>
 
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="email" value="Имэйл" />
+              </div>
+              <TextInput id="email" placeholder="example@gmail.com гэж бичнэ үү"/> 
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="nationality" value="Иргэншил" />
+              </div>
+              <TextInput id="nationality" placeholder="Халх, Дарьганга гэх мэт"/>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="country" value="Улс" />
+              </div>
+              <TextInput id="country" placeholder="Монгол"/> 
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="customerCode" value="Хэрэглэгчийн код" />
+              </div>
+              <TextInput id="customerCode" placeholder="Хэрэглэгчийн кодоор бүх үйлчилгээ, засвараа харах боломжтой"/>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="historyId" value="Харилцагчийн түүх" />
+              </div>
+              <TextInput id="historyId" placeholder="Харилцагчийн түүхийг үлдэнэ `Хэрэглэгчийн кодтой адилхан оруулахад болно`"/> 
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />
+              </div>
+              <TextInput id="confirmFlag" placeholder="Үгүй, Тийм"/>
+            </div>
+          </div>
+          
         </form>
       </Modal.Body>
       <Modal.Footer>
