@@ -598,7 +598,7 @@ export interface ServiceOrderProduct extends ServiceOrder{
     deleteDate: string;
     deleteUser: number;
 }
-export interface GarageInventory{
+export interface GarageInventory extends Branch{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -616,4 +616,5 @@ export interface GarageInventory{
     updateUser: number;
     deleteDate: string;
     deleteUser: number;
+    [branch: string]: any;
 }

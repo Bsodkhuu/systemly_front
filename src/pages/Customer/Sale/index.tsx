@@ -70,7 +70,7 @@ const Sale = () => {
             </div>
             <div className="p-4">
               <Card>
-                <h4 className="text-1xl">Ашигласан бүтээгдэхүүний жагсаалт</h4>
+                <h4 className="text-1xl">Засварын хуудас дэлгэрэнгүй</h4>
                 <Table>
                   <Table.Head className="uppercase">
                     <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
@@ -78,7 +78,6 @@ const Sale = () => {
                     <Table.HeadCell>Материал</Table.HeadCell>
                     <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                     <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
-                    
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
