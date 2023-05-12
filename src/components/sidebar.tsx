@@ -49,7 +49,7 @@ const SidebarComponent = () => {
     <Panel header="Захиалга" key="2" className='' >
       <div className='divide-y space-y-3 ' >
     <a href="/my" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><HiOutlineCollection/></div> Миний захиалга</a>
-      <a href="/zahialga" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><MdOutlineShoppingCartCheckout/></div>Захиалга хийх</a>
+      <a href="/order" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><MdOutlineShoppingCartCheckout/></div>Захиалга хийх</a>
       {/* <a href="/backorder" className='flex h-8 w-full justify-start items-center' > <div className='text-xl flex justify-center  w-12' ><TbNotesOff/></div>Бэлэн бус захиалга</a> */}
             
     </div>
@@ -139,11 +139,11 @@ const SidebarComponent = () => {
     </Panel>
     <Panel header="Захиалга" key="2" className=''>
       <div className='divide-y space-y-3' >
-    <a href="/my" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center w-12'><HiOutlineCollection/></div> Миний захиалга</a>
-             <a href="/order" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><MdOutlineShoppingCartCheckout/></div>Захиалга хийх</a>
+        <a href="/my" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center w-12'><HiOutlineCollection/></div> Миний захиалга</a>
+        <a href="/order" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><MdOutlineShoppingCartCheckout/></div>Захиалга хийх</a>
              {/* <a href="/backorder" className='flex h-8 w-full justify-start items-center' > <div className='text-xl flex justify-center  w-12' ><TbNotesOff/></div>Бэлэн бус захиалга</a> */}
             
-             </div>
+      </div>
     </Panel>
     <Panel header="Засвар Борлуулалт" key="3">
     <div className='divide-y space-y-3 ' >

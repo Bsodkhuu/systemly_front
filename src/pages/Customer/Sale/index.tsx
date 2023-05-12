@@ -70,15 +70,15 @@ const Sale = () => {
             </div>
             <div className="p-4">
               <Card>
-                <h4 className="text-1xl">Засварын хуудасны дэлгэрэнгүй</h4>
+                <h4 className="text-1xl">Ашигласан бүтээгдэхүүний жагсаалт</h4>
                 <Table>
                   <Table.Head className="uppercase">
                     <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
-                    <Table.HeadCell>Service/branch/</Table.HeadCell>
+                    <Table.HeadCell>Service</Table.HeadCell>
                     <Table.HeadCell>Материал</Table.HeadCell>
                     <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                     <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
-                    {/* <Table.HeadCell>Нийт</Table.HeadCell> */}
+                    
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
@@ -101,18 +101,14 @@ const Sale = () => {
             <Card className="max-w-sm">
               <h1 className="text-1xl">Засварын хуудас</h1>
               <ListGroup>
-                
+              {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
                   <ListGroup.Item>
-                    Ажлын хөлс: 
+                    Ажлын хөлс: {serviceOrderProduct.serviceOrder.payPrice}
                     <ListGroup.Item></ListGroup.Item>
                     <ListGroup.Item>
-                      Материал: 
+                      Материал: {serviceOrderProduct.product.productName}
                       <ListGroup.Item></ListGroup.Item>
-                      <ListGroup.Item>
-                        <ListGroup.Item></ListGroup.Item>
-                        Хямдрал: 
-                      </ListGroup.Item>
-                      <ListGroup.Item></ListGroup.Item>
+                      Нийт: 
                       {/* Нийт: {serviceHistory.netPrice * serviceHistory.quantity * (100 -serviceHistory.discount / 100)} */}
                       {/* {serviceHistory.quantity *
                               serviceHistory.serive.price *
@@ -127,7 +123,7 @@ const Sale = () => {
                       </Select>
                     </ListGroup.Item>
                   </ListGroup.Item>
-              
+              ))}
               </ListGroup>
             </Card>
           </div>

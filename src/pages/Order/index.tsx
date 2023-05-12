@@ -12,7 +12,6 @@ const Order = () => {
               <TextInput id="search" type="search" placeholder="Хайх" className="w-full"/>
               <Button className="">Хайх</Button>
             </div>
-         
           <div className="flex p-2  space-x-4  justify-between">
             <div className="w-full">
               <a href="/zahialga"  >
