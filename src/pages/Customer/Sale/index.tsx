@@ -44,7 +44,6 @@ const Sale = () => {
                     <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y bg-scroll">
-                    
                         <Table.Row>
                           <Table.Cell>
                             <Checkbox />

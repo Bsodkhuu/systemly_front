@@ -203,7 +203,6 @@ const Human = () => {
                   <Table.Cell>{serviceEmployee.serviceOrder.paidAmount}</Table.Cell>
                   </Table.Row>
                 ))}
-                
               </Table.Body>
             </Table>
           </Card>
