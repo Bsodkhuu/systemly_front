@@ -49,10 +49,10 @@ const SidebarComponent = () => {
     <Panel header="Захиалга" key="2" className='' >
       <div className='divide-y space-y-3 ' >
     <a href="/my" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><HiOutlineCollection/></div> Миний захиалга</a>
-             <a href="/order" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><MdOutlineShoppingCartCheckout/></div>Захиалга хийх</a>
-             <a href="/backorder" className='flex h-8 w-full justify-start items-center' > <div className='text-xl flex justify-center  w-12' ><TbNotesOff/></div>Бэлэн бус захиалга</a>
-             <a href="/online"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><HiStatusOnline/></div>Онлайн кателоги</a>
-             </div>
+      <a href="/zahialga" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><MdOutlineShoppingCartCheckout/></div>Захиалга хийх</a>
+      <a href="/backorder" className='flex h-8 w-full justify-start items-center' > <div className='text-xl flex justify-center  w-12' ><TbNotesOff/></div>Бэлэн бус захиалга</a>
+            
+    </div>
     </Panel>
     <Panel header="Засвар Борлуулалт" key="3">
     <div className='divide-y space-y-3 ' >
@@ -69,10 +69,9 @@ const SidebarComponent = () => {
     </Panel>
     <Panel header="Тохиргоо" key="5">
     <div className='divide-y space-y-3'>
-    <a href="/human"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Нийт ажилчдын бүртгэл</a>
     <a href="/settings"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <AiOutlineTool/> </div> Засвар</a>
-             <a href="/price"   className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <BiMoneyWithdraw/> </div> Засварын үнийн тохиргоо</a>
-             <a href="/clock"  className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <RxLapTimer/> </div> Ажлын цагийн хуваарь</a>
+    <a href="/price"   className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <BiMoneyWithdraw/> </div> Засварын үнийн тохиргоо</a>
+    <a href="/clock"  className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <RxLapTimer/> </div> Ажлын цагийн хуваарь</a>
     </div>
     </Panel>
     <Panel header="Сүлд ERP" key="6">
