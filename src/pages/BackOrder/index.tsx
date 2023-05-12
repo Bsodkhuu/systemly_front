@@ -72,35 +72,6 @@ const BackOrder = () => {
             </Table.Body>
           </Table>
         </div>
-        <div className="md:hidden" >
-        {backOrder?.map((backOrder: BackOrder, index: number) => (
-          <div className="w-full  bg-white p-2 mt-2 rounded-md text-[11px] flex">
-          <div className="w-full p-2">
-          <div>Захиалгын он сар</div>
-              <div>Meyle</div>
-              <div>Тайлбар</div>
-              <div>Тоо ширхэг</div>
-              <div>EUR нэгжийн үнэ</div>
-              <div>EUR нийт үнэ</div>
-              <div>Бэлэн болох хугацаа</div>
-              <div>Гишүүн </div>
-              <div>Захиалганд орсон он сар өдөр</div>
-          </div>
-          <div className="w-full p-2 text-right" key={index} > 
-                  <div>{backOrder.order.createdDate}</div>
-                  <div>{backOrder.supplierList.supplierList}</div>
-                  <div>{backOrder.description}</div>
-                  <div>{backOrder.quantity}</div>
-                  <div>{backOrder.netPrice}</div>
-                  <div>{backOrder.quantity * backOrder.netPrice}</div>
-                  <div>{backOrder.date}</div>
-                  <div>{backOrder.user.companyName}</div>
-                  <div>{backOrder.orderDate}</div>
-          </div>
-          </div>
-          ))}
-        </div>
-        
       </div>
     </Layout>
   );
