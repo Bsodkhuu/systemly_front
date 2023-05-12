@@ -7,34 +7,9 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 
-interface VehicleMakeModel{
-  makeId: string;
-  modelId: string;
-  modelName: string;
-  vehicleProductionYearFrom: string;
-  vehicleProductionYearTo: string;
-  vehicleClassId: string;
-  vehicleBodyTypeId: string;
-  featuredCheck: boolean;
-}
-
 const Transport = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<VehicleMakeModel>();
-  const { mutateAsync } = useMutation(
-    "createVehicleMakeModel",
-    createVehicleMakeModel
-  );
-
-  async function createVehicleMakeModel(values: VehicleMakeModel) {
-    const response = await axiosClient.post("/vehicle_make_models", values);
-    return response.data;
-  }
-
-  async function onSubmit(values: VehicleMakeModel) {
-    await mutateAsync(values);
-    navigate("/customer");
-  }
+  navigate("/customer");
 
   return (
     <Layout>
@@ -44,72 +19,46 @@ const Transport = () => {
             <h4 className="text-1xl">Тээврийн хэрэгсэл</h4>
           </div>
           <form
-            onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            //onSubmit={handleSubmit(onSubmit)} 
+            className="flex flex-col gap-4">
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="makeId" value="Загвар" />
+                  <Label htmlFor="vehicleName" value="Машины нэр" />
                 </div>
-                <TextInput id="makeId" {...register("makeId")} />
+                <TextInput id="vehicleName" />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="modelName" value="Модел" />
+                  <Label htmlFor="vehicleType" value="Төрөл" />
                 </div>
-                <TextInput id="modelName" {...register("modelName")} />
+                <TextInput id="vehicleType"  />
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="vehicleProductionYearFrom"
-                    value="Машин үйлдвэрлэсэн оноос хойш"
+                    htmlFor="vehicleMark"
+                    value="Марк"
                   />
                 </div>
-                <TextInput
-                  type="number"
-                  id="vehicleProductionYearFrom"
-                  {...register("vehicleProductionYearFrom")}
-                />
+                <TextInput id="vehicleNameEng"/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
-                    htmlFor="vehicleProductionYearTo"
-                    value="Машин үйлдвэрлэсэн оноос өмнө"
-                  />
+                    htmlFor="vehicleNameEng"
+                    value="vehicle Name Eng"/>
                 </div>
                 <TextInput
-                  type="number"
-                  id="vehicleProductionYearTo"
-                  {...register("vehicleProductionYearTo")}
-                />
+                  id="vehicleNameEng"/>
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="vehicleClassId" value="Машины анги" />
-                </div>
-                <TextInput
-                  id="vehicleClassId"
-                  {...register("vehicleClassId")}
-                />
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="vehicleBodyTypeId" value="Машины төрөл" />
-                </div>
-                <TextInput
-                  id="vehicleBodyTypeId"
-                  {...register("vehicleBodyTypeId")}
-                />
-              </div>
-            </div>
+            
             <div className="flex gap-4">
               <Button className="bg-gray-400">Буцах</Button>
-              <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
+              <Button className="bg-orange-400">
                 Хадгалах
               </Button>
             </div>

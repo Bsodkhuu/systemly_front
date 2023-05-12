@@ -4,22 +4,8 @@ import { Button, Table, TextInput } from "flowbite-react";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { useForm } from "react-hook-form";
+import { ZamiinMedee } from "../../../API";
 
-interface ZamiinMedee extends ZamiinMedeeStatusType{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    location: string;
-    date: string;
-    insertDate: string;
-    zamStatusTypeId?: string;
-    [statusTypeName: string]: any;
-}
-
-interface ZamiinMedeeStatusType{
-    statusTypeId: string;
-    statusTypeName: string;
-}
 const Zam = () => {
 
     const { data: zaminMedee } = useQuery("getZaminMedee", getZaminMedee);

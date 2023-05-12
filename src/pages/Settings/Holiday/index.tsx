@@ -4,16 +4,8 @@ import { useForm } from "react-hook-form";
 import Layout from "../../../components/layout";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
+import { Holiday } from "../../API";
 
-
- interface Holiday{
-  id: string;
-  createdAt: string;
-  updateAt: string;
-  openDate: string;
-  closeDate: string;
-  description: string;
- }
 const Holiday = () => {
   
   const { register, handleSubmit } = useForm<Holiday>();

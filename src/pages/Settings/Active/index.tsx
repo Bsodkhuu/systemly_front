@@ -3,33 +3,16 @@ import Layout from "../../../components/layout";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { ServiceType } from "../Price";
 import { useForm } from "react-hook-form";
+import { Service } from "../../API";
 
 const Active = () => {
-  const { data: priceList } = useQuery("getPrice", getPrice);
+  const { data: service } = useQuery("getService", getService);
 
-  async function getPrice() {
-    const response = await axiosClient.get("/service-types");
-    return response.data as ServiceType[];
+  async function getService() {
+    const response = await axiosClient.get("/services");
+    return response.data as Service[];
   }
-  const { register, handleSubmit } = useForm<ServiceType>();
-  const { mutateAsync } = useMutation("active", active);
-
-  async function active(values: ServiceType) {
-    const response = await axiosClient.post("/service-types", {
-      ...values, 
-      price: parseInt(values.price.toString()),
-      averagePrice: parseInt(values.averagePrice.toString()),
-      suudalPrice: parseInt(values.suudalPrice.toString()),
-      achaaPrice: parseInt(values.achaaPrice.toString()),
-    });
-    return response.data;
-  }
-  async function onSubmit(values: ServiceType) {
-    await mutateAsync(values);
-  }
-
   return (
     <Layout>
       <div className="p-4 bg-gray-200 h-screen w-full">
@@ -48,14 +31,12 @@ const Active = () => {
             <Table.Head className="uppercase">
               <Table.HeadCell>Засвар үйлчилгээний нэр</Table.HeadCell>
               <Table.HeadCell>Үнэ</Table.HeadCell>
-              <Table.HeadCell>Валют</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-              {priceList?.map((price: ServiceType, index: number) => (
+              {service?.map((service: Service, index: number) => (
                 <Table.Row key={index}>
-                  <Table.Cell>{price.name}</Table.Cell>
-                  <Table.Cell>{price.price}</Table.Cell>
-                  <Table.Cell>{price.currency}</Table.Cell>
+                  <Table.Cell>{service.serviceName}</Table.Cell>
+                  <Table.Cell>{service.price}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>

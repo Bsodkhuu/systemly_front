@@ -5,51 +5,8 @@ import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 
 import { useSearchParams } from "react-router-dom";
+import { ServiceAppointment } from "../../API";
 
-
-interface ServiceAppointment extends GarageCustomerOwner{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  startTime: string;
-  endTime: string;
-  customerId?: string;
-  vehicleId?: string;
-  serviceTypeId?: string;
-  mechanicId?: string;
-  nemeltMedeelel: string;
-  [lastName: string]: any;
-}
-
-interface ServiceType extends ServiceAppointment {
-  mainCategory: string;
-  subCategory: string;
-  name: string;
-  affiliateId?: string;
-  price: number;
-  currency: string;
-}
-interface GarageCustomerOwner extends GarageCustomerVehicle{
-  lastName: string;
-  firstName: string;
-  phoneNumber: string;
-  email: string;
-}
-interface GarageCustomerVehicle{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  vinNumber: string;
-  makeId?:string;
-  modelId?: string;
-  manufacturerYear: string;
-  importedYear: string;
-  colorId?: string;
-  licensePlateNumber: string;
-  ownerId?: string;
-  affiliateId?: string;
-  vehicleId?: string;
-}
 const Service = () => {
   const [searchParams] = useSearchParams();
 
@@ -112,8 +69,8 @@ const Service = () => {
                   <Table.Body className="divide-y">
                     {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
                       <Table.Row key={index}>
-                        <Table.Cell>{serviceAppointment.customer.lastName}</Table.Cell>
-                        <Table.Cell>{serviceAppointment.serviceType.name}</Table.Cell>
+                        <Table.Cell></Table.Cell>
+                        <Table.Cell></Table.Cell>
                         <Table.Cell>{serviceAppointment.startTime}</Table.Cell>
                       </Table.Row>
                     ))}

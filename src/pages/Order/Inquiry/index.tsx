@@ -15,35 +15,8 @@ import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
+import { Description, InquiryDetail } from "../../API";
 
-
-export interface InquiryDetail extends Supplier{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  affiliateId: string;
-  partNumber: string;
-  quantity: number;
-  netPrice: number;
-  productId?: string;
-  supplierId?: string;
-  inquiryId?: string;
-  orderDetailId?: string;
-  statusTypeId?: string;
-  [supplierList: string]: any;
-}
-
- export interface Supplier{
-  supplierList: string;
-  vehicleManufacturerId?: string
-}
-
-export interface Description{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  body: string
-}
 const Inquiry = () => {
   const { register, handleSubmit } = useForm<Description>();
   
@@ -161,7 +134,6 @@ const Inquiry = () => {
                       {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number)=>(
                          <Table.Row key={index}>
                          <Table.Cell>{inquiryDetail.partNumber}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.supplier.supplierList}</Table.Cell>
                          <Table.Cell>{inquiryDetail.quantity}</Table.Cell>
                          <Table.Cell>{inquiryDetail.netPrice}</Table.Cell>
                          <Table.Cell>{inquiryDetail.currency}</Table.Cell>

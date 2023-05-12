@@ -4,18 +4,7 @@ import React from "react";
 import { axiosClient } from "../../../config/axios";
 import { useMutation, useQuery } from "react-query";
 import { useForm } from "react-hook-form";
-
-export interface Work{
-  id: string;
-  createdAt: string;
-  updateAt: string;
-  name: Week;
-  open: string;
-  close: string;
-  description: string;
-}
-type Week = any;
-
+import { Work } from "../../API";
 
 const Clock = () => {
   

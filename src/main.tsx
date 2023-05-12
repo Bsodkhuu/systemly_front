@@ -32,7 +32,6 @@ import Forgot from "./pages/Login/Forgot/forgot";
 import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
 import BackOrder from "./pages/BackOrder";
-import Online from "./pages/Online";
 import Suld from "./pages/Suld";
 import Asuulguud from "./pages/Suld/order/asuulguud";
 import Orders from "./pages/Suld/order/Orders";
@@ -44,6 +43,7 @@ import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
 import Vilchilgee from "./pages/Customer/Sale/service";
 import Profile from "./pages/Profile";
+
 
 
 const router = createBrowserRouter([
@@ -63,10 +63,7 @@ const router = createBrowserRouter([
     path: "/inquiry",
     element: <Inquiry />,
   },
-  {
-    path: "/online",
-    element: <Online />,
-  },
+
   {
     path: "/backorder",
     element: <BackOrder />,

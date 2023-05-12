@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import Layout from "../../../../components/layout";
 import { Button, Label, TextInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { TeevriinZahialga } from "../Orders";
 import { useMutation } from "react-query";
 import { axiosClient } from "../../../../config/axios";
+import { TeevriinZahialga } from "../../../API";
 
 const Nemelt = () => {
 

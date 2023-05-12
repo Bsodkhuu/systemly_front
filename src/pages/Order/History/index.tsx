@@ -3,16 +3,14 @@ import { TextInput, Button, Table} from "flowbite-react";
 import React from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { OrderDetail } from "../My";
-
-
+import { Order } from "../../API";
 
 const History = () => {
-  const { data: orderDetail } = useQuery("getOrderDetail", getOrderDetail);
+  const { data: order } = useQuery("getOrder", getOrder);
 
-  async function getOrderDetail() {
-    const response = await axiosClient.get("/order-details");
-    return response.data as OrderDetail[];
+  async function getOrder() {
+    const response = await axiosClient.get("/orders");
+    return response.data as Order[];
   }
   return (
     <Layout>
@@ -20,12 +18,7 @@ const History = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
             <h5 className="text-1xl">Захиалгийн Түүх</h5>
-            <div className="flex gap-4">
-              <TextInput id="search" type="search" placeholder="Хайх" />
-              <Button className="bg-orange-500">
-                Хайх
-              </Button>
-            </div>
+           
           </div>
           <Table>
             <Table.Head>
@@ -34,14 +27,13 @@ const History = () => {
               <Table.HeadCell>Статус төрөл</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-            {orderDetail?.map((orderDetail: OrderDetail, index: number) => (
-                           <Table.Row key={index} >
-                          
-                           <Table.Cell>{orderDetail.order_id}</Table.Cell>
-                           <Table.Cell>{orderDetail.supplier.supplierList}</Table.Cell>
-                           <Table.Cell><a href="/create">{orderDetail.statusType.statusName}</a></Table.Cell>
-                         </Table.Row>
-             ))}
+            {order?.map((order: Order, index: number) => (
+              <Table.Row key={index}>
+                <Table.Cell>{order.numbOfProd}</Table.Cell>
+                <Table.Cell>{order.product.manufacturerId}</Table.Cell>
+                <Table.Cell>{order.statusType.statusName}</Table.Cell>
+              </Table.Row>
+            ))}
             </Table.Body>
           </Table>
         </div>

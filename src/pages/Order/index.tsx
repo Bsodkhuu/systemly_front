@@ -1,8 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout";
-import { Button, TextInput } from "flowbite-react";
-import { useState } from "react";
-
+import { Button } from "flowbite-react";
 const Order = () => {
   return (
     <Layout>

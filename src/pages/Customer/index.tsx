@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useRef } from "react";
-import { Button, Table, Label, Modal, Card, TextInput } from "flowbite-react";
+import { Button, Table, Label, Modal, Card, TextInput, Select } from "flowbite-react";
 import Layout from "../../components/layout";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
-import { GarageCustomerOwner } from "./Zaswar_Service";
+import { Person, PersonVehicle, Vehicle } from "../API";
 
 interface ModalProps {
   showModal: boolean;
@@ -14,17 +14,24 @@ interface ModalProps {
 }
 
 const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
-  const { register, handleSubmit } = useForm<GarageCustomerOwner>();
+  const { register, handleSubmit } = useForm<Person>();
   const { mutateAsync } = useMutation("createCustomer", createCustomer);
 
-  async function createCustomer(values: GarageCustomerOwner) {
-    const response = await axiosClient.post("/garage-customer-owners", values);
+  async function createCustomer(values: Person) {
+    const response = await axiosClient.post("/persons", values);
     return response.data;
   }
 
-  async function onSubmit(values: GarageCustomerOwner) {
+  async function onSubmit(values: Person) {
     await mutateAsync(values);
     closeModal();
+  }
+
+  const {data: persons } = useQuery("getPerson", getPerson);
+
+  async function getPerson() {
+    const response = await axiosClient.get("/persons");
+    return response.data as Person[];
   }
 
   return (
@@ -33,36 +40,114 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
       <Modal.Body>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 max-h-96 overflow-y-auto"
-        >
+          className="flex flex-col gap-4 max-h-96 overflow-y-auto">
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="firstName" value="Овог" />
               </div>
-              <TextInput id="firstName" {...register("firstName")} />
+              <TextInput id="firstName" {...register("firstName")}/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="lastName" value="Нэр" />
               </div>
-              <TextInput id="lastName" {...register("lastName")} />
+              <TextInput id="lastName" {...register("lastName")}/>
             </div>
           </div>
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="phone" value="Утасны дугаар" />
+                <Label htmlFor="birthdate" value="Төрсөн өдөр" />
               </div>
-              <TextInput id="phone" {...register("phoneNumber")} />
+              <TextInput type="datetime" id="birthdate" {...register("birthdate")}/>
             </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="registerId" value="Регистрийн дугаар" />
+              </div>
+              <TextInput id="registerId" {...register("registerId")}/>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="gender" value="Хүйс" />
+              </div>
+              <Select>
+                {persons?.map((i) => (
+                  <option value={i.id}>
+                    {i.gender}
+                  </option>
+                ))}
+              </Select>
+              
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
+              </div>
+              <Select>
+                {persons?.map((i) => (
+                  <option value={i.id}>
+                    {i.familyName}
+                  </option>
+                ))}
+              </Select>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="email" value="Имэйл" />
               </div>
-              <TextInput id="email" {...register("email")} />
+              <TextInput id="email" placeholder="example@gmail.com гэж бичнэ үү" {...register("email")}/> 
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="personPhone" value="Утасны дугаар" />
+              </div>
+              <TextInput id="personPhone" placeholder="Утасны дугаар" {...register("personPhone")}/>
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="nationality" value="Иргэншил" />
+              </div>
+              <TextInput id="nationality" placeholder="Халх, Дарьганга гэх мэт" {...register("nationality")}/>
             </div>
           </div>
+
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="country" value="Улс" />
+              </div>
+              <TextInput id="country" placeholder="Монгол" {...register("country")}/> 
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="customerCode" value="Хэрэглэгчийн код" />
+              </div>
+              <TextInput id="customerCode" placeholder="Хэрэглэгчийн кодоор бүх үйлчилгээ, засвараа харах боломжтой" {...register("customerCode")}/>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="historyId" value="Харилцагчийн түүх" />
+              </div>
+              <TextInput id="historyId" placeholder="Хэрэглэгчийн кодтой адилхан оруулахад болно" {...register("historyId")}/> 
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />
+              </div>
+              <TextInput id="confirmFlag" placeholder="Үгүй, Тийм" {...register("confirmFlag")}/>
+            </div>
+          </div>
+
         </form>
       </Modal.Body>
       <Modal.Footer>
@@ -76,30 +161,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
     </Modal>
   );
 };
-interface VehicleCategory{
-  en: string;
-  mn: string;
-}
-interface VehicleColor {
-  en: string;
-  mn: string;
-}
-interface GarageCustomerVehicle extends VehicleColor{
-  [mn: string]: any;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  vinNumber: string;
-  manufacturerYear: string;
-  importedYear: string;
-  licensePlateNumber: string;
-  vehicleId?: string;
-  colorId?: string;
-  makeId?: string;
-  modelId?:string;
-  ownerId?: string;
-  affiliateId?:string;
-}
+
 const Customer = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchParams] = useSearchParams();
@@ -108,46 +170,34 @@ const Customer = () => {
       lastname: searchParams.get("lastname") || "",
     })
   );
-  const { data: vehicleMakeModels } = useQuery(
-    "getVehicleMakeModels",() => getVehicleMakeModels({
-      makeId: searchParams.get("makeId") || "",
-    })
-  );
-  const { data: garageCustomerVehicles } = useQuery(
-    "getGarageCustomerVehicles",
-    getGarageCustomerVehicles
-  );
+ 
   const lastnameRef = useRef<HTMLInputElement>(null);
-  const makeIdRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (lastnameRef.current) {
       lastnameRef.current.value = searchParams.get("lastname") || "";
     }
   }, []);
-  useEffect(() => {
-    if (makeIdRef.current) {
-      makeIdRef.current.value = searchParams.get("makeId") || "";
-    }
-  }, []);
-
+ 
   async function getCustomer(params: { lastname: string }) {
     const response = axiosClient.get(
-      `/garage-customer-owners?lastname=${params.lastname}`
+      `/persons?lastname=${params.lastname}`
     );
     return (await response).data;
   }
 
-  async function getVehicleMakeModels(params: { makeId : string }) {
-    const response = await axiosClient.get(
-      `/vehicle_make_models?makeId=${params.makeId}`
-      );
-    return (await response).data;
+  const { data: vehicle} = useQuery("getVehicle", getVehicle);
+
+  async function getVehicle() {
+    const response = await axiosClient.get("/vehicles");
+    return response.data as Vehicle[];
   }
 
-  async function getGarageCustomerVehicles() {
-    const response = await axiosClient.get("/garage_customer_vehicles");
-    return response.data as GarageCustomerVehicle;
+  const { data: personVehicle } = useQuery("getPersonVehicle", getPersonVehicle);
+
+  async function getPersonVehicle() {
+    const response = await axiosClient.get("/person-vehicles");
+    return response.data as PersonVehicle[];
   }
 
   function openModal() {
@@ -206,8 +256,7 @@ const Customer = () => {
                       type="search"
                       name="lastname"
                       placeholder=" Хэрэглэгч хайх"
-                      ref={lastnameRef}
-                    />
+                      ref={lastnameRef}/>
                     <Button type="submit" className="bg-orange-500">
                       Хайх
                     </Button>
@@ -217,15 +266,17 @@ const Customer = () => {
                       <Table.HeadCell>Овог</Table.HeadCell>
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Утасны дугаар</Table.HeadCell>
+                      <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
-                      {customerList?.map((customer: any, index: number) => (
-                        <Table.Row key={index}>
-                          <Table.Cell>{customer.firstName}</Table.Cell>
-                          <Table.Cell>{customer.lastName}</Table.Cell>
-                          <Table.Cell>{customer.phoneNumber}</Table.Cell>
+                        {customerList?.map((customerList: Person, index: number) => (
+                          <Table.Row key={index}>
+                          <Table.Cell>{customerList.firstName}</Table.Cell>
+                          <Table.Cell>{customerList.lastName}</Table.Cell>
+                          <Table.Cell>{customerList.personPhone.phone}</Table.Cell>
+                          <Table.Cell>{customerList.customerCode}</Table.Cell>
                         </Table.Row>
-                      ))}
+                        ))}
                     </Table.Body>
                   </Table>
                 </Card>
@@ -237,24 +288,27 @@ const Customer = () => {
                     <TextInput
                       id="search"
                       name="makeId"
-                      placeholder="Тээврийн хэрэгсэл хайх" ref={makeIdRef}
+                      placeholder="Тээврийн хэрэгсэл хайх" 
+                      //ref={makeIdRef}
                     />
                     <Button type="submit" className="bg-orange-500">Хайх</Button>
                   </div>
                   <Table>
                     <Table.Head className="uppercase">
-                      <Table.HeadCell>Загвар</Table.HeadCell>
-                      <Table.HeadCell>Модел</Table.HeadCell>
+                      <Table.HeadCell>Марк</Table.HeadCell>
+                      <Table.HeadCell>Марк нэр</Table.HeadCell>
+                      <Table.HeadCell>Машины нэр</Table.HeadCell>
+                      <Table.HeadCell>Машины төрөл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      {vehicleMakeModels?.map(
-                        (vehicleMake: any, index: number) => (
-                          <Table.Row key={index}>
-                            <Table.Cell>{vehicleMake.makeId}</Table.Cell>
-                            <Table.Cell>{vehicleMake.modelName}</Table.Cell>
-                          </Table.Row>
-                        )
-                      )}
+                      {vehicle?.map((vehicle: Vehicle, index: number) => (
+                        <Table.Row key={index}>
+                          <Table.Cell>{vehicle.vehicleMark}</Table.Cell>
+                          <Table.Cell>{vehicle.vehicleNameEng}</Table.Cell>
+                          <Table.Cell>{vehicle.vehicleName}</Table.Cell>
+                          <Table.Cell>{vehicle.vehicleType}</Table.Cell>
+                        </Table.Row>
+                      ))}
                     </Table.Body>
                   </Table>
                 </Card>
@@ -279,30 +333,22 @@ const Customer = () => {
               </a>
               <Table>
                 <Table.Head className="uppercase">
-                  <Table.HeadCell>Vin дугаар</Table.HeadCell>
-                  <Table.HeadCell>Үйлдвэрлэсэн он</Table.HeadCell>
-                  <Table.HeadCell>Импортлосон он</Table.HeadCell>
-                  <Table.HeadCell>Өнгө</Table.HeadCell>
+                  <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
                   <Table.HeadCell>Улсын дугаар</Table.HeadCell>
+                  <Table.HeadCell>Машины нэр</Table.HeadCell>
+                  <Table.HeadCell>Марк</Table.HeadCell>
+                  <Table.HeadCell>Өнгө</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                  {garageCustomerVehicles?.map(
-                    (garageCustomerVehicles: GarageCustomerVehicle, index: number) => (
-                      <Table.Row key={index}>
-                        <Table.Cell>{garageCustomerVehicles.vinNumber}</Table.Cell>
-                       
-                        <Table.Cell>
-                          {garageCustomerVehicles.manufacturerYear}
-                        </Table.Cell>
-                        <Table.Cell>{garageCustomerVehicles.importedYear}</Table.Cell>
-                        <Table.Cell>{garageCustomerVehicles.color.mn}</Table.Cell>
-                        
-                        <Table.Cell>
-                          {garageCustomerVehicles.licensePlateNumber}
-                        </Table.Cell>
-                      </Table.Row>
-                    )
-                  )}
+                  {personVehicle?.map((personVehicle: PersonVehicle, index: number) => (
+                    <Table.Row key={index}>
+                      <Table.Cell>{personVehicle.person.lastName}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicleNumber}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicle.vehicleName}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicle.vehicleMark}</Table.Cell>
+                      <Table.Cell>{personVehicle.vehicleColor}</Table.Cell>
+                    </Table.Row>
+                  ))}
                 </Table.Body>
               </Table>
             </Card>
