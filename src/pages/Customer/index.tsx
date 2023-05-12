@@ -323,7 +323,6 @@ const Customer = () => {
                   <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
                   <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                   <Table.HeadCell>Машины нэр</Table.HeadCell>
-                  <Table.HeadCell>Машины төрөл</Table.HeadCell>
                   <Table.HeadCell>Марк</Table.HeadCell>
                   <Table.HeadCell>Өнгө</Table.HeadCell>
                 </Table.Head>
