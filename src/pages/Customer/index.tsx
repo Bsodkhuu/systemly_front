@@ -88,11 +88,18 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
+                <Label htmlFor="personPhone" value="Утасны дугаар" />
+              </div>
+              <TextInput id="personPhone" placeholder="Утасны дугаар"/>
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
                 <Label htmlFor="nationality" value="Иргэншил" />
               </div>
               <TextInput id="nationality" placeholder="Халх, Дарьганга гэх мэт"/>
             </div>
           </div>
+          
 
           <div className="flex gap-4">
             <div className="w-1/2">
@@ -123,7 +130,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <TextInput id="confirmFlag" placeholder="Үгүй, Тийм"/>
             </div>
           </div>
-          
+
         </form>
       </Modal.Body>
       <Modal.Footer>

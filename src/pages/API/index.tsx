@@ -489,12 +489,12 @@ export interface Person{
     historyId: string;
     confirmFlag: string;
     customerCode: string;
+    phoneId?: string;
 }
 export interface PersonPhone{
     id: string;
     createdAt: string;
     updatedAt: string;
-    personId?: string;
     phone: string;
     activeFlag: string;
     deleteFlag: string;
