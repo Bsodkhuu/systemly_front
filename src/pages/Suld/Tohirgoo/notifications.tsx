@@ -47,7 +47,7 @@ const Notifications = () => {
                     <TextInput type="number" {...register("postId")}/>
                     <Label htmlFor="medeelel" value="Мэдэгдэл бичих"/>
                     <Textarea {...register("medeelel")}/> &nbsp;
-                    <Button onClick={handleSubmit(onSubmit)} className="bg-blue-500">Илгээх</Button>
+                    <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Илгээх</Button>
                 </form>
                 &nbsp;
                 <Table>

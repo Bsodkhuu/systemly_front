@@ -31,17 +31,19 @@ const Sale = () => {
   }
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="p-4 bg-gray-200 h-screen col-span-2">
+      <div className="md:grid md:grid-cols-3 gap-4">
+        <div className="p-4 bg-gray-200 md:h-screen col-span-2">
           <div className="bg-white p-6 rounded-lg">
-            <div className="flex justify-between mb-4">
+            <div className="md:flex justify-between mb-4 space-y-3 ">
               <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
-              <div className="flex gap-4">
-              <TextInput type="date" />
-                <Button className="bg-orange-500">
+              <div className="flex gap-4 w-full">
+                <div className="w-full" ><TextInput type="date" /></div>
+                <div><Button className="bg-orange-500">
                   Хайх
-                </Button>
-                <a href="/vilchilgee"><Button className="bg-orange-500">
+                </Button></div>
+              </div>
+              <div>
+                <a href="/vilchilgee "><Button className="bg-orange-500 w-full ">
                   Үйлчилгээ бүртгэх
                 </Button></a>
               </div>

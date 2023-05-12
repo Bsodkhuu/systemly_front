@@ -16,7 +16,6 @@ import {
 } from "chart.js";
 import { axiosClient } from "./config/axios";
 import { useQuery } from "react-query";
-import { Inventory, Product } from "./pages/API";
 
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
@@ -40,11 +39,60 @@ export const options = {
     },
   },
 };
+export interface Product {
+  [x: string]: any;
+  Order: any;
+  id: string;
+  manufacturerId: string;
+  description: string;
+  netPrice: number;
+  currency: string;
+  subCategoryId?: string;
+  part_number: string;
+  fittingPostion: string;
+  makeModelFit: string;
+  quantity: number;
+  order_date: string;
+  createdAt: string;
+  updatedAt: string;
+  mainCategoryId?: string;
+  backOrderId?: string;
+}
+export interface Inventory {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  purchasedFrom: string;
+  supplier: string;
+  mainCategoryId?: string;
+  subCategoryId?: string;
+  cost: number;
+  quantity: number;
+}
+export interface ServiceType {
+  id: string;
+  createdAt: string;
+  updateAt: string;
+  mainCategory: string;
+  subCategory: string;
+  name: string;
+  affiliateId?: string;
+  price: number;
+  averagePrice: number;
+  suudalPrice: number;
+  achaaPrice: number;
+  currency: string;
+}
 
 const App = () => {
   const { data: product } = useQuery("getProduct", getProduct);
   const { data: inventory } = useQuery("getInventory", getInventory);
-  
+  const { data: serviceType } = useQuery("getServiceType", getServiceType);
+
+  async function getServiceType() {
+    const response = await axiosClient.get("/service-types");
+    return response.data as ServiceType[];
+  }
   async function getInventory() {
     const response = await axiosClient.get("/inventories");
     return response.data as Inventory[];
@@ -55,10 +103,10 @@ const App = () => {
   }
   return (
     <Layout>
-      <div className="p-4 bg-gray-200 h-screen w-full">
-        <div className="bg-white p-6 rounded-lg">
-          <div className="h-screen p-6 flex gap-4">
-            <Card className="w-2/5 h-96">
+      <div className="p-4 pb-2 md:h-screen w-full ">
+        <div className="bg-white p-4 rounded-lg  space-y-2">
+          <div className="p-4 md:flex gap-4 space-y-3">
+            <Card className="md:w-2/5 md:h-96">
               <Bar
                 data={{
                   labels: inventory?.map((i) => i.purchasedFrom),
@@ -73,7 +121,7 @@ const App = () => {
                 }}
               />
             </Card>
-            {/* <Card className="w-2/5 h-96">
+            <Card className="md:w-2/5 md:h-96">
               <Pie
                 options={options}
                 data={{
@@ -89,17 +137,17 @@ const App = () => {
                   ],
                 }}
               />
-            </Card> */}
-
-            <Card className="w-2/5 h-96">
+            </Card>
+            
+            <Card className="md:w-2/5 md:h-96">
               <Line
                 options={options}
                 data={{
-                  labels: product?.map((i) => i.productName),
+                  labels: product?.map((i) => i.description),
                   datasets: [
                     {
                       label: "Захиалга",
-                      data: product?.map((i) => i.priceMain),
+                      data: product?.map((i) => i.quantity),
                       borderWidth: 1,
                       backgroundColor: "#FFA500",
                       borderColor: "rgb(255, 99, 132)",

@@ -25,6 +25,8 @@ const Asuulguud = () => {
 
    const { data: inquiry } = useQuery("getInquiry", getInquiry);
 
+   
+
    async function getInquiry() {
     const response = await axiosClient.get("/inquiries");
     return response.data as Inquiry[];
@@ -46,16 +48,17 @@ const Asuulguud = () => {
 
     return (
         <Layout>
-            <div className="grid grid-cols-3 gap-4">
-                <div className="p-4 bg-gray-200 h-screen col-span-2">
-                    <div className="bg-white p-6 rounded-lg">
-                        <div className="flex justify-between mb-4">
-                            <h5 className="text-1xl">Асуулгууд</h5>
-                            <div className="flex gap-4">
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+            <div className="md:grid md:grid-cols-3 md:gap-4">
+                <div className="md:p-4 p-2 bg-gray-200 md:h-screen col-span-2">
+                    <div className="bg-white md:p-6 p-4 rounded-md space-y-3 md:space-y-0 ">
+                        <div className="md:flex justify-between md:mb-4">
+                            <div className="md:text-xl mb-6 font-bold text-[15px] ">Асуулгууд</div>
+                            <div className="md:flex gap-4 space-y-3 md:space-y-0 ">
+                                <div className="md:w-1/2 flex items-center gap-3">
+                                    <div className="mb-2 block w-[30%]">
                                         <Label htmlFor="supplier" value="Нийлүүлэгч" />
                                     </div>
+                                    <div className="w-[70%]">
                                     <Select>
                                         {supplier?.map((i)=> (
                                             <option value={i.id}>
@@ -63,11 +66,13 @@ const Asuulguud = () => {
                                             </option>
                                         ))}
                                     </Select>
+                                    </div> 
                                 </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                                <div className="md:w-1/2 flex items-center gap-3">
+                                    <div className="mb-2 block w-[30%] " >
                                         <Label htmlFor="order" value="Захиалагч"/>
                                     </div>
+                                    <div className="w-[70%]" >  
                                     <Select>
                                         {affiliate?.map((i) => (
                                             <option value={i.id}>
@@ -75,20 +80,46 @@ const Asuulguud = () => {
                                             </option>
                                         ))}
                                     </Select>
+                                    </div>
                                 </div>
-                                <div className="w-1/2">
-                                    <div className="mb-2 block">
+                                <div className="md:w-1/2 flex items-center gap-3">
+                                    <div className="mb-2 block w-[30%] ">
                                         <FontAwesomeIcon icon={faMagnifyingGlass}/>
                                     </div>
+                                    <div className="w-[70%]">
                                     <TextInput id="search" type="search" placeholder="Хайх" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                       <div className="grid grid-cols-2">
-                       <div className="p-4">
+                       <div className="md:grid grid-cols-2 space-y-3  md:space-y-0">
+                       <div className="md:p-4">
+
+                     
                         <Card> 
-                        <h1 className="text-1xl">Асуулгын жагсаалт</h1>
-                            <div className="flex gap-4">
+                        <div className="md:text-xl text-[11px]">Асуулгын жагсаалт</div>
+                        
+                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {inquiry?.map((inquiry: Inquiry, index: number) =>(
+                            <div className="bg-white border  border-orange-500 p-1 text-[11px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Inquiry дугаар</div>
+                                    <div className="font-bold">Гишүүний нэр</div>
+                                    <div>Асуулга ирсэн огноо</div>
+                                    <div>Нийлүүлэгч</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div className="font-bold text-black" >{inquiry.inquiryNumber}</div>
+                                    <div className="font-bold">{inquiry.affiliate.affiliateName}</div>
+                                    <div>{inquiry.createdDate}</div>
+                                    <div>{inquiry.supplier.supplierList}</div>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+                       
+
+                            <div className="md:flex md:gap-4 hidden md:block ">
                             <Table>
                                 <Table.Head className="uppercase">
                                     <Table.HeadCell>Inquiry дугаар</Table.HeadCell>
@@ -104,10 +135,29 @@ const Asuulguud = () => {
                         </Card>
                         </div>
 
-                        <div className="p-4">
+                        <div className="md:p-4">
                             <Card>
-                            <h1 className="text-1xl">Асуулгын дэлгэрэнгүй</h1>
-                            <div className="flex gap-4">
+                            <div className="md:text-xl text-[11px]">Асуулгын дэлгэрэнгүй</div>
+                            <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                            {product?.map((product: Product, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[11px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Inquiry дугаар</div>
+                                    <div className="font-bold">Гишүүний нэр</div>
+                                    <div>Асуулга ирсэн огноо</div>
+                                    <div>Нийлүүлэгч</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div className="font-bold text-black" >{product.part_number}</div>
+                                    <div className="font-bold">{product.description}</div>
+                                    <div>{product.netPrice}</div>
+                                    <div>{product.fittingPostion}</div>
+                                    <div>{product.quantity}</div>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
+                            <div className="flex gap-4 hidden md:block ">
                             <Table>
                                 <Table.Head className="uppercase">
                                     <Table.HeadCell>Партын дугаар</Table.HeadCell>
@@ -128,11 +178,28 @@ const Asuulguud = () => {
                        </div>
                     </div>
                 </div>
-            
-            <div className="col-span">
+            <div className="col-span bg-gray-200 ">
                 <div className="p-2">
-                    <Card className="max-w-sm">
-                        <h1 className="text-1xl">Захиалгын хураангуй</h1>
+                    <Card className="md:max-w-sm">
+                        <div className="md:text-xl text-[11px]">Захиалгын хураангуй</div>
+                        <Button className="bg-orange-500"><div className="text-[11px]" >Захиалга үүсгэх</div></Button>
+                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {order?.map((order: Order, index: number) => (
+                            <div className="bg-white border  border-orange-500 p-1 text-[11px] rounded-md text-gray-600 flex">
+                                <div className="w-[50%]" >
+                                    <div className="font-bold text-black" >Inquiry дугаар</div>
+                                    <div className="font-bold">Гишүүний нэр</div>
+                                    <div>Асуулга ирсэн огноо</div>
+                                    <div>Нийлүүлэгч</div>
+                                </div>
+                                <div className="w-[50%]" key={index} >
+                                    <div>{order.affiliate.affiliateName}</div>
+                                    <div>{order.totalPrice}</div>
+                                </div>
+                            </div>
+                            ))}
+                            </div>
+                        <div className="hidden md:block " >
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Брэндийн нэр(Нийлүүлэгч нэр)</Table.HeadCell>
@@ -142,7 +209,8 @@ const Asuulguud = () => {
                                 
                             </Table.Body>
                         </Table>
-                        <Button className="bg-orange-500">Захиалга үүсгэх</Button>
+                        </div>
+                        
                     </Card>
                 </div>
             </div>

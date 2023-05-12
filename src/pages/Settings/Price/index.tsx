@@ -1,10 +1,11 @@
-import { TextInput, Button, Select, Table, Modal, Label } from "flowbite-react";
+import { TextInput, Button, Table, Modal, Label } from "flowbite-react";
 import Layout from "../../../components/layout";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React, { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Select } from 'antd';
 
 
 
@@ -12,10 +13,10 @@ const Price = () => {
 
   return (
     <Layout>
-      <div className="p-2 bg-gray-200 h-screen w-full">
+      <div className="p-4 bg-gray-200 md:h-screen w-full">
         <div className="bg-white p-2 rounded-lg">
-          <div className="flex justify-between mb-4">
-            <h4 className="text-1xl">Засварын үнийн тохиргоо</h4>
+          <div className="md:flex justify-between mb-4">
+            <div className="text-1xl mb-4 md:mb-0">Засварын үнийн тохиргоо</div>
             <div className="flex gap-4">
               <TextInput type="search" name="name" placeholder="Хайлт" />
               
@@ -26,7 +27,7 @@ const Price = () => {
               </a>
             </div>
           </div>
-{/*        
+{/*    
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
               <div className="flex gap-4">
                 <div className="w-1/2">
@@ -84,15 +85,15 @@ const Price = () => {
                       <TextInput type="text"   {...register("currency")}/>
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 justify-end ">
                     <Button className="bg-gray-400">Буцах</Button>
-                    <Button onClick={handleSubmit(onSubmit)} className="bg-orange-400">
+                    <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
                       Хадгалах
                     </Button>
                 </div>
             </form>
             &nbsp;&nbsp;
-          <Table>
+          <Table className="hidden md:block" >
             <Table.Head>
               <Table.HeadCell>Main Group</Table.HeadCell>
               <Table.HeadCell>Sub Group</Table.HeadCell>
@@ -131,7 +132,35 @@ const Price = () => {
                 </Table.Row>
               ))}
             </Table.Body>
-          </Table> */}
+          </Table>
+          
+        </div>
+        <div className="md:hidden" >
+        {serviceList?.map((service: ServiceType, index: number) => (
+                <div className=" flex justify-between p-4 bg-white rounded-md text-[11px] shadow-xl mt-3 text-gray-500  border border-2 border-orange-300" >
+                <div className="w-[50%] space-y-1 divide-y " >
+                    <div className="font-bold text-black " >Main Group</div>
+                    <div>Sub Group</div>
+                    <div>Үйлчилгээний нэр</div>
+                    <div>Том</div>
+                    <div>Дунд</div>
+                    <div>Суудлын</div>
+                    <div>Ачааны</div>
+                    <div>Валют</div>
+                </div>
+                <div className="w-[50%] space-y-1 divide-y " key={index}>
+                    <div className="font-bold h-[16px]"><select className="h-4 rounded-xl border-orange-300 w-full "><option value="mainCategory"> {service.mainCategory}</option></select></div>
+                    <div className="font-bold h-[17px]"><select className="h-4 rounded-xl border-orange-300 w-full "><option value="subCategory">{service.subCategory}</option></select></div>
+                    <div className="font-bold h-[17px]"><select className="h-4 rounded-xl border-orange-300 w-full "><option value="name">{service.name}</option></select></div>
+                    <div>{service.price}</div>
+                    <div>{service.averagePrice}</div>
+                    <div>{service.suudalPrice}</div>
+                    <div>{service.achaaPrice}</div>
+                    <div>{service.currency}</div>
+                </div>
+              </div>
+              ))}
+               */}
         </div>
       </div>
     </Layout>
