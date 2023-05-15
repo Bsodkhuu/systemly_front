@@ -3,7 +3,7 @@ import Layout from "../../../components/layout";
 import React, { ChangeEvent, useState } from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { Order, ZamiinMedee } from "../../API";
+import { Order } from "../../API";
 const My = () => {
   const { data: order } = useQuery("getOrder", getOrder);
 
@@ -12,19 +12,12 @@ const My = () => {
     return response.data as Order[];
   }
 
-  const { data: zam } = useQuery("getZam", getZam);
-
-  async function getZam() {
-    const response = await axiosClient.get("/zamin_medees");
-    return response.data as ZamiinMedee[];
-  }
-
-
   const [checked, setChecked] = useState(false);
 
   const handleCheck = (event: ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
   }
+  
   return (
     <Layout>
       <div className="grid grid-cols-3">
@@ -106,13 +99,7 @@ const My = () => {
                           <Table.HeadCell>Он сар</Table.HeadCell>
                         </Table.Head>
                         <Table.Body className="divide-y">
-                          {zam?.map((zam: ZamiinMedee, index: number) => (
-                            <Table.Row key={index}>
-                              <Table.Cell>{zam.location}</Table.Cell>
-                              <Table.Cell>{zam.zamStatusType.statusTypeName}</Table.Cell>
-                              <Table.Cell>{zam.date}</Table.Cell>
-                            </Table.Row>
-                          ))}
+                          
                         </Table.Body>
                     </Table>
                 </div>

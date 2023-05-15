@@ -15,11 +15,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { ServiceEmployee, ServiceOrder } from "../API";
+import { Employee, ServiceEmployee, ServiceOrder } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-
-
 
 const Human = () => {
   const [showModal, setShowModal] = useState(false);
@@ -37,12 +35,18 @@ const Human = () => {
     return response.data as ServiceOrder[];
   }
 
-
   const { data: serviceEmployee } = useQuery("getServiceEmployee", getServiceEmployee);
 
   async function getServiceEmployee() {
     const response = await axiosClient.get("/service-employees");
     return response.data as ServiceEmployee[];
+  }
+
+  const { data: employee} = useQuery("getEmployee", getEmployee);
+
+  async function getEmployee() {
+    const response = await axiosClient.get("/employees");
+    return response.data as Employee[];
   }
   return (
     <Layout>
@@ -127,7 +131,6 @@ const Human = () => {
               <TextInput id="startDate" type="date" />
               -
               <TextInput id="endDate" type="date" />
-            
               <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
               <Button className="bg-orange-500">Хайх</Button>
               <Button className="bg-orange-500" onClick={openModal}>
@@ -135,8 +138,6 @@ const Human = () => {
               </Button>
             </div>
             </div>
-            
-            
           </div> 
           <div className="md:grid grid-cols-3">
             <div className="p-4">
@@ -145,20 +146,29 @@ const Human = () => {
                 <div className="flex gap-4">
                   <a href="#">Идэвхитэй</a>
                   <a href="/employee_history">Түүх</a>
-                  
                 </div>
                 <Table>
                   <Table.Head className="uppercase">
-                    <Table.HeadCell>
-                      <Checkbox />
-                    </Table.HeadCell>
-
+                    <Table.HeadCell>Ажилтны зураг</Table.HeadCell>
                     <Table.HeadCell>Овог</Table.HeadCell>
                     <Table.HeadCell>Нэр</Table.HeadCell>
+                    <Table.HeadCell>Байгууллага</Table.HeadCell>
+                    <Table.HeadCell>Ажилтны код</Table.HeadCell>
                     <Table.HeadCell>Мэргэжил</Table.HeadCell>
+                    <Table.HeadCell>Ажилд орсон огноо</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
-                    
+                    {employee?.map((employee: Employee, index: number) => (
+                      <Table.Row key={index}>
+                        <Table.Cell>{employee.filePath}</Table.Cell>
+                        <Table.Cell>{employee.person.firstName}</Table.Cell>
+                        <Table.Cell>{employee.person.lastName}</Table.Cell>
+                        <Table.Cell>{employee.branch.branchName}</Table.Cell>
+                        <Table.Cell>{employee.person.customerCode}</Table.Cell>
+                        <Table.Cell>{employee.positionId}</Table.Cell>
+                        <Table.Cell>{employee.jobStart}</Table.Cell>
+                      </Table.Row>
+                    ))}
                   </Table.Body>
                 </Table>
               </Card>

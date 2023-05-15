@@ -16,14 +16,11 @@ import {faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-ico
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { Online,  Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
-import { useParams } from "react-router-dom";
 
 interface ModalProps{
   showModal: boolean;
   closeModal: () => void;
 }
-
-
 
 const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
   const { data: online } = useQuery("getOnline", getOnline);
@@ -37,7 +34,6 @@ const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
       <Modal.Header>Онлайн кателоги</Modal.Header>
       <Modal.Body>
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-              
               <Carousel>
               {online?.map((online: Online, index: number) => (
                 <a href={online.link}>
@@ -80,8 +76,6 @@ const Zahialga = () => {
     const response = await axiosClient.get("/products");
     return response.data as Product[];
   }
-
-  
 
   const [inputText, setInputText] = useState("");
 
@@ -218,11 +212,14 @@ const Zahialga = () => {
                    <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
-                   <Table.HeadCell>Тайлбар</Table.HeadCell>
+                   <Table.HeadCell>Бүтээгдэхүүний Тайлбар</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
                    <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
+                   <Table.HeadCell>Валют</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
                    <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
+                   <Table.HeadCell>Тээврийн хэрэгслийн тохирох хэсэг</Table.HeadCell>
+                   <Table.HeadCell>Тайлбар</Table.HeadCell>
                    <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                    <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
@@ -235,14 +232,16 @@ const Zahialga = () => {
                         <Table.Cell>{product.productDescription}</Table.Cell>
                         <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
                         <Table.Cell>{product.priceMain}</Table.Cell>
-                        <Table.Cell>{product.vehicleType}</Table.Cell>
+                        <Table.Cell>{product.currency}</Table.Cell>
+                        <Table.Cell>{product.vehicle.vehicleType}</Table.Cell>
                         <Table.Cell>{product.nameEng}</Table.Cell>
+                        <Table.Cell>{product.productFits.positionId}</Table.Cell>
+                        <Table.Cell>{product.productFits.description}</Table.Cell>
                         <Table.Cell>
                           <TextInput onChange={handleChange} value={inputText}/>
                         </Table.Cell>
                         <Table.Cell>
                           <Button className="bg-orange-500" onClick={handleClick}>
-                            
                           <FontAwesomeIcon icon={faShoppingCart}/>
                           </Button>
                         </Table.Cell>
@@ -257,19 +256,14 @@ const Zahialga = () => {
         <div className="col-span">
           <div className="p-2">
             <Card className="max-w-sm">
-              
               <div className="w-50">
-                <h1>Сагсанд нэмэгдсэн бүтээгдэхүүн </h1>
+                <a href="/cart">Сагсанд нэмэгдсэн бүтээгдэхүүн </a>
                 <ListGroup>
                   {product?.map((product: Product, index:number) => (
                     <ListGroup.Item key={index}>
-                      Үйлдвэрлэгч: {product.manufacturerId}
-                      <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний код: {product.productCode}
                       <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний нэр: {product.productName}
-                      <ListGroup.Item></ListGroup.Item>
-                      Тайлбар: {product.productDescription}
                       <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
@@ -277,11 +271,7 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}
-                 <a href="/messej">
-                    <Button className="bg-orange-500">Захиалга үүсгэх</Button>
-                </a>
                 </ListGroup>
-                
               </div>
             </Card>
           </div>

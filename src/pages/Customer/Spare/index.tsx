@@ -8,31 +8,22 @@ import {
   Carousel,
   Card,
   Table,
+  Alert,
 } from "flowbite-react";
 import { useState } from "react";
 import Layout from "../../../components/layout";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { Inventory } from "../../API";
+import { GarageInventory} from "../../API";
 import { Upload } from "antd";
+import { Inventory } from "../../API";
 
 
 const Spare = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchParams] = useSearchParams();
 
-  // const { register, handleSubmit } = useForm<Inventory>();
-
-  // const { mutateAsync } = useMutation("inventories", inventories);
-
-  // async function inventories(values: Inventory) {
-  //   const formData = new FormData();
-  //   formData.set("file", values.purchasedFrom);
-
-  //   const fileResponse = await axiosClient.post("/file_upload", formData);
-  //   return fileResponse.data;
-  // }
   const [fileSelected, setFileSelected] = useState<File>();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,26 +41,7 @@ const Spare = () => {
     const fileResponse = await axiosClient.post("http://localhost:3000/file_upload", formData);
     return fileResponse.data;
   };
-  const { data: inventory } = useQuery("getInventory", () =>
-    getInventory({
-      purchasedFrom: searchParams.get("purchasedFrom") || "",
-    })
-  );
-
-  const purchasedFromRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (purchasedFromRef.current) {
-      purchasedFromRef.current.value = searchParams.get("purchasedFrom") || "";
-    }
-  }, []);
-
-  async function getInventory(params: { purchasedFrom: string }) {
-    const response = axiosClient.get(
-      `/inventories?purchasedFrom=${params.purchasedFrom}`
-    );
-    return (await response).data;
-  }
+  
   function nexus() {
     // supplier selbeg medeelliig table helwereer haruulah
     //fetch api
@@ -84,7 +56,12 @@ const Spare = () => {
   }
 
 
+  const { data: garageInventory} = useQuery("getInventory", getInventory);
 
+  async function getInventory() {
+    const response = await axiosClient.get("/garage-inventory");
+    return response.data as GarageInventory[];
+  }
   const reviews = [
     {
       id: 1,
@@ -107,9 +84,9 @@ const Spare = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="purchasedFrom" value="Файл оруулах" />
+                  <Label htmlFor="" value="Файл оруулах" />
                 </div>
-                <FileInput id="purchasedFrom"  />
+                <FileInput id=""  />
               </div>
             </div>
           </form>
@@ -131,21 +108,15 @@ const Spare = () => {
               <TextInput
                 name="purchasedFrom"
                 type="search"
-                placeholder="Сэлбэгний үлдэгдэл хайх"
-                ref={purchasedFromRef}
-              />
+                placeholder="Сэлбэгний үлдэгдэл хайх"/>
               <Button type="submit" className="bg-orange-500">
                 Хайх
               </Button>
-              
             </div>
           </div>
-
-          {/* supplier, nexus,busad */}
-
           <div className="grid grid-cols-2">
             <div className="col-span-2">
-              {/* supplier logo */}
+              
               <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
                 <Carousel>
                   {reviews.map((review) => (
@@ -157,28 +128,40 @@ const Spare = () => {
                   ))}
                 </Carousel>
               </div>
-
+              
               <div className="p-4 md:block hidden ">
-                <Card>                 
-                  {/* too,shirheg, zarah vne garaas oruulj ogno shvv  */}
+                <Card>
                 <TextInput type="file" onChange={handleFileChange}/>
                 <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
                 <Button onClick={handleUploadClick} className="bg-orange-500">Сэлбэг нэмэх</Button>
                 &nbsp;&nbsp;&nbsp;
                   <Table>
                     <Table.Head className="uppercase">
-                      <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
-                      <Table.HeadCell>Хаанаас</Table.HeadCell>
-                      <Table.HeadCell>Тоо, ширхэг</Table.HeadCell>
+                      <Table.HeadCell>Салбар байгууллага</Table.HeadCell>
+                      <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
+                      <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
+                      <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
+                      <Table.HeadCell>Тайлбар</Table.HeadCell>
+                      <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
+                      <Table.HeadCell>Захиалгын дугаар</Table.HeadCell>
+                      <Table.HeadCell>Нийт захиалгын тоо ширхэг</Table.HeadCell>
+                      <Table.HeadCell>Тоо, ширхэг Хасах</Table.HeadCell>
+                      <Table.HeadCell>Бүтээгдэхүүний үнэ</Table.HeadCell>
                       <Table.HeadCell>Зарах үнэ</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      {inventory?.map((inventory: Inventory, index: number) => (
+                      {garageInventory?.map((garageInventory: GarageInventory, index: number) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{inventory.supplier}</Table.Cell>
-                          <Table.Cell>{inventory.purchasedFrom}</Table.Cell>
-                          <Table.Cell>{inventory.quantity}</Table.Cell>
-                          <Table.Cell>{inventory.cost}</Table.Cell>
+                          <Table.Cell>{garageInventory.branch.branchName}</Table.Cell>
+                          <Table.Cell>{garageInventory.product.manufacturerId}</Table.Cell>
+                          <Table.Cell>{garageInventory.product.productCode}</Table.Cell>
+                          <Table.Cell>{garageInventory.product.productName}</Table.Cell>
+                          <Table.Cell>{garageInventory.product.productDescription}</Table.Cell>
+                          <Table.Cell>{garageInventory.prodmetric.typeId}</Table.Cell>
+                          <Table.Cell>{garageInventory.order.numbOfProd}</Table.Cell>
+                          <Table.Cell>{garageInventory.productCnt}</Table.Cell>
+                          <Table.Cell>{garageInventory.productPirce}</Table.Cell>
+                          <Table.Cell>{garageInventory.mainPrice}</Table.Cell>
                         </Table.Row>
                       ))}
                     </Table.Body>
@@ -200,7 +183,7 @@ const Spare = () => {
                 <Button onClick={handleUploadClick} className="bg-orange-500 w-full ">Сэлбэг нэмэх</Button>
                  </div>
                  </div>
-        {inventory?.map((inventory: Inventory, index: number) => (
+        {/* {inventory?.map((inventory: Inventory, index: number) => (
           <div className="w-full  bg-white p-2 mt-2 rounded-md text-[11px] flex">
           <div className="w-full p-2">
           <div>Нийлүүлэгч</div>
@@ -215,7 +198,7 @@ const Spare = () => {
                           <div>{inventory.cost}</div>
           </div>
           </div>
-          ))}
+          ))} */}
         </div>
             </div>
           </div>

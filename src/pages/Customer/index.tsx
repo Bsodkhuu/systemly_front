@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
-import { Person, PersonVehicle, Vehicle } from "../API";
+import { Address, Person, PersonVehicle, Vehicle } from "../API";
+import TextArea from "antd/es/input/TextArea";
 
 interface ModalProps {
   showModal: boolean;
@@ -34,6 +35,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
     return response.data as Person[];
   }
 
+  const { data: address } = useQuery("getAddress", getAddress);
+
+  async function getAddress() {
+    const response = await axiosClient.get("/addresses");
+    return response.data as Address[];
+  }
+
   return (
     <Modal show={showModal} onClose={closeModal}>
       <Modal.Header>Харилцагч нэмэх</Modal.Header>
@@ -46,13 +54,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="firstName" value="Овог" />
               </div>
-              <TextInput id="firstName" {...register("firstName")}/>
+              <TextInput id="firstName" {...register("firstName")} placeholder="Овогоо бичнэ үү"/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="lastName" value="Нэр" />
               </div>
-              <TextInput id="lastName" {...register("lastName")}/>
+              <TextInput id="lastName" {...register("lastName")} placeholder="Нэрээ бичнэ үү" />
             </div>
           </div>
           <div className="flex gap-4">
@@ -60,13 +68,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="birthdate" value="Төрсөн өдөр" />
               </div>
-              <TextInput type="datetime" id="birthdate" {...register("birthdate")}/>
+              <TextInput type="date" id="birthdate" {...register("birthdate")}/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="registerId" value="Регистрийн дугаар" />
               </div>
-              <TextInput id="registerId" {...register("registerId")}/>
+              <TextInput id="registerId" {...register("registerId")} placeholder="Регистрийн дугаар бичнэ үү"/>
             </div>
           </div>
           <div className="flex gap-4">
@@ -145,6 +153,53 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />
               </div>
               <TextInput id="confirmFlag" placeholder="Үгүй, Тийм" {...register("confirmFlag")}/>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="addressDistrict" value="Аймаг,нийслэл" />
+              </div>
+              <Select>
+              {address?.map((i) => (
+                  <option value={i.id}>
+                    {i.addressDistrict}
+                  </option>
+                ))}
+              </Select>
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="addressSoum" value="Сум,Дүүрэг" />
+              </div>
+              <Select>
+              {address?.map((i) => (
+                  <option value={i.id}>
+                    {i.addressSoum}
+                  </option>
+                ))}
+              </Select>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="address_bag" value="Баг, хороо" />
+              </div>
+              <Select>
+              {address?.map((i) => (
+                  <option value={i.id}>
+                    {i.address_bag}
+                  </option>
+                ))}
+              </Select>
+            </div>
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="addressDetail" value="Хаяг" />
+              </div>
+              <TextArea id="addressDetail" {...register("addressDetail")}/>
             </div>
           </div>
 
@@ -244,9 +299,6 @@ const Customer = () => {
                
               </div>
             </div>
-
-            {/* owner, vehicle search and details  */}
-
             <div className="md:grid md:grid-cols-2">
               <div className="p-2 w-full ">
                 <Card className=" md:w-full">
@@ -267,6 +319,7 @@ const Customer = () => {
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Утасны дугаар</Table.HeadCell>
                       <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
+                      <Table.HeadCell>Хаяг</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
                         {customerList?.map((customerList: Person, index: number) => (
@@ -275,6 +328,7 @@ const Customer = () => {
                           <Table.Cell>{customerList.lastName}</Table.Cell>
                           <Table.Cell>{customerList.personPhone.phone}</Table.Cell>
                           <Table.Cell>{customerList.customerCode}</Table.Cell>
+                          <Table.Cell>{customerList.address.addressDetail}</Table.Cell>
                         </Table.Row>
                         ))}
                     </Table.Body>
@@ -324,8 +378,7 @@ const Customer = () => {
                 <TextInput
                   id="search"
                   type="search"
-                  placeholder="Автомашин хайх"
-                />
+                  placeholder="Автомашин хайх"/>
                 <Button className="bg-orange-500">Хайх</Button>
               </div>
               <a href="/zaswar_service">

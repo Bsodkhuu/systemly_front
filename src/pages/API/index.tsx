@@ -86,6 +86,17 @@ export interface Prodmetric{
     updateUser: number;
 }
 
+export interface VehicleUsage extends Product{
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    vehicleType: string;
+}
+export interface ProductFits extends Product{
+    positionId: string;
+    description: string;
+    [productName: string]: any;
+}
 export interface Product extends Prodmetric{
     id: string;
     createdAt: string;
@@ -103,9 +114,11 @@ export interface Product extends Prodmetric{
     deleteUser: number;
     confirmFlag: string;
     priceMain: number;
-    vehicleType: string;
+    currency: string;
     nameEng: string;//vehicle name english
     prodmetricId?: string;
+    vehicleId?: string;
+    productFitsId?: string;
     [typeId: string]:any;
 }
 
@@ -123,8 +136,22 @@ export interface Branch{
     deleteDate: string;
     deleteUser: number;
 }
- 
-export interface Order extends StatusType{
+
+export interface TrackInfo{
+    packageId: string;
+    spotId: string;
+    descriptionSpot: string;
+    trackDate: string;
+    status: string; //zamin status 
+    activeFlag: string;
+    deleteFlag: string;
+    insertDate: string;
+    insertUser: number;
+    updateUser: number;
+    deleteDate: string;
+    deleteUser: number;
+}
+export interface Order extends Product{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -148,11 +175,12 @@ export interface Order extends StatusType{
     confirmFlag: string;
     orderedDate: string;
     historyId: string;
+    status: string;
     packageId: number;
     receiveDate: string;
     receiverDate: string;
     branchId?: string;
-    [statusName: string]: any;
+    trackId?: string;
 }
 
 export interface StatusType{
@@ -162,74 +190,13 @@ export interface StatusType{
     statusName: string;
 }
 
-export interface VehicleManufacturer{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    name: string;
-    featuredCheck: string;
-}
-
 export interface Supplier{
     id: string;
     createdAt: string;
     updatedAt: string;
     supplierList: string;
-    vehicleManufacturerId?: string;
 }
 
-export interface Inventory{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    purchasedFrom: string;
-    supplier: string;
-    mainCategoryId?: string;
-    subCategoryId?: string;
-    cost: number;
-    quantity: number;
-}
-
-export interface InquiryDetail{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    affiliateId: string;
-    partNumber: string;
-    quantity: number;
-    netPrice: number;
-    currency: string;
-    productId?: string;
-    supplierId?: string;
-    inquiryId?: string;
-    orderDetailId?: string;
-    statusTypeId?: string;
-
-}
-
-export interface Inquiry{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    createdDate: string;
-    inquiryNumber: string;
-    userId?: string;
-    branchId?: string;
-    supplierId?: string;
-}
-
-export interface OrderDetail{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    order_id: string;
-    productId?: string;
-    userId?: string;
-    supplierId?: string;
-    orderId?: string;
-    teevriinzahialgaId?: string;
-    statusTypeId?: string;
-}
 
 export interface TeevriinZahialga{
     id: string;
@@ -241,24 +208,6 @@ export interface TeevriinZahialga{
     name: string;
 }
 
-export interface ZamiinMedee extends ZamiinMedeeStatusType{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    location: string;
-    date: string;
-    insertDate: string;
-    zamStatusTypeId?:string;
-    [statusTypeName: string]: any;
-}
-
-export interface ZamiinMedeeStatusType{
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    statusTypeId: string;
-    statusTypeName: string;
-}
 
 export interface ServiceAppointment{
     id: string;
@@ -268,6 +217,11 @@ export interface ServiceAppointment{
     endTime: string;
     nemeltMedeelel: string;
     workId?: string;
+    personId?:string;
+    vehicleId?:string;
+    serviceId?: string;
+    employeeId?: string;
+    phoneId?: string;
 }
 
 export interface Work{
@@ -454,16 +408,17 @@ export interface Vehicle extends PersonVehicle{
     vehicleNameEng: string;   
 }
 
-export interface Address{
+export interface Address extends Person {
     id: string;
     createdAt: string;
     updatedAt: string;
-    addressName: string;
     addressDistrict: string;
     addressSoum: string;
     address_bag: string;
     addressDetail: string;
-    personId: string;
+
+    [lastName: string]: any;
+    
 }
 
 export interface Person extends PersonPhone{
@@ -490,6 +445,7 @@ export interface Person extends PersonPhone{
     confirmFlag: string;
     customerCode: string;
     phoneId?: string;
+    addressId?: string;
     [phone: string]: any;
 }
 export interface PersonPhone{
@@ -545,7 +501,7 @@ export interface ServiceOrder extends Service{
     [serviceName: string]: any;
 }
 
-export interface Employee{
+export interface Employee extends Person {
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -598,7 +554,7 @@ export interface ServiceOrderProduct extends ServiceOrder{
     deleteDate: string;
     deleteUser: number;
 }
-export interface GarageInventory{
+export interface GarageInventory extends Branch{
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -616,4 +572,5 @@ export interface GarageInventory{
     updateUser: number;
     deleteDate: string;
     deleteUser: number;
+    [branch: string]: any;
 }
