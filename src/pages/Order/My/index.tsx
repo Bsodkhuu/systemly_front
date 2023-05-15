@@ -33,7 +33,7 @@ const My = () => {
             <div className="flex justify-between mb-4">
               <h5 className="text-sm">Миний захиалгууд</h5>
             </div>
-            <div className="md:grid md:grid-cols-2 space-y-2 md:space-4 ">
+            <div className="md:grid md:grid-cols-2  space-y-2 md:space-y-0 md:space-x-3 ">
               <div className="md:gap-4" >
                 <Card>
                   <h5 className="text-sm">Захиалгийн жагсаалт</h5>

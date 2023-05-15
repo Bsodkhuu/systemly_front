@@ -113,5 +113,8 @@
   }
   .datepicker-container span{
     font-size: 20px;
-
+  }
+  
+  .ant-badge-status-text{
+    font-size: 10px !important;
   }

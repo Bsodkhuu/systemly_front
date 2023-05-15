@@ -27,7 +27,7 @@ import Zahialga from "./pages/Order/zahialga";
 import Service from "./pages/Customer/Service";
 import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
-import Holiday from "./pages/Settings/Holiday";
+// import Holiday from "./pages/Settings/Holiday";
 import Forgot from "./pages/Login/Forgot/forgot";
 import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
@@ -108,10 +108,10 @@ const router = createBrowserRouter([
     element: <Messej />,
   },
   
-  {
-    path: "/holiday",
-    element: <Holiday />,
-  },
+  // {
+  //   path: "/holiday",
+  //   element: <Holiday />,
+  // },
   {
     path: "/clock",
     element: <Clock />,

@@ -213,10 +213,10 @@ const Customer = () => {
       <div className="md:grid md:grid-cols-3 gap-4">
         <div className="p-2 bg-gray-200 md:h-screen md:col-span-2">
           <div className="bg-white p-2 rounded-lg">
-            <div className="md:flex md:justify-normal  justify-between mb-4 space-y-2 ">
+            <div className="md:flex justify-between mb-4 space-y-2  md:space-y-0">
               <h4 className="text-1xl">Харилцагчийн бүртгэл</h4>
-              <div className="md:flex gap-4  space-y-2 ">
-                <div className="flex md:flex-none md:justify-normal justify-between items-center space-x-3 " >
+              <div className="md:flex gap-4  space-y-2 md:space-y-0 ">
+                <div className="flex md:flex-none md:justify-normal justify-between items-center space-x-3" >
                   <div className="w-[70%]" >
                   <TextInput
                   id="search"
@@ -248,8 +248,8 @@ const Customer = () => {
             {/* owner, vehicle search and details  */}
 
             <div className="md:grid md:grid-cols-2">
-              <div className="p-2">
-                <Card className="max-w-sm">
+              <div className="p-2 w-full ">
+                <Card className=" md:w-full">
                   <h5 className="text-1xl">Харилцагчийн жагсаалт</h5>
                   <form action="" className="flex gap-4">
                     <TextInput
@@ -282,7 +282,7 @@ const Customer = () => {
                 </Card>
               </div>
               <div className="p-2">
-                <Card className="max-w-sm">
+              <Card className=" md:w-full">
                   <h5 className="text-1xl">Тээврийн хэрэгслийн жагсаалт</h5>
                   <div className="flex gap-4">
                     <TextInput

@@ -34,9 +34,9 @@ const Sale = () => {
       <div className="md:grid md:grid-cols-3 gap-4">
         <div className="p-4 bg-gray-200 md:h-screen col-span-2">
           <div className="bg-white p-6 rounded-lg">
-            <div className="md:flex justify-between mb-4 space-y-3 ">
+            <div className="md:flex items-center justify-between mb-4 space-y-3 md:space-y-0 ">
               <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
-              <div className="flex gap-4 w-full">
+              <div className="flex gap-4">
                 <div className="w-full" ><TextInput type="date" /></div>
                 <div><Button className="bg-orange-500">
                   Хайх

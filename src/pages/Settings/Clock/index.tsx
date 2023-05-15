@@ -36,9 +36,9 @@ const Clock = () => {
           <div className="md:flex justify-between space-y-3">
             <h4 className="text-1xl">Ажлын цагийн хуваарь</h4>
             <div className="md:flex space-y-3 md:space-x-3 md:space-y-0" >
-            <a href="/holiday">
+            {/* <a href="/holiday">
               <Button className="bg-orange-500 " ><div className="text-[11px]" >Бүх нийтийн амралтын өдөр</div></Button>
-            </a>
+            </a> */}
             <div className="flex gap-2">
               <TextInput id="search" type="search" placeholder="Хайлт" className="w-full" />
               <Button className="bg-orange-500 "> <div className="text-[11px]" >Хайх</div> </Button>

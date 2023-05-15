@@ -15,6 +15,7 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { Inventory } from "../../API";
+import { Upload } from "antd";
 
 
 const Spare = () => {
@@ -184,7 +185,21 @@ const Spare = () => {
                   </Table>
                 </Card>
               </div>
-              <div className="md:hidden" >
+              <div className="md:hidden  ">
+                <div className="flex w-full space-x-3 mt-3">
+                  <div className="w-[50%]">
+                  <Upload
+                  onChange={handleFileChange} 
+                  >
+    <Button >Click to Upload</Button>
+  </Upload>
+                {/* <TextInput type="file" onChange={handleFileChange} className="w-full" /> */}
+                </div>
+                <div className="w-[50%]" >
+                <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
+                <Button onClick={handleUploadClick} className="bg-orange-500 w-full ">Сэлбэг нэмэх</Button>
+                 </div>
+                 </div>
         {inventory?.map((inventory: Inventory, index: number) => (
           <div className="w-full  bg-white p-2 mt-2 rounded-md text-[11px] flex">
           <div className="w-full p-2">
