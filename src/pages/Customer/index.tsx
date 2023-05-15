@@ -65,13 +65,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="gender" value="Хүйс" />
               </div>
-              <TextInput type="text" {...register("gender")} placeholder="Хүйс "/>
+              <TextInput type="text" id="gender" {...register("gender")} placeholder="Хүйс "/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
               </div>
-              <TextInput type="text" placeholder=""{...register("familyName")}/>
+              <TextInput type="text" id="familyName" placeholder=""{...register("familyName")}/>
             </div>
           </div>
 
@@ -80,7 +80,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="email" value="Имэйл" />
               </div>
-              <TextInput id="email" placeholder="example@gmail.com гэж бичнэ үү" {...register("email")}/> 
+              <TextInput id="email"  placeholder="example@gmail.com гэж бичнэ үү" {...register("email")}/> 
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
@@ -125,13 +125,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="addressDistrict" value="Аймаг,нийслэл" />
               </div>
-              <TextInput type="text" {...register("addressDistrict")} placeholder="Улаанбаатар хот"/>
+              <TextInput type="text" id="addressDistrict" {...register("addressDistrict")} placeholder="Улаанбаатар хот"/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="addressSoum" value="Сум,Дүүрэг" />
               </div>
-             <TextInput type="text" {...register("addressSoum")} placeholder="Баянзүрх дүүрэг"/>
+             <TextInput type="text" id="addressSoum" {...register("addressSoum")} placeholder="Баянзүрх дүүрэг"/>
             </div>
           </div>
 
@@ -140,7 +140,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="address_bag" value="Баг, хороо" />
               </div>
-             <TextInput type="text" {...register("address_bag")} placeholder="1-р хороо"/>
+             <TextInput type="text" id="address_bag" {...register("address_bag")} placeholder="1-р хороо"/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
