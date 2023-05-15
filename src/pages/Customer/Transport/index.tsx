@@ -26,13 +26,13 @@ const Transport = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="vehicleName" value="Машины нэр" />
                 </div>
-                <TextInput id="vehicleName" />
+                <TextInput id="vehicleName" placeholder="Машины нэр" />
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="vehicleType" value="Төрөл" />
                 </div>
-                <TextInput id="vehicleType"  />
+                <TextInput id="vehicleType"  placeholder="Машины төрөл Жишээ: Prius, Toyota"/>
               </div>
             </div>
             <div className="flex gap-4">
@@ -43,7 +43,7 @@ const Transport = () => {
                     value="Марк"
                   />
                 </div>
-                <TextInput id="vehicleNameEng"/>
+                <TextInput id="vehicleNameEng" placeholder="Марк"/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -52,7 +52,7 @@ const Transport = () => {
                     value="vehicle Name Eng"/>
                 </div>
                 <TextInput
-                  id="vehicleNameEng"/>
+                  id="vehicleNameEng" placeholder=""/>
               </div>
             </div>
             

@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { Holiday } from "../../API";
 
-const Holiday = () => {
+const Amralt = () => {
   
   const { register, handleSubmit } = useForm<Holiday>();
   const { mutateAsync } = useMutation("holiday", holiday);
@@ -70,4 +70,4 @@ const Holiday = () => {
     </Layout>
   );
 };
-export default Holiday;
+export default Amralt;

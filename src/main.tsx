@@ -26,7 +26,6 @@ import Zahialga from "./pages/Order/zahialga";
 import Service from "./pages/Customer/Service";
 import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
-import Holiday from "./pages/Settings/Holiday";
 import Forgot from "./pages/Login/Forgot/forgot";
 import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
@@ -41,6 +40,7 @@ import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
 import Vilchilgee from "./pages/Customer/Sale/service";
 import Profile from "./pages/Profile";
+import Amralt from "./pages/Settings/Holiday";
 
 
 
@@ -109,7 +109,7 @@ const router = createBrowserRouter([
   
   {
     path: "/holiday",
-    element: <Holiday />,
+    element: <Amralt />,
   },
   {
     path: "/clock",

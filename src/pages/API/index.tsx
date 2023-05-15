@@ -454,16 +454,17 @@ export interface Vehicle extends PersonVehicle{
     vehicleNameEng: string;   
 }
 
-export interface Address{
+export interface Address extends Person {
     id: string;
     createdAt: string;
     updatedAt: string;
-    addressName: string;
     addressDistrict: string;
     addressSoum: string;
     address_bag: string;
     addressDetail: string;
-    personId: string;
+
+    [lastName: string]: any;
+    
 }
 
 export interface Person extends PersonPhone{
@@ -490,6 +491,7 @@ export interface Person extends PersonPhone{
     confirmFlag: string;
     customerCode: string;
     phoneId?: string;
+    addressId?: string;
     [phone: string]: any;
 }
 export interface PersonPhone{
