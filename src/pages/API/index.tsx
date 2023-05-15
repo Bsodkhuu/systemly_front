@@ -217,6 +217,11 @@ export interface ServiceAppointment{
     endTime: string;
     nemeltMedeelel: string;
     workId?: string;
+    personId?:string;
+    vehicleId?:string;
+    serviceId?: string;
+    employeeId?: string;
+    phoneId?: string;
 }
 
 export interface Work{
