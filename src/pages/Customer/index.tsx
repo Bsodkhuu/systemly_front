@@ -1,13 +1,12 @@
 import React, { FC, useEffect, useRef } from "react";
-import { Button, Table, Label, Modal, Card, TextInput, Select } from "flowbite-react";
+import { Button, Table, Label, Modal, Card, TextInput, Select, Textarea} from "flowbite-react";
 import Layout from "../../components/layout";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { useSearchParams } from "react-router-dom";
-import { Address, Person, PersonVehicle, Vehicle } from "../API";
-import TextArea from "antd/es/input/TextArea";
+import { Person, PersonVehicle, Vehicle } from "../API";
 
 interface ModalProps {
   showModal: boolean;
@@ -28,27 +27,11 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
     closeModal();
   }
 
-  const {data: persons } = useQuery("getPerson", getPerson);
-
-  async function getPerson() {
-    const response = await axiosClient.get("/persons");
-    return response.data as Person[];
-  }
-
-  const { data: address } = useQuery("getAddress", getAddress);
-
-  async function getAddress() {
-    const response = await axiosClient.get("/addresses");
-    return response.data as Address[];
-  }
-
   return (
     <Modal show={showModal} onClose={closeModal}>
       <Modal.Header>Харилцагч нэмэх</Modal.Header>
       <Modal.Body>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-h-96 overflow-y-auto">
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
@@ -82,26 +65,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="gender" value="Хүйс" />
               </div>
-              <Select>
-                {persons?.map((i) => (
-                  <option value={i.id}>
-                    {i.gender}
-                  </option>
-                ))}
-              </Select>
-              
+              <TextInput type="text" {...register("gender")} placeholder="Хүйс "/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
               </div>
-              <Select>
-                {persons?.map((i) => (
-                  <option value={i.id}>
-                    {i.familyName}
-                  </option>
-                ))}
-              </Select>
+              <TextInput type="text" placeholder=""{...register("familyName")}/>
             </div>
           </div>
 
@@ -118,12 +88,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               </div>
               <TextInput id="personPhone" placeholder="Утасны дугаар" {...register("personPhone")}/>
             </div>
-            <div className="w-1/2">
-              <div className="mb-2 block">
-                <Label htmlFor="nationality" value="Иргэншил" />
-              </div>
-              <TextInput id="nationality" placeholder="Халх, Дарьганга гэх мэт" {...register("nationality")}/>
-            </div>
+           
           </div>
 
           <div className="flex gap-4">
@@ -160,25 +125,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="addressDistrict" value="Аймаг,нийслэл" />
               </div>
-              <Select>
-              {address?.map((i) => (
-                  <option value={i.id}>
-                    {i.addressDistrict}
-                  </option>
-                ))}
-              </Select>
+              <TextInput type="text" {...register("addressDistrict")} placeholder="Улаанбаатар хот"/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="addressSoum" value="Сум,Дүүрэг" />
               </div>
-              <Select>
-              {address?.map((i) => (
-                  <option value={i.id}>
-                    {i.addressSoum}
-                  </option>
-                ))}
-              </Select>
+             <TextInput type="text" {...register("addressSoum")} placeholder="Баянзүрх дүүрэг"/>
             </div>
           </div>
 
@@ -187,19 +140,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <div className="mb-2 block">
                 <Label htmlFor="address_bag" value="Баг, хороо" />
               </div>
-              <Select>
-              {address?.map((i) => (
-                  <option value={i.id}>
-                    {i.address_bag}
-                  </option>
-                ))}
-              </Select>
+             <TextInput type="text" {...register("address_bag")} placeholder="1-р хороо"/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
                 <Label htmlFor="addressDetail" value="Хаяг" />
               </div>
-              <TextArea id="addressDetail" {...register("addressDetail")}/>
+              <Textarea id="addressDetail" {...register("addressDetail")} placeholder="Хаягаа дэлгэрэнгүй бичнэ үү"/>
             </div>
           </div>
 

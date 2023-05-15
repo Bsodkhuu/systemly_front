@@ -52,7 +52,7 @@ const Cart = () => {
                         <Table.Cell>{product.productFits.positionId}</Table.Cell>
                         <Table.Cell>{product.productFits.description}</Table.Cell>
                         <Table.Cell>
-                          <TextInput type="number"/>
+                          
                         </Table.Cell>
                         <Table.Cell>
                         <a href="/messej">

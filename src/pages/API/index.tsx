@@ -218,7 +218,7 @@ export interface ServiceAppointment{
     nemeltMedeelel: string;
     workId?: string;
     personId?:string;
-    vehicleId?:string;
+    personVehicleId?: string;
     serviceId?: string;
     employeeId?: string;
     phoneId?: string;

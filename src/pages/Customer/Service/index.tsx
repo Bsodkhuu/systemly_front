@@ -9,14 +9,13 @@ import {
   Modal,
   DatePicker,
   Form,
-  Input,
   Select,
 } from 'antd';
 import { useSearchParams } from "react-router-dom";
 import { ServiceAppointment } from "../../API";
 
 
-const getListData = (value) => {
+const getListData = (value: { date: () => any; }) => {
   let listData;
   switch (value.date()) {
     case 8:
@@ -79,7 +78,7 @@ const getListData = (value) => {
   }
   return listData || [];
 };
-const getMonthData = (value) => {
+const getMonthData = (value: { month: () => number; }) => {
   if (value.month() === 8) {
     return 1394;
   }
@@ -103,7 +102,7 @@ const Service = () => {
     const response = axiosClient.get(`/service_appointments?startTime=${params.startTime}`);
     return (await response).data;
   }
-  const monthCellRender = (value) => {
+  const monthCellRender = (value: { month: () => number; }) => {
     const num = getMonthData(value);
     return num ? (
       <div className="notes-month">
@@ -112,13 +111,15 @@ const Service = () => {
       </div>
     ) : null;
   };
-  const dateCellRender = (value) => {
+  const dateCellRender = (value: { date: () => any; }) => {
     const listData = getListData(value);
     return (
       <ul className="events">
         {listData.map((item) => (
           <li key={item.content}>
-            <Badge status={item.type} text={item.content} />
+            <Badge 
+            // status={item.type} 
+            text={item.content} />
           </li>
         ))}
       </ul>
@@ -210,7 +211,7 @@ const Service = () => {
                     <Button className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300" onClick={handleCancel} >Гарах</Button>
                   </Form.Item>
                   <Form.Item className="flex justify-end"  >
-                      <Button   className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 " type="primary" htmlType="submit">Submit</Button>
+                      <Button   className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300"  type="submit">Submit</Button>
                   </Form.Item>
                   </div>
                 </Form>
@@ -230,25 +231,9 @@ const Service = () => {
                   <TextInput id="search" type="search" placeholder="Хайх" />
                   <Button className="bg-orange-500">Хайх</Button>
                 </div>
-                {/* <div className="md:hidden sm:block">
-                {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
-                     <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
-                     <div className="w-full p-2 space-y-2">
-                           <div>Нэр</div>                    
-                           <div>Үйлчилгээний төрөл</div>
-                           <div>Цаг авсан</div>
-                     </div>
-                       <div className="w-full p-2 text-right" key={index}>
-                       <div>{serviceAppointment.customer.lastName}</div>
-                               <div>{serviceAppointment.serviceType.name}</div>
-                               <div>{serviceAppointment.startTime}</div>
-                       </div>
-                     </div>
-                    ))}
-                    </div> */}
+               x
                 <Table className="hidden md:block">
                   <Table.Head className="uppercase">
-                    {/* <Table.HeadCell></Table.HeadCell> */}
                     <Table.HeadCell>Нэр</Table.HeadCell>
                     <Table.HeadCell>Үйлчилгээний төрөл</Table.HeadCell>
                     <Table.HeadCell>Цаг авсан</Table.HeadCell>
