@@ -42,6 +42,7 @@ import RoleList from "./pages/Suld/Tohirgoo/role";
 import Vilchilgee from "./pages/Customer/Sale/service";
 import Profile from "./pages/Profile";
 import Amralt from "./pages/Settings/Holiday";
+import Phone from "./pages/Profile/phone";
 
 
 
@@ -199,6 +200,10 @@ const router = createBrowserRouter([
   {
     path: "/profile", 
     element: <Profile />
+  },
+  {
+    path: "/phone", 
+    element: <Phone />
   }
 
 ]);

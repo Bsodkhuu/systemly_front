@@ -5,11 +5,29 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { axiosClient } from "../../../config/axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { Vehicle } from "../../API";
 
 
 const Transport = () => {
   const navigate = useNavigate();
-  navigate("/customer");
+
+  const { register, handleSubmit } = useForm<Vehicle>();
+  const { mutateAsync } = useMutation("createVehicle", createVehicle);
+
+  async function createVehicle(values: Vehicle) {
+    const response = await axiosClient.post("/vehicles",{
+      ...values,
+      insertUser: parseInt(values.insertUser.toString()),
+      updateUser: parseInt(values.updateUser.toString()),
+      deleteUser: parseInt(values.deleteUser.toString()),
+    });
+    return response.data;
+  }
+
+  async function onSubmit(values: Vehicle ) {
+    await mutateAsync(values);
+    navigate("/customer");
+  }
 
   return (
     <Layout>
@@ -18,21 +36,20 @@ const Transport = () => {
           <div className="flex justify-between mb-4">
             <h4 className="text-1xl">Тээврийн хэрэгсэл</h4>
           </div>
-          <form
-            //onSubmit={handleSubmit(onSubmit)} 
+          <form onSubmit={handleSubmit(onSubmit)} 
             className="flex flex-col gap-4">
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="vehicleName" value="Машины нэр" />
                 </div>
-                <TextInput id="vehicleName" placeholder="Машины нэр" />
+                <TextInput id="vehicleName" placeholder="Машины нэр" {...register("vehicleName")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="vehicleType" value="Төрөл" />
                 </div>
-                <TextInput id="vehicleType"  placeholder="Машины төрөл Жишээ: Prius, Toyota"/>
+                <TextInput id="vehicleType"  placeholder="Машины төрөл Жишээ: Prius, Toyota" {...register("vehicleType")}/>
               </div>
             </div>
             <div className="flex gap-4">
@@ -43,7 +60,7 @@ const Transport = () => {
                     value="Марк"
                   />
                 </div>
-                <TextInput id="vehicleNameEng" placeholder="Марк"/>
+                <TextInput id="vehicleMark" placeholder="Марк" {...register("vehicleMark")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -52,13 +69,73 @@ const Transport = () => {
                     value="vehicle Name Eng"/>
                 </div>
                 <TextInput
-                  id="vehicleNameEng" placeholder=""/>
+                  id="vehicleNameEng" placeholder="" {...register("vehicleNameEng")}/>
               </div>
             </div>
-            
+
+
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="activeFlag"
+                    value="Идэвхтэй эсэх"
+                  />
+                </div>
+                <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="deleteFlag"
+                    value="Засвар хийсэн утга"/>
+                </div>
+                <TextInput
+                  id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="insertUser"
+                    value="Үүсгэсэн хэрэглэгч"
+                  />
+                </div>
+                <TextInput id="insertUser" placeholder="Жишээ нь: 1" {...register("insertUser")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="updateUser"
+                    value="Өөрчлөлт хийсэн хэрэглэгч"/>
+                </div>
+                <TextInput
+                  id="updateUser" placeholder="Жишээ нь: 1" {...register("updateUser")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="deleteDate"
+                    value="Засвар хийсэн он сар"
+                  />
+                </div>
+                <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="deleteUser"
+                    value="Засвар хийсэн хэрэглэгч"
+                  />
+                </div>
+                <TextInput id="deleteUser" placeholder="Жишээ нь: 1" {...register("deleteUser")}/>
+              </div>
+            </div>
             <div className="flex gap-4">
               <Button className="bg-gray-400">Буцах</Button>
-              <Button className="bg-orange-400">
+              <Button className="bg-orange-400" onClick={handleSubmit(onSubmit)}>
                 Хадгалах
               </Button>
             </div>

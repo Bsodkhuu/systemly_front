@@ -18,8 +18,13 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
   const { mutateAsync } = useMutation("createCustomer", createCustomer);
 
   async function createCustomer(values: Person) {
-    const response = await axiosClient.post("/persons", values);
-    return response.data;
+    const response = await axiosClient.post("/persons",{
+      ...values,
+      insertUser: parseInt(values.insertUser.toString()),
+      updateUser: parseInt(values.updateUser.toString()),
+      deleteUser: parseInt(values.deleteUser.toString()),
+    });
+    return response.data; 
   }
 
   async function onSubmit(values: Person) {
@@ -84,9 +89,9 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="personPhone" value="Утасны дугаар" />
+                <Label htmlFor="phoneId" value="Утасны дугаар" />
               </div>
-              <TextInput id="personPhone" placeholder="Утасны дугаар" {...register("personPhone")}/>
+              <TextInput id="phoneId" placeholder="Утасны дугаар" {...register("phoneId")}/>
             </div>
            
           </div>
@@ -113,42 +118,85 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               </div>
               <TextInput id="historyId" placeholder="Хэрэглэгчийн кодтой адилхан оруулахад болно" {...register("historyId")}/> 
             </div>
-            <div className="w-1/2">
-              <div className="mb-2 block">
-                <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />
-              </div>
-              <TextInput id="confirmFlag" placeholder="Үгүй, Тийм" {...register("confirmFlag")}/>
-            </div>
-          </div>
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <div className="mb-2 block">
-                <Label htmlFor="addressDistrict" value="Аймаг,нийслэл" />
-              </div>
-              <TextInput type="text" id="addressDistrict" {...register("addressDistrict")} placeholder="Улаанбаатар хот"/>
-            </div>
-            <div className="w-1/2">
-              <div className="mb-2 block">
-                <Label htmlFor="addressSoum" value="Сум,Дүүрэг" />
-              </div>
-             <TextInput type="text" id="addressSoum" {...register("addressSoum")} placeholder="Баянзүрх дүүрэг"/>
-            </div>
+            
           </div>
 
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="address_bag" value="Баг, хороо" />
+                <Label htmlFor="address" value="Хаяг" />
               </div>
-             <TextInput type="text" id="address_bag" {...register("address_bag")} placeholder="1-р хороо"/>
+              <Textarea id="address" {...register("address")} placeholder="Хаягаа дэлгэрэнгүй бичнэ үү"/>
             </div>
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label htmlFor="addressDetail" value="Хаяг" />
+                <Label htmlFor="activeFlag" value="Идэвхтэй эсэх" />
               </div>
-              <Textarea id="addressDetail" {...register("addressDetail")} placeholder="Хаягаа дэлгэрэнгүй бичнэ үү"/>
+             <TextInput type="text" id="activeFlag" {...register("activeFlag")} placeholder="Идэвхтэй эсэх"/>
             </div>
           </div>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="deleteFlag"
+                    value="Засвар хийсэн утга"/>
+                </div>
+                <TextInput
+                  id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="insertUser"
+                    value="Үүсгэсэн хэрэглэгч"
+                  />
+                </div>
+                <TextInput id="insertUser" placeholder="Жишээ нь: 1" {...register("insertUser")}/>
+              </div>
+          </div>
+
+
+          <div className="flex gap-4">
+              
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="updateUser"
+                    value="Өөрчлөлт хийсэн хэрэглэгч"/>
+                </div>
+                <TextInput
+                  id="updateUser" placeholder="Жишээ нь: 1" {...register("updateUser")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="deleteDate"
+                    value="Засвар хийсэн он сар"
+                  />
+                </div>
+                <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="deleteUser"
+                    value="Засвар хийсэн хэрэглэгч"
+                  />
+                </div>
+                <TextInput id="deleteUser" placeholder="Жишээ нь: 1" {...register("deleteUser")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="confirmFlag"
+                    value="Зөвшөөрсөн эсэх"
+                  />
+                </div>
+                <TextInput id="confirmFlag" placeholder="Тийм, Үгүй" {...register("confirmFlag")}/>
+              </div>
+            </div>
+          
 
         </form>
       </Modal.Body>

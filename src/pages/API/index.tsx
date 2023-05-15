@@ -432,7 +432,6 @@ export interface Person extends PersonPhone{
     gender: string;
     familyName: string;
     email: string;
-    nationality: string;
     country: string;
     activeFlag: string;
     deleteFlag: string;

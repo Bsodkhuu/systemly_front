@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../config/axios";
 import { FaHouseDamage, FaHandshake } from 'react-icons/fa';
-import {AiOutlineHome, AiOutlineTool, AiOutlineQuestionCircle} from 'react-icons/ai';
+import {AiOutlineHome, AiOutlineQuestionCircle, AiOutlineUserAdd} from 'react-icons/ai';
 import {BsCartPlus} from 'react-icons/bs';
 import {SlNote} from 'react-icons/sl';
 import {MdOutlineShoppingCartCheckout, MdOutlineSell , MdEmojiTransportation, MdPriceCheck, MdRememberMe} from 'react-icons/md';
 import {CgUserList } from 'react-icons/cg';
 import {RiFolderSettingsFill } from 'react-icons/ri';
-import {TbNotesOff ,TbListDetails, TbBrandBooking, TbZoomMoney} from 'react-icons/tb';
-import {HiStatusOnline ,HiOutlineCollection} from 'react-icons/hi';
+import {TbListDetails, TbBrandBooking, TbZoomMoney} from 'react-icons/tb';
+import {HiOutlineCollection} from 'react-icons/hi';
 import {CiViewList, CiMenuFries} from 'react-icons/ci';
 import {BiTimer, BiMoneyWithdraw, BiExit} from 'react-icons/bi';
 import {RxLapTimer} from 'react-icons/rx';
@@ -128,6 +128,7 @@ const SidebarComponent = () => {
     </Panel>
   </Collapse>
   <div className='w-full   flex justify-center items-center mt-4' >
+  <a href="/profile" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-cente  w-12' > <AiOutlineUserAdd/> </div>Профайл</a>
   <Button onClick={logOut} danger  className=' text-2xl flex justify-center items-center'><BiExit/> <div className='text-sm' >Гарах</div> </Button>
   </div>
   </Drawer>
@@ -214,10 +215,12 @@ const SidebarComponent = () => {
     <Panel header="Үндсэн тохиргоо"  key="13">
       <div className='divide-y space-y-3'>
            <a href="/role" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-cente  w-12' > <RiFolderSettingsFill/> </div>Үндсэн тохиргоо</a>
+           
       </div>
     </Panel>
   </Collapse>
   <div className='w-full   flex justify-center items-center mt-4' >
+  <a href="/profile" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-cente  w-12' ><AiOutlineUserAdd/></div>Профайл</a>
   <Button onClick={logOut} danger  className=' text-2xl flex justify-center items-center'><BiExit/> <div className='text-sm' >Гарах</div> </Button>
   </div>
       </div>
