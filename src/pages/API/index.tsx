@@ -531,11 +531,8 @@ export interface Employee{
   personPhone: PersonPhone;
   phoneId?: string;
   positionId: string;
-  fileName: string;
-  fileSize: string;
   filePath: string;
   jobStart: string;
-  jobEnd: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;

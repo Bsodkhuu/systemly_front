@@ -94,54 +94,107 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="personId" value="Ажилтны нэр" />
                 </div>
-                <Select id="personId" placeholder="Ажилтны нэр">
+                <Select id="personId" placeholder="Ажилтны нэр" {...register("personId")}>
+                  {personData?.map((i) => (
+                    <option key={`person_${i.id}`} value={i.id}>
+                      {i.lastName}
+                    </option>
+                  ))}
                   </Select>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="ovog" value="Овог" />
+                  <Label htmlFor="personId" value="Овог" />
                 </div>
-                <TextInput id="ovog"  />
+                <Select id="personId" placeholder="Ажилтны нэр" {...register("personId")}>
+                  {personData?.map((i) => (
+                    <option key={`person_${i.id}`} value={i.id}>
+                      {i.firstName}
+                    </option>
+                  ))}
+                  </Select>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="position_name" value="Албан тушаал" />
+                  <Label htmlFor="positionId" value="Албан тушаал" />
                 </div>
-                <TextInput id="position_name"  />
+                <TextInput id="positionId" placeholder="Албан тушаал" {...register("positionId")}/>
                </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="phone" value="Утасны дугаар" />
+                  <Label htmlFor="phoneId" value="Утасны дугаар" />
                 </div>
-                <TextInput id="phone"  />
+                <Select
+                id="phoneId"
+                placeholder="Утасны дугаар"
+                {...register("phoneId")}>
+                {phoneData?.map((i) => (
+                  <option key={`personPhone_${i.id}`} value={i.id}>
+                    {i.phone}
+                  </option>
+                ))}
+              </Select>
               </div>
             </div>
 
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="email" value="Имэйл" />
+                  <Label htmlFor="personId" value="Имэйл" />
                 </div>
-                <TextInput type="text" />
+                {personData?.map((i) => (
+                    <option key={`person_${i.id}`} value={i.id}>
+                      {i.email}
+                    </option>
+                  ))}
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="image" value="Ажилтны зураг"/>
+                  <Label htmlFor="filePath" value="Ажилтны зураг"/>
                 </div>
-                <TextInput type="text"/>
+                <FileInput id="filePath"/>
               </div>
               </div>
               <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="jobDate" value="Ажилд орсон огноо "/>
+                    <Label htmlFor="jobStart" value="Ажилд орсон огноо "/>
                   </div>
-                  {/* <FileInput/> */}
-                  <TextInput type="text" />
-                </div>
-              
+                  <TextInput type="date" id="jobStart"/>
+                </div> 
+            </div>
+            <div className="flex gap-4">
+            <div className="w-1/2">
+                        <div className="mb-2 block">
+                        <Label
+                            htmlFor="activeFlag"
+                            value="Идэвхтэй эсэх"/>
+                        </div>
+                        <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
+                    </div>
+                    </div>
+                    <div className="flex gap-4">
+                    
+                    <div className="w-1/2">
+                        <div className="mb-2 block">
+                        <Label
+                            htmlFor="deleteFlag"
+                            value="Засвар хийсэн утга"/>
+                        </div>
+                        <TextInput
+                        id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+                    </div>
+                    <div className="w-1/2">
+                        <div className="mb-2 block">
+                        <Label
+                            htmlFor="deleteDate"
+                            value="Засвар хийсэн он сар"/>
+                        </div>
+                        <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
+                    </div>
+                
             </div>
           </form>
         </Modal.Body>

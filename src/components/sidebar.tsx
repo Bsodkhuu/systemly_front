@@ -221,7 +221,6 @@ const SidebarComponent = () => {
     </Panel>
   </Collapse>
   <div className='w-full   flex justify-center items-center mt-4' >
- 
   <Button onClick={logOut} danger  className=' text-2xl flex justify-center items-center'><BiExit/> <div className='text-sm' >Гарах</div> </Button>
   </div>
       </div>
