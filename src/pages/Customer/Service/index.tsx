@@ -8,11 +8,11 @@ import { useSearchParams } from "react-router-dom";
 import { ServiceAppointment } from "../../API";
 import { modal } from "../../../components/ant/Modal";
 
-import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/buhDelgerenguiTsagKharakh";
 import DelgerenguiKharakh from "../../../components/pageComponent/modal/DelgerenguiKharakh";
 import TsagZakhialakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagZakhialakh";
+import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/BuhDelgerenguiTsagKharakh";
 
-const getListData = (value) => {
+const getListData = (value: { date: () => any; }) => {
   let listData;
   switch (value.date()) {
     case 8:
@@ -171,8 +171,8 @@ const Service = () => {
       <div className="flex justify-end space-x-3">
         <div>
           <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300">
+            {/* onClick={() => ref.current.khaaya()}> */}
             Хаах
           </Button>
         </div>
@@ -216,8 +216,8 @@ const Service = () => {
       <div className="flex justify-end space-x-3">
         <div>
           <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300">
+            {/* onClick={() => ref.current.khaaya()}> */}
             Хаах
           </Button>
         </div>
@@ -255,15 +255,15 @@ const Service = () => {
       </div>
     ) : null;
   };
-  const dateCellRender = (value) => {
+  const dateCellRender = (value: { date: () => any; }) => {
     const listData = getListData(value);
     return (
       <ul className="events">
-        {listData.map((item) => (
+        {/* {listData.map((item) => (
           <li key={item.content}>
             <Badge status={item.type} text={item.content} />
           </li>
-        ))}
+        ))} */}
       </ul>
     );
   };
@@ -273,8 +273,8 @@ const Service = () => {
       <div className="flex justify-end space-x-3">
         <div>
           <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300">
+            {/* onClick={() => ref.current.khaaya()}> */}
             Хаах
           </Button>
         </div>
