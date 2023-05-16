@@ -54,6 +54,7 @@ export interface ProductSubCategory {
   updatedAt: string;
   en: string;
   productCategoryId?: string;
+  productCategory: ProductCategory;
 }
 //order system
 export interface Constant {
@@ -79,24 +80,41 @@ export interface Prodmetric {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
+  insertUser: string;
   deleteDate: string;
-  deleteUser: number;
-  updateUser: number;
+  deleteUser: string;
+  updateUser: string;
 }
 
-export interface VehicleUsage extends Product {
+export interface VehicleUsage {
   id: string;
   createdAt: string;
   updatedAt: string;
   vehicleType: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
-export interface ProductFits extends Product {
+export interface ProductFits {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
   positionId: string;
   description: string;
-  [productName: string]: any;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
+  
 }
-export interface Product extends Prodmetric {
+export interface Product{
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -107,18 +125,20 @@ export interface Product extends Prodmetric {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
   confirmFlag: string;
   priceMain: number;
   currency: string;
-  nameEng: string; //vehicle name english
+  nameEng: string;//vehicle name english
+  prodmetric: Prodmetric; 
   prodmetricId?: string;
+  vehicle: VehicleUsage;
   vehicleId?: string;
+  productFits: ProductFits;
   productFitsId?: string;
-  [typeId: string]: any;
 }
 
 export interface Branch {
@@ -130,10 +150,10 @@ export interface Branch {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
 }
 
 export interface TrackInfo {
@@ -145,17 +165,19 @@ export interface TrackInfo {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
 }
-export interface Order extends Product {
+export interface Order {
   id: string;
   createdAt: string;
   updatedAt: string;
+  product: Product;
   productId?: string;
   numbOfProd: string;
+  prodmetric: Prodmetric;
   prodmetricId?: string;
   prodAllTotal: number;
   manufacturerPrice: number;
@@ -167,10 +189,10 @@ export interface Order extends Product {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
   confirmFlag: string;
   orderedDate: string;
   historyId: string;
@@ -178,7 +200,9 @@ export interface Order extends Product {
   packageId: number;
   receiveDate: string;
   receiverDate: string;
+  branch: Branch;
   branchId?: string;
+  trackInfo: TrackInfo;
   trackId?: string;
 }
 
@@ -372,21 +396,21 @@ export interface Description {
 
 export interface Service {
   id: string;
-  createdAt: string;
-  updatedAt: string;
-  branchId?: string;
-  serviceName: string;
+  createdAt:string;
+  updatedAt:string;
+  branch: Branch;
+  branchId?:string;
+  serviceName:string;
   price: number;
-  activeFlag: string;
-  deleteFlag: string;
-  insertDate: string;
-  insertUser: number;
-  updateUser: number;
-  deleteDate: string;
-  deleteUser: number;
-  employeeId: string;
+  activeFlag:string;
+  deleteFlag:string;
+  insertDate:string;
+  insertUser:string;
+  updateUser:string;
+  deleteDate:string;
+  deleteUser:string;
 }
-export interface Vehicle extends PersonVehicle {
+export interface Vehicle{
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -395,15 +419,15 @@ export interface Vehicle extends PersonVehicle {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
   vehicleMark: string;
   vehicleNameEng: string;
 }
 
-export interface Address extends Person {
+export interface Address {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -411,8 +435,6 @@ export interface Address extends Person {
   addressSoum: string;
   address_bag: string;
   addressDetail: string;
-
-  [lastName: string]: any;
 }
 
 export interface Person {
@@ -430,16 +452,17 @@ export interface Person {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
   historyId: string;
   confirmFlag: string;
   customerCode: string;
   phoneId?: string;
   addressId?: string;
   personPhone: PersonPhone;
+  address: Address;
 }
 export interface PersonPhone {
   id: string;
@@ -449,10 +472,10 @@ export interface PersonPhone {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
 }
 
 export interface PersonVehicle {
@@ -466,69 +489,82 @@ export interface PersonVehicle {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
+  person: Person;
+  vehicle: Vehicle;
 }
 
-export interface ServiceOrder extends Service {
+export interface ServiceOrder {
   id: string;
   createdAt: string;
   updatedAt: string;
-  branchId?: string;
-  payPrice: string;
+  branch: Branch;
+  branchId?:string;
+  payPrice: number;
+  service: Service;
   serviceId?: string;
+  paidAmount: number;
+  person: Person;
+  personId?: string;
+  personVehicle: PersonVehicle;
+  personVehicleId?: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
-  paidAmount: number;
-  personId?: string;
-  personVehicleId?: string;
-  status: string;
-  [serviceName: string]: any;
+  deleteUser: string
 }
 
-export interface Employee extends Person {
+export interface Employee{
   id: string;
   createdAt: string;
   updatedAt: string;
-  personId?: string;
-  branchId?: string;
+  person: Person;
+  personId?:string;
+  branch:Branch;
+  branchId?:string;
+  personPhone: PersonPhone;
+  phoneId?: string;
   positionId: string;
   fileName: string;
   fileSize: string;
   filePath: string;
+  jobStart: string;
+  jobEnd: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string
 }
 
-export interface ServiceEmployee extends ServiceOrder {
+export interface ServiceEmployee {
   id: string;
   createdAt: string;
   updatedAt: string;
+  employee: Employee;
   employeeId: string;
+  branch: Branch;
   branchId?: string;
+  serviceOrder: ServiceOrder;
   serviceOrderId?: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
 }
 
-export interface ServiceOrderProduct extends ServiceOrder {
+export interface ServiceOrderProduct{
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -540,12 +576,17 @@ export interface ServiceOrderProduct extends ServiceOrder {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
+  serviceOrder: ServiceOrder;
+  branch: Branch;
+  product: Product;
+  prodmetric: Prodmetric;
+
 }
-export interface GarageInventory extends Branch {
+export interface GarageInventory {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -559,10 +600,12 @@ export interface GarageInventory extends Branch {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
-  updateUser: number;
+  insertUser: string;
+  updateUser: string;
   deleteDate: string;
-  deleteUser: number;
+  deleteUser: string;
   branch: Branch;
-  [branch: string]: any;
+  product: Product;
+  prodmetric: Prodmetric;
+  order: Order;
 }

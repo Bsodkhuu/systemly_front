@@ -15,9 +15,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Employee, ServiceEmployee, ServiceOrder } from "../API";
+import { Branch, Employee, Person, PersonPhone, ServiceEmployee, ServiceOrder } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const Human = () => {
   const [showModal, setShowModal] = useState(false);
@@ -48,23 +49,53 @@ const Human = () => {
     const response = await axiosClient.get("/employees");
     return response.data as Employee[];
   }
+
+  const { register, handleSubmit } = useForm<Employee>();
+  const { mutateAsync } = useMutation("createEmployee", createEmployee);
+  
+  const { data: personData } = useQuery("getPerson", getPerson);
+  const { data: branchData } = useQuery("getBranch", getBranch);
+  const { data: phoneData } = useQuery("getPhone", getPhone);
+
+  async function getPhone() {
+    const response = await axiosClient.get("/");
+    return response.data as PersonPhone[];
+  }
+
+  async function getBranch() {
+    const response = await axiosClient.get("/branch");
+    return response.data as Branch[];
+  }
+
+  async function getPerson() {
+    const response = await axiosClient.get("/persons");
+    return response.data as Person[];
+  }
+
+  async function createEmployee(values: Employee) {
+    const response = await axiosClient.post("/employees", values);
+    return response.data;
+  }
+
+  async function onSubmit(values: Employee) {
+    await mutateAsync(values);
+  }
+
   return (
     <Layout>
       <Modal show={showModal} onClose={closeModal}>
         <Modal.Header>Ажилчид нэмэх</Modal.Header>
         <Modal.Body>
           <form
-           // onSubmit={handleSubmit(onSubmit)}
+           onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4 max-h-96 overflow-y-auto">
-            <div>
-              
-            </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="name" value="Нэр" />
+                  <Label htmlFor="personId" value="Ажилтны нэр" />
                 </div>
-                <TextInput id="name"  />
+                <Select id="personId" placeholder="Ажилтны нэр">
+                  </Select>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -118,7 +149,7 @@ const Human = () => {
           <Button onClick={closeModal} className="bg-gray-400">
             Буцах
           </Button>
-          <Button  className="bg-orange-500">
+          <Button  className="bg-orange-500" onClick={handleSubmit(onSubmit)}>
             Хадгалах
           </Button>
         </Modal.Footer>
@@ -127,12 +158,17 @@ const Human = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="md:flex justify-between mb-4 space-y-3">
             <div className="text-xl">Ажилчид</div>
-            <div className="md:flex gap-4 ">
+            <div className="md:flex gap-4">
               <TextInput id="startDate" type="date" />
               -
               <TextInput id="endDate" type="date" />
               <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
               <Button className="bg-orange-500">Хайх</Button>
+              <a href="/branch">
+                <Button className="bg-orange-500">
+                Байгууллага бүртгэх
+                </Button>
+              </a>
               <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
@@ -175,22 +211,25 @@ const Human = () => {
             </div> 
             <div className="p-4">
               <Card>
-                <h4 className="text-1xl">Хийгдсэн үйлчилгээний бүртгэл</h4>
+              <div className="md:flex gap-4">
+              <a href="/serviceOrder" className="text-1xl">
+              <Button className="bg-orange-500">Хийсэн үйлчилгээний бүртгэл</Button></a>
+              </div>
                 <Table>
                   <Table.Head className="uppercase">
+                    <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
+                    <Table.HeadCell>Байгууллага /Branch/</Table.HeadCell>
                     <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
                     <Table.HeadCell>Үнэ</Table.HeadCell>
                     <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                     <Table.HeadCell>Төлөх дүн</Table.HeadCell>
+                    <Table.HeadCell>Төлсөн дүн</Table.HeadCell>
                     <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
                       {serviceOrder?.map((serviceOrder: ServiceOrder, index: number) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{serviceOrder.service.serviceName}</Table.Cell>
-                          <Table.Cell>{serviceOrder.service.price}</Table.Cell>
-                          <Table.Cell>{serviceOrder.personVehicle.vehicleNumber}</Table.Cell>
-                          <Table.Cell>{serviceOrder.payPrice}</Table.Cell>
+                          
                           <Table.Cell className="space-2xl">
                             <FontAwesomeIcon icon={faPenToSquare}/>
                           </Table.Cell>

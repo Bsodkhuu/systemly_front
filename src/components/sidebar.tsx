@@ -56,11 +56,12 @@ const SidebarComponent = () => {
     </Panel>
     <Panel header="Засвар Борлуулалт" key="3">
     <div className='divide-y space-y-3 ' >
-    <a href="/customer" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Харилцагчийн бүртгэл</a>
-             <a href="/sale" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' ><MdOutlineSell/> </div>Засвар,борлуулалт</a>
-             <a href="/spare" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><CiViewList/></div> Сэлбэгийн үлдэгдэл</a>
-             <a href="/service" className='flex h-8 w-full justify-start items-center' ><div className='text-xl flex justify-center  w-12' ><BiTimer/> </div>Үйлчилгээний цаг</a>
-             </div>
+        <a href="/profile" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <AiOutlineUserAdd/> </div>Харилцагчийн бүртгэл</a>
+        <a href="/customer" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Харилцагч нэмэх</a>
+        <a href="/sale" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' ><MdOutlineSell/> </div>Засвар,борлуулалт</a>
+        <a href="/spare" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><CiViewList/></div> Сэлбэгийн үлдэгдэл</a>
+        <a href="/service" className='flex h-8 w-full justify-start items-center' ><div className='text-xl flex justify-center  w-12' ><BiTimer/> </div>Үйлчилгээний цаг</a>
+    </div>
     </Panel>
     <Panel header="Хүний нөөц" key="4">
     <div className='divide-y space-y-3 ' >
@@ -128,7 +129,6 @@ const SidebarComponent = () => {
     </Panel>
   </Collapse>
   <div className='w-full   flex justify-center items-center mt-4' >
-  <a href="/profile" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-cente  w-12' > <AiOutlineUserAdd/> </div>Профайл</a>
   <Button onClick={logOut} danger  className=' text-2xl flex justify-center items-center'><BiExit/> <div className='text-sm' >Гарах</div> </Button>
   </div>
   </Drawer>
@@ -148,11 +148,12 @@ const SidebarComponent = () => {
     </Panel>
     <Panel header="Засвар Борлуулалт" key="3">
     <div className='divide-y space-y-3 ' >
-    <a href="/customer" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Харилцагчийн бүртгэл</a>
-             <a href="/sale" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' ><MdOutlineSell/> </div>Засвар,борлуулалт</a>
-             <a href="/spare" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><CiViewList/></div> Сэлбэгийн үлдэгдэл</a>
-             <a href="/service" className='flex h-8 w-full justify-start items-center' ><div className='text-xl flex justify-center  w-12' ><BiTimer/> </div>Үйлчилгээний цаг</a>
-             </div>
+      <a href="/profile" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <AiOutlineUserAdd/> </div>Харилцагчийн бүртгэл</a>
+      <a href="/customer" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Харилцагч нэмэх</a>
+      <a href="/sale" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-center  w-12' ><MdOutlineSell/> </div>Засвар,борлуулалт</a>
+      <a href="/spare" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' ><CiViewList/></div> Сэлбэгийн үлдэгдэл</a>
+      <a href="/service" className='flex h-8 w-full justify-start items-center' ><div className='text-xl flex justify-center  w-12' ><BiTimer/> </div>Үйлчилгээний цаг</a>
+    </div>
     </Panel>
     <Panel header="Хүний нөөц" key="4">
     <div className='divide-y space-y-3 ' >
@@ -220,7 +221,7 @@ const SidebarComponent = () => {
     </Panel>
   </Collapse>
   <div className='w-full   flex justify-center items-center mt-4' >
-  <a href="/profile" className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-cente  w-12' ><AiOutlineUserAdd/></div>Профайл</a>
+ 
   <Button onClick={logOut} danger  className=' text-2xl flex justify-center items-center'><BiExit/> <div className='text-sm' >Гарах</div> </Button>
   </div>
       </div>

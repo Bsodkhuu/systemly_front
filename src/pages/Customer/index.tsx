@@ -466,14 +466,14 @@ const Customer = () => {
         <div className="col-span">
           <div className="p-2">
             <Card>
-              <h5 className="text-1xl">Автомашины дэлгэрэнгүй</h5>
+              <h4 className="text-1xl">Автомашины дэлгэрэнгүй бүртгэл</h4>
               <div className="flex gap-4">
                 <TextInput
                   id="search"
                   type="search"
-                  placeholder="Автомашин хайх"
-                />
+                  placeholder="Автомашин хайх"/>
                 <Button className="bg-orange-500">Хайх</Button>
+                <a href="/personVehicle" className="text-1xl"><Button className="bg-orange-500">Автомашины бүртгэл</Button></a>
               </div>
               <a href="/zaswar_service">
                 <Button className="bg-orange-500">Засвар эхлүүлэх</Button>
@@ -483,7 +483,6 @@ const Customer = () => {
                   <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
                   <Table.HeadCell>Улсын дугаар</Table.HeadCell>
                   <Table.HeadCell>Машины нэр</Table.HeadCell>
-                  <Table.HeadCell>Марк</Table.HeadCell>
                   <Table.HeadCell>Өнгө</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
@@ -494,9 +493,6 @@ const Customer = () => {
                         <Table.Cell>{personVehicle.vehicleNumber}</Table.Cell>
                         <Table.Cell>
                           {personVehicle.vehicle.vehicleName}
-                        </Table.Cell>
-                        <Table.Cell>
-                          {personVehicle.vehicle.vehicleMark}
                         </Table.Cell>
                         <Table.Cell>{personVehicle.vehicleColor}</Table.Cell>
                       </Table.Row>

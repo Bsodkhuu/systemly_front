@@ -15,12 +15,7 @@ const Transport = () => {
   const { mutateAsync } = useMutation("createVehicle", createVehicle);
 
   async function createVehicle(values: Vehicle) {
-    const response = await axiosClient.post("/vehicles",{
-      ...values,
-      insertUser: parseInt(values.insertUser.toString()),
-      updateUser: parseInt(values.updateUser.toString()),
-      deleteUser: parseInt(values.deleteUser.toString()),
-    });
+    const response = await axiosClient.post("/vehicles", values);
     return response.data;
   }
 
@@ -72,8 +67,6 @@ const Transport = () => {
                   id="vehicleNameEng" placeholder="" {...register("vehicleNameEng")}/>
               </div>
             </div>
-
-
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -103,7 +96,7 @@ const Transport = () => {
                     value="Үүсгэсэн хэрэглэгч"
                   />
                 </div>
-                <TextInput id="insertUser" placeholder="Жишээ нь: 1" {...register("insertUser")}/>
+                <TextInput id="insertUser" placeholder="Үүсгэсэн хэрэглэгч" {...register("insertUser")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -112,7 +105,7 @@ const Transport = () => {
                     value="Өөрчлөлт хийсэн хэрэглэгч"/>
                 </div>
                 <TextInput
-                  id="updateUser" placeholder="Жишээ нь: 1" {...register("updateUser")}/>
+                  id="updateUser" placeholder="Өөрчлөлт хийсэн хэрэглэгч" {...register("updateUser")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
@@ -130,7 +123,7 @@ const Transport = () => {
                     value="Засвар хийсэн хэрэглэгч"
                   />
                 </div>
-                <TextInput id="deleteUser" placeholder="Жишээ нь: 1" {...register("deleteUser")}/>
+                <TextInput id="deleteUser" placeholder="Засвар хийсэн хэрэглэгч" {...register("deleteUser")}/>
               </div>
             </div>
             <div className="flex gap-4">

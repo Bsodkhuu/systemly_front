@@ -4,26 +4,22 @@ import { useForm } from "react-hook-form"
 import { PersonPhone } from "../API";
 import { useMutation } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Label, TextInput } from "flowbite-react";
-import { Button } from "antd";
-
+import { Label, TextInput,Button } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 const Phone = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit } = useForm<PersonPhone>();
     const { mutateAsync } = useMutation("createPhone", createPhone);
 
     async function createPhone(values: PersonPhone) {
-        const response = await axiosClient.post("/person-phones", {
-           ...values,
-           insertUser: parseInt(values.insertUser.toString()),
-           updateUser: parseInt(values.updateUser.toString()),
-           deleteUser: parseInt(values.deleteUser.toString()),
-        });
+        const response = await axiosClient.post("/person-phones", values);
         return response.data;
     }
 
     async function onSubmit(values: PersonPhone) {
         await mutateAsync(values);
+        navigate("/profile");
     }
     return (
         <Layout>
@@ -60,47 +56,8 @@ const Phone = () => {
                             id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
                         </div>
                         </div>
-
                         <div className="flex gap-4">
-                        <div className="w-1/2">
-                            <div className="mb-2 block">
-                            <Label
-                                htmlFor="insertUser"
-                                value="Үүсгэсэн хэрэглэгч"
-                            />
-                            </div>
-                            <TextInput id="insertUser" placeholder="Жишээ нь: 1" {...register("insertUser")}/>
-                        </div>
-                        <div className="w-1/2">
-                            <div className="mb-2 block">
-                            <Label
-                                htmlFor="updateUser"
-                                value="Өөрчлөлт хийсэн хэрэглэгч"/>
-                            </div>
-                            <TextInput
-                            id="updateUser" placeholder="Жишээ нь: 1" {...register("updateUser")}/>
-                        </div>
-                        <div className="w-1/2">
-                            <div className="mb-2 block">
-                            <Label
-                                htmlFor="deleteDate"
-                                value="Засвар хийсэн он сар"
-                            />
-                            </div>
-                            <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
-                        </div>
-                        <div className="w-1/2">
-                            <div className="mb-2 block">
-                            <Label
-                                htmlFor="deleteUser"
-                                value="Засвар хийсэн хэрэглэгч"
-                            />
-                            </div>
-                            <TextInput id="deleteUser" placeholder="Жишээ нь: 1" {...register("deleteUser")}/>
-                        </div>
-                        </div>
-                        <div className="flex gap-4">
-                        <Button className="bg-gray-400">Буцах</Button>
+                        <Button className="bg-gray-400" onClick={close}>Буцах</Button>
                         <Button className="bg-orange-400" onClick={handleSubmit(onSubmit)}>
                             Хадгалах
                         </Button>

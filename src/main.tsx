@@ -26,7 +26,6 @@ import Zahialga from "./pages/Order/zahialga";
 import Service from "./pages/Customer/Service";
 import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
-// import Holiday from "./pages/Settings/Holiday";
 import Forgot from "./pages/Login/Forgot/forgot";
 import ProductPage from "./pages/Product";
 import Messej from "./pages/Order/Create/messej";
@@ -39,10 +38,13 @@ import Notifications from "./pages/Suld/Tohirgoo/notifications";
 import FeedBack from "./pages/Suld/feedback";
 import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
-import Vilchilgee from "./pages/Customer/Sale/service";
 import Profile from "./pages/Profile";
 import Amralt from "./pages/Settings/Holiday";
 import Phone from "./pages/Profile/phone";
+import VehiclePerson from "./pages/Customer/PersonVehicle";
+import SaleRegister from "./pages/Customer/Sale/service";
+import Service_Order from "./pages/Human/ServiceOrder";
+import BranchAdd from "./pages/Human/Branch";
 
 
 
@@ -50,6 +52,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/branch", 
+    element: <BranchAdd/>
+  },
+  {
+    path: "/serviceOrder", 
+    element: <Service_Order/>
+  },
+  {
+    path: "/personVehicle", 
+    element: <VehiclePerson/>
   },
   {
     path: "/my",
@@ -64,8 +78,8 @@ const router = createBrowserRouter([
     element: <Inquiry />,
   },
   {
-    path:"/vilchilgee", 
-    element: <Vilchilgee/>
+    path:"/saleRegister", 
+    element: <SaleRegister/>
   },
   {
     path:"/createRole", 
@@ -109,10 +123,10 @@ const router = createBrowserRouter([
     element: <Messej />,
   },
   
-  // {
-  //   path: "/holiday",
-  //   element: <Holiday />,
-  // },
+  {
+    path: "/holiday",
+    element: <Amralt />,
+  },
   {
     path: "/clock",
     element: <Clock />,

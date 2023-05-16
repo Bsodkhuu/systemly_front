@@ -23,7 +23,7 @@ const Price = () => {
               <Button className="bg-orange-500">Хайх</Button>
               
               <a href="/active">
-                <Button className="bg-orange-500">Идэвхитэй</Button>
+                <Button className="bg-orange-500">Үйлчилгээ бүртгэх</Button>
               </a>
             </div>
           </div>

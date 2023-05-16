@@ -37,13 +37,23 @@ const Sale = () => {
             <div className="md:flex items-center justify-between mb-4 space-y-3 md:space-y-0 ">
               <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
               <div className="flex gap-4">
-                <div className="w-full" ><TextInput type="date" /></div>
-                <div><Button className="bg-orange-500">
+                <div className="w-full">
+                  <TextInput type="date"/>
+                  </div>
+                <div>
+                  <Button className="bg-orange-500">
                   Хайх
-                </Button></div>
+                </Button>
+                </div>
+                <div>
+                  <a href="/saleRegister">
+                  <Button className="bg-orange-500">
+                  Засварын хуудсын бүртгэл
+                  </Button>
+                  </a>
+                </div>
               </div>
               <div>
-                
               </div>
             </div>
             <div className="p-4">
@@ -58,6 +68,7 @@ const Sale = () => {
                   <Table.Body className="divide-y bg-scroll">
                     {service?.map((service: Service, index: number) => (
                       <Table.Row key={index}>
+                        <Table.Cell></Table.Cell>
                         <Table.Cell>{service.serviceName}</Table.Cell>
                         <Table.Cell>{service.price}</Table.Cell>
                       </Table.Row>
@@ -80,7 +91,7 @@ const Sale = () => {
                   <Table.Body className="divide-y">
                     {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
                       <Table.Row key={index}>
-                        <Table.Cell>{serviceOrderProduct.serviceOrder.employeeId}</Table.Cell>
+                        <Table.Cell></Table.Cell>
                         <Table.Cell>{serviceOrderProduct.branch.branchName}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.product.productName}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.productCnt}</Table.Cell>

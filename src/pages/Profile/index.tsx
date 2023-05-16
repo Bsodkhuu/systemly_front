@@ -31,12 +31,12 @@ const Profile = () => {
                 <div className="p-2 bg-gray-200 md:h-screen md:col-span-2">
                     <div className="bg-white p-2 rounded-lg">
                         <div className="md:flex justify-between mb-4 space-y-2  md:space-y-0">
-                            <h4 className="text-1xl">Хэрэглэгчийн профайл</h4>
+                            <h4 className="text-1xl">Харилцагчийн бүртгэл</h4>
                             <div>
                                <a href="/phone">
                                <Button className="bg-orange-500">
                                <p className="text-[11px]">
-                                 Хэрэглэгчийн утасны дугаар нэмэх
+                               Харилцагчийн утасны дугаар нэмэх
                                </p>
                                </Button>
                                </a>
@@ -78,9 +78,6 @@ const Profile = () => {
                               <Button className="bg-orange-400" onClick={handleSubmit(onSubmit)}>Хадгалах</Button>
                             </div>
                         </form>
-
-
-                        
                     </div>
                 </div>
                 <div className="col-span">
