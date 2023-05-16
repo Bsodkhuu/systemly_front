@@ -12,7 +12,7 @@ import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchil
 import DelgerenguiKharakh from "../../../components/pageComponent/modal/DelgerenguiKharakh";
 import TsagZakhialakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagZakhialakh";
 
-function getListData(value: { date: () => any }) {
+const getListData = (value) => {
   let listData;
   switch (value.date()) {
     case 8:
@@ -139,7 +139,7 @@ function getListData(value: { date: () => any }) {
     default:
   }
   return listData || [];
-}
+};
 const getMonthData = (value: { month: () => number }) => {
   if (value.month() === 8) {
     return 1394;
@@ -255,35 +255,16 @@ const Service = () => {
       </div>
     ) : null;
   };
-  const dateCellRender = (value: { date: () => any }) => {
+  const dateCellRender = (value) => {
     const listData = getListData(value);
     return (
-      <>
-        <div className="flex justify-end relative ">
-          <div
-            onClick={() => bukhDelgerenguiTsag(listData)}
-            className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
-            <div>{listData.length}</div>
-          </div>
-        </div>
-        <ul className="events">
-          {listData.map((item) => (
-            <li key={item.avsantsag}>
-              <a
-                onClick={() => delgerenguiKharakh(item)}
-                className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
-                <div>
-                  <Badge status={item.turul} />
-                </div>
-                <div className="flex justify-center items-center space-x-3 ">
-                  <div>{item.avsantsag}</div>
-                  <div className="font-bold">{item.mashinDugaar}</div>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </>
+      <ul className="events">
+        {listData.map((item) => (
+          <li key={item.content}>
+            <Badge status={item.type} text={item.content} />
+          </li>
+        ))}
+      </ul>
     );
   };
 
@@ -356,27 +337,20 @@ const Service = () => {
                       <Button className="bg-orange-500">Хайх</Button>
                     </div>
                     {/* <div className="md:hidden sm:block">
-                      {serviceAppointment?.map(
-                        (
-                          serviceAppointment: ServiceAppointment,
-                          index: number
-                        ) => (
-                          <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
-                            <div className="w-full p-2 space-y-2">
-                              <div>Нэр</div>
-                              <div>Үйлчилгээний төрөл</div>
-                              <div>Цаг авсан</div>
-                            </div>
-                            <div className="w-full p-2 text-right" key={index}>
-                              <div>
-                                {serviceAppointment?.customer?.lastName}
-                              </div>
-                              <div>{serviceAppointment?.serviceType?.name}</div>
-                              <div>{serviceAppointment?.startTime}</div>
-                            </div>
-                          </div>
-                        )
-                      )}
+                {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
+                     <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
+                     <div className="w-full p-2 space-y-2">
+                           <div>Нэр</div>                    
+                           <div>Үйлчилгээний төрөл</div>
+                           <div>Цаг авсан</div>
+                     </div>
+                       <div className="w-full p-2 text-right" key={index}>
+                       <div>{serviceAppointment.customer.lastName}</div>
+                               <div>{serviceAppointment.serviceType.name}</div>
+                               <div>{serviceAppointment.startTime}</div>
+                       </div>
+                     </div>
+                    ))}
                     </div> */}
                     <Table className="hidden md:block">
                       <Table.Head className="uppercase">

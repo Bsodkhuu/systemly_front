@@ -14,8 +14,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { axiosClient } from "./config/axios";
-import { useQuery } from "react-query";
 
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
@@ -41,12 +39,11 @@ export const options = {
 };
 
 const App = () => {
-  
   return (
     <Layout>
-      <div className="p-4 pb-2 md:h-screen w-full ">
-        <div className="bg-white p-4 rounded-lg  space-y-2">
-          <div className="p-4 md:flex gap-4 space-y-3">
+      <div className="p-4 pb-2 w-full md:h-screen">
+        <div className="p-4 space-y-2 bg-white rounded-lg">
+          <div className="gap-4 p-4 space-y-3 md:flex">
             <Card className="md:w-2/5 md:h-96">
               <Bar
                 data={{
@@ -63,8 +60,7 @@ const App = () => {
                 }}
               />
             </Card>
-        
-            
+
             <Card className="md:w-2/5 md:h-96">
               <Line
                 options={options}

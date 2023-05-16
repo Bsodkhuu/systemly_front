@@ -43,9 +43,7 @@ const Sale = () => {
                 </Button></div>
               </div>
               <div>
-                <a href="/vilchilgee "><Button className="bg-orange-500 w-full ">
-                  Үйлчилгээ бүртгэх
-                </Button></a>
+                
               </div>
             </div>
             <div className="p-4">
