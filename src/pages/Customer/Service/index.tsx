@@ -8,11 +8,11 @@ import { useSearchParams } from "react-router-dom";
 import { ServiceAppointment } from "../../API";
 import { modal } from "../../../components/ant/Modal";
 
+import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/buhDelgerenguiTsagKharakh";
 import DelgerenguiKharakh from "../../../components/pageComponent/modal/DelgerenguiKharakh";
 import TsagZakhialakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagZakhialakh";
-import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/BuhDelgerenguiTsagKharakh";
 
-const getListData = (value: { date: () => any; }) => {
+function getListData(value: { date: () => any }) {
   let listData;
   switch (value.date()) {
     case 8:
@@ -139,7 +139,7 @@ const getListData = (value: { date: () => any; }) => {
     default:
   }
   return listData || [];
-};
+}
 const getMonthData = (value: { month: () => number }) => {
   if (value.month() === 8) {
     return 1394;
@@ -171,8 +171,8 @@ const Service = () => {
       <div className="flex justify-end space-x-3">
         <div>
           <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300">
-            {/* onClick={() => ref.current.khaaya()}> */}
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+            onClick={() => ref.current.khaaya()}>
             Хаах
           </Button>
         </div>
@@ -216,8 +216,8 @@ const Service = () => {
       <div className="flex justify-end space-x-3">
         <div>
           <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300">
-            {/* onClick={() => ref.current.khaaya()}> */}
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+            onClick={() => ref.current.khaaya()}>
             Хаах
           </Button>
         </div>
@@ -255,16 +255,35 @@ const Service = () => {
       </div>
     ) : null;
   };
-  const dateCellRender = (value: { date: () => any; }) => {
+  const dateCellRender = (value: { date: () => any }) => {
     const listData = getListData(value);
     return (
-      <ul className="events">
-        {/* {listData.map((item) => (
-          <li key={item.content}>
-            <Badge status={item.type} text={item.content} />
-          </li>
-        ))} */}
-      </ul>
+      <>
+        <div className="flex justify-end relative ">
+          <div
+            onClick={() => bukhDelgerenguiTsag(listData)}
+            className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
+            <div>{listData.length}</div>
+          </div>
+        </div>
+        <ul className="events">
+          {listData.map((item) => (
+            <li key={item.avsantsag}>
+              <a
+                onClick={() => delgerenguiKharakh(item)}
+                className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
+                <div>
+                  <Badge status={item.turul} />
+                </div>
+                <div className="flex justify-center items-center space-x-3 ">
+                  <div>{item.avsantsag}</div>
+                  <div className="font-bold">{item.mashinDugaar}</div>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
     );
   };
 
@@ -273,8 +292,8 @@ const Service = () => {
       <div className="flex justify-end space-x-3">
         <div>
           <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300">
-            {/* onClick={() => ref.current.khaaya()}> */}
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+            onClick={() => ref.current.khaaya()}>
             Хаах
           </Button>
         </div>
