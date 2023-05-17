@@ -10,6 +10,8 @@ import { modal } from "../../../components/ant/Modal";
 import DelgerenguiKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagiinMedeelel";
 import TsagZakhialakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagZakhialakhModal";
 import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/BukhTsagiinMedeelel";
+import local from "antd/lib/date-picker/locale/mn_MN";
+import { Person, PersonPhone, Vehicle } from "../../../pages/API";
 
 function getListData(value: { date: () => any }) {
   let listData;
@@ -148,7 +150,6 @@ const getMonthData = (value: { month: () => number }) => {
 const Service = () => {
   const ref = useRef(null);
   const [searchParams] = useSearchParams();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { RangePicker } = DatePicker;
 
   const { data: serviceAppointment } = useQuery("getServiceAppointment", () =>
@@ -171,18 +172,10 @@ const Service = () => {
         <div>
           <Button
             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            // onClick={() => ref.current.khaaya()}
-          >
+            onClick={() => ref.current.khaaya()}>
             Хаах
           </Button>
         </div>
-        {/* <div>
-          <Button
-            className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
-            onClick={() => ref.current.khadgalya()}>
-            Бүртгэл нэмэх
-          </Button>
-        </div> */}
       </div>,
     ];
     modal({
@@ -217,18 +210,10 @@ const Service = () => {
         <div>
           <Button
             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            // onClick={() => ref.current.khaaya()}
-          >
+            onClick={() => ref.current.khaaya()}>
             Хаах
           </Button>
         </div>
-        {/* <div>
-          <Button
-            className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
-            onClick={() => ref.current.khadgalya()}>
-            Бүртгэл нэмэх
-          </Button>
-        </div> */}
       </div>,
     ];
     modal({
@@ -262,7 +247,7 @@ const Service = () => {
       <>
         <div className="flex justify-end relative ">
           <div
-            // onClick={() => bukhDelgerenguiTsag(listData)}
+            onClick={() => bukhDelgerenguiTsag(listData)}
             className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
             <div>{listData.length}</div>
           </div>
@@ -273,7 +258,9 @@ const Service = () => {
               <a
                 onClick={() => delgerenguiKharakh(item)}
                 className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
-                <div>{/* <Badge status={item.turul} /> */}</div>
+                <div>
+                  <Badge status={item.turul} />
+                </div>
                 <div className="flex justify-center items-center space-x-3 ">
                   <div>{item.avsantsag}</div>
                   <div className="font-bold">{item.mashinDugaar}</div>
@@ -286,36 +273,43 @@ const Service = () => {
     );
   };
 
+  const { data: personName } = useQuery("get_Name", getPersonName);
+  const { data: vehicleData } = useQuery("get_Vehicle", getVehicle);
+  const { data: phoneData } = useQuery("get_phones", getPhoneNumbers);
+  const { data: personData } = useQuery("getPerson", getPerson);
+  // const { data: serviceData } = useQuery("getService", getService);
+  // async function getService() {
+  //   const response = await axiosClient.get("/services");
+  //   return response.data as Service[];
+  // }
+  async function getPerson() {
+    const response = await axiosClient.get("/persons");
+    return response.data as Person[];
+  }
+  async function getPhoneNumbers() {
+    const response = await axiosClient.get("/person-phones");
+    return response.data as PersonPhone[];
+  }
+
+  async function getPersonName() {
+    const response = await axiosClient.get("/persons");
+    return response.data as Person[];
+  }
+  async function getVehicle() {
+    const response = await axiosClient.get("/vehicles");
+    return response.data as Vehicle[];
+  }
   function tsagZakhialakh() {
-    const footer = [
-      <div className="flex justify-end space-x-3">
-        <div>
-          <Button
-            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            // onClick={() => ref.current.khaaya()}
-          >
-            Хаах
-          </Button>
-        </div>
-        {/* <div>
-          <Button
-            className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
-            onClick={() => ref.current.khadgalya()}>
-            Бүртгэл нэмэх
-          </Button>
-        </div> */}
-      </div>,
-    ];
     modal({
-      title: "Дэлгэрэнгүй захиалга",
+      title: "Цаг захиалга",
       content: (
         <TsagZakhialakh
-          ref={ref}
-          data={undefined}
           destroy={undefined}
-          token={undefined}
-          turul={undefined}
-          onRefresh={undefined}
+          personName={personName}
+          vehicleData={vehicleData}
+          phoneData={phoneData}
+          personData={personData}
+          // serviceData={serviceData}
         />
       ),
       footer: [],
@@ -331,7 +325,7 @@ const Service = () => {
             <div className="flex gap-4">
               {/* <TextInput id="date" type="date" />
               <Button className="bg-orange-500">Хайх</Button> */}
-              <RangePicker />
+              <RangePicker locale={local} />
               <Button className="bg-orange-500">Хайх</Button>
               <Button
                 className="bg-orange-500"
@@ -355,22 +349,27 @@ const Service = () => {
                       <TextInput id="search" type="search" placeholder="Хайх" />
                       <Button className="bg-orange-500">Хайх</Button>
                     </div>
-                    {/* <div className="md:hidden sm:block">
-                {serviceAppointment?.map((serviceAppointment: ServiceAppointment, index: number) => (
-                     <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
-                     <div className="w-full p-2 space-y-2">
-                           <div>Нэр</div>                    
-                           <div>Үйлчилгээний төрөл</div>
-                           <div>Цаг авсан</div>
-                     </div>
-                       <div className="w-full p-2 text-right" key={index}>
-                       <div>{serviceAppointment.customer.lastName}</div>
-                               <div>{serviceAppointment.serviceType.name}</div>
-                               <div>{serviceAppointment.startTime}</div>
-                       </div>
-                     </div>
-                    ))}
-                    </div> */}
+                    <div className="md:hidden sm:block">
+                      {serviceAppointment?.map(
+                        (
+                          serviceAppointment: ServiceAppointment,
+                          index: number
+                        ) => (
+                          <div className="w-full bg-gray-200 rounded-md text-[11px] flex">
+                            <div className="w-full p-2 space-y-2">
+                              <div>Нэр</div>
+                              <div>Үйлчилгээний төрөл</div>
+                              <div>Цаг авсан</div>
+                            </div>
+                            <div className="w-full p-2 text-right" key={index}>
+                              <div>{serviceAppointment.customer.lastName}</div>
+                              <div>{serviceAppointment.serviceType.name}</div>
+                              <div>{serviceAppointment.startTime}</div>
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
                     <Table className="hidden md:block">
                       <Table.Head className="uppercase">
                         {/* <Table.HeadCell></Table.HeadCell> */}
@@ -445,6 +444,7 @@ const Service = () => {
             </div>
             <div className="md:col-span-9 md:shadow-md  md:bg-red-500 md:block hidden ">
               <Calendar
+                locale={local}
                 className="text-[9px]"
                 dateCellRender={dateCellRender}
                 monthCellRender={monthCellRender}
