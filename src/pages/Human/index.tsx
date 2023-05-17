@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Branch, Employee, Person, PersonPhone, ServiceEmployee, ServiceOrder } from "../API";
+import { Branch, Employee, Person, PersonPhone, Position, ServiceEmployee, ServiceOrder } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -56,9 +56,14 @@ const Human = () => {
   const { data: personData } = useQuery("getPerson", getPerson);
   const { data: branchData } = useQuery("getBranch", getBranch);
   const { data: phoneData } = useQuery("getPhone", getPhone);
+  const { data: positionData }  = useQuery("getPosition", getPosition);
 
+  async function getPosition() {
+    const response = await axiosClient.get("/positions");
+    return response.data as Position[];
+  }
   async function getPhone() {
-    const response = await axiosClient.get("/");
+    const response = await axiosClient.get("/person-phones");
     return response.data as PersonPhone[];
   }
 
@@ -79,6 +84,7 @@ const Human = () => {
 
   async function onSubmit(values: Employee) {
     await mutateAsync(values);
+    closeModal();
   }
 
   return (
@@ -92,37 +98,39 @@ const Human = () => {
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="personId" value="Ажилтны нэр" />
+                  <Label htmlFor="lastName" value="Ажилтны нэр" />
                 </div>
-                <Select id="personId" placeholder="Ажилтны нэр" {...register("personId")}>
-                  {personData?.map((i) => (
-                    <option key={`person_${i.id}`} value={i.id}>
-                      {i.lastName}
-                    </option>
-                  ))}
-                  </Select>
+                <TextInput id="lastName" placeholder="Ажилтны нэр" required {...register("lastName")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="personId" value="Овог" />
+                  <Label htmlFor="firstName" value="Овог" />
                 </div>
-                <Select id="personId" placeholder="Овог" {...register("personId")}>
-                  {personData?.map((i) => (
-                    <option key={`person_${i.id}`} value={i.id}>
-                      {i.firstName}
-                    </option>
-                  ))}
-                  </Select>
+                <TextInput id="firstName" placeholder="Овог" {...register("firstName")} />
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="positionId" value="Албан тушаал" />
+                  <Label htmlFor="registerId" value="Регистрийн дугаар" />
                 </div>
-                <TextInput id="positionId" placeholder="Албан тушаал" {...register("positionId")}/>
+                <TextInput id="registerId" placeholder="Регистрийн дугаар" required {...register("registerId")}/>
                </div>
                <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="positionId" value="Албан тушаал" />
+                </div>
+                <Select id="positionId" placeholder="Албан тушаал" {...register("positionId")}>
+                    {positionData?.map((i) => (
+                      <option key={`position_${i.id}`} value={i.id}>
+                        {i.positionName}
+                      </option>
+                    ))}
+                  </Select>
+               </div>
+            </div>
+            <div className="flex gap-4">
+             <div className="w-1/2">
                   <div className="mb-2 block">
                     <Label htmlFor="branchId" value="Байгууллагын нэр"/>
                   </div>
@@ -134,53 +142,43 @@ const Human = () => {
                     ))}
                   </Select>
                 </div>
-             
-            </div>
-
-            <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="personId" value="Имэйл" />
+                  <Label htmlFor="email" value="Имэйл" />
                 </div>
-                <Select id="personId" placeholder="Имэйл" {...register("personId")}>
-                {personData?.map((i) => (
-                    <option key={`person_${i.id}`} value={i.id}>
-                      {i.email}
-                    </option>
-                  ))}
-                </Select>
+                <TextInput id="email" placeholder="Имэйл" {...register("email")} />
+                
               </div>
+              
+              </div>
+              <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="filePath" value="Ажилтны зураг"/>
                 </div>
-                <FileInput id="filePath"/>
+                <TextInput id="filePath" placeholder="Ажилтны зураг" required {...register("filePath")}/>
               </div>
-              </div>
-              <div className="flex gap-4">
                <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phoneId" value="Утасны дугаар" />
                 </div>
-                <Select
-                id="phoneId"
-                placeholder="Утасны дугаар"
-                {...register("phoneId")}>
+                <Select id="phoneId" placeholder="Утасны дугаар" {...register("phoneId")}>
                 {phoneData?.map((i) => (
                   <option key={`personPhone_${i.id}`} value={i.id}>
                     {i.phone}
-                  </option>
+                  </option> 
                 ))}
               </Select>
               </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    <Label htmlFor="jobStart" value="Ажилд орсон огноо "/>
-                  </div>
-                  <TextInput type="date" id="jobStart" {...register("jobStart")}/>
-                </div> 
+               
             </div>
             <div className="flex gap-4">
+                <div className="w-1/2">
+                      <div className="mb-2 block">
+                        <Label htmlFor="jobStart" value="Ажилд орсон огноо "/>
+                      </div>
+                      <TextInput type="date" id="jobStart" {...register("jobStart")}/>
+                    </div> 
                 <div className="w-1/2">
                         <div className="mb-2 block">
                         <Label
@@ -189,9 +187,9 @@ const Human = () => {
                         </div>
                         <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
                     </div>
-                    </div>
+              </div>
                     <div className="flex gap-4">
-                      <div className="w-1/2">
+                       <div className="w-1/2">
                         <div className="mb-2 block">
                         <Label
                             htmlFor="deleteFlag"
@@ -231,11 +229,7 @@ const Human = () => {
               <TextInput id="endDate" type="date" />
               <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
               <Button className="bg-orange-500">Хайх</Button>
-              <a href="/branch">
-                <Button className="bg-orange-500">
-                Байгууллага бүртгэх
-                </Button>
-              </a>
+              
               <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
@@ -256,7 +250,6 @@ const Human = () => {
                     <Table.HeadCell>Овог</Table.HeadCell>
                     <Table.HeadCell>Нэр</Table.HeadCell>
                     <Table.HeadCell>Байгууллага</Table.HeadCell>
-                    <Table.HeadCell>Ажилтны код</Table.HeadCell>
                     <Table.HeadCell>Мэргэжил</Table.HeadCell>
                     <Table.HeadCell>Ажилд орсон огноо</Table.HeadCell>
                   </Table.Head>
@@ -264,11 +257,10 @@ const Human = () => {
                     {employee?.map((employee: Employee, index: number) => (
                       <Table.Row key={index}>
                         <Table.Cell>{employee.filePath}</Table.Cell>
-                        <Table.Cell>{employee.person.firstName}</Table.Cell>
-                        <Table.Cell>{employee.person.lastName}</Table.Cell>
+                        <Table.Cell>{employee.firstName}</Table.Cell>
+                        <Table.Cell>{employee.lastName}</Table.Cell>
                         <Table.Cell>{employee.branch.branchName}</Table.Cell>
-                        <Table.Cell>{employee.person.customerCode}</Table.Cell>
-                        <Table.Cell>{employee.positionId}</Table.Cell>
+                        <Table.Cell>{employee.position.positionName}</Table.Cell>
                         <Table.Cell>{employee.jobStart}</Table.Cell>
                       </Table.Row>
                     ))}
@@ -296,7 +288,13 @@ const Human = () => {
                   <Table.Body>
                       {serviceOrder?.map((serviceOrder: ServiceOrder, index: number) => (
                         <Table.Row key={index}>
-                          
+                          <Table.Cell>{serviceOrder.person.lastName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.branch.branchName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.service.serviceName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.service.price}</Table.Cell>
+                          <Table.Cell>{serviceOrder.personVehicle.vehicleNumber}</Table.Cell>
+                          <Table.Cell>{serviceOrder.payPrice}</Table.Cell>
+                          <Table.Cell>{serviceOrder.paidAmount}</Table.Cell>
                           <Table.Cell className="space-2xl">
                             <FontAwesomeIcon icon={faPenToSquare}/>
                           </Table.Cell>
@@ -310,7 +308,9 @@ const Human = () => {
         </div>
         <div className="md:p-4">
           <Card>
-            <h4 className="text-1xl">Үйлчилгээ хийсэн механикч</h4>
+            {/* <h4 className="text-1xl">Үйлчилгээ хийсэн механикч</h4> */}
+            <a href="/serviceEmployee" className="text-1xl">
+              <Button className="bg-orange-500">Үйлчилгээ хийсэн механикч</Button></a>
             <Table>
               <Table.Head className="uppercase">
                 <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>

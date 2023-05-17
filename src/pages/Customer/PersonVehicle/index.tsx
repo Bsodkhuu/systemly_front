@@ -1,10 +1,9 @@
 import React from "react";
 import Layout from "../../../components/layout";
-import { Label, TextInput } from "flowbite-react";
-import { Button, Select } from "antd";
+import { Label, TextInput, Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Person, PersonVehicle, Vehicle } from "../../API";
+import { PersonVehicle } from "../../API";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 

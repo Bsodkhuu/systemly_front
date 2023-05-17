@@ -441,6 +441,12 @@ export interface Address {
   addressSoum: string;
   address_bag: string;
   addressDetail: string;
+  employeeId?:string;
+  employee: Employee;
+  branch: Branch;
+  branchId?: string;
+  phoneNumber: PersonPhone;
+  phoneId?:string;
 }
 
 export interface Person {
@@ -466,9 +472,7 @@ export interface Person {
   confirmFlag: string;
   customerCode: string;
   phoneId?: string;
-  addressId?: string;
   personPhone: PersonPhone;
-  address: Address;
 }
 export interface PersonPhone {
   id: string;
@@ -488,9 +492,7 @@ export interface PersonVehicle {
   id: string;
   createdAt: string;
   updatedAt: string;
-  vehicleId?: string;
   vehicleNumber: string;
-  personId?: string;
   vehicleColor: string;
   activeFlag: string;
   deleteFlag: string;
@@ -499,8 +501,6 @@ export interface PersonVehicle {
   updateUser: string;
   deleteDate: string;
   deleteUser: string;
-  person: Person;
-  vehicle: Vehicle;
 }
 
 export interface ServiceOrder {
@@ -526,17 +526,32 @@ export interface ServiceOrder {
   deleteUser: string
 }
 
+export interface Position{
+id: string;
+createdAt: string;
+updatedAt: string;
+positionName: string;
+activeFlag: string;
+deleteFlag: string;
+insertDate: string;
+insertUser: string;
+updateUser: string;
+deleteDate: string;
+deleteUser: string;
+}
 export interface Employee{
   id: string;
   createdAt: string;
   updatedAt: string;
-  person: Person;
-  personId?:string;
+  lastName: string;
+  firstName: string;
+  email: string;
+  registerId: string;
   branch:Branch;
   branchId?:string;
   personPhone: PersonPhone;
   phoneId?: string;
-  positionId: string;
+  positionId?: string;
   filePath: string;
   jobStart: string;
   activeFlag: string;
@@ -545,17 +560,15 @@ export interface Employee{
   insertUser: string;
   updateUser: string;
   deleteDate: string;
-  deleteUser: string
+  deleteUser: string;
+  position: Position;
 }
 
 export interface ServiceEmployee {
   id: string;
   createdAt: string;
   updatedAt: string;
-  employee: Employee;
   employeeId: string;
-  branch: Branch;
-  branchId?: string;
   serviceOrder: ServiceOrder;
   serviceOrderId?: string;
   activeFlag: string;

@@ -44,7 +44,10 @@ import Phone from "./pages/Profile/phone";
 import VehiclePerson from "./pages/Customer/PersonVehicle";
 import SaleRegister from "./pages/Customer/Sale/service";
 import Service_Order from "./pages/Human/ServiceOrder";
-import BranchAdd from "./pages/Human/Branch";
+import BranchAdd from "./pages/Suld/crm/Branch";
+import Service_Employee from "./pages/Human/ServiceEmployee";
+import Salbar from "./pages/Human/Salbar";
+import Position_Data from "./pages/Human/Postition";
 
 
 
@@ -52,6 +55,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/position", 
+    element: <Position_Data/>
+  },
+  {
+    path: "/salbar", 
+    element: <Salbar/>
+  },
+  {
+    path: "/serviceEmployee", 
+    element: <Service_Employee/>
   },
   {
     path: "/branch", 
@@ -139,10 +154,10 @@ const router = createBrowserRouter([
     path: "/zaswar_service",
     element: <ZaswarService />,
   },
-  {
-    path: "/service",
-    element: <Service />,
-  },
+  // {
+  //   path: "/service",
+  //   element: <Service />,
+  // },
   {
     path: "/zahialga",
     element: <Zahialga />,

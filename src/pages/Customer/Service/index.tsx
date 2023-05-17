@@ -13,152 +13,152 @@ import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchil
 import local from "antd/lib/date-picker/locale/mn_MN";
 import { Person, PersonPhone, Vehicle } from "../../../pages/API";
 
-function getListData(value: { date: () => any }) {
-  let listData;
-  switch (value.date()) {
-    case 8:
-      listData = [
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-      ];
-      break;
-    case 10:
-      listData = [
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-      ];
-      break;
-    case 15:
-      listData = [
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-      ];
-      break;
-    default:
-  }
-  return listData || [];
-}
-const getMonthData = (value: { month: () => number }) => {
-  if (value.month() === 8) {
-    return 1394;
-  }
-};
+// function getListData(value: { date: () => any }) {
+//   let listData;
+//   switch (value.date()) {
+//     case 8:
+//       listData = [
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//       ];
+//       break;
+//     case 10:
+//       listData = [
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//       ];
+//       break;
+//     case 15:
+//       listData = [
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//       ];
+//       break;
+//     default:
+//   }
+//   return listData || [];
+// }
+// const getMonthData = (value: { month: () => number }) => {
+//   if (value.month() === 8) {
+//     return 1394;
+//   }
+// };
 
 const Service = () => {
   const ref = useRef(null);
   const [searchParams] = useSearchParams();
   const { RangePicker } = DatePicker;
 
-  const { data: serviceAppointment } = useQuery("getServiceAppointment", () =>
-    getServiceAppointment({
-      startTime: searchParams.get("startTime") || "",
-    })
-  );
+  //   const { data: serviceAppointment } = useQuery("getServiceAppointment", () =>
+  //     getServiceAppointment({
+  //       startTime: searchParams.get("startTime") || "",
+  //     })
+  //   );
 
-  const startTimeRef = useRef<HTMLInputElement>(null);
+  //   const startTimeRef = useRef<HTMLInputElement>(null);
 
   async function getServiceAppointment(params: { startTime: string }) {
     const response = axiosClient.get(
@@ -172,10 +172,18 @@ const Service = () => {
         <div>
           <Button
             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            // onClick={() => ref.current.khaaya()}
+          >
             Хаах
           </Button>
         </div>
+        {/* <div>
+          <Button
+            className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
+            onClick={() => ref.current.khadgalya()}>
+            Бүртгэл нэмэх
+          </Button>
+        </div> */}
       </div>,
     ];
     modal({
@@ -210,10 +218,18 @@ const Service = () => {
         <div>
           <Button
             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            // onClick={() => ref.current.khaaya()}
+          >
             Хаах
           </Button>
         </div>
+        {/* <div>
+          <Button
+            className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
+            onClick={() => ref.current.khadgalya()}>
+            Бүртгэл нэмэх
+          </Button>
+        </div> */}
       </div>,
     ];
     modal({
@@ -247,7 +263,7 @@ const Service = () => {
       <>
         <div className="flex justify-end relative ">
           <div
-            onClick={() => bukhDelgerenguiTsag(listData)}
+            // onClick={() => bukhDelgerenguiTsag(listData)}
             className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
             <div>{listData.length}</div>
           </div>
@@ -258,9 +274,7 @@ const Service = () => {
               <a
                 onClick={() => delgerenguiKharakh(item)}
                 className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
-                <div>
-                  <Badge status={item.turul} />
-                </div>
+                <div>{/* <Badge status={item.turul} /> */}</div>
                 <div className="flex justify-center items-center space-x-3 ">
                   <div>{item.avsantsag}</div>
                   <div className="font-bold">{item.mashinDugaar}</div>
@@ -273,43 +287,36 @@ const Service = () => {
     );
   };
 
-  const { data: personName } = useQuery("get_Name", getPersonName);
-  const { data: vehicleData } = useQuery("get_Vehicle", getVehicle);
-  const { data: phoneData } = useQuery("get_phones", getPhoneNumbers);
-  const { data: personData } = useQuery("getPerson", getPerson);
-  // const { data: serviceData } = useQuery("getService", getService);
-  // async function getService() {
-  //   const response = await axiosClient.get("/services");
-  //   return response.data as Service[];
-  // }
-  async function getPerson() {
-    const response = await axiosClient.get("/persons");
-    return response.data as Person[];
-  }
-  async function getPhoneNumbers() {
-    const response = await axiosClient.get("/person-phones");
-    return response.data as PersonPhone[];
-  }
-
-  async function getPersonName() {
-    const response = await axiosClient.get("/persons");
-    return response.data as Person[];
-  }
-  async function getVehicle() {
-    const response = await axiosClient.get("/vehicles");
-    return response.data as Vehicle[];
-  }
   function tsagZakhialakh() {
+    const footer = [
+      <div className="flex justify-end space-x-3">
+        <div>
+          <Button
+            className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+            // onClick={() => ref.current.khaaya()}
+          >
+            Хаах
+          </Button>
+        </div>
+        {/* <div>
+          <Button
+            className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
+            onClick={() => ref.current.khadgalya()}>
+            Бүртгэл нэмэх
+          </Button>
+        </div> */}
+      </div>,
+    ];
     modal({
-      title: "Цаг захиалга",
+      title: "Дэлгэрэнгүй захиалга",
       content: (
         <TsagZakhialakh
+          ref={ref}
+          data={undefined}
           destroy={undefined}
-          personName={personName}
-          vehicleData={vehicleData}
-          phoneData={phoneData}
-          personData={personData}
-          // serviceData={serviceData}
+          token={undefined}
+          turul={undefined}
+          onRefresh={undefined}
         />
       ),
       footer: [],
