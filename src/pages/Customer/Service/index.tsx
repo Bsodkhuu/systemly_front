@@ -13,139 +13,139 @@ import BuhDelgerenguiTsagKharakh from "../../../components/pageComponent/uilchil
 import local from "antd/lib/date-picker/locale/mn_MN";
 import { Person, PersonPhone, Vehicle } from "../../../pages/API";
 
-function getListData(value: { date: () => any }) {
-  let listData;
-  switch (value.date()) {
-    case 8:
-      listData = [
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-      ];
-      break;
-    case 10:
-      listData = [
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-      ];
-      break;
-    case 15:
-      listData = [
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-        {
-          turul: "warning",
-          avsantsag: "08:30",
-          khereglegchiinKod: "6969",
-          khereglegchiinNer: "Батаа",
-          uilchilgeeniiTurul: "Tos soliolakh",
-          utas: "88221188",
-          mechanic: "Батука",
-          mashinDugaar: "1028УБА",
-        },
-      ];
-      break;
-    default:
-  }
-  return listData || [];
-}
-const getMonthData = (value: { month: () => number }) => {
-  if (value.month() === 8) {
-    return 1394;
-  }
-};
+// function getListData(value: { date: () => any }) {
+//   let listData;
+//   switch (value.date()) {
+//     case 8:
+//       listData = [
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//       ];
+//       break;
+//     case 10:
+//       listData = [
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//       ];
+//       break;
+//     case 15:
+//       listData = [
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//         {
+//           turul: "warning",
+//           avsantsag: "08:30",
+//           khereglegchiinKod: "6969",
+//           khereglegchiinNer: "Батаа",
+//           uilchilgeeniiTurul: "Tos soliolakh",
+//           utas: "88221188",
+//           mechanic: "Батука",
+//           mashinDugaar: "1028УБА",
+//         },
+//       ];
+//       break;
+//     default:
+//   }
+//   return listData || [];
+// }
+// const getMonthData = (value: { month: () => number }) => {
+//   if (value.month() === 8) {
+//     return 1394;
+//   }
+// };
 
 const Service = () => {
   const ref = useRef(null);
@@ -172,7 +172,8 @@ const Service = () => {
         <div>
           <Button
             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            // onClick={() => ref.current.khaaya()}
+          >
             Хаах
           </Button>
         </div>
@@ -210,7 +211,8 @@ const Service = () => {
         <div>
           <Button
             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-            onClick={() => ref.current.khaaya()}>
+            // onClick={() => ref.current.khaaya()}
+          >
             Хаах
           </Button>
         </div>
@@ -232,46 +234,46 @@ const Service = () => {
       footer,
     });
   }
-  const monthCellRender = (value: { month: () => number }) => {
-    const num = getMonthData(value);
-    return num ? (
-      <div className="notes-month">
-        <section>{num}</section>
-        <span>Backlog number</span>
-      </div>
-    ) : null;
-  };
-  const dateCellRender = (value: { date: () => any }) => {
-    const listData = getListData(value);
-    return (
-      <>
-        <div className="flex justify-end relative ">
-          <div
-            onClick={() => bukhDelgerenguiTsag(listData)}
-            className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
-            <div>{listData.length}</div>
-          </div>
-        </div>
-        <ul className="events">
-          {listData.map((item) => (
-            <li key={item.avsantsag}>
-              <a
-                onClick={() => delgerenguiKharakh(item)}
-                className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
-                <div>
-                  <Badge status={item.turul} />
-                </div>
-                <div className="flex justify-center items-center space-x-3 ">
-                  <div>{item.avsantsag}</div>
-                  <div className="font-bold">{item.mashinDugaar}</div>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </>
-    );
-  };
+  // const monthCellRender = (value: { month: () => number }) => {
+  //   const num = getMonthData(value);
+  //   return num ? (
+  //     <div className="notes-month">
+  //       <section>{num}</section>
+  //       <span>Backlog number</span>
+  //     </div>
+  //   ) : null;
+  // };
+  // const dateCellRender = (value: { date: () => any }) => {
+  //   const listData = getListData(value);
+  //   return (
+  //     <>
+  //       <div className="flex justify-end relative ">
+  //         <div
+  //           onClick={() => bukhDelgerenguiTsag(listData)}
+  //           className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
+  //           <div>{listData.length}</div>
+  //         </div>
+  //       </div>
+  //       <ul className="events">
+  //         {listData.map((item) => (
+  //           <li key={item.avsantsag}>
+  //             <a
+  //               onClick={() => delgerenguiKharakh(item)}
+  //               className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
+  //               <div>
+  //                 <Badge status={item.turul} />
+  //               </div>
+  //               <div className="flex justify-center items-center space-x-3 ">
+  //                 <div>{item.avsantsag}</div>
+  //                 <div className="font-bold">{item.mashinDugaar}</div>
+  //               </div>
+  //             </a>
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </>
+  //   );
+  // };
 
   const { data: personName } = useQuery("get_Name", getPersonName);
   const { data: vehicleData } = useQuery("get_Vehicle", getVehicle);
@@ -349,7 +351,7 @@ const Service = () => {
                       <TextInput id="search" type="search" placeholder="Хайх" />
                       <Button className="bg-orange-500">Хайх</Button>
                     </div>
-                    <div className="md:hidden sm:block">
+                    {/* <div className="md:hidden sm:block">
                       {serviceAppointment?.map(
                         (
                           serviceAppointment: ServiceAppointment,
@@ -369,7 +371,7 @@ const Service = () => {
                           </div>
                         )
                       )}
-                    </div>
+                    </div> */}
                     <Table className="hidden md:block">
                       <Table.Head className="uppercase">
                         {/* <Table.HeadCell></Table.HeadCell> */}
@@ -446,8 +448,8 @@ const Service = () => {
               <Calendar
                 locale={local}
                 className="text-[9px]"
-                dateCellRender={dateCellRender}
-                monthCellRender={monthCellRender}
+                // dateCellRender={dateCellRender}
+                // monthCellRender={monthCellRender}
               />
             </div>
           </div>
