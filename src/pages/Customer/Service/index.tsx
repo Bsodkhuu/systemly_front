@@ -160,167 +160,167 @@ const Service = () => {
 
 //   const startTimeRef = useRef<HTMLInputElement>(null);
 
-//   async function getServiceAppointment(params: { startTime: string }) {
-//     const response = axiosClient.get(
-//       `/service_appointments?startTime=${params.startTime}`
-//     );
-//     return (await response).data;
-//   }
-//   function delgerenguiKharakh(item: {} | undefined) {
-//     const footer = [
-//       <div className="flex justify-end space-x-3">
-//         <div>
-//           <Button
-//             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-//             onClick={() => ref.current.khaaya()}>
-//             Хаах
-//           </Button>
-//         </div>
-//         {/* <div>
-//           <Button
-//             className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
-//             onClick={() => ref.current.khadgalya()}>
-//             Бүртгэл нэмэх
-//           </Button>
-//         </div> */}
-//       </div>,
-//     ];
-//     modal({
-//       title: "Захиалгын дэлгэрэнгүй харах",
-//       content: (
-//         <DelgerenguiKharakh
-//           ref={ref}
-//           data={item}
-//           destroy={undefined}
-//           token={undefined}
-//           turul={undefined}
-//           onRefresh={undefined}
-//         />
-//       ),
-//       footer,
-//     });
-//   }
-//   function bukhDelgerenguiTsag(
-//     listData: {
-//       turul: string;
-//       avsantsag: string;
-//       khereglegchiinKod: string;
-//       khereglegchiinNer: string;
-//       uilchilgeeniiTurul: string;
-//       utas: string;
-//       mechanic: string;
-//       mashinDugaar: string;
-//     }[]
-//   ) {
-//     const footer = [
-//       <div className="flex justify-end space-x-3">
-//         <div>
-//           <Button
-//             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-//             onClick={() => ref.current.khaaya()}>
-//             Хаах
-//           </Button>
-//         </div>
-//         {/* <div>
-//           <Button
-//             className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
-//             onClick={() => ref.current.khadgalya()}>
-//             Бүртгэл нэмэх
-//           </Button>
-//         </div> */}
-//       </div>,
-//     ];
-//     modal({
-//       title: "Дэлгэрэнгүй захиалга",
-//       width: "80%",
-//       content: (
-//         <BuhDelgerenguiTsagKharakh
-//           ref={ref}
-//           data={listData}
-//           destroy={undefined}
-//           token={undefined}
-//           turul={undefined}
-//           onRefresh={undefined}
-//         />
-//       ),
-//       footer,
-//     });
-//   }
-//   const monthCellRender = (value: { month: () => number }) => {
-//     const num = getMonthData(value);
-//     return num ? (
-//       <div className="notes-month">
-//         <section>{num}</section>
-//         <span>Backlog number</span>
-//       </div>
-//     ) : null;
-//   };
-//   const dateCellRender = (value: { date: () => any }) => {
-//     const listData = getListData(value);
-//     return (
-//       <>
-//         <div className="flex justify-end relative ">
-//           <div
-//             onClick={() => bukhDelgerenguiTsag(listData)}
-//             className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
-//             <div>{listData.length}</div>
-//           </div>
-//         </div>
-//         <ul className="events">
-//           {listData.map((item) => (
-//             <li key={item.avsantsag}>
-//               <a
-//                 onClick={() => delgerenguiKharakh(item)}
-//                 className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
-//                 <div>
-//                   <Badge status={item.turul} />
-//                 </div>
-//                 <div className="flex justify-center items-center space-x-3 ">
-//                   <div>{item.avsantsag}</div>
-//                   <div className="font-bold">{item.mashinDugaar}</div>
-//                 </div>
-//               </a>
-//             </li>
-//           ))}
-//         </ul>
-//       </>
-//     );
-//   };
+  // async function getServiceAppointment(params: { startTime: string }) {
+  //   const response = axiosClient.get(
+  //     `/service_appointments?startTime=${params.startTime}`
+  //   );
+  //   return (await response).data;
+  // }
+  // function delgerenguiKharakh(item: {} | undefined) {
+  //   const footer = [
+  //     <div className="flex justify-end space-x-3">
+  //       <div>
+  //         <Button
+  //           className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+  //           onClick={() => ref.current.khaaya()}>
+  //           Хаах
+  //         </Button>
+  //       </div>
+  //       {/* <div>
+  //         <Button
+  //           className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
+  //           onClick={() => ref.current.khadgalya()}>
+  //           Бүртгэл нэмэх
+  //         </Button>
+  //       </div> */}
+  //     </div>,
+  //   ];
+  //   modal({
+  //     title: "Захиалгын дэлгэрэнгүй харах",
+  //     content: (
+  //       <DelgerenguiKharakh
+  //         ref={ref}
+  //         data={item}
+  //         destroy={undefined}
+  //         token={undefined}
+  //         turul={undefined}
+  //         onRefresh={undefined}
+  //       />
+  //     ),
+  //     footer,
+  //   });
+  // }
+  // function bukhDelgerenguiTsag(
+  //   listData: {
+  //     turul: string;
+  //     avsantsag: string;
+  //     khereglegchiinKod: string;
+  //     khereglegchiinNer: string;
+  //     uilchilgeeniiTurul: string;
+  //     utas: string;
+  //     mechanic: string;
+  //     mashinDugaar: string;
+  //   }[]
+  // ) {
+  //   const footer = [
+  //     <div className="flex justify-end space-x-3">
+  //       <div>
+  //         <Button
+  //           className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+  //           onClick={() => ref.current.khaaya()}>
+  //           Хаах
+  //         </Button>
+  //       </div>
+  //       {/* <div>
+  //         <Button
+  //           className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
+  //           onClick={() => ref.current.khadgalya()}>
+  //           Бүртгэл нэмэх
+  //         </Button>
+  //       </div> */}
+  //     </div>,
+  //   ];
+  //   modal({
+  //     title: "Дэлгэрэнгүй захиалга",
+  //     width: "80%",
+  //     content: (
+  //       <BuhDelgerenguiTsagKharakh
+  //         ref={ref}
+  //         data={listData}
+  //         destroy={undefined}
+  //         token={undefined}
+  //         turul={undefined}
+  //         onRefresh={undefined}
+  //       />
+  //     ),
+  //     footer,
+  //   });
+  // }
+  // const monthCellRender = (value: { month: () => number }) => {
+  //   const num = getMonthData(value);
+  //   return num ? (
+  //     <div className="notes-month">
+  //       <section>{num}</section>
+  //       <span>Backlog number</span>
+  //     </div>
+  //   ) : null;
+  // };
+  // const dateCellRender = (value: { date: () => any }) => {
+  //   const listData = getListData(value);
+  //   return (
+  //     <>
+  //       <div className="flex justify-end relative ">
+  //         <div
+  //           onClick={() => bukhDelgerenguiTsag(listData)}
+  //           className="absolute z-50 hover:bg-orange-500 bg-gray-300 rounded-md p-2">
+  //           <div>{listData.length}</div>
+  //         </div>
+  //       </div>
+  //       <ul className="events">
+  //         {listData.map((item) => (
+  //           <li key={item.avsantsag}>
+  //             <a
+  //               onClick={() => delgerenguiKharakh(item)}
+  //               className="hover:bg-orange-500 hover:text-white hover:scale-100 p-1 rounded-md hover:shadow-md space-x-3 flex">
+  //               <div>
+  //                 <Badge status={item.turul} />
+  //               </div>
+  //               <div className="flex justify-center items-center space-x-3 ">
+  //                 <div>{item.avsantsag}</div>
+  //                 <div className="font-bold">{item.mashinDugaar}</div>
+  //               </div>
+  //             </a>
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </>
+  //   );
+  // };
 
-//   function tsagZakhialakh() {
-//     const footer = [
-//       <div className="flex justify-end space-x-3">
-//         <div>
-//           <Button
-//             className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
-//             onClick={() => ref.current.khaaya()}>
-//             Хаах
-//           </Button>
-//         </div>
-//         {/* <div>
-//           <Button
-//             className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
-//             onClick={() => ref.current.khadgalya()}>
-//             Бүртгэл нэмэх
-//           </Button>
-//         </div> */}
-//       </div>,
-//     ];
-//     modal({
-//       title: "Дэлгэрэнгүй захиалга",
-//       content: (
-//         <TsagZakhialakh
-//           ref={ref}
-//           data={undefined}
-//           destroy={undefined}
-//           token={undefined}
-//           turul={undefined}
-//           onRefresh={undefined}
-//         />
-//       ),
-//       footer: [],
-//     });
-//   }
+  // function tsagZakhialakh() {
+  //   const footer = [
+  //     <div className="flex justify-end space-x-3">
+  //       <div>
+  //         <Button
+  //           className="bg-slate-500 hover:bg-white hover:text-black hover:ring hover:ring-orange-300 focus:outline-none focus:ring focus:ring-orange-300"
+  //           onClick={() => ref.current.khaaya()}>
+  //           Хаах
+  //         </Button>
+  //       </div>
+  //       {/* <div>
+  //         <Button
+  //           className="bg-orange-500 hover:bg-white hover:text-black hover:ring hover:ring-gray-300  focus:outline-none focus:ring focus:ring-gray-300 "
+  //           onClick={() => ref.current.khadgalya()}>
+  //           Бүртгэл нэмэх
+  //         </Button>
+  //       </div> */}
+  //     </div>,
+  //   ];
+  //   modal({
+  //     title: "Дэлгэрэнгүй захиалга",
+  //     content: (
+  //       <TsagZakhialakh
+  //         ref={ref}
+  //         data={undefined}
+  //         destroy={undefined}
+  //         token={undefined}
+  //         turul={undefined}
+  //         onRefresh={undefined}
+  //       />
+  //     ),
+  //     footer: [],
+  //   });
+  // }
 
 //   return (
 //     <Layout>
@@ -456,4 +456,4 @@ const Service = () => {
 //     </Layout>
   // );
 };
-export default Service;
+// export default Service;
