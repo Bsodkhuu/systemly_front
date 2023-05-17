@@ -106,7 +106,7 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="personId" value="Овог" />
                 </div>
-                <Select id="personId" placeholder="Ажилтны нэр" {...register("personId")}>
+                <Select id="personId" placeholder="Овог" {...register("personId")}>
                   {personData?.map((i) => (
                     <option key={`person_${i.id}`} value={i.id}>
                       {i.firstName}
@@ -122,7 +122,43 @@ const Human = () => {
                 </div>
                 <TextInput id="positionId" placeholder="Албан тушаал" {...register("positionId")}/>
                </div>
+               <div className="w-1/2">
+                  <div className="mb-2 block">
+                    <Label htmlFor="branchId" value="Байгууллагын нэр"/>
+                  </div>
+                  <Select id="branchId" placeholder="Байгууллагын нэр" {...register("branchId")}>
+                    {branchData?.map((i) => (
+                      <option key={`branch_${i.id}`} value={i.id}>
+                        {i.branchName}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+             
+            </div>
+
+            <div className="flex gap-4">
               <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="personId" value="Имэйл" />
+                </div>
+                <Select id="personId" placeholder="Имэйл" {...register("personId")}>
+                {personData?.map((i) => (
+                    <option key={`person_${i.id}`} value={i.id}>
+                      {i.email}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="filePath" value="Ажилтны зураг"/>
+                </div>
+                <FileInput id="filePath"/>
+              </div>
+              </div>
+              <div className="flex gap-4">
+               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label htmlFor="phoneId" value="Утасны дугаар" />
                 </div>
@@ -137,36 +173,15 @@ const Human = () => {
                 ))}
               </Select>
               </div>
-            </div>
-
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="personId" value="Имэйл" />
-                </div>
-                {personData?.map((i) => (
-                    <option key={`person_${i.id}`} value={i.id}>
-                      {i.email}
-                    </option>
-                  ))}
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label htmlFor="filePath" value="Ажилтны зураг"/>
-                </div>
-                <FileInput id="filePath"/>
-              </div>
-              </div>
-              <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
                     <Label htmlFor="jobStart" value="Ажилд орсон огноо "/>
                   </div>
-                  <TextInput type="date" id="jobStart"/>
+                  <TextInput type="date" id="jobStart" {...register("jobStart")}/>
                 </div> 
             </div>
             <div className="flex gap-4">
-            <div className="w-1/2">
+                <div className="w-1/2">
                         <div className="mb-2 block">
                         <Label
                             htmlFor="activeFlag"
@@ -176,8 +191,7 @@ const Human = () => {
                     </div>
                     </div>
                     <div className="flex gap-4">
-                    
-                    <div className="w-1/2">
+                      <div className="w-1/2">
                         <div className="mb-2 block">
                         <Label
                             htmlFor="deleteFlag"
