@@ -25,7 +25,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
   const { register, handleSubmit } = useForm<Person>();
   const { mutateAsync } = useMutation("createCustomer", createCustomer);
   const { data: phoneData } = useQuery("get_phones", getPhoneNumbers);
-  const { data: addressData } = useQuery("get_addresses", getAddresses);
+  
 
   async function createCustomer(values: Person) {
     const response = await axiosClient.post("/persons", {
@@ -37,11 +37,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
   async function getPhoneNumbers() {
     const response = await axiosClient.get("/person-phones");
     return response.data as PersonPhone[];
-  }
-
-  async function getAddresses() {
-    const response = await axiosClient.get("/addresses");
-    return response.data as Address[];
   }
 
   async function onSubmit(values: Person) {
@@ -188,25 +183,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("historyId")}
               />
             </div>
-          </div>
-
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <div className="block mb-2">
-                <Label htmlFor="address" value="Хаяг" />
-              </div>
-              <Select
-                id="address"
-                {...register("addressId")}
-                placeholder="Хаягаа дэлгэрэнгүй бичнэ үү"
-              >
-                {addressData?.map((i) => (
-                  <option key={`address_${i.id}`} value={i.id}>
-                    {i.addressDetail}
-                  </option>
-                ))}
-              </Select>
-            </div>
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="activeFlag" value="Идэвхтэй эсэх" />
@@ -236,7 +212,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               </div>
               <TextInput
                 id="insertUser"
-                placeholder="Жишээ нь: 1"
+                placeholder="Жишээ нь: Захирал"
                 {...register("insertUser")}
               />
             </div>
@@ -249,7 +225,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               </div>
               <TextInput
                 id="updateUser"
-                placeholder="Жишээ нь: 1"
+                placeholder="Жишээ нь: Захирал"
                 {...register("updateUser")}
               />
             </div>
@@ -402,7 +378,6 @@ const Customer = () => {
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Утасны дугаар</Table.HeadCell>
                       <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
-                      <Table.HeadCell>Хаяг</Table.HeadCell>
                     </Table.Head>
                     <Table.Body>
                       {customerList?.map(
@@ -414,9 +389,6 @@ const Customer = () => {
                               {customerList.personPhone.phone}
                             </Table.Cell>
                             <Table.Cell>{customerList.customerCode}</Table.Cell>
-                            <Table.Cell>
-                              {customerList.address.addressDetail}
-                            </Table.Cell>
                           </Table.Row>
                         )
                       )}

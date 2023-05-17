@@ -472,9 +472,7 @@ export interface Person {
   confirmFlag: string;
   customerCode: string;
   phoneId?: string;
-  addressId?: string;
   personPhone: PersonPhone;
-  address: Address;
 }
 export interface PersonPhone {
   id: string;
@@ -528,19 +526,32 @@ export interface ServiceOrder {
   deleteUser: string
 }
 
+export interface Position{
+id: string;
+createdAt: string;
+updatedAt: string;
+positionName: string;
+activeFlag: string;
+deleteFlag: string;
+insertDate: string;
+insertUser: string;
+updateUser: string;
+deleteDate: string;
+deleteUser: string;
+}
 export interface Employee{
   id: string;
   createdAt: string;
   updatedAt: string;
   lastName: string;
   firstName: string;
-  person: Person;
-  personId?:string;
+  email: string;
+  registerId: string;
   branch:Branch;
   branchId?:string;
   personPhone: PersonPhone;
   phoneId?: string;
-  positionId: string;
+  positionId?: string;
   filePath: string;
   jobStart: string;
   activeFlag: string;
@@ -549,7 +560,8 @@ export interface Employee{
   insertUser: string;
   updateUser: string;
   deleteDate: string;
-  deleteUser: string
+  deleteUser: string;
+  position: Position;
 }
 
 export interface ServiceEmployee {

@@ -70,28 +70,53 @@ const Salbar = () => {
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="addressDistrict" value="Хот"/>
+                                    <Label htmlFor="branchId" value="Салбарын нэр-1"/>
                                 </div>
-                                <TextInput id="addressDistrict" placeholder="Хот" {...register("addressDistrict")} required/>
+                                <Select id="branchId" placeholder="Салбарын нэр-1" {...register("branchId")} required>
+                                    {branchData?.map((i) => (
+                                        <option key={`branch_${i.id}`} value={i.id}>
+                                            {i.parentId}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="branchId" value="Салбарын нэр-1"/>
+                                </div>
+                                <Select id="branchId" placeholder="Салбарын нэр-1" {...register("branchId")} required>
+                                    {branchData?.map((i) => (
+                                        <option key={`branch_${i.id}`} value={i.id}>
+                                            {i.parentId}
+                                        </option>
+                                    ))}
+                                </Select>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
+                        <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="addressDistrict" value="Хот"/>
+                                </div>
+                                <TextInput id="addressDistrict" placeholder="Хот" {...register("addressDistrict")} required/>
+                            </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="addressSoum" value="Дүүрэг"/>
                                 </div>
                                 <TextInput id="addressSoum" placeholder="Дүүрэг" {...register("addressSoum")} required/>
                             </div>
-                            <div className="w-1/2">
+                            
+                        </div>
+
+                        <div className="flex gap-4">
+                        <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="address_bag" value="Хороо"/>
                                 </div>
                                 <TextInput id="address_bag" placeholder="Хороо" {...register("address_bag")} required/>
                             </div>
-                        </div>
-
-                        <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="addressDetail" value="Хаягын дэлгэрэнгүй"/>
@@ -133,7 +158,7 @@ const Salbar = () => {
                     <Button className="bg-orange-500" onClick={handleSubmit(onSubmit)}>Хадгалах</Button>
                 </Modal.Footer>
             </Modal>
-            <div className="gap-4 md:grid md:grid-cols-3">
+            
                 <div className="p-2 bg-gray-200 md:col-span-2 md:h-screen">
                     <div className="p-2 bg-white rounded-lg">
                         <div className="justify-between mb-4 space-y-2 md:flex md:space-y-0">
@@ -144,12 +169,18 @@ const Salbar = () => {
                             </div>
                         </div>
                     </div>
-                        <Card className="max-w-sm">
-                            <div className="w-50">
-                                <ListGroup>
+                        <div className="md:grid md:grid-cols-2">
+                            <div className="p-2 w-full">
+                              <Card className="md:w-full">
+                                <div className="w-50">
+                                  <ListGroup>
                                     {addressData?.map((addressData: Address, index: number) => (
                                         <ListGroup.Item key={index}>
                                             Салбарын нэр: {addressData.branch.branchName}
+                                            <ListGroup.Item></ListGroup.Item>
+                                            Салбарын нэр-1: {addressData.branch.parentId}
+                                            <ListGroup.Item></ListGroup.Item>
+                                            Салбарын нэр-2: {addressData.branch.parentId}
                                             <ListGroup.Item></ListGroup.Item>
                                             Хот: {addressData.addressDistrict}
                                             <ListGroup.Item></ListGroup.Item>
@@ -167,17 +198,17 @@ const Salbar = () => {
                                     ))}
                                 </ListGroup>
                             </div>
-                        </Card>
+                            </Card>
+                        </div>
+                        <div className="p-2">
+                            <Card className="md:w-full">
+                            <h5 className="text-1xl">Google Map</h5>
+                            
+                            </Card>
+                        </div>
+                        </div>
                     </div>
                 </div>
-                <div className="col-span">
-                    <div className="p-2">
-                        <Card>
-                            <h4 className="text-1xl">Google Map</h4>
-                        </Card>
-                    </div>
-                </div>
-            </div>
         </Layout>
     );
 }

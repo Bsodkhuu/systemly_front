@@ -47,7 +47,7 @@ import Service_Order from "./pages/Human/ServiceOrder";
 import BranchAdd from "./pages/Suld/crm/Branch";
 import Service_Employee from "./pages/Human/ServiceEmployee";
 import Salbar from "./pages/Human/Salbar";
-import Position from "./pages/Human/Postition";
+import Position_Data from "./pages/Human/Postition";
 
 
 
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/position", 
-    element: <Position/>
+    element: <Position_Data/>
   },
   {
     path: "/salbar", 
