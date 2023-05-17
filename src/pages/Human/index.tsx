@@ -162,14 +162,11 @@ const Human = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="phoneId" value="Утасны дугаар" />
                 </div>
-                <Select
-                id="phoneId"
-                placeholder="Утасны дугаар"
-                {...register("phoneId")}>
+                <Select id="phoneId" placeholder="Утасны дугаар" {...register("phoneId")}>
                 {phoneData?.map((i) => (
                   <option key={`personPhone_${i.id}`} value={i.id}>
                     {i.phone}
-                  </option>
+                  </option> 
                 ))}
               </Select>
               </div>
@@ -181,6 +178,14 @@ const Human = () => {
                 </div> 
             </div>
             <div className="flex gap-4">
+               {/* <div className="w-1/2">
+                        <div className="mb-2 block">
+                        <Label
+                            htmlFor="jobStart"
+                            value="Ажлаас гарсан огноо"/>
+                        </div>
+                        <TextInput id="jobStart" placeholder="Хоосон байж болно" {...register("jobStart")}/>
+                    </div> */}
                 <div className="w-1/2">
                         <div className="mb-2 block">
                         <Label
@@ -231,11 +236,11 @@ const Human = () => {
               <TextInput id="endDate" type="date" />
               <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
               <Button className="bg-orange-500">Хайх</Button>
-              <a href="/branch">
+              {/* <a href="/branch">
                 <Button className="bg-orange-500">
                 Байгууллага бүртгэх
                 </Button>
-              </a>
+              </a> */}
               <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
@@ -296,7 +301,13 @@ const Human = () => {
                   <Table.Body>
                       {serviceOrder?.map((serviceOrder: ServiceOrder, index: number) => (
                         <Table.Row key={index}>
-                          
+                          <Table.Cell>{serviceOrder.person.lastName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.branch.branchName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.service.serviceName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.service.price}</Table.Cell>
+                          <Table.Cell>{serviceOrder.personVehicle.vehicleNumber}</Table.Cell>
+                          <Table.Cell>{serviceOrder.payPrice}</Table.Cell>
+                          <Table.Cell>{serviceOrder.paidAmount}</Table.Cell>
                           <Table.Cell className="space-2xl">
                             <FontAwesomeIcon icon={faPenToSquare}/>
                           </Table.Cell>
@@ -310,7 +321,9 @@ const Human = () => {
         </div>
         <div className="md:p-4">
           <Card>
-            <h4 className="text-1xl">Үйлчилгээ хийсэн механикч</h4>
+            {/* <h4 className="text-1xl">Үйлчилгээ хийсэн механикч</h4> */}
+            <a href="/serviceEmployee" className="text-1xl">
+              <Button className="bg-orange-500">Үйлчилгээ хийсэн механикч</Button></a>
             <Table>
               <Table.Head className="uppercase">
                 <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>

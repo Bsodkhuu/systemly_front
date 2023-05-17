@@ -18,7 +18,11 @@ const Service_Order = () => {
     const { data: personVehicle } = useQuery("getPersonVehicle", getPersonVehicle);
 
     async function create(values: ServiceOrder) {
-        const response = await axiosClient.post("/service-orders", values);
+        const response = await axiosClient.post("/service-orders",{
+            ...values, 
+            payPrice: parseFloat(values.payPrice.toString()), 
+            paidAmount: parseFloat(values.paidAmount.toString()),
+        });
         return response.data;
     }
 
@@ -134,7 +138,7 @@ const Service_Order = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="paidAmount" value="Төлсөн дүн"/>
                                 </div>
-                                <TextInput type="text" id="paidAmount" placeholder="Хямдралаа бодох тооцоолол бичих" {...register("payPrice")}/>
+                                <TextInput type="text" id="paidAmount" placeholder="Хямдралаа бодох тооцоолол бичих" {...register("paidAmount")}/>
                                 &nbsp;&nbsp;
                                 <Button className="bg-orange-500">Тооцох</Button>
                             </div>

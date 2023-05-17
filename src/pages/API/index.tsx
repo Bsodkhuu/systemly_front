@@ -441,6 +441,12 @@ export interface Address {
   addressSoum: string;
   address_bag: string;
   addressDetail: string;
+  employeeId?:string;
+  employee: Employee;
+  branch: Branch;
+  branchId?: string;
+  phoneNumber: PersonPhone;
+  phoneId?:string;
 }
 
 export interface Person {
@@ -488,9 +494,7 @@ export interface PersonVehicle {
   id: string;
   createdAt: string;
   updatedAt: string;
-  vehicleId?: string;
   vehicleNumber: string;
-  personId?: string;
   vehicleColor: string;
   activeFlag: string;
   deleteFlag: string;
@@ -499,8 +503,6 @@ export interface PersonVehicle {
   updateUser: string;
   deleteDate: string;
   deleteUser: string;
-  person: Person;
-  vehicle: Vehicle;
 }
 
 export interface ServiceOrder {
@@ -530,6 +532,8 @@ export interface Employee{
   id: string;
   createdAt: string;
   updatedAt: string;
+  lastName: string;
+  firstName: string;
   person: Person;
   personId?:string;
   branch:Branch;
@@ -552,10 +556,7 @@ export interface ServiceEmployee {
   id: string;
   createdAt: string;
   updatedAt: string;
-  employee: Employee;
   employeeId: string;
-  branch: Branch;
-  branchId?: string;
   serviceOrder: ServiceOrder;
   serviceOrderId?: string;
   activeFlag: string;

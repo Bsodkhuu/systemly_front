@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "../../../components/layout";
-import { Branch } from "../../API";
+import Layout from "../../../../components/layout";
+import { Branch } from "../../../API";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { axiosClient } from "../../../config/axios";
+import { axiosClient } from "../../../../config/axios";
 import { useNavigate } from "react-router-dom";
 import { Label, TextInput, Button} from "flowbite-react";
 

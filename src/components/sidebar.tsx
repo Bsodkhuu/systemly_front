@@ -65,7 +65,9 @@ const SidebarComponent = () => {
     </Panel>
     <Panel header="Хүний нөөц" key="4">
     <div className='divide-y space-y-3 ' >
-    <a href="/human"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Нийт ажилчдын бүртгэл</a>
+    <a href="/human"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div>Ажилчид</a>
+    <a href="/salbar"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <MdRememberMe/> </div>Салбарууд</a>
+    <a href="/position"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div>Албан тушаал</a>
     </div>
     </Panel>
     <Panel header="Тохиргоо" key="5">
@@ -104,7 +106,7 @@ const SidebarComponent = () => {
            <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <GrUserWorker/> </div> Ажилчид</a>
            <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <HiOutlineUserAdd/> </div> Харилцагчийн бүртгэл</a>
            <a href="#"  className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <HiOutlineUserGroup/> </div> Харилцагчийн ажилчид</a>
-           <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <MdRememberMe/> </div> N! гишүүд</a>
+           <a href="/branch" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <MdRememberMe/> </div> N! гишүүд</a>
            <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <FaHandshake/> </div> Нийлүүлэгчид</a>
       </div>
     </Panel>
@@ -157,7 +159,9 @@ const SidebarComponent = () => {
     </Panel>
     <Panel header="Хүний нөөц" key="4">
     <div className='divide-y space-y-3 ' >
-    <a href="/human"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div> Нийт ажилчдын бүртгэл</a>
+    <a href="/human"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div>Ажилчид</a>
+    <a href="/salbar"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <MdRememberMe/> </div>Салбарууд</a>
+    <a href="/position"  className='flex h-8 w-full justify-start items-center'> <div className='text-xl flex justify-center  w-12' > <CgUserList/> </div>Албан тушаал</a>
     </div>
     </Panel>
     <Panel header="Тохиргоо" key="5">
@@ -195,7 +199,7 @@ const SidebarComponent = () => {
            <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <GrUserWorker/> </div> Ажилчид</a>
            <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <HiOutlineUserAdd/> </div> Харилцагчийн бүртгэл</a>
            <a href="#"  className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <HiOutlineUserGroup/> </div> Харилцагчийн ажилчид</a>
-           <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <MdRememberMe/> </div> N! гишүүд</a>
+           <a href="/branch" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <MdRememberMe/> </div> N! гишүүд</a>
            <a href="#" className='flex h-8 w-full justify-start items-center'><div className='text-xl flex justify-cente  w-12' > <FaHandshake/> </div> Нийлүүлэгчид</a>
       </div>
     </Panel>

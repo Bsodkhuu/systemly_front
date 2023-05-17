@@ -144,8 +144,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
               <Select
                 id="phoneId"
                 placeholder="Утасны дугаар"
-                {...register("phoneId")}
-              >
+                {...register("phoneId")}>
                 {phoneData?.map((i) => (
                   <option key={`phone_${i.id}`} value={i.id}>
                     {i.phone}
@@ -480,20 +479,15 @@ const Customer = () => {
               </a>
               <Table>
                 <Table.Head className="uppercase">
-                  <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
                   <Table.HeadCell>Улсын дугаар</Table.HeadCell>
-                  <Table.HeadCell>Машины нэр</Table.HeadCell>
                   <Table.HeadCell>Өнгө</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
                   {personVehicle?.map(
                     (personVehicle: PersonVehicle, index: number) => (
                       <Table.Row key={index}>
-                        <Table.Cell>{personVehicle.person.lastName}</Table.Cell>
                         <Table.Cell>{personVehicle.vehicleNumber}</Table.Cell>
-                        <Table.Cell>
-                          {personVehicle.vehicle.vehicleName}
-                        </Table.Cell>
+                        
                         <Table.Cell>{personVehicle.vehicleColor}</Table.Cell>
                       </Table.Row>
                     )
