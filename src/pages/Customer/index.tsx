@@ -362,7 +362,6 @@ const Customer = () => {
                     />
                   </div>
                   <Button className="bg-orange-500 w-[30%]">
-                    {" "}
                     <p className="text-[11px]">Хайх</p>
                   </Button>
                 </div>

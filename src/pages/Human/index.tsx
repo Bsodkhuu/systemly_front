@@ -79,6 +79,7 @@ const Human = () => {
 
   async function onSubmit(values: Employee) {
     await mutateAsync(values);
+    closeModal();
   }
 
   return (
@@ -236,11 +237,7 @@ const Human = () => {
               <TextInput id="endDate" type="date" />
               <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
               <Button className="bg-orange-500">Хайх</Button>
-              {/* <a href="/branch">
-                <Button className="bg-orange-500">
-                Байгууллага бүртгэх
-                </Button>
-              </a> */}
+              
               <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
