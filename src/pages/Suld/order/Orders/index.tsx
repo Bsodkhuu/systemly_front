@@ -127,7 +127,7 @@ const Orders = () => {
                                                     <Table.Cell>{order.numbOfProd}</Table.Cell>
                                                     <Table.Cell>{order.orderedDate}</Table.Cell>
                                                     <Table.Cell>{order.product.manufacturerId}</Table.Cell>
-                                                    <Table.Cell>{order.statusType.statusName}</Table.Cell>
+                                                    <Table.Cell>{order.status}</Table.Cell>
                                                 </Table.Row>
                                             ))}
                                         </Table.Body>
@@ -165,29 +165,7 @@ const Orders = () => {
                                     </Table>
                                     </div>
 
-                                    <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
-                                    {product?.map((product: Product, index: number) => (
-                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
-                                <div className="w-[50%]" >
-                                    <div className="font-bold text-black" >Партын дугаар</div>
-                                    <div className="font-bold">Тайлбар</div>
-                                    <div>Нэгжийн үнэ</div>
-                                    <div>Fitting</div>
-                                    <div>Тоо хэмжээ</div>
-                                    <div>Нийт дүн</div>
-                                </div>
-                                <div className="w-[50%]" key={index} >
-                                    <div>{product.part_number}</div>
-                                        <div>{product.description}</div>
-                                        <div>{product.netPrice}</div>
-                                        <div>{product.fittingPostion}</div>
-                                        <div>{product.quantity}</div>
-                                        <div>{product.netPrice * product.quantity}</div>
-                                    <div/>
-                                </div>
-                            </div>
-                            ))}
-                            </div>
+                                  
                                    
                                 </Card>
                             </div>
@@ -220,7 +198,7 @@ const Orders = () => {
                             </Table.Body>
                         </Table>
                         </div>
-                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
+                        {/* <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
                         {order?.map((order: Order, index: number) => (
                             <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
                                 <div className="w-[50%]" >
@@ -240,7 +218,7 @@ const Orders = () => {
                                 </div>
                             </div>
                             ))}
-                            </div>
+                            </div> */}
                     </Card>
                     <div className="">
                     <Card className=""> 

@@ -17,7 +17,7 @@ import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { Branch, Employee, Person, PersonPhone, Position, ServiceEmployee, ServiceOrder } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const Human = () => {
@@ -227,13 +227,10 @@ const Human = () => {
               <TextInput id="startDate" type="date" />
               -
               <TextInput id="endDate" type="date" />
-              <div className="flex gap-3 mt-3 justify-end md:justify-normal ">  
-              <Button className="bg-orange-500">Хайх</Button>
-              
+              <FontAwesomeIcon icon={faMagnifyingGlass}/>
               <Button className="bg-orange-500" onClick={openModal}>
                 Ажилчид нэмэх
               </Button>
-            </div>
             </div>
           </div> 
           <div className="md:grid grid-cols-3">
@@ -308,7 +305,6 @@ const Human = () => {
         </div>
         <div className="md:p-4">
           <Card>
-            {/* <h4 className="text-1xl">Үйлчилгээ хийсэн механикч</h4> */}
             <a href="/serviceEmployee" className="text-1xl">
               <Button className="bg-orange-500">Үйлчилгээ хийсэн механикч</Button></a>
             <Table>

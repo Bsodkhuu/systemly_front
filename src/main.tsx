@@ -154,10 +154,10 @@ const router = createBrowserRouter([
     path: "/zaswar_service",
     element: <ZaswarService />,
   },
-  // {
-  //   path: "/service",
-  //   element: <Service />,
-  // },
+  {
+    path: "/service",
+    element: <Service />,
+  },
   {
     path: "/zahialga",
     element: <Zahialga />,

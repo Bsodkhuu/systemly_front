@@ -148,7 +148,7 @@ import { Person, PersonPhone, Vehicle } from "../../../pages/API";
 // };
 
 const Service = () => {
-  const ref = useRef(null);
+  const ref = useRef([]);
   const [searchParams] = useSearchParams();
   const { RangePicker } = DatePicker;
 
