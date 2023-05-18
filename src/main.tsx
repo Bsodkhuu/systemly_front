@@ -23,7 +23,6 @@ import EmployeeHistory from "./pages/Human/Employee_history";
 import Active from "./pages/Settings/Active";
 import Transport from "./pages/Customer/Transport";
 import Zahialga from "./pages/Order/zahialga";
-import Service from "./pages/Customer/Service";
 import ZaswarService from "./pages/Customer/Zaswar_Service";
 import Clock from "./pages/Settings/Clock";
 import Forgot from "./pages/Login/Forgot/forgot";
@@ -48,6 +47,7 @@ import BranchAdd from "./pages/Suld/crm/Branch";
 import Service_Employee from "./pages/Human/ServiceEmployee";
 import Salbar from "./pages/Human/Salbar";
 import Position_Data from "./pages/Human/Postition";
+import VilchilgeeniTsag from "./pages/Customer/Service";
 
 
 
@@ -156,7 +156,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/service",
-    element: <Service />,
+    element: <VilchilgeeniTsag />,
   },
   {
     path: "/zahialga",
