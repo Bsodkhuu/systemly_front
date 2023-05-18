@@ -303,7 +303,7 @@ const Human = () => {
             <Table>
               <Table.Head className="uppercase">
                 <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
-                <Table.HeadCell>Нийт</Table.HeadCell>
+                <Table.HeadCell>Төлөх дүн</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
                 {serviceEmployee?.map((serviceEmployee: ServiceEmployee, index: number) => (
