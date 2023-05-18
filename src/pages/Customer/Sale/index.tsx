@@ -37,25 +37,14 @@ const Sale = () => {
             <div className="md:flex items-center justify-between mb-4 space-y-3 md:space-y-0 ">
               <h4 className="text-1xl">Засвар борлуулалтын бүртгэлийн түүх</h4>
               <div className="flex gap-4">
-                <div className="w-full">
+               
                   <TextInput type="date"/>
-                  </div>
-                <div>
                   <Button className="bg-orange-500">
                   Хайх
                 </Button>
-                </div>
-                {/* <div className="flex gap-4">
-                  <a href="/saleRegister">
-                  <Button className="bg-orange-500">
-                  Засварын хуудсын бүртгэл
-                  </Button>
-                  </a>
-                </div> */}
-              </div>
-              <div>
               </div>
             </div>
+            <div className="md:grid grid-cols-3">
             <div className="p-4">
               <Card>
                 <h4 className="text-1xl">Үйлчилгээний жагсаалт</h4>
@@ -77,6 +66,7 @@ const Sale = () => {
                 </Table>
               </Card>
             </div>
+            </div>
             <div className="p-4">
               <Card>
                 <h4 className="text-1xl">Засварын хуудас дэлгэрэнгүй</h4>
@@ -85,9 +75,9 @@ const Sale = () => {
                     <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
                     <Table.HeadCell>Байгууллага</Table.HeadCell>
                     <Table.HeadCell>Материал</Table.HeadCell>
-                    <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                     <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
-                    <Table.HeadCell>Дараагийн хуваарь</Table.HeadCell>
+                    <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                    <Table.HeadCell>Дараагийн үйлчилгээний хуваарь</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
@@ -95,8 +85,8 @@ const Sale = () => {
                         <Table.Cell>{serviceOrderProduct.serviceEmployee.employeeId}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.branch.branchName}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.product.productName}</Table.Cell>
-                        <Table.Cell>{serviceOrderProduct.productCnt}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.prodmetric.typeId}</Table.Cell>
+                        <Table.Cell>{serviceOrderProduct.productCnt}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.serviceOrder.serviceDate}</Table.Cell>
                       </Table.Row>
                     ))}
