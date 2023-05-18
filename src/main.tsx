@@ -50,12 +50,12 @@ import Position_Data from "./pages/Human/Postition";
 import VilchilgeeniTsag from "./pages/Customer/Service";
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+  
   {
     path: "/position", 
     element: <Position_Data/>

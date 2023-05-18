@@ -508,22 +508,26 @@ export interface ServiceOrder {
   createdAt: string;
   updatedAt: string;
   branch: Branch;
-  branchId?:string;
+  branchId?: string;
   payPrice: number;
   service: Service;
   serviceId?: string;
   paidAmount: number;
+  zaswarNumber: string;
+  serviceDate: string;
   person: Person;
-  personId?: string;
+  personId?: String
   personVehicle: PersonVehicle;
   personVehicleId?: string;
+  vehicle: Vehicle;
+  vehicleId?:string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
   insertUser: string;
   updateUser: string;
   deleteDate: string;
-  deleteUser: string
+  deleteUser: string; 
 }
 
 export interface Position{
@@ -589,6 +593,8 @@ export interface ServiceOrderProduct{
   branchId?: string;
   productId?: string;
   prodmetricId?: string;
+  service: Service;
+  serviceId?: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;

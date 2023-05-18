@@ -53,7 +53,6 @@ const Human = () => {
   const { register, handleSubmit } = useForm<Employee>();
   const { mutateAsync } = useMutation("createEmployee", createEmployee);
   
-  const { data: personData } = useQuery("getPerson", getPerson);
   const { data: branchData } = useQuery("getBranch", getBranch);
   const { data: phoneData } = useQuery("getPhone", getPhone);
   const { data: positionData }  = useQuery("getPosition", getPosition);
@@ -70,11 +69,6 @@ const Human = () => {
   async function getBranch() {
     const response = await axiosClient.get("/branch");
     return response.data as Branch[];
-  }
-
-  async function getPerson() {
-    const response = await axiosClient.get("/persons");
-    return response.data as Person[];
   }
 
   async function createEmployee(values: Employee) {
@@ -238,33 +232,37 @@ const Human = () => {
               <Card>
                 <h4 className="text-1xl">Ажилчдын жагсаалт</h4>
                 <div className="flex gap-4">
-                  <a href="#">Идэвхитэй</a>
-                  <a href="/employee_history">Түүх</a>
+                  <a href="#"><Button className="bg-orange-500">Ажиллаж байгаа</Button></a>
+                  <a href="/employee_history">
+                    <Button className="bg-orange-500">Ажлаас гарсан</Button>
+                  </a>
+                 
                 </div>
+                <Label htmlFor="" value="Албан тушаал" />
+                <Select>
+                    {positionData?.map((i) => (
+                      <option value={i.id}>
+                        {i.positionName}
+                      </option>
+                    ))}
+                  </Select>
                 <Table>
                   <Table.Head className="uppercase">
                     <Table.HeadCell>Ажилтны зураг</Table.HeadCell>
-                    <Table.HeadCell>Овог</Table.HeadCell>
                     <Table.HeadCell>Нэр</Table.HeadCell>
-                    <Table.HeadCell>Байгууллага</Table.HeadCell>
-                    <Table.HeadCell>Мэргэжил</Table.HeadCell>
-                    <Table.HeadCell>Ажилд орсон огноо</Table.HeadCell>
                   </Table.Head>
                   <Table.Body>
                     {employee?.map((employee: Employee, index: number) => (
                       <Table.Row key={index}>
                         <Table.Cell>{employee.filePath}</Table.Cell>
-                        <Table.Cell>{employee.firstName}</Table.Cell>
                         <Table.Cell>{employee.lastName}</Table.Cell>
-                        <Table.Cell>{employee.branch.branchName}</Table.Cell>
-                        <Table.Cell>{employee.position.positionName}</Table.Cell>
-                        <Table.Cell>{employee.jobStart}</Table.Cell>
                       </Table.Row>
                     ))}
                   </Table.Body>
                 </Table>
               </Card>
             </div> 
+           
             <div className="p-4">
               <Card>
               <div className="md:flex gap-4">
@@ -273,38 +271,29 @@ const Human = () => {
               </div>
                 <Table>
                   <Table.Head className="uppercase">
-                    <Table.HeadCell>Эзэмшигчийн нэр</Table.HeadCell>
-                    <Table.HeadCell>Байгууллага /Branch/</Table.HeadCell>
-                    <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
-                    <Table.HeadCell>Үнэ</Table.HeadCell>
+                    <Table.HeadCell>Засварын хуудсын дугаар</Table.HeadCell>
                     <Table.HeadCell>Улсын дугаар</Table.HeadCell>
-                    <Table.HeadCell>Төлөх дүн</Table.HeadCell>
-                    <Table.HeadCell>Төлсөн дүн</Table.HeadCell>
-                    <Table.HeadCell>Үйлдэл</Table.HeadCell>
+                    <Table.HeadCell>Машин</Table.HeadCell>
+                    <Table.HeadCell>Огноо</Table.HeadCell>
+                    
                   </Table.Head>
                   <Table.Body>
                       {serviceOrder?.map((serviceOrder: ServiceOrder, index: number) => (
                         <Table.Row key={index}>
-                          <Table.Cell>{serviceOrder.person.lastName}</Table.Cell>
-                          <Table.Cell>{serviceOrder.branch.branchName}</Table.Cell>
-                          <Table.Cell>{serviceOrder.service.serviceName}</Table.Cell>
-                          <Table.Cell>{serviceOrder.service.price}</Table.Cell>
+                          <Table.Cell>{serviceOrder.zaswarNumber}</Table.Cell>
                           <Table.Cell>{serviceOrder.personVehicle.vehicleNumber}</Table.Cell>
-                          <Table.Cell>{serviceOrder.payPrice}</Table.Cell>
-                          <Table.Cell>{serviceOrder.paidAmount}</Table.Cell>
-                          <Table.Cell className="space-2xl">
-                            <FontAwesomeIcon icon={faPenToSquare}/>
-                          </Table.Cell>
+                          <Table.Cell>{serviceOrder.vehicle.vehicleName}</Table.Cell>
+                          <Table.Cell>{serviceOrder.serviceDate}</Table.Cell>
+                          
                         </Table.Row>
                       ))}
                   </Table.Body>
                 </Table>
               </Card>
             </div>
-          </div>
-        </div>
-        <div className="md:p-4">
-          <Card>
+
+            <div className="md:p-4">
+            <Card>
             <a href="/serviceEmployee" className="text-1xl">
               <Button className="bg-orange-500">Үйлчилгээ хийсэн механикч</Button></a>
             <Table>
@@ -322,6 +311,11 @@ const Human = () => {
               </Table.Body>
             </Table>
           </Card>
+            </div>
+          </div>
+        </div>
+        <div className="md:p-4">
+          сэлбэг/үйлчилгээний тоо ширхэг
         </div>
       </div>
     </Layout>

@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../../components/layout";
 import { useNavigate } from "react-router-dom";
-import { Branch, Person, PersonVehicle, Service, ServiceOrder } from "../../API";
+import { Branch, Person, PersonVehicle, Service, ServiceOrder, Vehicle } from "../../API";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
@@ -16,7 +16,12 @@ const Service_Order = () => {
     const { data: branchData } = useQuery("getBranch", getBranch);
     const { data: serviceData } = useQuery("getService", getService);
     const { data: personVehicle } = useQuery("getPersonVehicle", getPersonVehicle);
+    const { data: vehicleData } = useQuery("getVehicle", getVehicle);
 
+    async function getVehicle() {
+        const response = await axiosClient.get("/vehicles");
+        return response.data as Vehicle[];
+    }
     async function create(values: ServiceOrder) {
         const response = await axiosClient.post("/service-orders",{
             ...values, 
@@ -61,6 +66,12 @@ const Service_Order = () => {
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
+                                    <Label htmlFor="zaswarNumber" value="Засварын хуудсын дугаар"/>
+                                </div>
+                                <TextInput id="zaswarNumber" placeholder="Засварын хуудсын дугаар" required {...register("zaswarNumber")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
                                     <Label htmlFor="personId" value="Эзэмшигчийн нэр"/>
                                 </div>
                                 <Select id="personId" placeholder="Эзэмшигчийн нэр" {...register("personId")}>
@@ -102,7 +113,7 @@ const Service_Order = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="serviceId" value="Үнэ"/>
                                 </div>
-                                <Select id="serviceId" placeholder="Үйлчилгээний нэр" {...register("serviceId")}>
+                                <Select id="serviceId" placeholder="Үнэ" {...register("serviceId")}>
                                     {serviceData?.map((i) => (
                                         <option key={`service_${i.id}`} value={i.id}>
                                             {i.price}
@@ -113,6 +124,18 @@ const Service_Order = () => {
                         </div>
 
                         <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="vehicleId" value="Машин"/>
+                                </div>
+                                <Select id="vehicleId" placeholder="Машин" {...register("vehicleId")}>
+                                    {vehicleData?.map((i) => (
+                                        <option key={`vehicle_${i.id}`} value={i.id}>
+                                            {i.vehicleName}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="personVehicleId" value="Улсын дугаар"/>
@@ -127,9 +150,15 @@ const Service_Order = () => {
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
+                                    <Label htmlFor="serviceDate" value="Үйлчилгээ хийсэн огноо"/>
+                                </div>
+                                <TextInput type="date" id="serviceDate" placeholder="" required {...register("serviceDate")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
                                     <Label htmlFor="payPrice" value="Төлөх дүн"/>
                                 </div>
-                                <TextInput type="text" id="payPrice" placeholder="Төлөх дүн" {...register("payPrice")}/>
+                                <TextInput type="text" id="payPrice" placeholder="Төлөх дүн" required {...register("payPrice")}/>
                             </div>
                         </div>
 
@@ -138,15 +167,14 @@ const Service_Order = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="paidAmount" value="Төлсөн дүн"/>
                                 </div>
-                                <TextInput type="text" id="paidAmount" placeholder="Хямдралаа бодох тооцоолол бичих" {...register("paidAmount")}/>
-                                &nbsp;&nbsp;
-                                <Button className="bg-orange-500">Тооцох</Button>
+                                <TextInput type="text" id="paidAmount" placeholder="Төлсөн дүн" required {...register("paidAmount")}/>
+                                
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                 <Label htmlFor="activeFlag" value="Идэвхтэй эсэх"/>
                                 </div>
-                                <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
+                                <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" required {...register("activeFlag")}/>
                             </div>
                         </div>
 
@@ -155,7 +183,7 @@ const Service_Order = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
                                 </div>
-                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" required  {...register("deleteFlag")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
