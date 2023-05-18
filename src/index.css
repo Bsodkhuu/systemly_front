@@ -2,119 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /*---------category----------*/
 .contentWidth {
-    width: 77%;
-  }
-  .category {
-    box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
-    background-color: #fff;
-    width: 23%;
-    height: 510px;
-    padding: 15px 0;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  .category img {
-    width: 30px;
-    height: 30px;
-    margin-top: 10px;
-    object-fit: contain;
-  }
-  .category span {
-    margin: 10px 20px;
-    text-transform: capitalize;
-  }
-  .category .box {
-    transition: 0.5s;
-    padding: 0 20px;
-  }
-  .category .box:hover {
-    background-color: #ffe1e6;
-    cursor: pointer;
-  }
-  
-  /*---------category----------*/
-  .btn-primary {
-    background: #e94560;
-    padding: 13px 40px;
-    font-weight: bold;
-    color: #fff;
-    border-radius: 5px;
-  }
-  .top {
-    margin-top: 80px;
-  }
-  .mtop {
-    margin-top: 40px;
-  }
-  .heading i {
-    color: #e94560;
-    margin: 10px;
-  }
-  .discount {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #e94560;
-    padding: 3px 10px;
-    font-size: 12px;
-    border-radius: 50px;
-    color: #fff;
-    margin: 10px;
-  }
-  .calendar-container{
-    width: 55%;
-    margin: auto;
-    position: relative;
-    top: -50px;
-    padding-top: 200px;
-  }
-  .weekdays-container{
-    display: flex;
-    margin: auto;
-    justify-content: space-around;
-    background: white;
-  }
-  .weekdays-container .week-day {
-    color: #808080;
-  }
-  .calendar{
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+  width: 77%;
+}
+.category {
+  box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
+  background-color: #fff;
+  width: 23%;
+  height: 510px;
+  padding: 15px 0;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.category img {
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+  object-fit: contain;
+}
+.category span {
+  margin: 10px 20px;
+  text-transform: capitalize;
+}
+.category .box {
+  transition: 0.5s;
+  padding: 0 20px;
+}
+.category .box:hover {
+  background-color: #ffe1e6;
+  cursor: pointer;
+}
 
-  }
-  .calendar .week{
-    display: inline-flex;
-    align-items: flex-start;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    background: white;
-  }
+/*---------category----------*/
+.btn-primary {
+  background: #e94560;
+  padding: 13px 40px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+}
+.top {
+  margin-top: 80px;
+}
+.mtop {
+  margin-top: 40px;
+}
+.heading i {
+  color: #e94560;
+  margin: 10px;
+}
+.discount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #e94560;
+  padding: 3px 10px;
+  font-size: 12px;
+  border-radius: 50px;
+  color: #fff;
+  margin: 10px;
+}
+.calendar-container {
+  width: 55%;
+  margin: auto;
+  position: relative;
+  top: -50px;
+  padding-top: 200px;
+}
+.weekdays-container {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  background: white;
+}
+.weekdays-container .week-day {
+  color: #808080;
+}
+.calendar {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.calendar .week {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
 
-  button{
-    background: white;
-    border: none;
+button {
+  background: white;
+  border: none;
+}
+.datepicker-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space space-between;
+  align-items: center;
+  background: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.datepicker-container span {
+  font-size: 20px;
+}
 
-  }
-  .datepicker-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space space-between;
-    align-items: center;
-    background: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-  .datepicker-container span{
-    font-size: 20px;
-  }
-  
-  .ant-badge-status-text{
-    font-size: 10px !important;
-  }
+.ant-badge-status-text {
+  font-size: 10px !important;
+}

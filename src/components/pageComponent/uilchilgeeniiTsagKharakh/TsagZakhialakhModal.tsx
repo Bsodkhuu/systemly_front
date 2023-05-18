@@ -1,7 +1,9 @@
-import { Button, DatePicker, Form, Select } from "antd";
-import React from "react";
+import { Button, Form, Select } from "antd";
+import React, { useState } from "react";
 import local from "antd/lib/date-picker/locale/mn_MN";
 import { axiosClient } from "../../../config/axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function TsagZakhialakh({
   destroy,
@@ -12,15 +14,17 @@ function TsagZakhialakh({
   serviceData,
 }: any) {
   const [form] = Form.useForm();
-  const { RangePicker } = DatePicker;
+  const defaultTime = new Date();
+  defaultTime.setHours(8, 0, 0);
+  const [selectedTime, setSelectedTime] = useState(defaultTime);
   function onFinish() {
     tsagZakhialakh();
   }
 
   async function tsagZakhialakh() {
     const ugugdul = form.getFieldsValue();
-    ugugdul.endTime = ugugdul.startTime[1];
-    ugugdul.startTime = ugugdul.startTime[0];
+    ugugdul.endTime = selectedTime.toString();
+    ugugdul.startTime = selectedTime.toString();
     const fileResponse = await axiosClient.post(
       "/service_appointments",
       ugugdul
@@ -43,7 +47,7 @@ function TsagZakhialakh({
         name="person"
         rules={[
           {
-            required: true,
+            // required: true,
             message: "Хэрэглэгчийн нэр оруулна уу",
           },
         ]}>
@@ -76,7 +80,7 @@ function TsagZakhialakh({
         name="phone"
         rules={[
           {
-            required: true,
+            // required: true,
             message: "Утас оруулна уу",
           },
         ]}>
@@ -104,13 +108,13 @@ function TsagZakhialakh({
           )}
         </Select>
       </Form.Item>
-     
+
       <Form.Item
         label="Машин дугаар "
         name="personVehicle"
         rules={[
           {
-            required: true,
+            // required: true,
             message: "Машиний дугаар сонгоно уу",
           },
         ]}>
@@ -141,13 +145,28 @@ function TsagZakhialakh({
       <Form.Item
         label="Цаг"
         name="startTime"
-        rules={[
-          {
-            required: true,
-            message: "Үйлчилгээ авах цаг өдөрөө сонгоно уу",
-          },
-        ]}>
-        <RangePicker locale={local} />
+        // rules={[
+        //   {
+        //     // required: true,
+        //     message: "Үйлчилгээ авах цаг өдөрөө сонгоно уу",
+        //   },
+        // ]}
+      >
+        {/* <RangePicker locale={local} /> */}
+        <DatePicker
+          local={local}
+          selected={selectedTime}
+          onChange={(date: React.SetStateAction<null>) => setSelectedTime(date)}
+          showTimeSelect
+          showTimeSelectOnly
+          timeIntervals={30}
+          minTime={new Date().setHours(8, 0)}
+          maxTime={new Date().setHours(20, 0)}
+          dateFormat="MM/dd/yyyy HH:mm"
+          timeFormat="HH:mm"
+          placeholderText="Цаг сонгох"
+          className="h-7 rounded-md border-1 border-gray-500"
+        />
       </Form.Item>
       <Form.Item
         label="Үйлчилгээний нэр"
@@ -187,7 +206,7 @@ function TsagZakhialakh({
         name="employee"
         rules={[
           {
-            required: true,
+            // required: true,
             message: "mechanic сонгоно уу",
           },
         ]}>
