@@ -114,7 +114,7 @@ const SidebarComponent = () => {
                     {" "}
                     <CgUserList />{" "}
                   </div>{" "}
-                  Харилцагч нэмэх
+                  Харилцагчийн бүртгэл 
                 </a>
                 <a
                   href="/sale"
@@ -143,9 +143,10 @@ const SidebarComponent = () => {
                 </a>
               </div>
             </Panel>
-            <Panel header="Хүний нөөц" key="4">
-              <div className="divide-y space-y-3 ">
-                <a
+            
+            <Panel header="Тохиргоо" key="5">
+              <div className="divide-y space-y-3">
+              <a
                   href="/human"
                   className="flex h-8 w-full justify-start items-center">
                   {" "}
@@ -155,10 +156,26 @@ const SidebarComponent = () => {
                   </div>{" "}
                   Нийт ажилчдын бүртгэл
                 </a>
-              </div>
-            </Panel>
-            <Panel header="Тохиргоо" key="5">
-              <div className="divide-y space-y-3">
+                <a
+                  href="/salbar"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-center  w-12">
+                    {" "}
+                    <CgUserList />{" "}
+                  </div>{" "}
+                  Салбарууд
+                </a>
+                <a
+                  href="/position"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-center  w-12">
+                    {" "}
+                    <CgUserList />{" "}
+                  </div>{" "}
+                  Албан тушаал
+                </a>
                 <a
                   href="/price"
                   className="flex h-8 w-full justify-start items-center">
@@ -294,7 +311,7 @@ const SidebarComponent = () => {
                   Харилцагчийн ажилчид
                 </a>
                 <a
-                  href="#"
+                  href="/branch"
                   className="flex h-8 w-full justify-start items-center">
                   <div className="text-xl flex justify-cente  w-12">
                     {" "}
@@ -454,7 +471,7 @@ const SidebarComponent = () => {
                   {" "}
                   <CgUserList />{" "}
                 </div>{" "}
-                Харилцагч нэмэх
+                Харилцагчийн бүртгэл
               </a>
               <a
                 href="/sale"
@@ -483,22 +500,40 @@ const SidebarComponent = () => {
               </a>
             </div>
           </Panel>
-          <Panel header="Хүний нөөц" key="4">
-            <div className="divide-y space-y-3 ">
-              <a
-                href="/human"
-                className="flex h-8 w-full justify-start items-center">
-                {" "}
-                <div className="text-xl flex justify-center  w-12">
-                  {" "}
-                  <CgUserList />{" "}
-                </div>{" "}
-                Нийт ажилчдын бүртгэл
-              </a>
-            </div>
-          </Panel>
+          
           <Panel header="Тохиргоо" key="5">
             <div className="divide-y space-y-3">
+            
+              <a
+                  href="/human"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-center  w-12">
+                    {" "}
+                    <CgUserList />{" "}
+                  </div>{" "}
+                  Нийт ажилчдын бүртгэл
+                </a>
+                <a
+                  href="/salbar"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-center  w-12">
+                    {" "}
+                    <CgUserList />{" "}
+                  </div>{" "}
+                  Салбарууд
+                </a>
+                <a
+                  href="/position"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-center  w-12">
+                    {" "}
+                    <CgUserList />{" "}
+                  </div>{" "}
+                  Албан тушаал
+                </a>
               <a
                 href="/price"
                 className="flex h-8 w-full justify-start items-center">
@@ -634,7 +669,7 @@ const SidebarComponent = () => {
                 Харилцагчийн ажилчид
               </a>
               <a
-                href="#"
+                href="/branch"
                 className="flex h-8 w-full justify-start items-center">
                 <div className="text-xl flex justify-cente  w-12">
                   {" "}

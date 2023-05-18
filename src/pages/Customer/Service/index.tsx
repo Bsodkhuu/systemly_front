@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { Calendar, Badge, DatePicker } from "antd";
 import { useSearchParams } from "react-router-dom";
-import { PersonVehicle, ServiceAppointment, Person, PersonPhone, Service } from "../../API";
+import { PersonVehicle, ServiceAppointment, Person, PersonPhone, Service, Work } from "../../API";
 import { modal } from "../../../components/ant/Modal";
 import DelgerenguiKharakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagiinMedeelel";
 import TsagZakhialakh from "../../../components/pageComponent/uilchilgeeniiTsagKharakh/TsagZakhialakhModal";
@@ -106,8 +106,9 @@ const VilchilgeeniTsag = () => {
   const { data: phoneData } = useQuery("get_phones", getPhoneNumbers);
   const { data: personData } = useQuery("getPerson", getPerson);
   const { data: serviceData } = useQuery("getService", getService);
- 
+  
 
+  
   async function getService() {
     const response = await axiosClient.get("/services");
     return response.data as Service[];

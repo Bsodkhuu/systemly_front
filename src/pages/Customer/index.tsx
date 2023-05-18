@@ -50,8 +50,7 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
       <Modal.Body>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex overflow-y-auto flex-col gap-4 max-h-96"
-        >
+          className="flex overflow-y-auto flex-col gap-4 max-h-96">
           <div className="flex gap-4">
             <div className="w-1/2">
               <div className="block mb-2">
