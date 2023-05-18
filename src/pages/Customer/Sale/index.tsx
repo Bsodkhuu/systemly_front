@@ -103,7 +103,7 @@ const Sale = () => {
               <ListGroup>
               {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
                   <ListGroup.Item>
-                    Ажлын хөлс: {serviceOrderProduct.serviceOrder.payPrice}
+                    Ажлын хөлс: {serviceOrderProduct.serviceOrder.paidAmount}
                     <ListGroup.Item></ListGroup.Item>
                     <ListGroup.Item>
                       Материал: {serviceOrderProduct.product.productName}

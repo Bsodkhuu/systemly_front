@@ -35,10 +35,12 @@ const Clock = () => {
         <div className="bg-white p-4 rounded-lg space-y-3">
           <div className="md:flex justify-between space-y-3">
             <h4 className="text-1xl">Ажлын цагийн хуваарь</h4>
+            
             <div className="md:flex space-y-3 md:space-x-3 md:space-y-0" >
             <div className="flex gap-2">
               <TextInput id="search" type="search" placeholder="Хайлт" className="w-full" />
-              <Button className="bg-orange-500 "> <div className="text-[11px]" >Хайх</div> </Button>
+              <Button className="bg-orange-500 ">Хайх</Button>
+              <a href="/holiday"><h4 className="text-1xl">Бүх нийтийн амралтын өдөр</h4></a>
             </div>
             </div>
           </div>
@@ -49,7 +51,7 @@ const Clock = () => {
               {WEEKS.map((i) => (
                 <option value={i} {...register("name")}>{i}</option>))}
            </Select>&nbsp;
-           <TextInput placeholder="asd" type="time" {...register("open")}/>&nbsp;
+           <TextInput placeholder="" type="time" {...register("open")}/>&nbsp;
            <TextInput type="time" {...register("close")}/>&nbsp;
            <TextInput type="text" {...register("description")}/>&nbsp;
            <div className="flex justify-end" >
@@ -67,7 +69,7 @@ const Clock = () => {
                 
               </Table.Head>
               <Table.Body className="divide-y">
-                {works?.map((works: any, index) => (
+                {works?.map((works: Work, index) => (
                   <Table.Row key={index}>
                     <Table.Cell>{works.name}</Table.Cell>
                     <Table.Cell>{works.open}</Table.Cell>
