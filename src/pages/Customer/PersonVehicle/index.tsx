@@ -4,7 +4,7 @@ import { Label, TextInput, Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { PersonVehicle } from "../../API";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { axiosClient } from "../../../config/axios";
 
 const VehiclePerson = () => {

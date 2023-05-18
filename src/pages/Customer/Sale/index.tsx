@@ -45,13 +45,13 @@ const Sale = () => {
                   Хайх
                 </Button>
                 </div>
-                <div>
+                {/* <div className="flex gap-4">
                   <a href="/saleRegister">
                   <Button className="bg-orange-500">
                   Засварын хуудсын бүртгэл
                   </Button>
                   </a>
-                </div>
+                </div> */}
               </div>
               <div>
               </div>
@@ -83,19 +83,21 @@ const Sale = () => {
                 <Table>
                   <Table.Head className="uppercase">
                     <Table.HeadCell>Үйлчилгээ хийсэн механикч</Table.HeadCell>
-                    <Table.HeadCell>Service</Table.HeadCell>
+                    <Table.HeadCell>Байгууллага</Table.HeadCell>
                     <Table.HeadCell>Материал</Table.HeadCell>
                     <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                     <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
+                    <Table.HeadCell>Дараагийн хуваарь</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
                       <Table.Row key={index}>
-                        <Table.Cell></Table.Cell>
+                        <Table.Cell>{serviceOrderProduct.serviceEmployee.employeeId}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.branch.branchName}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.product.productName}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.productCnt}</Table.Cell>
                         <Table.Cell>{serviceOrderProduct.prodmetric.typeId}</Table.Cell>
+                        <Table.Cell>{serviceOrderProduct.serviceOrder.serviceDate}</Table.Cell>
                       </Table.Row>
                     ))}
                   </Table.Body>

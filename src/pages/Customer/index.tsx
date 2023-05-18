@@ -207,29 +207,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
             </div>
             <div className="w-1/2">
               <div className="block mb-2">
-                <Label htmlFor="insertUser" value="Үүсгэсэн хэрэглэгч" />
-              </div>
-              <TextInput
-                id="insertUser"
-                placeholder="Жишээ нь: Захирал"
-                {...register("insertUser")}
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <div className="block mb-2">
-                <Label htmlFor="updateUser" value="Өөрчлөлт хийсэн хэрэглэгч" />
-              </div>
-              <TextInput
-                id="updateUser"
-                placeholder="Жишээ нь: Захирал"
-                {...register("updateUser")}
-              />
-            </div>
-            <div className="w-1/2">
-              <div className="block mb-2">
                 <Label htmlFor="deleteDate" value="Засвар хийсэн он сар" />
               </div>
               <TextInput
@@ -238,16 +215,9 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("deleteDate")}
               />
             </div>
-            <div className="w-1/2">
-              <div className="block mb-2">
-                <Label htmlFor="deleteUser" value="Засвар хийсэн хэрэглэгч" />
-              </div>
-              <TextInput
-                id="deleteUser"
-                placeholder="Жишээ нь: 1"
-                {...register("deleteUser")}
-              />
-            </div>
+          </div>
+
+          <div className="flex gap-4">
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />

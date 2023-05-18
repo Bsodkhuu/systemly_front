@@ -588,13 +588,19 @@ export interface ServiceOrderProduct{
   id: string;
   createdAt: string;
   updatedAt: string;
-  productCnt: number; //too shirheg
+  productCnt: number;  //too shirheg
+  serviceOrder: ServiceOrder;
   serviceOrderId?: string;
+  branch: Branch;
   branchId?: string;
-  productId?: string;
-  prodmetricId?: string;
+  product: Product;
+  productId: string;
+  prodmetric: Prodmetric;
+  prodmetricId: string;
   service: Service;
   serviceId?: string;
+  serviceEmployee: ServiceEmployee;
+  serviceEmployeeId?: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
@@ -602,11 +608,6 @@ export interface ServiceOrderProduct{
   updateUser: string;
   deleteDate: string;
   deleteUser: string;
-  serviceOrder: ServiceOrder;
-  branch: Branch;
-  product: Product;
-  prodmetric: Prodmetric;
-
 }
 export interface GarageInventory {
   id: string;

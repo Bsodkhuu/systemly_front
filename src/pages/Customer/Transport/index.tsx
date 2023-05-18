@@ -89,24 +89,7 @@ const Transport = () => {
             </div>
 
             <div className="flex gap-4">
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label
-                    htmlFor="insertUser"
-                    value="Үүсгэсэн хэрэглэгч"
-                  />
-                </div>
-                <TextInput id="insertUser" placeholder="Үүсгэсэн хэрэглэгч" {...register("insertUser")}/>
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label
-                    htmlFor="updateUser"
-                    value="Өөрчлөлт хийсэн хэрэглэгч"/>
-                </div>
-                <TextInput
-                  id="updateUser" placeholder="Өөрчлөлт хийсэн хэрэглэгч" {...register("updateUser")}/>
-              </div>
+              
               <div className="w-1/2">
                 <div className="mb-2 block">
                   <Label
@@ -115,15 +98,6 @@ const Transport = () => {
                   />
                 </div>
                 <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
-              </div>
-              <div className="w-1/2">
-                <div className="mb-2 block">
-                  <Label
-                    htmlFor="deleteUser"
-                    value="Засвар хийсэн хэрэглэгч"
-                  />
-                </div>
-                <TextInput id="deleteUser" placeholder="Засвар хийсэн хэрэглэгч" {...register("deleteUser")}/>
               </div>
             </div>
             <div className="flex gap-4">

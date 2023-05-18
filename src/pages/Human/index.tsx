@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Branch, Employee, Person, PersonPhone, Position, ServiceEmployee, ServiceOrder } from "../API";
+import { Branch, Employee, Person, PersonPhone, Position, ServiceEmployee, ServiceOrder, ServiceOrderProduct } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -56,7 +56,12 @@ const Human = () => {
   const { data: branchData } = useQuery("getBranch", getBranch);
   const { data: phoneData } = useQuery("getPhone", getPhone);
   const { data: positionData }  = useQuery("getPosition", getPosition);
+  const { data: serviceOrderProduct } = useQuery("getOrderProduct", getOrderProduct);
 
+  async function getOrderProduct() {
+    const response = await axiosClient.get("/service-order-product");
+    return response.data as ServiceOrderProduct[];
+  }
   async function getPosition() {
     const response = await axiosClient.get("/positions");
     return response.data as Position[];
@@ -317,14 +322,12 @@ const Human = () => {
          <Card>
           <div className="md:flex gap-4">
             <a href="/details" className="text-1xl">
-              <Button className="bg-orange-500">Ашигласан бүтээгдэхүүний бүртгэл</Button>
+              <Button className="bg-orange-500">Үйлчилгээний дэлгэрэнгүй</Button>
             </a>
           </div>
             <Table>
               <Table.Head className="uppercase">
-                <Table.HeadCell>Сэлбэг/Үйлчилгээ</Table.HeadCell>
-                <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
-                <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
+                <Table.HeadCell>Үйлчилгээ</Table.HeadCell>
                 <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                 <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
                 <Table.HeadCell>Механикч</Table.HeadCell>
@@ -332,7 +335,17 @@ const Human = () => {
                 <Table.HeadCell>Нийт</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                
+                {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
+                 <Table.Row key={index}>
+                   <Table.Cell>{serviceOrderProduct.service.serviceName}</Table.Cell>
+                   <Table.Cell>{serviceOrderProduct.productCnt}</Table.Cell>
+                   <Table.Cell>{serviceOrderProduct.service.price}</Table.Cell>
+                   <Table.Cell>{serviceOrderProduct.serviceEmployee.employeeId}</Table.Cell>
+                   <Table.Cell>{serviceOrderProduct.serviceOrder.payPrice}</Table.Cell>
+                   <Table.Cell></Table.Cell>
+                   <Table.Cell></Table.Cell>
+                 </Table.Row>
+                ))}
               </Table.Body>
             </Table>
          </Card>
