@@ -284,7 +284,6 @@ const Human = () => {
                           <Table.Cell>{serviceOrder.personVehicle.vehicleNumber}</Table.Cell>
                           <Table.Cell>{serviceOrder.vehicle.vehicleName}</Table.Cell>
                           <Table.Cell>{serviceOrder.serviceDate}</Table.Cell>
-                          
                         </Table.Row>
                       ))}
                   </Table.Body>
@@ -315,7 +314,28 @@ const Human = () => {
           </div>
         </div>
         <div className="md:p-4">
-          сэлбэг/үйлчилгээний тоо ширхэг
+         <Card>
+          <div className="md:flex gap-4">
+            <a href="/details" className="text-1xl">
+              <Button className="bg-orange-500">Ашигласан бүтээгдэхүүний бүртгэл</Button>
+            </a>
+          </div>
+            <Table>
+              <Table.Head className="uppercase">
+                <Table.HeadCell>Сэлбэг/Үйлчилгээ</Table.HeadCell>
+                <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
+                <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
+                <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                <Table.HeadCell>Нэгжийн үнэ</Table.HeadCell>
+                <Table.HeadCell>Механикч</Table.HeadCell>
+                <Table.HeadCell>Хямдрал</Table.HeadCell>
+                <Table.HeadCell>Нийт</Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                
+              </Table.Body>
+            </Table>
+         </Card>
         </div>
       </div>
     </Layout>

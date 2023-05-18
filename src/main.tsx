@@ -48,6 +48,7 @@ import Service_Employee from "./pages/Human/ServiceEmployee";
 import Salbar from "./pages/Human/Salbar";
 import Position_Data from "./pages/Human/Postition";
 import VilchilgeeniTsag from "./pages/Customer/Service";
+import Details from "./pages/Human/Details";
 
 
 const router = createBrowserRouter([
@@ -55,7 +56,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  
+  {
+    path: "/details", 
+    element: <Details/>
+  },
   {
     path: "/position", 
     element: <Position_Data/>
