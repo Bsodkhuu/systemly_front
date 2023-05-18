@@ -26,7 +26,7 @@ function TsagZakhialakh({
     ugugdul.endTime = selectedTime.toString();
     ugugdul.startTime = selectedTime.toString();
     const fileResponse = await axiosClient.post(
-      "http://localhost:3000/service_appointments",
+      "/service_appointments",
       ugugdul
     );
     return fileResponse.data;
@@ -108,6 +108,7 @@ function TsagZakhialakh({
           )}
         </Select>
       </Form.Item>
+
       <Form.Item
         label="Машин дугаар "
         name="personVehicle"
@@ -117,11 +118,11 @@ function TsagZakhialakh({
             message: "Машиний дугаар сонгоно уу",
           },
         ]}>
-        <Select id="vehicleId" placeholder="Машины нэр">
+        <Select id="personVehicleId" placeholder="Машины дугаар">
           {vehicleData?.map(
             (i: {
               id: string | number | readonly string[] | undefined;
-              vehicleName:
+              vehicleNumber:
                 | string
                 | number
                 | boolean
@@ -134,8 +135,8 @@ function TsagZakhialakh({
                 | null
                 | undefined;
             }) => (
-              <option key={`vehicle_${i.id}`} value={i.id}>
-                {i.vehicleName}
+              <option key={`personVehicle_${i.id}`} value={i.id}>
+                {i.vehicleNumber}
               </option>
             )
           )}
@@ -167,7 +168,15 @@ function TsagZakhialakh({
           className="h-7 rounded-md border-1 border-gray-500"
         />
       </Form.Item>
-      <Form.Item label="Үйлчилгээний төрөл" name="service">
+      <Form.Item
+        label="Үйлчилгээний нэр"
+        name="service"
+        rules={[
+          {
+            required: true,
+            message: "Үйлчилгээ сонгоно уу",
+          },
+        ]}>
         <Select id="serviceId" placeholder="Үйлчилгээний нэр">
           {serviceData?.map(
             (i: {

@@ -22,6 +22,7 @@ function ZagvarBurtgel(
         <div>Хэрэглэгчийн код</div>
         <div>Машиний дугаар</div>
         <div>Утас</div>
+        
         <div>Цаг</div>
         <div>Үйлчилгээ төрөл</div>
         <div>Mechanic</div>
@@ -31,6 +32,7 @@ function ZagvarBurtgel(
         <div>{data?.khereglegchiinKod}</div>
         <div>{data?.mashinDugaar}</div>
         <div>{data?.utas}</div>
+      
         <div>{data?.avsantsag}</div>
         <div>{data?.uilchilgeeniiTurul}</div>
         <div>{data?.mechanic}</div>

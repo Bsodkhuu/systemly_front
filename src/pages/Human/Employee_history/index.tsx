@@ -28,7 +28,6 @@ const EmployeeHistory = () => {
               <Table.HeadCell>Овог</Table.HeadCell>
               <Table.HeadCell>Нэр</Table.HeadCell>
               <Table.HeadCell>Байгууллага</Table.HeadCell>
-              <Table.HeadCell>Ажилтны код</Table.HeadCell>
               <Table.HeadCell>Мэргэжил</Table.HeadCell>
               <Table.HeadCell>Ажилд орсон огноо</Table.HeadCell>
               <Table.HeadCell>Ажлаас гарсан огноо</Table.HeadCell>
@@ -38,13 +37,13 @@ const EmployeeHistory = () => {
               {employee?.map((employee: Employee, index: number) => (
                 <Table.Row key={index}>
                         <Table.Cell>{employee.filePath}</Table.Cell>
-                        <Table.Cell>{employee.person.firstName}</Table.Cell>
-                        <Table.Cell>{employee.person.lastName}</Table.Cell>
+                        <Table.Cell>{employee.firstName}</Table.Cell>
+                        <Table.Cell>{employee.lastName}</Table.Cell>
                         <Table.Cell>{employee.branch.branchName}</Table.Cell>
-                        <Table.Cell>{employee.person.customerCode}</Table.Cell>
-                        <Table.Cell>{employee.positionId}</Table.Cell>
+                        <Table.Cell>{employee.position.positionName}</Table.Cell>
                         <Table.Cell>{employee.jobStart}</Table.Cell>
-                        <Table.Cell>{employee.jobEnd}</Table.Cell>
+                        <Table.Cell></Table.Cell>
+                        {/* <Table.Cell>{employee.jobEnd}</Table.Cell> */}
                         <Table.Cell className="space-2xl">
                          <FontAwesomeIcon icon={faPenToSquare}/>
                         </Table.Cell>
