@@ -311,11 +311,14 @@ const Customer = () => {
                   </Button>
                 </div>
                 <div className="flex justify-between space-x-2">
-                  <div className="">
+                    <a href="/phone">
+                        <Button className="bg-orange-500">
+                         <p className="text-[11px]">Утасны дугаар нэмэх</p>
+                        </Button>
+                    </a>
                     <Button className="bg-orange-500" onClick={openModal}>
                       <p className="text-[11px]">Харилцагч нэмэх</p>
                     </Button>
-                  </div>
                   <div>
                     <a href="/transport">
                       <Button className="bg-orange-500">
@@ -346,7 +349,7 @@ const Customer = () => {
                       <Table.HeadCell>Овог</Table.HeadCell>
                       <Table.HeadCell>Нэр</Table.HeadCell>
                       <Table.HeadCell>Утасны дугаар</Table.HeadCell>
-                      <Table.HeadCell>Хэрэглэгчийн код</Table.HeadCell>
+                      
                     </Table.Head>
                     <Table.Body>
                       {customerList?.map(
@@ -357,7 +360,7 @@ const Customer = () => {
                             <Table.Cell>
                               {customerList.personPhone.phone}
                             </Table.Cell>
-                            <Table.Cell>{customerList.customerCode}</Table.Cell>
+                            
                           </Table.Row>
                         )
                       )}

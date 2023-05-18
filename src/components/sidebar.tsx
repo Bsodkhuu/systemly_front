@@ -97,16 +97,7 @@ const SidebarComponent = () => {
             </Panel>
             <Panel header="Засвар Борлуулалт" key="3">
               <div className="divide-y space-y-3 ">
-                <a
-                  href="/profile"
-                  className="flex h-8 w-full justify-start items-center">
-                  {" "}
-                  <div className="text-xl flex justify-center  w-12">
-                    {" "}
-                    <AiOutlineUserAdd />{" "}
-                  </div>
-                  Харилцагчийн бүртгэл
-                </a>
+               
                 <a
                   href="/customer"
                   className="flex h-8 w-full justify-start items-center">
@@ -454,16 +445,7 @@ const SidebarComponent = () => {
           </Panel>
           <Panel header="Засвар Борлуулалт" key="3">
             <div className="divide-y space-y-3 ">
-              <a
-                href="/profile"
-                className="flex h-8 w-full justify-start items-center">
-                {" "}
-                <div className="text-xl flex justify-center  w-12">
-                  {" "}
-                  <AiOutlineUserAdd />{" "}
-                </div>
-                Харилцагчийн бүртгэл
-              </a>
+              
               <a
                 href="/customer"
                 className="flex h-8 w-full justify-start items-center">

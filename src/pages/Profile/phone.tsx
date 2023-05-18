@@ -19,7 +19,7 @@ const Phone = () => {
 
     async function onSubmit(values: PersonPhone) {
         await mutateAsync(values);
-        navigate("/profile");
+        navigate("/customer");
     }
     return (
         <Layout>
