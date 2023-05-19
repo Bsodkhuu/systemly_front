@@ -77,7 +77,7 @@ const Sale = () => {
                     <Table.HeadCell>Материал</Table.HeadCell>
                     <Table.HeadCell>Хэмжих нэгж</Table.HeadCell>
                     <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
-                    <Table.HeadCell>Дараагийн үйлчилгээний хуваарь</Table.HeadCell>
+                    <Table.HeadCell>Үйлчилгээний хуваарь</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (

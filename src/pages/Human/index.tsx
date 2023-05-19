@@ -391,7 +391,7 @@ const Human = () => {
                 {serviceEmployee?.map((serviceEmployee: ServiceEmployee, index: number) => (
                   <Table.Row key={index}> 
                   <Table.Cell>{serviceEmployee.employeeId}</Table.Cell>
-                  <Table.Cell>{serviceEmployee.serviceOrder.paidAmount}</Table.Cell>
+                  <Table.Cell>{serviceEmployee.serviceOrder.payPrice}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>

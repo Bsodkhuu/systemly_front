@@ -209,7 +209,7 @@ const Zahialga = () => {
                 <Table>
                   <Table.Head className="uppercase">
                    <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
-                   <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
+                   <Table.HeadCell>Партын дугаар</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний Тайлбар</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>

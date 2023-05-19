@@ -18,7 +18,7 @@ import {
   MdRememberMe,
 } from "react-icons/md";
 import { CgUserList } from "react-icons/cg";
-import { RiFolderSettingsFill } from "react-icons/ri";
+import { RiFolderSettingsFill, RiProductHuntLine } from "react-icons/ri";
 import { TbListDetails, TbBrandBooking, TbZoomMoney } from "react-icons/tb";
 import { HiOutlineCollection } from "react-icons/hi";
 import { CiViewList, CiMenuFries } from "react-icons/ci";
@@ -223,6 +223,16 @@ const SidebarComponent = () => {
                   Захиалгууд
                 </a>
                 <a
+                  href="/product"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-cente  w-12">
+                    {" "}
+                    <RiProductHuntLine /> {" "}
+                  </div>
+                  Бүтээгдэхүүн 
+                </a>
+                <a
                   href="#"
                   className="flex h-8 w-full justify-start items-center">
                   {" "}
@@ -274,15 +284,7 @@ const SidebarComponent = () => {
             </Panel>
             <Panel header="CRM" key="10">
               <div className="divide-y space-y-3">
-                <a
-                  href="#"
-                  className="flex h-8 w-full justify-start items-center">
-                  <div className="text-xl flex justify-cente  w-12">
-                    {" "}
-                    <GrUserWorker />{" "}
-                  </div>{" "}
-                  Ажилчид
-                </a>
+                
                 <a
                   href="#"
                   className="flex h-8 w-full justify-start items-center">
@@ -572,6 +574,16 @@ const SidebarComponent = () => {
                 Захиалгууд
               </a>
               <a
+                  href="/product"
+                  className="flex h-8 w-full justify-start items-center">
+                  {" "}
+                  <div className="text-xl flex justify-cente  w-12">
+                    {" "}
+                    <RiProductHuntLine /> {" "}
+                  </div>
+                  Бүтээгдэхүүн 
+                </a>
+              <a
                 href="#"
                 className="flex h-8 w-full justify-start items-center">
                 {" "}
@@ -623,15 +635,7 @@ const SidebarComponent = () => {
           </Panel>
           <Panel header="CRM" key="10">
             <div className="divide-y space-y-3">
-              <a
-                href="#"
-                className="flex h-8 w-full justify-start items-center">
-                <div className="text-xl flex justify-cente  w-12">
-                  {" "}
-                  <GrUserWorker />{" "}
-                </div>{" "}
-                Ажилчид
-              </a>
+             
               <a
                 href="#"
                 className="flex h-8 w-full justify-start items-center">

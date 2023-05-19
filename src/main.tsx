@@ -41,7 +41,6 @@ import Profile from "./pages/Profile";
 import Amralt from "./pages/Settings/Holiday";
 import Phone from "./pages/Profile/phone";
 import VehiclePerson from "./pages/Customer/PersonVehicle";
-import SaleRegister from "./pages/Customer/Sale/service";
 import Service_Order from "./pages/Human/ServiceOrder";
 import BranchAdd from "./pages/Suld/crm/Branch";
 import Service_Employee from "./pages/Human/ServiceEmployee";
@@ -49,12 +48,16 @@ import Salbar from "./pages/Human/Salbar";
 import Position_Data from "./pages/Human/Postition";
 import VilchilgeeniTsag from "./pages/Customer/Service";
 import Details from "./pages/Human/Details";
-
+import Product from "./pages/Suld/order/Product";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/product",
+    element: <Product/>
   },
   {
     path: "/details", 
@@ -95,10 +98,6 @@ const router = createBrowserRouter([
   {
     path: "/inquiry",
     element: <Inquiry />,
-  },
-  {
-    path:"/saleRegister", 
-    element: <SaleRegister/>
   },
   {
     path:"/createRole", 
