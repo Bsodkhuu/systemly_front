@@ -165,9 +165,9 @@ const Service_Order = () => {
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="paidAmount" value="Төлсөн дүн"/>
+                                    <Label htmlFor="paidAmount" value="Хямдрал"/>
                                 </div>
-                                <TextInput type="text" id="paidAmount" placeholder="Төлсөн дүн" required {...register("paidAmount")}/>
+                                <TextInput type="text" id="paidAmount" placeholder="Хямдрал" required {...register("paidAmount")}/>
                                 
                             </div>
                             <div className="w-1/2">

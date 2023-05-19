@@ -341,9 +341,8 @@ const Human = () => {
                    <Table.Cell>{serviceOrderProduct.productCnt}</Table.Cell>
                    <Table.Cell>{serviceOrderProduct.service.price}</Table.Cell>
                    <Table.Cell>{serviceOrderProduct.serviceEmployee.employeeId}</Table.Cell>
-                   <Table.Cell>{serviceOrderProduct.serviceOrder.payPrice}</Table.Cell>
-                   <Table.Cell></Table.Cell>
-                   <Table.Cell></Table.Cell>
+                   <Table.Cell>{serviceOrderProduct.serviceOrder.paidAmount}</Table.Cell>
+                   <Table.Cell>{serviceOrderProduct.productCnt * serviceOrderProduct.service.price * (100 - serviceOrderProduct.serviceOrder.paidAmount / 100)}</Table.Cell>
                  </Table.Row>
                 ))}
               </Table.Body>

@@ -170,6 +170,18 @@ import { Button, Label, Select, TextInput } from "flowbite-react";
                                     ))}
                                 </Select>
                             </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="serviceOrderId" value="Хямдрал"/>
+                                </div>
+                                <Select id="serviceOrderId" placeholder="Хямдрал" {...register("serviceOrderId")}>
+                                    {serviceOrderData?.map((i) => (
+                                        <option key={`serviceOrder_${i.id}`} value={i.id}>
+                                            {i.paidAmount}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </div>
                         </div>
 
                         <div className="flex gap-4">
