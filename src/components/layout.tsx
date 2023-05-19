@@ -8,21 +8,8 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export interface Notifications{
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  medeelel: string;
-  postId: string
-}
 const Layout: FC<Props> = ({ children }) => {
 
-  const { data: notification} = useQuery("getNotifications", getNotifications);
-
-  async function getNotifications() {
-    const response = await axiosClient.get("/notifications");
-    return response.data as Notifications[];
-  }
   return (
     <div className="h-screen">
       <Navbar fluid={true} rounded={true} className="h-16 flex-row justify-center items-center" >
@@ -32,7 +19,8 @@ const Layout: FC<Props> = ({ children }) => {
             alt="Flowbite Logo" src="https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/09/New-nexus-logo-01.svg" 
           />
         </Navbar.Brand> 
-        <div className="md:block hidden" >
+
+        <div className="md:block hidden" >        
           <Dropdown
             arrowIcon={false}
             inline={true}

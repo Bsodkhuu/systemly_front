@@ -203,7 +203,6 @@ const Salbar = () => {
                         <div className="p-2">
                             <Card className="md:w-full">
                             <h5 className="text-1xl">Google Map</h5>
-                            
                             </Card>
                         </div>
                         </div>

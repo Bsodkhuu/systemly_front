@@ -15,18 +15,13 @@ import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import { Description, InquiryDetail } from "../../API";
+import { Description } from "../../API";
 
 const Inquiry = () => {
   const { register, handleSubmit } = useForm<Description>();
   
   const { mutateAsync } = useMutation("descriptions", descriptions);
-  const { data: inquiryDetail } = useQuery("getInquiryDetail", getInquiryDetail);
-
-  async function getInquiryDetail(){
-    const response = await axiosClient.get("/inquiry_details");
-    return response.data as InquiryDetail[];
-  }
+  
   
   async function descriptions(values: Description) {
     const response = await axiosClient.post("/descriptions", values);
@@ -131,17 +126,7 @@ const Inquiry = () => {
                       <Table.HeadCell>Үйлдэл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
-                      {inquiryDetail?.map((inquiryDetail: InquiryDetail, index: number)=>(
-                         <Table.Row key={index}>
-                         <Table.Cell>{inquiryDetail.partNumber}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.quantity}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.netPrice}</Table.Cell>
-                         <Table.Cell>{inquiryDetail.currency}</Table.Cell>
-                         <Table.Cell className="text-1xl">
-                           <FontAwesomeIcon icon={faCartShopping} />
-                         </Table.Cell>
-                       </Table.Row>
-                      ))}
+                      
                     </Table.Body>
                   </Table>
                 </Card>
@@ -149,10 +134,6 @@ const Inquiry = () => {
             </div>
           </div>
         </div>
-        {/* <div className="col-span">
-          <Cart />
-        </div> */}
-      
     </Layout>
   );
 };

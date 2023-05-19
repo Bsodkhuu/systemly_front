@@ -204,7 +204,6 @@ const Zahialga = () => {
               </Carousel>
             </div>
 
-            
             <div className="p-4">
               <Card>
                 <Table>

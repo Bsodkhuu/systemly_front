@@ -102,17 +102,13 @@ const Sale = () => {
               <h1 className="text-1xl">Засварын хуудас</h1>
               <ListGroup>
               {serviceOrderProduct?.map((serviceOrderProduct: ServiceOrderProduct, index: number) => (
-                  <ListGroup.Item>
-                    Ажлын хөлс: {serviceOrderProduct.serviceOrder.paidAmount}
+                  <ListGroup.Item key={index}>
+                    Ажлын хөлс: {serviceOrderProduct.serviceOrder.payPrice}
                     <ListGroup.Item></ListGroup.Item>
                     <ListGroup.Item>
                       Материал: {serviceOrderProduct.product.productName}
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт: 
-                      {/* Нийт: {serviceHistory.netPrice * serviceHistory.quantity * (100 -serviceHistory.discount / 100)} */}
-                      {/* {serviceHistory.quantity *
-                              serviceHistory.serive.price *
-                              (100 - serviceHistory.discount / 100)} */}
+                      Нийт: {serviceOrderProduct.productCnt * serviceOrderProduct.service.price * (100 - serviceOrderProduct.serviceOrder.paidAmount / 100)}
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Төлбөр төлөх хэлбэр

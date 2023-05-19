@@ -8,10 +8,7 @@ const Order = () => {
         <div className="md:grid md:grid-cols-12 space-y-4 md:space-y-0 md:space-x-4 ">
           <div className="md:col-span-2  bg-white rounded-md shadow-xl" >
             <div className="p-2">Захиалга хийх </div>
-            <div className=" flex p-2 justify-between space-x-4">
-              <TextInput id="search" type="search" placeholder="Хайх" className="w-full"/>
-              <Button className="">Хайх</Button>
-            </div>
+            
           <div className="flex p-2  space-x-4  justify-between">
             <div className="w-full">
               <a href="/zahialga"  >

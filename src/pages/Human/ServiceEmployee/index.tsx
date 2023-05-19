@@ -52,7 +52,7 @@ const Service_Employee = () =>  {
                                 <Select id="serviceOrderId" placeholder="Төлсөн дүн" required {...register("serviceOrderId")}>
                                     {serviceOrderData?.map((i) => (
                                         <option key={`serviceOrder_${i.id}`} value={i.id}>
-                                            {i.paidAmount}
+                                            {i.payPrice}
                                         </option>
                                     ))}
                                 </Select>
