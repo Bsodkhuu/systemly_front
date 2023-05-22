@@ -12,10 +12,10 @@ import {
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faCar, faCarSide, faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Online,  Product, ProductCategory, ProductSubCategory, Supplier } from "../API";
+import { Online,  Product, ProductCategory, ProductSubCategory, VehicleCategory } from "../API";
 
 interface ModalProps{
   showModal: boolean;
@@ -49,13 +49,6 @@ const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
 const Zahialga = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const {data: supplier} = useQuery("getSupplier", getSupplier);
-
-  async function getSupplier() {
-    const response = await axiosClient.get("/suppliers");
-    return response.data as Supplier[];
-  }
-
   const {data: productCategory} = useQuery("getProductCategory", getProductCategory);
 
   async function getProductCategory() {
@@ -68,6 +61,13 @@ const Zahialga = () => {
   async function getProductSub() {
     const response = await axiosClient.get("/product_subcategories");
     return response.data as ProductSubCategory[];
+  }
+
+  const { data: vehicleCategory } = useQuery("getVehicleCategory", getVehicleCategory);
+
+  async function getVehicleCategory() {
+    const response = await axiosClient.get("/vehicle_categories");
+    return response.data as VehicleCategory[];
   }
   //product=> сэлбэгийн жагсаалт юм байнаа
   const { data: product } = useQuery("getProduct", getProduct);
@@ -102,13 +102,15 @@ const Zahialga = () => {
   const reviews = [
     {
       id: 1,
-      image: "https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/09/30/obo_customs_400x141.png",
-      link: "",
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/bilsentin.jpg",
     },
     {
       id: 2,
-      link: "",
-      image: "https://nexusautomn.s3.amazonaws.com/media/order/uploads/2022/02/13/supply-solution.png",
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/bosh.jpg",
+    },
+    {
+      id: 3,
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2023/04/brembo.jpg",
     },
   ];
   return (
@@ -119,27 +121,14 @@ const Zahialga = () => {
             <div className="flex justify-between mb-4">
               <h5 className="text-1xl">Захиалга</h5>
               <div className="flex gap-4">
-                
                 <div className="w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="brand" value="Брэнд" />
+                    <FontAwesomeIcon icon={faCarSide}/>
                   </div>
-                  <Select>
-                   {supplier?.map((i) => (
-                    <option value={i.id}>
-                      {i.supplierList}
-                    </option>
-                   ))}
-                  </Select>
-                </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    <Label htmlFor="category" value="Ангилал" />
-                  </div>
-                  <Select>
-                    {productCategory?.map((i) => (
+                  <Select placeholder="Машины ангилал">
+                    {vehicleCategory?.map((i) => (
                       <option value={i.id}>
-                        {i.en}
+                        {i.mn}
                       </option>
                     ))}
                   </Select>
@@ -160,7 +149,7 @@ const Zahialga = () => {
               </div>
             </div>
             {/* category, sub category */}
-            <div className="w-48">
+            {/* <div className="w-48">
               <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
@@ -191,15 +180,11 @@ const Zahialga = () => {
                   </Select>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
               <Carousel>
                 {reviews.map((review) => (
-                  <img
-                    className="d-block w-50"
-                    src={review.image}
-                    alt={review.link}
-                  />
+                  <img className="d-block w-50" src={review.image}/>
                 ))}
               </Carousel>
             </div>
@@ -208,7 +193,6 @@ const Zahialga = () => {
               <Card>
                 <Table>
                   <Table.Head className="uppercase">
-                   
                    <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
                    <Table.HeadCell>Үйлдвэрлэгчийн партын дугаар</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
