@@ -112,6 +112,103 @@ const Zahialga = () => {
       id: 3,
       image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2023/04/brembo.jpg",
     },
+    {
+      id: 4, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/clarios.jpg",
+    },
+    {
+      id: 4, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/clarios.jpg",
+    },
+    {
+      id: 5, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/01/Continental.jpg",
+    },
+    {
+      id: 6, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/Delphi.jpg",
+    },
+    {
+      id: 7, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/denso.jpg",
+    },
+    {
+      id: 8, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/dr1v.jpg)",
+    },
+    {
+      id: 9, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/elring.jpg",
+    },
+    {
+      id: 10, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/exide.jpg",
+    },
+    {
+      id: 11, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/08/hc-cargo.jpg",
+    },
+    {
+      id: 12, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/hella.jpg",
+    },
+    {
+      id: 13, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/knorr.jpg",
+    },
+    {
+      id: 14, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/kyb.jpg",
+    },
+    {
+      id: 15, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/mahle.jpg",
+    },
+    {
+      id: 16, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/05/mann.jpg",
+    },
+    {
+      id: 17, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2023/04/Niterra.jpg",
+    },
+    {
+      id: 18, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/03/NRF.jpg",
+    },
+    {
+      id: 19, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/03/NTN.jpg",
+    },
+    {
+      id: 20, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/osram.jpg",
+    },
+    {
+      id: 21, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/Philips.jpg",
+    },
+    {
+      id: 22, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/schaeffler.jpg",
+    },
+    {
+      id: 23, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/skf.jpg",
+    },
+    {
+      id: 24, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/04/Totalenergies.jpg",
+    },
+    {
+      id: 25, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/valeo.jpg",
+    },
+    {
+      id: 26, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/zf.jpg",
+    },
+
   ];
   return (
     <Layout>
