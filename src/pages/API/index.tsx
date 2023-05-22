@@ -77,6 +77,7 @@ export interface Prodmetric {
   createdAt: string;
   updatedAt: string;
   typeId: string;
+  type: number;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
@@ -130,6 +131,8 @@ export interface Product{
   deleteDate: string;
   deleteUser: string;
   confirmFlag: string;
+  quantity: number;
+  historyId: string;
   priceMain: number;
   currency: string;
   nameEng: string;//vehicle name english

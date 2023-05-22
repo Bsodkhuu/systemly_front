@@ -48,7 +48,10 @@ import Salbar from "./pages/Human/Salbar";
 import Position_Data from "./pages/Human/Postition";
 import VilchilgeeniTsag from "./pages/Customer/Service";
 import Details from "./pages/Human/Details";
-import Product from "./pages/Suld/order/Product";
+import ProductAdd from "./pages/Suld/order/Product";
+import VehicleUsageAdd from "./pages/Suld/order/VehicleUsage";
+import ProdmetricAdd from "./pages/Suld/order/Prodmetric";
+import Fitting from "./pages/Suld/order/Fitting";
 
 const router = createBrowserRouter([
   {
@@ -56,8 +59,20 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: "/fitting", 
+    element: <Fitting/>
+  },
+  {
+    path: "/vehicleUsage", 
+    element: <VehicleUsageAdd/>
+  },
+  {
+    path: "/prodmetric", 
+    element: <ProdmetricAdd/>
+  },
+  {
     path: "/product",
-    element: <Product/>
+    element: <ProductAdd/>
   },
   {
     path: "/details", 
