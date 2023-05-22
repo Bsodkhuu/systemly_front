@@ -52,11 +52,21 @@ import ProductAdd from "./pages/Suld/order/Product";
 import VehicleUsageAdd from "./pages/Suld/order/VehicleUsage";
 import ProdmetricAdd from "./pages/Suld/order/Prodmetric";
 import Fitting from "./pages/Suld/order/Fitting";
+import VehicleCategoryAdd from "./pages/Suld/order/VehicleCategory";
+import ProductCategoryAdd from "./pages/Suld/order/ProductCategory";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/vehiceCategory", 
+    element: <VehicleCategoryAdd/>
+  },
+  {
+    path: "/productCategory", 
+    element: <ProductCategoryAdd/>
   },
   {
     path: "/fitting", 

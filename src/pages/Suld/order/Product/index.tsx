@@ -52,6 +52,8 @@ const ProductAdd = () => {
                     <div className="md:flex justify-between mb-4 space-y-3">
                         <div className="text-xl">Бүтээгдэхүүн</div>
                         <div className="md:flex gap-4">
+                            <a href="/vehiceCategory"><Button className="bg-orange-400">Машины ангилал</Button></a>
+                            <a href="/productCategory"><Button className="bg-orange-400">Бүтээгдэхүүний ангилал</Button></a>
                             <a href="/fitting"><Button className="bg-orange-400">Машины аль хэсэгт тохирох вэ</Button></a>
                             <a href="/vehicleUsage"><Button className="bg-orange-400">Машин төрөл</Button></a>
                             <a href="/prodmetric"><Button className="bg-orange-400">Бүтээгдэхүүний хэмжих нэгж</Button></a>
