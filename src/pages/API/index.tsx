@@ -77,7 +77,6 @@ export interface Prodmetric {
   createdAt: string;
   updatedAt: string;
   typeId: string;
-  type: number;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;

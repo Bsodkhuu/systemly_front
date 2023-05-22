@@ -6,17 +6,14 @@ import { Product } from "../../../API";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { axiosClient } from "../../../../config/axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagicWandSparkles, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const ProductAdd = () => {
     const navigate = useNavigate();
-
     const { register, handleSubmit } = useForm<Product>();
     const { mutateAsync } = useMutation("create", create);
     
     async function create(values: Product) {
-        const response = await axiosClient.post("/", values);
+        const response = await axiosClient.post("/products", values);
         return response.data;
     }
     async function onSubmit(values: Product) {
@@ -30,7 +27,7 @@ const ProductAdd = () => {
                     <div className="md:flex justify-between mb-4 space-y-3">
                         <div className="text-xl">Бүтээгдэхүүн</div>
                         <div className="md:flex gap-4">
-                            <a href="/fitting"><Button className="bg-orange-400">Fitting Position</Button></a>
+                            <a href="/fitting"><Button className="bg-orange-400">Машины аль хэсэгт тохирох вэ</Button></a>
                             <a href="/vehicleUsage"><Button className="bg-orange-400">Машин төрөл</Button></a>
                             <a href="/prodmetric"><Button className="bg-orange-400">Бүтээгдэхүүний хэмжих нэгж</Button></a>
                         </div>
@@ -55,6 +52,12 @@ const ProductAdd = () => {
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="vehicleId" value="Vehicle type"/>
+                                </div>
+                                <Select id="vehicleId" placeholder="Vehicle type" {...register("vehicleId")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="nameEng" value="Vehicle type"/>
                                 </div>
                                 <Select id="vehicleId" placeholder="Vehicle type" {...register("vehicleId")}/>
                             </div>
@@ -168,6 +171,10 @@ const ProductAdd = () => {
                                 <TextInput type="date" id="deleteDate" placeholder="deleteDate" {...register("deleteDate")}/>
                             </div>
                         </div>
+                        <div className="flex gap-4">
+                          <Button className="bg-gray-400">Буцах</Button>
+                          <Button className="bg-orange-400" onClick={handleSubmit(onSubmit)}>Хадгалах</Button>
+                       </div>
                     </form>
                 </div>
             </div>
