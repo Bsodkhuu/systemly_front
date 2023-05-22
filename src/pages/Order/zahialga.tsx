@@ -206,7 +206,7 @@ const Zahialga = () => {
     },
     {
       id: 26, 
-      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/zf.jpg",
+      image: "",
     },
 
   ];

@@ -38,6 +38,7 @@ export interface VehicleSubCategory {
   en: string;
   mn: string;
   vehicleCategoryId?: string;
+  vehicleCategory: VehicleCategory;
   createdAt: string;
   updatedAt: string;
 }

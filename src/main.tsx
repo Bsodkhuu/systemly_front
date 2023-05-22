@@ -54,11 +54,21 @@ import ProdmetricAdd from "./pages/Suld/order/Prodmetric";
 import Fitting from "./pages/Suld/order/Fitting";
 import VehicleCategoryAdd from "./pages/Suld/order/VehicleCategory";
 import ProductCategoryAdd from "./pages/Suld/order/ProductCategory";
+import Category from "./pages/Suld/order/Category";
+import VehicleSub from "./pages/Suld/order/VehicleCategory/VehicleSub";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/vehicleSub", 
+    element: <VehicleSub/>
+  },
+  {
+    path: "/category", 
+    element: <Category/>
   },
   {
     path: "/vehiceCategory", 
