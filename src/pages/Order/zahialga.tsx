@@ -208,17 +208,18 @@ const Zahialga = () => {
               <Card>
                 <Table>
                   <Table.Head className="uppercase">
+                   
                    <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
-                   <Table.HeadCell>Партын дугаар</Table.HeadCell>
+                   <Table.HeadCell>Үйлдвэрлэгчийн партын дугаар</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний Тайлбар</Table.HeadCell>
                    <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
+                   <Table.HeadCell>Нэгжийн утга</Table.HeadCell>
                    <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                    <Table.HeadCell>Валют</Table.HeadCell>
-                   <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
-                   <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
-                   <Table.HeadCell>Тээврийн хэрэгслийн тохирох хэсэг</Table.HeadCell>
-                   <Table.HeadCell>Тайлбар</Table.HeadCell>
+                   <Table.HeadCell>Машины төрөл</Table.HeadCell>
+                   <Table.HeadCell>Fitting Position</Table.HeadCell>
+                   <Table.HeadCell>Fitting Position тайлбар</Table.HeadCell>
                    <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                    <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
@@ -230,19 +231,21 @@ const Zahialga = () => {
                         <Table.Cell>{product.productName}</Table.Cell>
                         <Table.Cell>{product.productDescription}</Table.Cell>
                         <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
+                        <Table.Cell>{product.prodmetricType}</Table.Cell>
                         <Table.Cell>{product.priceMain}</Table.Cell>
                         <Table.Cell>{product.currency}</Table.Cell>
                         <Table.Cell>{product.vehicle.vehicleType}</Table.Cell>
-                        <Table.Cell>{product.nameEng}</Table.Cell>
                         <Table.Cell>{product.productFits.positionId}</Table.Cell>
                         <Table.Cell>{product.productFits.description}</Table.Cell>
                         <Table.Cell>
                           <TextInput onChange={handleChange} value={inputText}/>
                         </Table.Cell>
                         <Table.Cell>
-                          <Button className="bg-orange-500" onClick={handleClick}>
+                        <a href="/messej">
+                          <Button className="bg-orange-500">
                           <FontAwesomeIcon icon={faShoppingCart}/>
-                          </Button>
+                         </Button>
+                        </a>
                         </Table.Cell>
                       </Table.Row>
                     ))}
@@ -256,7 +259,7 @@ const Zahialga = () => {
           <div className="p-2">
             <Card className="max-w-sm">
               <div className="w-50">
-                <a href="/cart">Сагсанд нэмэгдсэн бүтээгдэхүүн </a>
+                <h4>Сагсанд нэмэгдсэн бүтээгдэхүүн</h4>
                 <ListGroup>
                   {product?.map((product: Product, index:number) => (
                     <ListGroup.Item key={index}>

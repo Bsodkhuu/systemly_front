@@ -134,7 +134,7 @@ export interface Product{
   historyId: string;
   priceMain: number;
   currency: string;
-  nameEng: string;//vehicle name english
+  prodmetricType: number;
   prodmetric: Prodmetric; 
   prodmetricId?: string;
   vehicle: VehicleUsage;

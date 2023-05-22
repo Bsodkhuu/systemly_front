@@ -21,50 +21,7 @@ const Cart = () => {
           <div className="flex justify-between mb-4">
             <h4 className="text-1xl">Сагс</h4>
           </div>
-              <Table>
-                  <Table.Head className="uppercase">
-                   <Table.HeadCell>Үйлдвэрлэгч</Table.HeadCell>
-                   <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
-                   <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
-                   <Table.HeadCell>Бүтээгдэхүүний Тайлбар</Table.HeadCell>
-                   <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
-                   <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
-                   <Table.HeadCell>Валют</Table.HeadCell>
-                   <Table.HeadCell>Тээврийн хэрэгсэл төрөл</Table.HeadCell>
-                   <Table.HeadCell>Тээврийн хэрэгслийн нэр</Table.HeadCell>
-                   <Table.HeadCell>Тээврийн хэрэгслийн тохирох хэсэг</Table.HeadCell>
-                   <Table.HeadCell>Тайлбар</Table.HeadCell>
-                   <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
-                   <Table.HeadCell>Үйлдэл</Table.HeadCell>
-                  </Table.Head>
-                  <Table.Body className="divide-y">
-                    {product?.map((product: Product, index: number) => (
-                      <Table.Row key={index}>
-                        <Table.Cell>{product.manufacturerId}</Table.Cell>
-                        <Table.Cell>{product.productCode}</Table.Cell>
-                        <Table.Cell>{product.productName}</Table.Cell>
-                        <Table.Cell>{product.productDescription}</Table.Cell>
-                        <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
-                        <Table.Cell>{product.priceMain}</Table.Cell>
-                        <Table.Cell>{product.currency}</Table.Cell>
-                        <Table.Cell>{product.vehicle.vehicleType}</Table.Cell>
-                        <Table.Cell>{product.nameEng}</Table.Cell>
-                        <Table.Cell>{product.productFits.positionId}</Table.Cell>
-                        <Table.Cell>{product.productFits.description}</Table.Cell>
-                        <Table.Cell>
-                          
-                        </Table.Cell>
-                        <Table.Cell>
-                        <a href="/messej">
-                          <Button className="bg-orange-500">
-                          <FontAwesomeIcon icon={faShoppingCart}/>
-                         </Button>
-                        </a>
-                        </Table.Cell>
-                      </Table.Row>
-                    ))}
-                  </Table.Body>
-                </Table>
+              {/*  Cart */}
         </div>
       </div>
     </Layout>

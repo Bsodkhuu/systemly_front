@@ -2,9 +2,9 @@ import React from "react";
 import Layout from "../../../../components/layout";
 import { FileInput, Label, TextInput, Select, Button} from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { Product } from "../../../API";
+import { Prodmetric, Product, ProductFits, VehicleUsage } from "../../../API";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 
 const ProductAdd = () => {
@@ -13,13 +13,38 @@ const ProductAdd = () => {
     const { mutateAsync } = useMutation("create", create);
     
     async function create(values: Product) {
-        const response = await axiosClient.post("/products", values);
+        const response = await axiosClient.post("/products", {
+            ...values, 
+            priceMain: parseFloat(values.priceMain.toString()), 
+            quantity: parseInt(values.quantity.toString()),
+            prodmetricType: parseInt(values.prodmetricType.toString())
+        });
         return response.data;
     }
     async function onSubmit(values: Product) {
         await mutateAsync(values);
         navigate("/zahialga");
     }
+
+    const { data: fitting } = useQuery("getFitting", getFitting);
+    const { data: vehicleUsages } = useQuery("getUsages", getUsages);
+    const { data: prodmetricData } = useQuery("getProdmetric", getProdmetric);
+
+    async function getFitting() {
+        const response = await axiosClient.get("/product-fits");
+        return response.data as ProductFits[];
+    }
+
+    async function getUsages() {
+        const response = await axiosClient.get("/vehicle-usages");
+        return response.data as VehicleUsage[];
+    }
+
+    async function getProdmetric() {
+        const response = await axiosClient.get("/prodmetric");
+        return response.data as Prodmetric[];
+    }
+    
     return (
         <Layout>
             <div className="p-4 bg-gray-200 md:h-screen w-full space-y-3">
@@ -44,131 +69,136 @@ const ProductAdd = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="productFitsId" value="Fitting Position"/>
                                 </div>
-                                <Select id="productFitsId" placeholder="Fitting Position" {...register("productFitsId")}/>
+                                <Select id="productFitsId" placeholder="Fitting Position" {...register("productFitsId")}>
+                                {fitting?.map((i) => (
+                                    <option key={`productFits_${i.id}`} value={i.id}>
+                                        {i.positionId}
+                                    </option>
+                                    
+                                ))}
+                                </Select>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="vehicleId" value="Vehicle type"/>
+                                    <Label htmlFor="vehicleId" value="Машины төрөл"/>
                                 </div>
-                                <Select id="vehicleId" placeholder="Vehicle type" {...register("vehicleId")}/>
+                                <Select id="vehicleId" placeholder="Машины төрөл" {...register("vehicleId")}>
+                                    {vehicleUsages?.map((i) => (
+                                        <option key={`vehicle_${i.id}`} value={i.id}>
+                                            {i.vehicleType}
+                                        </option>
+                                    ))}
+                                    </Select>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="nameEng" value="Vehicle type"/>
+                                    <Label htmlFor="prodmetricId" value="Бүтээгдэхүүний хэмжих нэгж"/>
                                 </div>
-                                <Select id="vehicleId" placeholder="Vehicle type" {...register("vehicleId")}/>
+                                <Select id="prodmetricId" placeholder="Бүтээгдэхүүний хэмжих нэгж" {...register("prodmetricId")}>
+                                    {prodmetricData?.map((i) => (
+                                        <option key={`prodmetric_${i.id}`} value={i.id}>
+                                            {i.typeId}
+                                        </option>
+                                    ))}
+                                    </Select>
                             </div>
+                            <div className="w-1/2">
+                            <div className="mb-2 block">
+                                <Label htmlFor="prodmetricType" value="Нэгжийн утга"/>
+                            </div>
+                            <TextInput type="number" id="prodmetricType" placeholder="Нэгжийн утга" {...register("prodmetricType")}/>
+                        </div>
+                    </div>
+                        <div className="flex gap-4">
                             
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="prodmetricId" value="Height 1 [mm]"/>
+                                    <Label htmlFor="productCode" value="Үйлдвэрлэгчийн парт дугаар"/>
                                 </div>
-                                <Select id="prodmetricId" placeholder="Height 1 [mm]" {...register("prodmetricId")}/>
+                                <TextInput id="productCode" placeholder="Үйлдвэрлэгчийн парт дугаар" {...register("productCode")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="manufacturerId" value="Үйлдвэрлэгч"/>
+                                </div>
+                                <TextInput id="manufacturerId" placeholder="Үйлдвэрлэгч" {...register("manufacturerId")}/>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="productName" value="Бүтээгдэхүүний нэр"/>
+                                </div>
+                                <TextInput id="productName" placeholder="Бүтээгдэхүүний нэр" {...register("productName")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="productDescription" value="Бүтээгдэхүүний тайлбар"/>
+                                </div>
+                                <TextInput id="productDescription" placeholder="Бүтээгдэхүүний тайлбар" {...register("productDescription")}/>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="priceMain" value="Үндсэн үнэ"/>
+                                </div>
+                                <TextInput id="priceMain" placeholder="Үндсэн үнэ" {...register("priceMain")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="quantity" value="Тоо ширхэг"/>
+                                </div>
+                                <TextInput id="quantity" placeholder="Тоо ширхэг" {...register("quantity")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="currency" value="Валют"/>
+                                </div>
+                                <TextInput id="currency" placeholder="Валют" {...register("currency")}/>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="prodmetricId" value="Width 1 [mm]"/>
+                                    <Label htmlFor="confirmFlag" value="Бүтээгдэхүүнээ зөв оруулсан эсэх"/>
                                 </div>
-                                <Select id="prodmetricId" placeholder="Width 1 [mm]" {...register("prodmetricId")}/>
+                                <TextInput id="confirmFlag" placeholder="Тийм, Үгүй" {...register("confirmFlag")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="prodmetricId" value="Thickness 1 [mm]"/>
+                                    <Label htmlFor="historyId" value="History Id"/>
                                 </div>
-                                <Select id="prodmetricId" placeholder="Thickness 1 [mm]" {...register("prodmetricId")}/>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="prodmetricId" value="Weight [kg]"/>
-                                </div>
-                                <Select id="prodmetricId" placeholder="Weight [kg]:" {...register("prodmetricId")}/>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="productCode" value="Manufacturer part number"/>
-                                </div>
-                                <TextInput id="productCode" placeholder="Manufacturer part number" {...register("productCode")}/>
+                                <TextInput id="historyId" placeholder="Бүтээгдэхүүний түүх" {...register("historyId")}/>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="manufacturerId" value="Manufacturer"/>
+                                    <Label htmlFor="activeFlag" value="Өгөгдөл оруулсан утга"/>
                                 </div>
-                                <TextInput id="manufacturerId" placeholder="Weight [kg]:" {...register("manufacturerId")}/>
+                                <TextInput id="activeFlag" placeholder="Өгөгдөл оруулсан утга" {...register("activeFlag")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="productName" value="Product Name"/>
+                                    <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
                                 </div>
-                                <TextInput id="productName" placeholder="Product Name" {...register("productName")}/>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="productDescription" value="Description"/>
-                                </div>
-                                <TextInput id="productDescription" placeholder="Description" {...register("productDescription")}/>
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="priceMain" value="Our price"/>
+                                    <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
                                 </div>
-                                <TextInput id="priceMain" placeholder="Our price" {...register("priceMain")}/>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="currency" value="Currency"/>
-                                </div>
-                                <TextInput id="currency" placeholder="Currency" {...register("currency")}/>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="confirmFlag" value="confirmFlag"/>
-                                </div>
-                                <TextInput id="confirmFlag" placeholder="confirmFlag" {...register("confirmFlag")}/>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="historyId" value="history"/>
-                                </div>
-                                <TextInput id="historyId" placeholder="history" {...register("historyId")}/>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="activeFlag" value="activeFlag"/>
-                                </div>
-                                <TextInput id="activeFlag" placeholder="activeFlag" {...register("activeFlag")}/>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="deleteFlag" value="deleteFlag"/>
-                                </div>
-                                <TextInput id="deleteFlag" placeholder="deleteFlag" {...register("deleteFlag")}/>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="deleteDate" value="deleteDate"/>
-                                </div>
-                                <TextInput type="date" id="deleteDate" placeholder="deleteDate" {...register("deleteDate")}/>
+                                <TextInput type="date" id="deleteDate" placeholder="Засвар хийсэн он сар" {...register("deleteDate")}/>
                             </div>
                         </div>
                         <div className="flex gap-4">

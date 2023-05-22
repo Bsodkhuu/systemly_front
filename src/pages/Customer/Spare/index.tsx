@@ -17,7 +17,7 @@ import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { GarageInventory} from "../../API";
 import { Upload } from "antd";
-import { Inventory } from "../../API";
+
 
 
 const Spare = () => {
@@ -103,7 +103,7 @@ const Spare = () => {
       <div className="p-4 bg-gray-200 h-screen w-full">
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
-            <h3 className="text-1xl">Сэлбэгийн үлдэгдэл</h3>
+            <h3 className="text-1xl">Агуулахын үлдэгдэл</h3>
             <div className="flex gap-4">
               <TextInput
                 name="purchasedFrom"
@@ -168,38 +168,7 @@ const Spare = () => {
                   </Table>
                 </Card>
               </div>
-              <div className="md:hidden  ">
-                <div className="flex w-full space-x-3 mt-3">
-                  <div className="w-[50%]">
-                  <Upload
-                  onChange={handleFileChange} 
-                  >
-    <Button >Click to Upload</Button>
-  </Upload>
-                {/* <TextInput type="file" onChange={handleFileChange} className="w-full" /> */}
-                </div>
-                <div className="w-[50%]" >
-                <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
-                <Button onClick={handleUploadClick} className="bg-orange-500 w-full ">Сэлбэг нэмэх</Button>
-                 </div>
-                 </div>
-        {/* {inventory?.map((inventory: Inventory, index: number) => (
-          <div className="w-full  bg-white p-2 mt-2 rounded-md text-[11px] flex">
-          <div className="w-full p-2">
-          <div>Нийлүүлэгч</div>
-                      <div>Хаанаас</div>
-                      <div>Тоо, ширхэг</div>
-                      <div>Зарах үнэ</div>
-          </div>
-          <div className="w-full p-2 text-right" key={index} > 
-          <div>{inventory.supplier}</div>
-                          <div>{inventory.purchasedFrom}</div>
-                          <div>{inventory.quantity}</div>
-                          <div>{inventory.cost}</div>
-          </div>
-          </div>
-          ))} */}
-        </div>
+              
             </div>
           </div>
         </div>
