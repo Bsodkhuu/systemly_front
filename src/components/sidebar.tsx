@@ -577,7 +577,7 @@ const SidebarComponent = () => {
               
             </div>
           </Panel>
-          <Panel header="Захиалгийн систем" key="8">
+          <Panel header="Тохиргоо" key="8">
             <div className="divide-y space-y-3">
               <a
                 href="#"
