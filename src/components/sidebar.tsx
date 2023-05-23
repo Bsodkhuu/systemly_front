@@ -232,19 +232,10 @@ const SidebarComponent = () => {
                   </div>
                   Бүтээгдэхүүн 
                 </a>
-                <a
-                  href="#"
-                  className="flex h-8 w-full justify-start items-center">
-                  {" "}
-                  <div className="text-xl flex justify-cente  w-12">
-                    {" "}
-                    <MdEmojiTransportation />{" "}
-                  </div>
-                  Тээврийн захиалга
-                </a>
+                
               </div>
             </Panel>
-            <Panel header="Захиалгийн систем" key="8">
+            <Panel header="Тохиргоо" key="8">
               <div className="divide-y space-y-3">
                 <a
                   href="#"
@@ -254,7 +245,7 @@ const SidebarComponent = () => {
                     {" "}
                     <TbListDetails />{" "}
                   </div>{" "}
-                  Сэлбэгийн удирдлага
+                  Сэлбэгийн удирдлага (Нийлүүлэгчийн үнэ)
                 </a>
                 <a
                   href="#"
@@ -264,7 +255,7 @@ const SidebarComponent = () => {
                     {" "}
                     <MdPriceCheck />{" "}
                   </div>
-                  Нийлүүлэгчийн үнэ
+                  Үнэ тооцох
                 </a>
               </div>
             </Panel>
@@ -583,16 +574,7 @@ const SidebarComponent = () => {
                   </div>
                   Бүтээгдэхүүн 
                 </a>
-              <a
-                href="#"
-                className="flex h-8 w-full justify-start items-center">
-                {" "}
-                <div className="text-xl flex justify-cente  w-12">
-                  {" "}
-                  <MdEmojiTransportation />{" "}
-                </div>
-                Тээврийн захиалга
-              </a>
+              
             </div>
           </Panel>
           <Panel header="Захиалгийн систем" key="8">
@@ -605,7 +587,7 @@ const SidebarComponent = () => {
                   {" "}
                   <TbListDetails />{" "}
                 </div>{" "}
-                Сэлбэгийн удирдлага
+                Сэлбэгийн удирдлага (Нийлүүлэгчийн үнэ)
               </a>
               <a
                 href="#"
@@ -615,7 +597,7 @@ const SidebarComponent = () => {
                   {" "}
                   <MdPriceCheck />{" "}
                 </div>
-                Нийлүүлэгчийн үнэ
+                Үнэ тооцох
               </a>
             </div>
           </Panel>
