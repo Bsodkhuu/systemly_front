@@ -142,6 +142,8 @@ export interface Product{
   vehicleId?: string;
   productFits: ProductFits;
   productFitsId?: string;
+  branch: Branch;
+  branchId?: string;
 }
 
 export interface Branch {
@@ -160,10 +162,10 @@ export interface Branch {
 }
 
 export interface TrackInfo {
-  packageId: string;
-  spotId: string;
-  descriptionSpot: string;
-  trackDate: string;
+  packageId: string;//maufacturer name 
+  spotId: string; //location 
+  descriptionSpot: string; //loaction tailbar 
+  trackDate: string; // on sar 
   status: string; //zamin status
   activeFlag: string;
   deleteFlag: string;
@@ -173,13 +175,15 @@ export interface TrackInfo {
   deleteDate: string;
   deleteUser: string;
 }
+
+//Order table chin suld zahialgin huudasand ashiglaj bgaa shvv 
 export interface Order {
   id: string;
   createdAt: string;
   updatedAt: string;
   product: Product;
   productId?: string;
-  numbOfProd: string;
+  
   prodmetric: Prodmetric;
   prodmetricId?: string;
   prodAllTotal: number;
@@ -205,8 +209,6 @@ export interface Order {
   receiverDate: string;
   branch: Branch;
   branchId?: string;
-  trackInfo: TrackInfo;
-  trackId?: string;
 }
 
 export interface StatusType {

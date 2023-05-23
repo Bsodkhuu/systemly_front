@@ -122,7 +122,7 @@ const SidebarComponent = () => {
                   <div className="text-xl flex justify-center  w-12">
                     <CiViewList />
                   </div>{" "}
-                  Сэлбэгийн үлдэгдэл
+                  Агуулахын үлдэгдэл
                 </a>
                 <a
                   href="/service"
@@ -472,7 +472,7 @@ const SidebarComponent = () => {
                 <div className="text-xl flex justify-center  w-12">
                   <CiViewList />
                 </div>{" "}
-                Сэлбэгийн үлдэгдэл
+                Агуулахын үлдэгдэл
               </a>
               <a
                 href="/service"

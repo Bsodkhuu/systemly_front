@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCarSide, faCircleExclamation, faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Online,  Product, ProductCategory, ProductSubCategory, VehicleCategory } from "../API";
+import { Product, ProductCategory, ProductSubCategory, VehicleCategory } from "../API";
 
 interface ModalProps{
   showModal: boolean;
@@ -31,7 +31,7 @@ const DescriptionModal: FC<ModalProps> = ({showModal, closeModal}) => {
   }
   return (
     <Modal show={showModal} onClose={closeModal}>
-      <Modal.Header>Дэлгэрэнгүй</Modal.Header>
+      <Modal.Header>Fitting Position</Modal.Header>
       <Modal.Body> 
         <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
           <Table>
@@ -40,7 +40,7 @@ const DescriptionModal: FC<ModalProps> = ({showModal, closeModal}) => {
               <Table.HeadCell>Fitting Position</Table.HeadCell>
               <Table.HeadCell>Description</Table.HeadCell>
             </Table.Head>
-            <Table.Body className="divide-y">
+            <Table.Body className="divide-x">
               {product?.map(( product: Product, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>{product.vehicle.vehicleType}</Table.Cell>
@@ -56,30 +56,7 @@ const DescriptionModal: FC<ModalProps> = ({showModal, closeModal}) => {
   );
 }
 
-const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
-  const { data: online } = useQuery("getOnline", getOnline);
 
-  async function getOnline() {
-    const response = await axiosClient.get("/onlines");
-    return response.data as Online[];
-  }
-  return (
-    <Modal show={showModal} onClose={closeModal}>
-      <Modal.Header>Онлайн кателоги</Modal.Header>
-      <Modal.Body>
-      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-              <Carousel>
-              {online?.map((online: Online, index: number) => (
-                <a href={online.link}>
-                  <img key={index} src={online.image} className="padding-bottom:100%"/>
-                </a>
-              ))}
-              </Carousel>
-            </div>
-      </Modal.Body>
-    </Modal>
-  );
-}
 const Zahialga = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -270,13 +247,6 @@ const Zahialga = () => {
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </div>
                   <TextInput id="search" type="search" placeholder="Хайх" />
-                 
-                </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-
-                  </div>
-                  <Button className="bg-orange-500" onClick={openModal}>Онлайн кателоги</Button>
                 </div>
               </div>
             </div>
@@ -373,6 +343,9 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Тоо ширхэг : {inputText}
                       <ListGroup.Item></ListGroup.Item>
+                      Нийт : {product.priceMain * product.quantity} 
+                      {/* hudalaa shvv hhaa */}
+                      <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
@@ -381,7 +354,6 @@ const Zahialga = () => {
           </div>
         </div>
       </div>
-      <ZahialgaModal showModal={showModal} closeModal={closeModal} />
       <DescriptionModal showModal={showModal} closeModal={closeModal} />
     </Layout>
   );

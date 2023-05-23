@@ -18,7 +18,6 @@ const History = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
             <h5 className="text-1xl">Захиалгийн Түүх</h5>
-           
           </div>
           <Table>
             <Table.Head>

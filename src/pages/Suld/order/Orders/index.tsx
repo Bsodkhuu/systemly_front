@@ -6,15 +6,9 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
-import { Branch, Order, Product, Supplier } from "../../../API";
+import { Branch, Order, Product } from "../../../API";
+
 const Orders = () => {
-
-    const {data: supplier} = useQuery("getSupplier", getSupplier);
-
-    async function getSupplier() {
-        const response = await axiosClient.get("/suppliers");
-        return response.data as Supplier[];
-    }
 
     const { data: branch } = useQuery("getBranch", getBranch);
 
@@ -44,21 +38,6 @@ const Orders = () => {
                     <div className="bg-white p-6 rounded-lg">
                         <div className="md:flex justify-between mb-4">                            
                             <div className="md:grid md:grid-cols-6 md:gap-4 space-y-2 md:space-y-0 w-full justify-between">
-                                <div className="md:col-span-1 flex md:flex-col  items-center">
-                                <div className="mb-2 block w-[40%]  md:w-full ">
-                                        <Label htmlFor="supplier" value="Нийлүүлэгч" />
-                                    </div>
-                                    <div className="w-[60%] md:w-full">
-                                    <Select>
-                                        
-                                        {supplier?.map((i) => (
-                                            <option value={i.id}>
-                                                {i.supplierList}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                    </div>
-                                </div>
                                 <div className="md:col-span-1 flex md:flex-col  items-center">
                                 <div className="mb-2 block w-[40%]  md:w-full ">
                                         <Label htmlFor="order" value="Захиалагч"/>
@@ -98,7 +77,11 @@ const Orders = () => {
                                     <div className="w-[60%] md:w-full">
                                         <Button className="bg-orange-500 w-full">Хэвлэх</Button>
                                     </div>
-                                    
+                                </div>
+                                <div className="md:col-span-1 flex md:flex-col justify-end items-center">
+                                <a href="/orderCreate" className="w-full">
+                                    <Button className="bg-orange-500 w-full">Захиалга үүсгэх</Button>
+                                </a>
                                 </div>
                                 <div className="md:col-span-1 flex md:flex-col justify-end items-center">
                                 <a href="/zam " className="w-full" >
@@ -118,13 +101,12 @@ const Orders = () => {
                                             <Table.HeadCell>Захиалга үүсгэсэн огноо</Table.HeadCell>
                                             <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                                             <Table.HeadCell>Статус</Table.HeadCell>
-                                            
                                         </Table.Head>
                                         <Table.Body>
                                             {/* table post request ywnaa */}
                                             {order?.map((order: Order, index: number) => (
                                                 <Table.Row key={index}>
-                                                    <Table.Cell>{order.numbOfProd}</Table.Cell>
+                                                    <Table.Cell>{order.packageId}</Table.Cell>
                                                     <Table.Cell>{order.orderedDate}</Table.Cell>
                                                     <Table.Cell>{order.product.manufacturerId}</Table.Cell>
                                                     <Table.Cell>{order.status}</Table.Cell>
@@ -142,23 +124,21 @@ const Orders = () => {
                                     <div className="hidden md:block" >
                                     <Table>
                                         <Table.Head className="uppercase">
-                                        <Table.HeadCell>Бүтээгдэхүүний код</Table.HeadCell>
-                                        <Table.HeadCell>Бүтээгдэхүүний нэр</Table.HeadCell>
+                                        <Table.HeadCell>Part Number</Table.HeadCell>
                                         <Table.HeadCell>Тайлбар</Table.HeadCell>
                                         <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                                         <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
-                                        <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
+                                        <Table.HeadCell>Нийт дүн</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
                                             {/* Table post request ywnaa  */}
                                         {product?.map((product: Product, index: number) => (
                                             <Table.Row key={index}>
                                                 <Table.Cell>{product.productCode}</Table.Cell>
-                                                <Table.Cell>{product.productName}</Table.Cell>
                                                 <Table.Cell>{product.productDescription}</Table.Cell>
                                                 <Table.Cell></Table.Cell>
                                                 <Table.Cell>{product.priceMain}</Table.Cell>
-                                                <Table.Cell>{product.prodmetric.typeId}</Table.Cell>
+                                                <Table.Cell></Table.Cell>
                                             </Table.Row>
                                         ))}
                                         </Table.Body>
@@ -174,51 +154,23 @@ const Orders = () => {
                 </div>
                 <div className="p-4 space-y-3 bg-gray-200 ">
                     <Card className="">
-                        <h1 className="text-1xl">Захиалгын хураангуй (Гишүүд)</h1>
+                        <h1 className="text-1xl">Захиалгын хураангуй</h1>
                         <div className="hidden md:block" >
                         <Table>
                             <Table.Head className="uppercase">
                                 <Table.HeadCell>Гишүүд</Table.HeadCell>
-                                <Table.HeadCell>Бүтээгдэхүүн</Table.HeadCell>
-                                <Table.HeadCell>Захиалгийн дугаар</Table.HeadCell>
                                 <Table.HeadCell>Нийт захиалгийн дүн</Table.HeadCell>
-                                <Table.HeadCell>Гишүүн захиалгийн дугаар</Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
                                 {order?.map((order: Order, index: number) => (
                                     <Table.Row key={index}>
                                         <Table.Cell>{order.branch.branchName}</Table.Cell>
-                                        <Table.Cell>{order.product.productName}</Table.Cell>
-                                        <Table.Cell>{order.numbOfProd}</Table.Cell>
                                         <Table.Cell></Table.Cell>
-                                        <Table.Cell>{order.packageId}</Table.Cell>
-                                        
                                     </Table.Row>
                                 ))}
                             </Table.Body>
                         </Table>
                         </div>
-                        {/* <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
-                        {order?.map((order: Order, index: number) => (
-                            <div className="bg-white border  border-orange-500 p-1 text-[10px] rounded-md text-gray-600 flex">
-                                <div className="w-[50%]" >
-                                    <div className="font-bold text-black" >Гишүүд</div>
-                                    <div className="font-bold">Гишүүн Нийт дүн</div>
-                                    <div>Нийт захиалгийн дүн</div>
-                                    <div>Fitting</div>
-                                    <div>Тоо хэмжээ</div>
-                                    <div>Статус</div>
-                                </div>
-                                <div className="w-[50%]" key={index} >
-                                    <div>{order.affiliate.affiliateName}</div>
-                                    <div>{order.memberPrice}</div>
-                                    <div>{order.product.quantity * order.product.netPrice}</div>
-                                    <div>{order.statusType.statusName}</div>
-                                    <div/>
-                                </div>
-                            </div>
-                            ))}
-                            </div> */}
                     </Card>
                     <div className="">
                     <Card className=""> 
@@ -238,9 +190,7 @@ const Orders = () => {
                                 </ListGroupItem>
                         </ListGroup>
                         </div>
-                        <div className="md:hidden overflow-y-auto h-64 space-y-3 ">
-                        
-                            </div>
+                       
                     </Card>
                     </div>
                 </div>

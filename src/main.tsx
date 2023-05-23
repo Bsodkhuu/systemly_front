@@ -56,11 +56,16 @@ import VehicleCategoryAdd from "./pages/Suld/order/VehicleCategory";
 import ProductCategoryAdd from "./pages/Suld/order/ProductCategory";
 import Category from "./pages/Suld/order/Category";
 import VehicleSub from "./pages/Suld/order/VehicleCategory/VehicleSub";
+import OrderCreate from "./pages/Suld/order/OrderCreate";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/orderCreate",
+    element: <OrderCreate/>,
   },
   {
     path: "/vehicleSub", 
@@ -246,8 +251,6 @@ const router = createBrowserRouter([
     path: "/human",
     element: <Human />,
   },
-
-  
   {
     path: "/payment",
     element: <Payment />,

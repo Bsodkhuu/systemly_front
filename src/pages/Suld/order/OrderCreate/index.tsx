@@ -1,77 +1,67 @@
 import React from "react";
 import Layout from "../../../../components/layout";
-import { FileInput, Label, TextInput, Select, Button} from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { Branch, Prodmetric, Product, ProductFits, VehicleUsage } from "../../../API";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
+import { Branch, Order, Prodmetric, Product } from "../../../API";
 import { axiosClient } from "../../../../config/axios";
+import { Select } from "antd";
 
-const ProductAdd = () => {
+
+const OrderCreate = () => {
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm<Product>();
+    const { register, handleSubmit } = useForm<Order>();
     const { mutateAsync } = useMutation("create", create);
-    
-    async function create(values: Product) {
-        const response = await axiosClient.post("/products", {
-            ...values, 
-            priceMain: parseFloat(values.priceMain.toString()), 
-            quantity: parseInt(values.quantity.toString()),
-            prodmetricType: parseInt(values.prodmetricType.toString())
+
+    async function create(values: Order) {
+        const response = await axiosClient.post("/orders", {
+            ...values,
+            prodAllTotal: parseInt(values.prodAllTotal.toString()),
+            manufacturerPrice: parseFloat(values.manufacturerPrice.toString()),
+            deliveryPrice: parseFloat(values.deliveryPrice.toString()), 
+            memberPrice: parseFloat(values.memberPrice.toString()),
+            tax: parseFloat(values.tax.toString()), 
+            otherPrice: parseFloat(values.otherPrice.toString()),
+            totalPrice: parseFloat(values.totalPrice.toString()),
         });
         return response.data;
     }
-    async function onSubmit(values: Product) {
+
+    async function onSubmit(values: Order) {
         await mutateAsync(values);
-        navigate("/zahialga");
+        navigate("/orders");
     }
 
-    const { data: fitting } = useQuery("getFitting", getFitting);
-    const { data: vehicleUsages } = useQuery("getUsages", getUsages);
-    const { data: prodmetricData } = useQuery("getProdmetric", getProdmetric);
     const { data: branchData } = useQuery("getBranch", getBranch);
+    const { data: productData } = useQuery("getProduct", getProduct);
+    const { data: prodmetricData } = useQuery("getProdmetricData", getProdmetricData);
+
 
     async function getBranch() {
         const response = await axiosClient.get("/branch");
         return response.data as Branch[];
     }
-    async function getFitting() {
-        const response = await axiosClient.get("/product-fits");
-        return response.data as ProductFits[];
+
+    async function getProduct() {
+        const response = await axiosClient.get("/products");
+        return response.data as Product[];
     }
 
-    async function getUsages() {
-        const response = await axiosClient.get("/vehicle-usages");
-        return response.data as VehicleUsage[];
-    }
-
-    async function getProdmetric() {
+    async function getProdmetricData() {
         const response = await axiosClient.get("/prodmetric");
         return response.data as Prodmetric[];
     }
-    
-    return (
-        <Layout>
-            <div className="p-4 bg-gray-200 md:h-screen w-full space-y-3">
+    return(
+        <Layout> 
+             <div className="p-4 bg-gray-200 md:h-screen w-full space-y-3">
                 <div className="bg-white p-6 rounded-lg">
                     <div className="md:flex justify-between mb-4 space-y-3">
-                        <div className="text-xl">Бүтээгдэхүүн</div>
-                        <div className="md:flex gap-4">
-                            <a href="/vehiceCategory"><Button className="bg-orange-400">Машины ангилал</Button></a>
-                            <a href="/productCategory"><Button className="bg-orange-400">Бүтээгдэхүүний ангилал</Button></a>
-                            <a href="/fitting"><Button className="bg-orange-400">Машины аль хэсэгт тохирох вэ</Button></a>
-                            <a href="/vehicleUsage"><Button className="bg-orange-400">Машин төрөл</Button></a>
-                            <a href="/prodmetric"><Button className="bg-orange-400">Бүтээгдэхүүний хэмжих нэгж</Button></a>
-                        </div>
+                        <div className="text-xl">Захиалга</div>
+                       
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                         <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="" value="Image"/>
-                                </div>
-                                <FileInput id=""/>
-                            </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="branchId" value="Гишүүд"/>
@@ -86,12 +76,24 @@ const ProductAdd = () => {
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="productFitsId" value="Fitting Position"/>
+                                    <Label htmlFor="productId" value="Part Number"/>
                                 </div>
-                                <Select id="productFitsId" placeholder="Fitting Position" {...register("productFitsId")}>
-                                {fitting?.map((i) => (
-                                    <option key={`productFits_${i.id}`} value={i.id}>
-                                        {i.positionId}
+                                <Select id="productId" placeholder="Part Number" {...register("productId")}>
+                                {productData?.map((i) => (
+                                    <option key={`product_${i.id}`} value={i.id}>
+                                        {i.productCode}
+                                    </option>
+                                ))}
+                                </Select>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="productId" value="Нийлүүлэгч"/>
+                                </div>
+                                <Select id="productId" placeholder="Нийлүүлэгч" {...register("productId")}>
+                                {productData?.map((i) => (
+                                    <option key={`product_${i.id}`} value={i.id}>
+                                        {i.manufacturerId}
                                     </option>
                                 ))}
                                 </Select>
@@ -99,18 +101,6 @@ const ProductAdd = () => {
                         </div>
 
                         <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="vehicleId" value="Машины төрөл"/>
-                                </div>
-                                <Select id="vehicleId" placeholder="Машины төрөл" {...register("vehicleId")}>
-                                    {vehicleUsages?.map((i) => (
-                                        <option key={`vehicle_${i.id}`} value={i.id}>
-                                            {i.vehicleType}
-                                        </option>
-                                    ))}
-                                    </Select>
-                            </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="prodmetricId" value="Бүтээгдэхүүний хэмжих нэгж"/>
@@ -124,25 +114,41 @@ const ProductAdd = () => {
                                     </Select>
                             </div>
                             <div className="w-1/2">
-                            <div className="mb-2 block">
-                                <Label htmlFor="prodmetricType" value="Нэгжийн утга"/>
+                                <div className="mb-2 block">
+                                    <Label htmlFor="packageId" value="Захиалгийн дугаар"/>
+                                </div>
+                                <TextInput id="packageId" placeholder="Захиалгийн дугаар" {...register("packageId")}/>
                             </div>
-                            <TextInput type="number" id="prodmetricType" placeholder="Нэгжийн утга" {...register("prodmetricType")}/>
-                        </div>
+                         
                     </div>
                         <div className="flex gap-4">
                             
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="productCode" value="Үйлдвэрлэгчийн парт дугаар"/>
+                                    <Label htmlFor="prodAllTotal" value="Бүтээгдэхүүний нийт тоо"/>
                                 </div>
-                                <TextInput id="productCode" placeholder="Үйлдвэрлэгчийн парт дугаар" {...register("productCode")}/>
+                                <TextInput id="prodAllTotal" placeholder="Бүтээгдэхүүний нийт тоо" {...register("prodAllTotal")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="manufacturerId" value="Үйлдвэрлэгч"/>
+                                    <Label htmlFor="manufacturerPrice" value="Үйлдвэрлэгчийн үнэ"/>
                                 </div>
-                                <TextInput id="manufacturerId" placeholder="Үйлдвэрлэгч" {...register("manufacturerId")}/>
+                                <TextInput id="manufacturerPrice" placeholder="Үйлдвэрлэгчийн үнэ" {...register("manufacturerPrice")} />
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deliveryPrice" value="Тээврийн хөлс"/>
+                                </div>
+                                <TextInput id="deliveryPrice" placeholder="Тээврийн хөлс" {...register("deliveryPrice")} />
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="memberPrice" value="Гишүүдэд санал болгох үнэ"/>
+                                </div>
+                                <TextInput id="memberPrice" placeholder="Гишүүдэд санал болгох үнэ" {...register("memberPrice")}/>
                             </div>
                         </div>
 
@@ -150,44 +156,28 @@ const ProductAdd = () => {
                             
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="productName" value="Бүтээгдэхүүний нэр"/>
+                                    <Label htmlFor="tax" value="Татварын үнэ"/>
                                 </div>
-                                <TextInput id="productName" placeholder="Бүтээгдэхүүний нэр" {...register("productName")}/>
+                                <TextInput id="tax" placeholder="Татварын үнэ" {...register("tax")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="productDescription" value="Бүтээгдэхүүний тайлбар"/>
+                                    <Label htmlFor="otherPrice" value="Бүтээгдэхүүнээс гарсан бусад үнэ"/>
                                 </div>
-                                <TextInput id="productDescription" placeholder="Бүтээгдэхүүний тайлбар" {...register("productDescription")}/>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="priceMain" value="Үндсэн үнэ"/>
-                                </div>
-                                <TextInput id="priceMain" placeholder="Үндсэн үнэ" {...register("priceMain")}/>
+                                <TextInput id="otherPrice" placeholder="Бүтээгдэхүүнээс гарсан бусад үнэ" {...register("otherPrice")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="quantity" value="Бэлэн байгаа тоо ширхэг"/>
+                                    <Label htmlFor="totalPrice" value="Татвар, тээврийн нийлбэр дүн"/>
                                 </div>
-                                <TextInput id="quantity" placeholder="Бэлэн байгаа тоо ширхэг" {...register("quantity")}/>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="currency" value="Валют"/>
-                                </div>
-                                <TextInput id="currency" placeholder="Валют" {...register("currency")}/>
+                                <TextInput id="totalPrice" placeholder="Татвар, тээврийн нийлбэр дүн" {...register("totalPrice")}/>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="confirmFlag" value="Бүтээгдэхүүнээ зөв оруулсан эсэх"/>
+                                    <Label htmlFor="confirmFlag" value="Зөв оруулсан эсэх"/>
                                 </div>
                                 <TextInput id="confirmFlag" placeholder="Тийм, Үгүй" {...register("confirmFlag")}/>
                             </div>
@@ -195,7 +185,27 @@ const ProductAdd = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="historyId" value="History Id"/>
                                 </div>
-                                <TextInput id="historyId" placeholder="Бүтээгдэхүүний түүх" {...register("historyId")}/>
+                                <TextInput id="historyId" placeholder="Захиалгийн түүх" {...register("historyId")}/>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="status" value="Статус"/>
+                                </div>
+                                <TextInput id="status" placeholder="Агуулахын үлдэгдэл шалгаж байна" {...register("status")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="receiveDate" value="Хүлээн авсан"/>
+                                </div>
+                                <TextInput id="receiveDate"  type="date" placeholder="Хүлээн авсан" {...register("receiveDate")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="receiverDate" value="Хүлээж авсан"/>
+                                </div>
+                                <TextInput id="receiverDate"  type="date" placeholder="Хүлээн авсан" {...register("receiverDate")}/>
                             </div>
                         </div>
 
@@ -204,19 +214,19 @@ const ProductAdd = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="activeFlag" value="Өгөгдөл оруулсан утга"/>
                                 </div>
-                                <TextInput id="activeFlag" placeholder="Өгөгдөл оруулсан утга" {...register("activeFlag")}/>
+                                <TextInput id="activeFlag" placeholder="Өгөгдөл оруулсан утга" />
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
                                 </div>
-                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" />
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
                                 </div>
-                                <TextInput type="date" id="deleteDate" placeholder="Засвар хийсэн он сар" {...register("deleteDate")}/>
+                                <TextInput type="date" id="deleteDate" placeholder="Засвар хийсэн он сар"/>
                             </div>
                         </div>
                         <div className="flex gap-4">
@@ -229,4 +239,5 @@ const ProductAdd = () => {
         </Layout>
     );
 }
-export default ProductAdd;
+
+export default OrderCreate;
