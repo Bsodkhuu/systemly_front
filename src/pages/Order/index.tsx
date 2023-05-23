@@ -12,12 +12,12 @@ const Order = () => {
           <div className="flex p-2  space-x-4  justify-between">
             <div className="w-full">
               <a href="/zahialga"  >
-                <Button size="sm" className="w-full" >Захиалга</Button>
+                <Button size="sm" className="w-full bg-orange-500" >Захиалга</Button>
               </a>
             </div>
             <div>
               <a href="/inquiry">
-                <Button size="sm">Inquiry</Button>
+                <Button size="sm" className=" w-full bg-orange-500">Inquiry</Button>
               </a>
             </div>
           </div>

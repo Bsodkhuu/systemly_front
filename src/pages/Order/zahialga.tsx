@@ -12,7 +12,7 @@ import {
 } from "flowbite-react";
 import Layout from "../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCar, faCarSide, faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faCarSide, faCircleExclamation, faMagnifyingGlass, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {  useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
 import { Online,  Product, ProductCategory, ProductSubCategory, VehicleCategory } from "../API";
@@ -20,6 +20,40 @@ import { Online,  Product, ProductCategory, ProductSubCategory, VehicleCategory 
 interface ModalProps{
   showModal: boolean;
   closeModal: () => void;
+}
+
+const DescriptionModal: FC<ModalProps> = ({showModal, closeModal}) => {
+  const { data: product } = useQuery("getProduct", getProduct);
+
+  async function getProduct() {
+    const response = await axiosClient.get("/products");
+    return response.data as Product[];
+  }
+  return (
+    <Modal show={showModal} onClose={closeModal}>
+      <Modal.Header>Дэлгэрэнгүй</Modal.Header>
+      <Modal.Body> 
+        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+          <Table>
+            <Table.Head className="uppercase">
+              <Table.HeadCell>Машин төрөл</Table.HeadCell>
+              <Table.HeadCell>Fitting Position</Table.HeadCell>
+              <Table.HeadCell>Description</Table.HeadCell>
+            </Table.Head>
+            <Table.Body className="divide-y">
+              {product?.map(( product: Product, index: number) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{product.vehicle.vehicleType}</Table.Cell>
+                  <Table.Cell>{product.productFits.positionId}</Table.Cell>
+                  <Table.Cell>{product.productFits.description}</Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
 }
 
 const ZahialgaModal: FC<ModalProps> = ({showModal, closeModal }) => {
@@ -98,6 +132,7 @@ const Zahialga = () => {
   function closeModal() {
     setShowModal(false);
   }
+ 
 
   const reviews = [
     {
@@ -246,7 +281,7 @@ const Zahialga = () => {
               </div>
             </div>
             {/* category, sub category */}
-            {/* <div className="w-48">
+             <div className="w-48">
               <div className="flex gap-4">
                 <div className="w-1/2">
                   <div className="mb-2 block">
@@ -262,22 +297,8 @@ const Zahialga = () => {
                     ))}
                   </Select>
                 </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                    {productCategory?.map((i) => (
-                      <Label htmlFor="category" value={i.en} />
-                    ))}
-                  </div>
-                  <Select>
-                    {productSub?.map((i) => (
-                      <option value={i.id}>
-                        {i.en}
-                      </option>
-                    ))}
-                  </Select>
-                </div>
               </div>
-            </div> */}
+            </div>
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
               <Carousel>
                 {reviews.map((review) => (
@@ -298,9 +319,7 @@ const Zahialga = () => {
                    <Table.HeadCell>Нэгжийн утга</Table.HeadCell>
                    <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
                    <Table.HeadCell>Валют</Table.HeadCell>
-                   <Table.HeadCell>Машины төрөл</Table.HeadCell>
                    <Table.HeadCell>Fitting Position</Table.HeadCell>
-                   <Table.HeadCell>Fitting Position тайлбар</Table.HeadCell>
                    <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                    <Table.HeadCell>Үйлдэл</Table.HeadCell>
                   </Table.Head>
@@ -315,9 +334,11 @@ const Zahialga = () => {
                         <Table.Cell>{product.prodmetricType}</Table.Cell>
                         <Table.Cell>{product.priceMain}</Table.Cell>
                         <Table.Cell>{product.currency}</Table.Cell>
-                        <Table.Cell>{product.vehicle.vehicleType}</Table.Cell>
-                        <Table.Cell>{product.productFits.positionId}</Table.Cell>
-                        <Table.Cell>{product.productFits.description}</Table.Cell>
+                        <Table.Cell>
+                        <Button className="bg-orange-400" onClick={openModal}>
+                        <FontAwesomeIcon icon={faCircleExclamation}  size="2xl"/>
+                        </Button>
+                        </Table.Cell>
                         <Table.Cell>
                           <TextInput onChange={handleChange} value={inputText}/>
                         </Table.Cell>
@@ -361,6 +382,7 @@ const Zahialga = () => {
         </div>
       </div>
       <ZahialgaModal showModal={showModal} closeModal={closeModal} />
+      <DescriptionModal showModal={showModal} closeModal={closeModal} />
     </Layout>
   );
 };
