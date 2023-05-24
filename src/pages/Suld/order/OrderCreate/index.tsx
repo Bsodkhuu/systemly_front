@@ -76,18 +76,6 @@ const OrderCreate = () => {
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="productId" value="Part Number"/>
-                                </div>
-                                <Select id="productId" placeholder="Part Number" {...register("productId")}>
-                                {productData?.map((i) => (
-                                    <option key={`product_${i.id}`} value={i.id}>
-                                        {i.productCode}
-                                    </option>
-                                ))}
-                                </Select>
-                            </div>
-                            <div className="w-1/2">
-                                <div className="mb-2 block">
                                     <Label htmlFor="productId" value="Нийлүүлэгч"/>
                                 </div>
                                 <Select id="productId" placeholder="Нийлүүлэгч" {...register("productId")}>
