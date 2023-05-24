@@ -126,8 +126,9 @@ const Orders = () => {
                                         <Table.Head className="uppercase">
                                         <Table.HeadCell>Part Number</Table.HeadCell>
                                         <Table.HeadCell>Тайлбар</Table.HeadCell>
-                                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                                         <Table.HeadCell>Үндсэн үнэ</Table.HeadCell>
+                                        <Table.HeadCell>Fitting Position</Table.HeadCell>
+                                        <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
                                         <Table.HeadCell>Нийт дүн</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
@@ -136,8 +137,9 @@ const Orders = () => {
                                             <Table.Row key={index}>
                                                 <Table.Cell>{product.productCode}</Table.Cell>
                                                 <Table.Cell>{product.productDescription}</Table.Cell>
-                                                <Table.Cell></Table.Cell>
                                                 <Table.Cell>{product.priceMain}</Table.Cell>
+                                                <Table.Cell>{product.productFits.positionId}</Table.Cell>
+                                                <Table.Cell></Table.Cell>
                                                 <Table.Cell></Table.Cell>
                                             </Table.Row>
                                         ))}
@@ -156,20 +158,24 @@ const Orders = () => {
                     <Card className="">
                         <h1 className="text-1xl">Захиалгын хураангуй</h1>
                         <div className="hidden md:block" >
-                        <Table>
-                            <Table.Head className="uppercase">
-                                <Table.HeadCell>Гишүүд</Table.HeadCell>
-                                <Table.HeadCell>Нийт захиалгийн дүн</Table.HeadCell>
-                            </Table.Head>
-                            <Table.Body>
+                        <ListGroup> 
+                            
                                 {order?.map((order: Order, index: number) => (
-                                    <Table.Row key={index}>
-                                        <Table.Cell>{order.branch.branchName}</Table.Cell>
-                                        <Table.Cell></Table.Cell>
-                                    </Table.Row>
+                                    <ListGroup.Item key={index}>
+                                        Нийлүүлэгч : {order.product.manufacturerId}
+                                        <ListGroup.Item></ListGroup.Item> 
+                                        Гишүүн : {order.branch.branchName}
+                                        <ListGroup.Item></ListGroup.Item>
+                                        Нийт дүн: 
+                                        <ListGroup.Item></ListGroup.Item>
+                                        Нийт захиалгийн дүн : 
+                                        <ListGroup.Item></ListGroup.Item>
+                                        Статус : {order.status}
+                                        <ListGroup.Item></ListGroup.Item>
+                                    </ListGroup.Item>
                                 ))}
-                            </Table.Body>
-                        </Table>
+                            
+                        </ListGroup>
                         </div>
                     </Card>
                     <div className="">

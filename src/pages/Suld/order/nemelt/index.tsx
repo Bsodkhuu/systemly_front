@@ -29,15 +29,7 @@ const Nemelt = () => {
                     <div className="flex justify-between mb-4">
                         <h4 className="text-1xl">Нэмэлт мэдээлэл</h4>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Label htmlFor="name" value="Тээвэрлэгч"/>
-                        <TextInput type="text" {...register("name")}/>&nbsp;
-                        <Label htmlFor="teevriinZahialgaId" value="Тээврийн захиалгийн дугаар"/>
-                        <TextInput type="text" {...register("teevriinZahialgaId")}/>&nbsp;
-                        <Label htmlFor="statusName" value="Тээврийн төрөл"/>
-                        <TextInput type="text" {...register("statusName")}/>&nbsp;
-                        <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
-                    </form>
+                    
                 </div>
             </div>
         </Layout>
