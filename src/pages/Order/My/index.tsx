@@ -4,6 +4,7 @@ import React, { ChangeEvent, useState } from "react";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { Order, Product, TrackInfo } from "../../API";
+import { Button } from "antd";
 const My = () => {
   const { data: order } = useQuery("getOrder", getOrder);
 
@@ -94,7 +95,7 @@ const My = () => {
                           <Table.Cell></Table.Cell>
                           <Table.Cell>{productData.priceMain}</Table.Cell>
                           <Table.Cell>{productData.currency}</Table.Cell>
-                          <Table.Cell>{productData.priceMain * productData.quantity}</Table.Cell>
+                          <Table.Cell></Table.Cell>
                         </Table.Row>
                        ))}
                       </Table.Body>

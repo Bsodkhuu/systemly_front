@@ -80,7 +80,7 @@ const Orders = () => {
                                 </div>
                                 <div className="md:col-span-1 flex md:flex-col justify-end items-center">
                                 <a href="/orderCreate" className="w-full">
-                                    <Button className="bg-orange-500 w-full">Захиалга үүсгэх</Button>
+                                    <Button className="bg-orange-500 w-full">Захиалга</Button>
                                 </a>
                                 </div>
                                 <div className="md:col-span-1 flex md:flex-col justify-end items-center">
@@ -150,9 +150,6 @@ const Orders = () => {
                                         </Table.Body>
                                     </Table>
                                     </div>
-
-                                  
-                                   
                                 </Card>
                             </div>
                         </div>

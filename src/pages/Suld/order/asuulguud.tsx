@@ -33,35 +33,7 @@ const Asuulguud = () => {
                     <div className="bg-white p-6 rounded-lg">
                         <div className="md:flex justity-between mb-4">
                             <div className="md:grid md:grid-cols-6 md:gap-4 space-y-2 md:space-y-0 w-full justify-between"> 
-                              <div className="md:col-span-1 flex md:flex-col  items-center"> 
-                                <div className="mb-2 block w-[40%] md:w-full">
-                                    <Label htmlFor="productId" value="Нийлүүлэгч"/>
-                                </div>
-                                <div className="w-[60%] md:w-full">
-                                <Select>
-                                        {baraa?.map((i) => (
-                                            <option value={i.id}> 
-                                            {i.manufacturerId}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                   
-                                </div>
-                              </div>
-                              <div className="md:col-span-1 flex md:flex-col  items-center">
-                                <div className="mb-2 block w-[40%] md:w-full">
-                                    <Label htmlFor="branchId" value="Захиалагч"/>
-                                    </div> 
-                                <div className="w-[60%] md:w-full">
-                                <Select>
-                                        {gishuun?.map((i) => (
-                                            <option value={i.id}>
-                                                {i.branchName}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                </div>
-                              </div>
+
                             </div>
                         </div>
                         
@@ -101,21 +73,7 @@ const Asuulguud = () => {
                                             <Table.HeadCell>Үйлдэл</Table.HeadCell>
                                             </Table.Head>
                                             <Table.Body> 
-                                                {orderData?.map((orderData: Order, index: number) => (
-                                                    <Table.Row key={index}> 
-                                                    <Table.Cell>{orderData.product.productCode}</Table.Cell>
-                                                    <Table.Cell>{orderData.product.productDescription}</Table.Cell>
-                                                    <Table.Cell>{orderData.product.priceMain}</Table.Cell>
-                                                    <Table.Cell></Table.Cell>
-                                                    <Table.Cell></Table.Cell>
-                                                    <Table.Cell>{orderData.prodAllTotal}</Table.Cell>
-                                                    <Table.Cell>{orderData.orderedDate}</Table.Cell>
-                                                    <Table.Cell className="space-y-2">
-                                                        <FontAwesomeIcon icon={faEdit}/>&nbsp;
-                                                        <FontAwesomeIcon icon={faTrash}/>
-                                                    </Table.Cell>
-                                                    </Table.Row>
-                                                ))}
+                                                
                                             </Table.Body>
                                         </Table>
                                     </div>
@@ -129,14 +87,13 @@ const Asuulguud = () => {
                         <h1 className="text-1xl">Захиалгийн хураангуй</h1>
                         <div className="hidden md:block">
                             <ListGroup> 
-                                {orderData?.map((orderData: Order, index: number) => (
-                                    <ListGroup.Item key={index}> 
-                                    Нийлүүлэгч: {orderData.product.manufacturerId}
+                                    <ListGroup.Item> 
+                                    Нийлүүлэгч:
                                     <ListGroup.Item></ListGroup.Item>
                                     Нийт дүн: 
                                     <ListGroup.Item></ListGroup.Item>
+                                    <Button className="bg-orange-500">Асуулга үүсгэх</Button>
                                 </ListGroup.Item>
-                                ))}
                             </ListGroup>
                         </div>
                     </Card>

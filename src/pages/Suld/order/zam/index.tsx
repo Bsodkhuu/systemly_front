@@ -50,7 +50,7 @@ const Zam = () => {
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
-                                    <Label htmlFor="descriptionSpot" value="Байршилын дэлгэрэнгүй"/>
+                                    <Label htmlFor="descriptionSpot" value="Дэлгэрэнгүй"/>
                                 </div>
                                 <TextInput id="descriptionSpot" placeholder="Хаана явж байгаа вэ?" {...register("descriptionSpot")}/>
                             </div>

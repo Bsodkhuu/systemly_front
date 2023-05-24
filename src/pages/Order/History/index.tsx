@@ -22,7 +22,7 @@ const History = () => {
           <Table>
             <Table.Head>
               <Table.HeadCell>Захиалгийн Түүх</Table.HeadCell>
-              <Table.HeadCell>Захиалга</Table.HeadCell>
+              <Table.HeadCell>Part Number</Table.HeadCell>
               <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
               <Table.HeadCell>Статус төрөл</Table.HeadCell>
             </Table.Head>
@@ -30,7 +30,7 @@ const History = () => {
             {order?.map((order: Order, index: number) => (
               <Table.Row key={index}>
                 <Table.Cell>{order.historyId}</Table.Cell>
-                <Table.Cell>{order.numbOfProd}</Table.Cell>
+                <Table.Cell>{order.product.productCode}</Table.Cell>
                 <Table.Cell>{order.product.manufacturerId}</Table.Cell>
                 <Table.Cell>{order.status}</Table.Cell>
               </Table.Row>
