@@ -98,9 +98,6 @@ const OrderCreate = () => {
                                 ))}
                                 </Select>
                             </div>
-                        </div>
-
-                        <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="prodmetricId" value="Бүтээгдэхүүний хэмжих нэгж"/>
@@ -113,6 +110,10 @@ const OrderCreate = () => {
                                     ))}
                                     </Select>
                             </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="packageId" value="Захиалгийн дугаар"/>
