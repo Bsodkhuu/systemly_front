@@ -24,6 +24,7 @@ const OrderCreate = () => {
             tax: parseFloat(values.tax.toString()), 
             otherPrice: parseFloat(values.otherPrice.toString()),
             totalPrice: parseFloat(values.totalPrice.toString()),
+            packageId: parseInt(values.packageId.toString()),
         });
         return response.data;
     }
@@ -176,7 +177,14 @@ const OrderCreate = () => {
                                 </div>
                                 <TextInput id="historyId" placeholder="Захиалгийн түүх" {...register("historyId")}/>
                             </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="orderedDate" value="Захиалга үүсгэсэн огноо"/>
+                                </div>
+                                <TextInput id="orderedDate" type="date" placeholder="Захиалга үүсгэсэн огноо" {...register("orderedDate")}/>
+                            </div>
                         </div>
+                        
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
@@ -203,19 +211,19 @@ const OrderCreate = () => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="activeFlag" value="Өгөгдөл оруулсан утга"/>
                                 </div>
-                                <TextInput id="activeFlag" placeholder="Өгөгдөл оруулсан утга" />
+                                <TextInput id="activeFlag" placeholder="Өгөгдөл оруулсан утга" {...register("activeFlag")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
                                 </div>
-                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" />
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
                                 </div>
-                                <TextInput type="date" id="deleteDate" placeholder="Засвар хийсэн он сар"/>
+                                <TextInput type="date" id="deleteDate" placeholder="Засвар хийсэн он сар" {...register("deleteDate")}/>
                             </div>
                         </div>
                         <div className="flex gap-4">
