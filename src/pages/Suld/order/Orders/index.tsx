@@ -9,7 +9,6 @@ import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListG
 import { Branch, Order, Product } from "../../../API";
 
 const Orders = () => {
-
     const { data: branch } = useQuery("getBranch", getBranch);
 
     async function getBranch() {
@@ -29,7 +28,7 @@ const Orders = () => {
     async function getProduct() {
         const response = await axiosClient("/products");
         return response.data as Product[];
-    }
+    }  
 
     return(
         <Layout>
@@ -85,7 +84,7 @@ const Orders = () => {
                                 </div>
                                 <div className="md:col-span-1 flex md:flex-col justify-end items-center">
                                 <a href="/zam " className="w-full" >
-                                    <Button className="bg-orange-500 w-full" >Замын мэдээ оруулах</Button>
+                                    <Button className="bg-orange-500 w-full">Замын мэдээ оруулах</Button>
                                 </a>
                                 </div>
                             </div>
@@ -119,7 +118,6 @@ const Orders = () => {
                                         </Table.Body>
                                     </Table>
                                     </div>
-                                
                                 </Card>
                             </div>
                             <div className="md:p-4">
@@ -174,7 +172,6 @@ const Orders = () => {
                                         <ListGroup.Item></ListGroup.Item>
                                     </ListGroup.Item>
                                 ))}
-                            
                         </ListGroup>
                         </div>
                     </Card>
