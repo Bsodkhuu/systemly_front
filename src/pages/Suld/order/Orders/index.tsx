@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../../../components/layout";
 import { Button, Card, FileInput, Label, ListGroup, Select, Table, TextInput } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faMagnifyingGlass, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
@@ -101,15 +101,19 @@ const Orders = () => {
                                             <Table.HeadCell>Захиалга үүсгэсэн огноо</Table.HeadCell>
                                             <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
                                             <Table.HeadCell>Статус</Table.HeadCell>
+                                            <Table.HeadCell>Үйлдэл</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body>
-                                            {/* table post request ywnaa */}
                                             {order?.map((order: Order, index: number) => (
                                                 <Table.Row key={index}>
                                                     <Table.Cell>{order.packageId}</Table.Cell>
                                                     <Table.Cell>{order.orderedDate}</Table.Cell>
                                                     <Table.Cell>{order.product.manufacturerId}</Table.Cell>
                                                     <Table.Cell>{order.status}</Table.Cell>
+                                                    <Table.Cell className="space-y-2">
+                                                        <a href="#"><FontAwesomeIcon icon={faEdit}/></a>&nbsp;
+                                                        <FontAwesomeIcon icon={faTrash}/>
+                                                    </Table.Cell>
                                                 </Table.Row>
                                             ))}
                                         </Table.Body>
@@ -155,11 +159,10 @@ const Orders = () => {
                     </div>
                 </div>
                 <div className="p-4 space-y-3 bg-gray-200 ">
-                    <Card className="">
+                    <Card>
                         <h1 className="text-1xl">Захиалгын хураангуй</h1>
                         <div className="hidden md:block" >
                         <ListGroup> 
-                            
                                 {order?.map((order: Order, index: number) => (
                                     <ListGroup.Item key={index}>
                                         Нийлүүлэгч : {order.product.manufacturerId}
