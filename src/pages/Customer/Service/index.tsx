@@ -106,9 +106,7 @@ const VilchilgeeniTsag = () => {
   const { data: phoneData } = useQuery("get_phones", getPhoneNumbers);
   const { data: personData } = useQuery("getPerson", getPerson);
   const { data: serviceData } = useQuery("getService", getService);
-  
-
-  
+    
   async function getService() {
     const response = await axiosClient.get("/services");
     return response.data as Service[];
@@ -141,6 +139,7 @@ const VilchilgeeniTsag = () => {
           phoneData={phoneData}
           personData={personData}
           serviceData={serviceData}
+        
         />
       ),
       footer: [],

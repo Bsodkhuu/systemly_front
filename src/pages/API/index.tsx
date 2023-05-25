@@ -134,6 +134,8 @@ export interface Product{
   quantity: number;
   historyId: string;
   priceMain: number;
+  evaDate: string;
+  productCnt: number;
   currency: string;
   prodmetricType: number;
   prodmetric: Prodmetric; 
@@ -183,7 +185,6 @@ export interface Order {
   updatedAt: string;
   product: Product;
   productId?: string;
-  
   prodmetric: Prodmetric;
   prodmetricId?: string;
   prodAllTotal: number;
@@ -209,30 +210,6 @@ export interface Order {
   receiverDate: string;
   branch: Branch;
   branchId?: string;
-}
-
-export interface StatusType {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  statusName: string;
-}
-
-export interface Supplier {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  supplierList: string;
-}
-
-export interface TeevriinZahialga {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  statusName: string;
-  date: string;
-  teevriinZahialgaId: string;
-  name: string;
 }
 
 export interface ServiceAppointment {
@@ -284,19 +261,7 @@ export interface Online {
   link: string;
 }
 
-export interface BackOrder {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  orderId?: string;
-  supplierId?: string;
-  description: string;
-  quantity: string;
-  netPrice: string;
-  date: string;
-  userId?: string;
-  orderDate: string;
-}
+
 
 export interface Applications {
   id: string;
@@ -394,8 +359,21 @@ export interface Notifications {
   id: string;
   createdAt: string;
   updatedAt: string;
-  medeelel: string;
-  postId: string;
+  title: string; //tsesni ner
+  description: string; // tses duudah url
+  showType: string; //medegdeliin haragdah heseg -systemiin tolgoi hesegt doot buland hajuud zereg haruulah gazriin turlvvd
+  rank: string; //medegdliin zereglel - yaraltai hewiin yaraltai bish zereg bj bolno
+  toType: string; //ajiltan_salabrin_bvh_ajiltand
+  toEmpId: string; //medegdel hvleej awah ajiltan eswel salbar
+  status: string //vvsgesn, harsan 
+  type: string; //zahialga, zamiin medee, zar zereg bvh turliin notification bj bolno
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 export interface Description {
@@ -636,4 +614,27 @@ export interface GarageInventory {
   product: Product;
   prodmetric: Prodmetric;
   order: Order;
+}
+
+export interface Inquiry{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  product: Product;
+  productId?: string
+  prodmetric: Prodmetric;
+  prodmetricId?: string
+  branch: Branch;
+  branchId?: string;
+  vehicleUsage: VehicleUsage;
+  vehicleUsageId?: string
+  inquiryNumber: string;
+  inquiryDate: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }

@@ -1,13 +1,73 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import Layout from "../../../../components/layout";
-import { Button, Card, FileInput, Label, ListGroup, Select, Table, TextInput } from "flowbite-react";
+import { Button, Card, FileInput, Label, ListGroup, Select, Table, TextInput, Modal } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faMagnifyingGlass, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../../config/axios";
 import { ListGroupItem } from "flowbite-react/lib/esm/components/ListGroup/ListGroupItem";
 import { Branch, Order, Product } from "../../../API";
 
+interface ModalProps{
+    showModal: boolean;
+    closeModal: () => void;
+}
+const OrdersModal: FC<ModalProps> = ({ showModal, closeModal}) => {
+
+    const { data: productData } = useQuery("getProductData", getProductData);
+
+    async function getProductData() {
+        const response = await axiosClient.get("/products");
+        return response.data as Product[];
+    }
+    return (
+        <Modal show={showModal} onClose={closeModal}>
+            <Modal.Header>Захиалгийн жагсаалтыг шинэчлэх</Modal.Header>
+            <Modal.Body>
+                <form className="flex overflow-y-auto flex-col gap-4 max-h-96">
+                    <div className="flex gap-4"> 
+                    <div className="w-1/2">
+                        <div className="block mb-2">
+                            <Label htmlFor="packageId" value="Захиалгийн дугаар"/>
+                        </div>
+                        <TextInput id="packageId" />
+                    </div>
+                    <div className="w-1/2">
+                        <div className="block mb-2">
+                            <Label htmlFor="orderedDate" value="Захиалга үүсгэсэн огноо"/>
+                        </div>
+                        <TextInput id="orderedDate" />
+                    </div>
+                    </div> 
+                    <div className="flex gap-4"> 
+                    <div className="w-1/2">
+                        <div className="block mb-2">
+                            <Label htmlFor="productId" value="Нийлүүлэгч"/>
+                        </div>
+                        <Select id="productId" placeholder="Нийлүүлэгч" aria-placeholder="Нийлүүлэгч">
+                            {productData?.map((i) => (
+                                <option key={`product_${i.id}`} value={i.id}>
+                                    {i.manufacturerId}
+                                </option>
+                            ))}
+                        </Select>
+                    </div>
+                    <div className="w-1/2">
+                        <div className="block mb-2">
+                            <Label htmlFor="status" value="Статус"/>
+                        </div>
+                        <TextInput id="status" />
+                    </div>
+                    </div> 
+                </form>
+            </Modal.Body>
+            <Modal.Footer>
+               <Button onClick={closeModal} className="bg-gray-400">Устгах</Button>
+               <Button  className="bg-orange-500">Шинэчлэх</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 const Orders = () => {
     const { data: branch } = useQuery("getBranch", getBranch);
 
@@ -29,7 +89,14 @@ const Orders = () => {
         const response = await axiosClient("/products");
         return response.data as Product[];
     }  
-
+    const [showModal, setShowModal] = useState(false);
+    function openModal() {
+        setShowModal(true);
+      }
+    
+      function closeModal() {
+        setShowModal(false);
+      }
     return(
         <Layout>
             <div className="md:grid grid-cols-3 gap-4">
@@ -110,8 +177,7 @@ const Orders = () => {
                                                     <Table.Cell>{order.product.manufacturerId}</Table.Cell>
                                                     <Table.Cell>{order.status}</Table.Cell>
                                                     <Table.Cell className="space-y-2">
-                                                        <a href="#"><FontAwesomeIcon icon={faEdit}/></a>&nbsp;
-                                                        <FontAwesomeIcon icon={faTrash}/>
+                                                        <FontAwesomeIcon icon={faEdit} onClick={openModal}/>
                                                     </Table.Cell>
                                                 </Table.Row>
                                             ))}
@@ -198,6 +264,7 @@ const Orders = () => {
                     </div>
                 </div>
             </div>
+            <OrdersModal showModal={showModal} closeModal={closeModal}/>
         </Layout>
     );
 }

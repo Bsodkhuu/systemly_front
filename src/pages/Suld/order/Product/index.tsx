@@ -17,7 +17,8 @@ const ProductAdd = () => {
             ...values, 
             priceMain: parseFloat(values.priceMain.toString()), 
             quantity: parseInt(values.quantity.toString()),
-            prodmetricType: parseInt(values.prodmetricType.toString())
+            prodmetricType: parseInt(values.prodmetricType.toString()), 
+            productCnt: parseInt(values.productCnt.toString()),
         });
         return response.data;
     }
@@ -185,21 +186,28 @@ const ProductAdd = () => {
                         </div>
 
                         <div className="flex gap-4">
+                        <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="evaDate" value="ETA(Хэрэв байхгүй бол бэлэн болох хугацаа)"/>
+                                </div>
+                                <TextInput id="evaDate" type="date" placeholder="ETA(Хэрэв байхгүй бол бэлэн болох хугацаа)" {...register("evaDate")}/>
+                            </div>
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="confirmFlag" value="Бүтээгдэхүүнээ зөв оруулсан эсэх"/>
                                 </div>
                                 <TextInput id="confirmFlag" placeholder="Тийм, Үгүй" {...register("confirmFlag")}/>
                             </div>
-                            <div className="w-1/2">
+                            
+                        </div>
+
+                        <div className="flex gap-4">
+                        <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="historyId" value="History Id"/>
                                 </div>
                                 <TextInput id="historyId" placeholder="Бүтээгдэхүүний түүх" {...register("historyId")}/>
                             </div>
-                        </div>
-
-                        <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="activeFlag" value="Өгөгдөл оруулсан утга"/>

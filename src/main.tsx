@@ -33,7 +33,6 @@ import Asuulguud from "./pages/Suld/order/asuulguud";
 import Orders from "./pages/Suld/order/Orders";
 import Zam from "./pages/Suld/order/zam";
 import Nemelt from "./pages/Suld/order/nemelt";
-import Notifications from "./pages/Suld/Tohirgoo/notifications";
 import FeedBack from "./pages/Suld/feedback";
 import CreateRole from "./pages/Suld/Tohirgoo/createRole";
 import RoleList from "./pages/Suld/Tohirgoo/role";
@@ -57,6 +56,7 @@ import ProductCategoryAdd from "./pages/Suld/order/ProductCategory";
 import Category from "./pages/Suld/order/Category";
 import VehicleSub from "./pages/Suld/order/VehicleCategory/VehicleSub";
 import OrderCreate from "./pages/Suld/order/OrderCreate";
+import NotificationsAdd from "./pages/Suld/Tohirgoo/notifications";
 
 const router = createBrowserRouter([
   {
@@ -153,7 +153,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/notifications", 
-    element: <Notifications/>
+    element: <NotificationsAdd/>
   },
   {
     path: "/feedback", 
