@@ -6,9 +6,7 @@ import {
   Modal,
   Card,
   TextInput,
-  Checkbox,
   Select,
-  FileInput,
 } from "flowbite-react";
 
 import React, { useState } from "react";
