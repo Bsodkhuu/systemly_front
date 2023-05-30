@@ -92,10 +92,10 @@ const My = () => {
                           <Table.Cell>{productData.productDescription}</Table.Cell>
                           <Table.Cell>{productData.prodmetric.typeId}</Table.Cell>
                           <Table.Cell>{productData.prodmetricType}</Table.Cell>
-                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{productData.productCnt}</Table.Cell>
                           <Table.Cell>{productData.priceMain}</Table.Cell>
                           <Table.Cell>{productData.currency}</Table.Cell>
-                          <Table.Cell></Table.Cell>
+                          <Table.Cell>{productData.priceMain * productData.productCnt}</Table.Cell>
                         </Table.Row>
                        ))}
                       </Table.Body>

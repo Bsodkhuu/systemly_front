@@ -207,8 +207,8 @@ const Orders = () => {
                                                 <Table.Cell>{product.productDescription}</Table.Cell>
                                                 <Table.Cell>{product.priceMain}</Table.Cell>
                                                 <Table.Cell>{product.productFits.positionId}</Table.Cell>
-                                                <Table.Cell></Table.Cell>
-                                                <Table.Cell></Table.Cell>
+                                                <Table.Cell>{product.productCnt}</Table.Cell>
+                                                <Table.Cell>{product.productCnt * product.priceMain}</Table.Cell>
                                             </Table.Row>
                                         ))}
                                         </Table.Body>

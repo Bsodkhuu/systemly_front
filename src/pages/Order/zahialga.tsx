@@ -88,11 +88,6 @@ const Zahialga = () => {
     return response.data as Product[];
   }
 
-  const [inputText, setInputText] = useState("");
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputText(event.target.value);
-  };
 
   const [cart, setCart] = useState([]);
 
@@ -310,7 +305,7 @@ const Zahialga = () => {
                         </Button>
                         </Table.Cell>
                         <Table.Cell>
-                          <TextInput onChange={handleChange} value={inputText}/>
+                          <TextInput id="productCnt"/>
                         </Table.Cell>
                         <Table.Cell>
                         <a href="/messej">
@@ -341,10 +336,9 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо ширхэг : {inputText}
+                      Тоо ширхэг : {product.productCnt}
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт : {product.priceMain * product.quantity} 
-                      {/* hudalaa shvv hhaa */}
+                      Нийт : {product.priceMain * product.productCnt} 
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}

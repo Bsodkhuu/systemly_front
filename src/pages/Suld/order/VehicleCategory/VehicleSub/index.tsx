@@ -45,6 +45,27 @@ const VehicleSub = () => {
                                 <TextInput id="mn" placeholder="Монгол нэрээр бичнэ үү " {...register("mn")}/>
                             </div>
                         </div>
+
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="activeFlag" value="Идэвхтэй эсэх"/>
+                                </div>
+                                <TextInput id="activeFlag" placeholder="Тийм,Үгүй" {...register("activeFlag")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
+                                </div>
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга " {...register("deleteFlag")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
+                                </div>
+                                <TextInput id="deleteDate"  type="date" placeholder="Засвар хийсэн он сар" {...register("deleteDate")}/>
+                            </div>
+                        </div>
                         <div className="flex gap-4">
                           <Button className="bg-gray-400">Буцах</Button>
                           <Button className="bg-orange-400" onClick={handleSubmit(onSubmit)}>Хадгалах</Button>

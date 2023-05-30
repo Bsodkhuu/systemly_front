@@ -31,6 +31,13 @@ export interface VehicleCategory {
   mn: string;
   createdAt: string;
   updatedAt: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 export interface VehicleSubCategory {
@@ -41,12 +48,26 @@ export interface VehicleSubCategory {
   vehicleCategory: VehicleCategory;
   createdAt: string;
   updatedAt: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 export interface ProductCategory {
   id: string;
   createdAt: string;
   updatedAt: string;
   en: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 export interface ProductSubCategory {
@@ -56,6 +77,13 @@ export interface ProductSubCategory {
   en: string;
   productCategoryId?: string;
   productCategory: ProductCategory;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 //order system
 export interface Constant {
@@ -67,10 +95,10 @@ export interface Constant {
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
-  insertUser: number;
+  insertUser: string;
   deleteDate: string;
-  deleteUser: number;
-  updateUser: number;
+  deleteUser: string;
+  updateUser: string;
 }
 
 export interface Prodmetric {
@@ -241,6 +269,13 @@ export interface Work {
   open: string;
   close: string;
   description: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 type Week = any;
 
@@ -251,6 +286,13 @@ export interface Holiday {
   openDate: string;
   closeDate: string;
   description: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 export interface Online {
@@ -259,6 +301,13 @@ export interface Online {
   updatedAt: string;
   image: string;
   link: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 
@@ -381,6 +430,13 @@ export interface Description {
   createdAt: string;
   updatedAt: string;
   body: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 export interface Service {
@@ -430,6 +486,13 @@ export interface Address {
   branchId?: string;
   phoneNumber: PersonPhone;
   phoneId?:string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
 }
 
 export interface Person {
@@ -625,10 +688,10 @@ export interface Inquiry{
   updatedAt: string;
   product: Product;
   productId?: string
-  prodmetric: Prodmetric;
-  prodmetricId?: string
   branch: Branch;
   branchId?: string;
+  productFits:ProductFits;
+  productFitsId?: string;
   vehicleUsage: VehicleUsage;
   vehicleUsageId?: string
   inquiryNumber: string;

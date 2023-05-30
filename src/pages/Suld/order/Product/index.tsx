@@ -18,7 +18,6 @@ const ProductAdd = () => {
             priceMain: parseFloat(values.priceMain.toString()), 
             quantity: parseInt(values.quantity.toString()),
             prodmetricType: parseInt(values.prodmetricType.toString()), 
-            productCnt: parseInt(values.productCnt.toString()),
         });
         return response.data;
     }

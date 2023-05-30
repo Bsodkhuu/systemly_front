@@ -10,7 +10,6 @@ import {
 } from "flowbite-react";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
@@ -115,14 +114,18 @@ const Inquiry = () => {
                   <FileInput onChange={handleFileChange}/>
                   <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
                   <Button onClick={handleUploadClick} className="bg-orange-500">Сэлбэгийн үнийн санал</Button>
-                  <h1 className="text-1xl">Сэлбэгийн үнийн саналын жагсаалт</h1>
+                  
                   <Table>
                     <Table.Head className="uppercase">
-                      <Table.HeadCell>Партын дугаар</Table.HeadCell>
+                      <Table.HeadCell>Inquiry number</Table.HeadCell>
+                      <Table.HeadCell>Гишүүн</Table.HeadCell>
                       <Table.HeadCell>Нийлүүлэгч</Table.HeadCell>
-                      <Table.HeadCell>Тоо ширхэг</Table.HeadCell>
+                      <Table.HeadCell>Part Number</Table.HeadCell>
+                      <Table.HeadCell>Тайлбар</Table.HeadCell>
+                      <Table.HeadCell>Fitting Position</Table.HeadCell>
                       <Table.HeadCell>Үнэ</Table.HeadCell>
                       <Table.HeadCell>Валют</Table.HeadCell>
+                      <Table.HeadCell>Асуулгын огноо</Table.HeadCell>
                       <Table.HeadCell>Үйлдэл</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
