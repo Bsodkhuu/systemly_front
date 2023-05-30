@@ -15,17 +15,17 @@ const OrderCreate = () => {
     const { mutateAsync } = useMutation("create", create);
 
     async function create(values: Order) {
-        const response = await axiosClient.post("/orders", {
-            ...values,
-            prodAllTotal: parseInt(values.prodAllTotal.toString()),
-            manufacturerPrice: parseFloat(values.manufacturerPrice.toString()),
-            deliveryPrice: parseFloat(values.deliveryPrice.toString()), 
-            memberPrice: parseFloat(values.memberPrice.toString()),
-            tax: parseFloat(values.tax.toString()), 
-            otherPrice: parseFloat(values.otherPrice.toString()),
-            totalPrice: parseFloat(values.totalPrice.toString()),
-            packageId: parseInt(values.packageId.toString()),
-        });
+        const response = await axiosClient.post("/orders", values
+            // ...values,
+            // prodAllTotal: parseInt(values.prodAllTotal.toString()),
+            // manufacturerPrice: parseFloat(values.manufacturerPrice.toString()),
+            // deliveryPrice: parseFloat(values.deliveryPrice.toString()), 
+            // memberPrice: parseFloat(values.memberPrice.toString()),
+            // tax: parseFloat(values.tax.toString()), 
+            // otherPrice: parseFloat(values.otherPrice.toString()),
+            // totalPrice: parseFloat(values.totalPrice.toString()),
+            // packageId: parseInt(values.packageId.toString()),
+        );
         return response.data;
     }
 
