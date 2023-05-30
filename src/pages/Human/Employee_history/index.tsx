@@ -42,8 +42,7 @@ const EmployeeHistory = () => {
                         <Table.Cell>{employee.branch.branchName}</Table.Cell>
                         <Table.Cell>{employee.position.positionName}</Table.Cell>
                         <Table.Cell>{employee.jobStart}</Table.Cell>
-                        <Table.Cell></Table.Cell>
-                        {/* <Table.Cell>{employee.jobEnd}</Table.Cell> */}
+                        <Table.Cell>{employee.jobEnd}</Table.Cell>
                         <Table.Cell className="space-2xl">
                          <FontAwesomeIcon icon={faPenToSquare}/>
                         </Table.Cell>

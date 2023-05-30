@@ -186,20 +186,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
             </div>
             <div className="w-1/2">
               <div className="block mb-2">
-                <Label htmlFor="familyName" value="Гэр бүлийн байдал" />
-              </div>
-              <TextInput
-                type="text"
-                id="familyName"
-                placeholder=""
-                {...register("familyName")}
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <div className="block mb-2">
                 <Label htmlFor="email" value="Имэйл" />
               </div>
               <TextInput
@@ -208,6 +194,10 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("email")}
               />
             </div>
+          </div>
+
+          <div className="flex gap-4">
+            
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="phoneId" value="Утасны дугаар" />
@@ -223,9 +213,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 ))}
               </Select>
             </div>
-          </div>
-
-          <div className="flex gap-4">
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="country" value="Улс" />
@@ -236,6 +223,10 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("country")}
               />
             </div>
+          </div>
+
+          <div className="flex gap-4">
+            
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="customerCode" value="Хэрэглэгчийн код" />
@@ -246,9 +237,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("customerCode")}
               />
             </div>
-          </div>
-
-          <div className="flex gap-4">
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="historyId" value="Харилцагчийн түүх" />
@@ -259,6 +247,10 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("historyId")}
               />
             </div>
+          </div>
+
+          <div className="flex gap-4">
+            
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="activeFlag" value="Идэвхтэй эсэх" />
@@ -270,8 +262,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 placeholder="Идэвхтэй эсэх"
               />
             </div>
-          </div>
-          <div className="flex gap-4">
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="deleteFlag" value="Засвар хийсэн утга" />
@@ -282,6 +272,9 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("deleteFlag")}
               />
             </div>
+          </div>
+          <div className="flex gap-4">
+            
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="deleteDate" value="Засвар хийсэн он сар" />
@@ -292,9 +285,6 @@ const CustomerModal: FC<ModalProps> = ({ showModal, closeModal }) => {
                 {...register("deleteDate")}
               />
             </div>
-          </div>
-
-          <div className="flex gap-4">
             <div className="w-1/2">
               <div className="block mb-2">
                 <Label htmlFor="confirmFlag" value="Зөвшөөрсөн эсэх" />

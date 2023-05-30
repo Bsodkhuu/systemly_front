@@ -541,6 +541,9 @@ export interface Employee{
   positionId?: string;
   filePath: string;
   jobStart: string;
+  jobEnd: string;
+  rank: string;
+  experienceDate: string;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;
@@ -630,6 +633,27 @@ export interface Inquiry{
   vehicleUsageId?: string
   inquiryNumber: string;
   inquiryDate: string;
+  activeFlag: string;
+  deleteFlag: string;
+  insertDate: string;
+  insertUser: string;
+  updateUser: string;
+  deleteDate: string;
+  deleteUser: string;
+}
+
+export interface Spare{
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  service: Service;
+  serviceId?: string
+  spareMain: string;
+  spareSub: string;
+  priceBig: number;
+  priceJeep: number;
+  priceMiddle: number;
+  priceSeat: number;
   activeFlag: string;
   deleteFlag: string;
   insertDate: string;

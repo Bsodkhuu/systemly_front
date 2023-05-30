@@ -58,11 +58,13 @@ import VehicleSub from "./pages/Suld/order/VehicleCategory/VehicleSub";
 import OrderCreate from "./pages/Suld/order/OrderCreate";
 import NotificationsAdd from "./pages/Suld/Tohirgoo/notifications";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+ 
   {
     path: "/orderCreate",
     element: <OrderCreate/>,

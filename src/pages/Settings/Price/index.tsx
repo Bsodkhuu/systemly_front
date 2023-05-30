@@ -1,166 +1,210 @@
-import { TextInput, Button, Table, Modal, Label } from "flowbite-react";
+import { TextInput, Button, Modal, Label, Select, Table} from "flowbite-react";
 import Layout from "../../../components/layout";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Select } from 'antd';
-
-
+import { Service, Spare } from "../../API";
 
 const Price = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  function openModal() {
+    setShowModal(true);
+  }
+  function closeModal(){
+    setShowModal(false);
+  }
+
+  const { register, handleSubmit } = useForm<Spare>();
+  const { mutateAsync } = useMutation("createSpare", createSpare);
+
+  const { data: serviceData } = useQuery("getService", getService);
+  
+  async function getService() {
+    const response = await axiosClient.get("/services");
+    return response.data as Service[];
+  }
+
+  const { data: spareData } = useQuery("getSpare", getSpare);
+  
+  async function getSpare() {
+    const response = await axiosClient.get("/spares");
+    return response.data as Spare[];
+  }
+
+  async function createSpare(values: Spare) {
+    const response = await axiosClient.post("/spares", {
+      ...values,
+      priceBig: parseFloat(values.priceBig.toString()),
+      priceJeep: parseFloat(values.priceJeep.toString()),
+      priceMiddle: parseFloat(values.priceMiddle.toString()),
+      priceSeat: parseFloat(values.priceSeat.toString()),
+    });
+    return response.data;
+  }
+  async function onSubmit(values: Spare) {
+    await mutateAsync(values);
+    closeModal();
+  }
 
   return (
     <Layout>
+      <Modal show={showModal} onClose={closeModal}>
+        <Modal.Header>Нэмэх</Modal.Header>
+        <Modal.Body>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="spareMain" value="Main Group"/>
+                </div>
+                <TextInput id="spareMain" placeholder="Main Group" required {...register("spareMain")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="spareSub" value="Sub Group"/>
+                </div>
+                <TextInput id="spareSub" placeholder="Sub Group" required {...register("spareSub")}/>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="serviceId" value="Үйлчилгээний нэр" {...register("serviceId")}/>
+                </div>
+                <Select id="serviceId" placeholder="Үйлчилгээний нэр">
+                  {serviceData?.map((i) => (
+                    <option key={`service_${i.id}`} value={i.id}>
+                      {i.serviceName}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="priceBig" value="Том оврийн"/>
+                </div>
+                <TextInput id="priceBig" type="number" placeholder="Том оврийн" required {...register("priceBig")}/>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="priceJeep" value="SUV"/>
+                </div>
+                <TextInput id="priceJeep" type="number" placeholder="SUV" required {...register("priceJeep")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="priceMiddle" value="Дунд гарын"/>
+                </div>
+                <TextInput id="priceMiddle" type="number" placeholder="Дунд гарын" required {...register("priceMiddle")}/>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="priceSeat" value="Суудлын"/>
+                </div>
+                <TextInput id="priceSeat" type="number" placeholder="Суудлын" required {...register("priceSeat")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="activeFlag" value="Идэвхтэй эсэх"/>
+                </div>
+                <TextInput id="activeFlag"  placeholder="Идэвхтэй эсэх" required {...register("activeFlag")}/>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
+                </div>
+                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" required {...register("deleteFlag")}/>
+              </div>
+              <div className="w-1/2">
+                <div className="mb-2 block">
+                  <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
+                </div>
+                <TextInput id="deleteDate" type="date" placeholder="Засвар хийсэн он сар" required {...register("deleteDate")}/>
+              </div>
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={closeModal} className="bg-gray-400">
+            Буцах
+          </Button>
+          <Button  className="bg-orange-500" onClick={handleSubmit(onSubmit)}>
+            Хадгалах
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div className="p-4 bg-gray-200 md:h-screen w-full">
         <div className="bg-white p-2 rounded-lg">
           <div className="md:flex justify-between mb-4">
             <div className="text-1xl mb-4 md:mb-0">Засварын үнийн тохиргоо</div>
             <div className="flex gap-4">
               <TextInput type="search" name="name" placeholder="Хайлт" />
-              
               <Button className="bg-orange-500">Хайх</Button>
-              
               <a href="/active">
                 <Button className="bg-orange-500">Үйлчилгээ бүртгэх</Button>
               </a>
+              <Button className="bg-orange-500" onClick={openModal}>Нэмэх</Button>
             </div>
           </div>
-{/*    
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-              <div className="flex gap-4">
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                  <Label htmlFor="mainCategory" value="Main Group"/>
-                  </div>
-                  <TextInput type="text" {...register("mainCategory")}/>
-                </div>
-                <div className="w-1/2">
-                  <div className="mb-2 block">
-                  <Label htmlFor="subCategory" value="Sub Group"/>
-                  </div>
-                  <TextInput type="text" {...register("subCategory")}/>
-                </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-1/2">
-                    <div className="mb-2 block">
-                    <Label htmlFor="name" value="Үйлчилгээ нэр"/>
-                    </div>
-                    <TextInput type="text" {...register("name")}/>
-                    </div>
-                    <div className="w-1/2">
-                      <div className="mb-2 block">
-                      <Label htmlFor="price" value="Том"/>
-                      </div>
-                      <TextInput type="number" {...register("price")}/>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                        <div className="w-1/2">
-                          <div className="mb-2 block">
-                          <Label htmlFor="averagePrice" value="Дунд"/>
-                          </div>
-                          <TextInput type="number" {...register("averagePrice")}/>
-                    </div>
-                    <div className="w-1/2">
-                      <div className="mb-2 block">
-                      <Label htmlFor="suudalPrice" value="Суудлын"/>
-                      </div>
-                      <TextInput type="number" {...register("suudalPrice")}/>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                        <div className="w-1/2">
-                          <div className="mb-2 block">
-                          <Label htmlFor="achaaPrice" value="Ачааны"/>
-                          </div>
-                          <TextInput type="number" {...register("achaaPrice")}/>
-                    </div>
-                    <div className="w-1/2">
-                      <div className="mb-2 block">
-                      <Label htmlFor="currency" value="Валют"/>
-                      </div>
-                      <TextInput type="text"   {...register("currency")}/>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 justify-end ">
-                    <Button className="bg-gray-400">Буцах</Button>
-                    <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
-                      Хадгалах
-                    </Button>
-                </div>
-            </form>
-            &nbsp;&nbsp;
-          <Table className="hidden md:block" >
-            <Table.Head>
+
+          <Table> 
+            <Table.Head className="uppercase">
               <Table.HeadCell>Main Group</Table.HeadCell>
               <Table.HeadCell>Sub Group</Table.HeadCell>
               <Table.HeadCell>Үйлчилгээний нэр</Table.HeadCell>
-              <Table.HeadCell>Том</Table.HeadCell>
-              <Table.HeadCell>Дунд</Table.HeadCell>
+              <Table.HeadCell>Том оврийн</Table.HeadCell>
+              <Table.HeadCell>SUV</Table.HeadCell>
+              <Table.HeadCell>Дунд гарын</Table.HeadCell>
               <Table.HeadCell>Суудлын</Table.HeadCell>
-              <Table.HeadCell>Ачааны</Table.HeadCell>
-              <Table.HeadCell>Валют</Table.HeadCell>
             </Table.Head>
-            <Table.Body className="divide-y">
-              {serviceList?.map((service: ServiceType, index: number) => (
+            <Table.Body>
+              {spareData?.map((spareData: Spare, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>
-                    <Select>
-                      <option value="mainCategory">
-                        {service.mainCategory}
+                    <Select> 
+                      <option value={spareData.spareMain}>
+                        {spareData.spareMain}
                       </option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                    <Select>
-                      <option value="subCategory">{service.subCategory}</option>
+                    <Select> 
+                      <option value={spareData.spareMain}>
+                        {spareData.spareMain}
+                      </option>
                     </Select>
                   </Table.Cell>
                   <Table.Cell>
-                    <Select>
-                      <option value="name">{service.name}</option>
-                    </Select>
+                    {spareData.service.serviceName}
                   </Table.Cell>
-                  <Table.Cell>{service.price}</Table.Cell>
-                  <Table.Cell>{service.averagePrice}</Table.Cell>
-                  <Table.Cell>{service.suudalPrice}</Table.Cell>
-                  <Table.Cell>{service.achaaPrice}</Table.Cell>
-                  <Table.Cell>{service.currency}</Table.Cell>
+                  <Table.Cell>
+                    {spareData.priceBig}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {spareData.priceJeep}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {spareData.priceMiddle}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {spareData.priceSeat}
+                  </Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>
           </Table>
-          
-        </div>
-        <div className="md:hidden" >
-        {serviceList?.map((service: ServiceType, index: number) => (
-                <div className=" flex justify-between p-4 bg-white rounded-md text-[11px] shadow-xl mt-3 text-gray-500  border border-2 border-orange-300" >
-                <div className="w-[50%] space-y-1 divide-y " >
-                    <div className="font-bold text-black " >Main Group</div>
-                    <div>Sub Group</div>
-                    <div>Үйлчилгээний нэр</div>
-                    <div>Том</div>
-                    <div>Дунд</div>
-                    <div>Суудлын</div>
-                    <div>Ачааны</div>
-                    <div>Валют</div>
-                </div>
-                <div className="w-[50%] space-y-1 divide-y " key={index}>
-                    <div className="font-bold h-[16px]"><select className="h-4 rounded-xl border-orange-300 w-full "><option value="mainCategory"> {service.mainCategory}</option></select></div>
-                    <div className="font-bold h-[17px]"><select className="h-4 rounded-xl border-orange-300 w-full "><option value="subCategory">{service.subCategory}</option></select></div>
-                    <div className="font-bold h-[17px]"><select className="h-4 rounded-xl border-orange-300 w-full "><option value="name">{service.name}</option></select></div>
-                    <div>{service.price}</div>
-                    <div>{service.averagePrice}</div>
-                    <div>{service.suudalPrice}</div>
-                    <div>{service.achaaPrice}</div>
-                    <div>{service.currency}</div>
-                </div>
-              </div>
-              ))}
-               */}
         </div>
       </div>
     </Layout>

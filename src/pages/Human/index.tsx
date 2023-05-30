@@ -13,10 +13,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../config/axios";
-import { Branch, Employee, Person, PersonPhone, Position, ServiceEmployee, ServiceOrder, ServiceOrderProduct } from "../API";
+import { Branch, Employee, PersonPhone, Position, ServiceEmployee, ServiceOrder, ServiceOrderProduct } from "../API";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Human = () => {
   const [showModal, setShowModal] = useState(false);
@@ -323,7 +322,7 @@ const Human = () => {
                   </a>
                  
                 </div>
-                <Label htmlFor="" value="Албан тушаал" />
+                <Label htmlFor="positionId" value="Албан тушаал" />
                 <Select>
                     {positionData?.map((i) => (
                       <option value={i.id}>
