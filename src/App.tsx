@@ -14,6 +14,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useQuery } from "react-query";
+import { axiosClient } from "./config/axios";
+import { GarageInventory, Product } from "./pages/API";
 
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
@@ -39,6 +42,19 @@ export const options = {
 };
 
 const App = () => {
+
+  const {data: garageInventory} = useQuery("getInventory", getInventory);
+  async function getInventory() {
+    const response = await axiosClient.get("/garage-inventory");
+    return response.data as GarageInventory[];
+  }
+
+  const {data: product } = useQuery("getProduct", getProduct);
+  async function getProduct() {
+    const response = await axiosClient.get("/products");
+    return response.data as Product[];
+  }
+  
   return (
     <Layout>
       <div className="p-4 pb-2 w-full md:h-screen">
@@ -47,12 +63,11 @@ const App = () => {
             <Card className="md:w-2/5 md:h-96">
               <Bar
                 data={{
-                  // labels: inventory?.map((i) => i.purchasedFrom),
+                  labels: garageInventory?.map((i) => i.mainPrice),
                   datasets: [
                     {
-                      label: "Сэлбэгийн үлдэгдэл",
-                      data: "",
-                      // inventory?.map((i) => i.quantity),
+                      label: "Агуулахын үлдэгдэл",
+                      data: garageInventory?.map((i) => i.productCnt),
                       borderWidth: 1,
                       backgroundColor: "#FFA500",
                     },
@@ -60,16 +75,15 @@ const App = () => {
                 }}
               />
             </Card>
-
             <Card className="md:w-2/5 md:h-96">
               <Line
                 options={options}
                 data={{
-                  // labels: product?.map((i) => i.description),
+                  labels: product?.map((i) => i.productName),
                   datasets: [
                     {
                       label: "Захиалга",
-                      data: "",
+                      data: product?.map((i) => i.priceMain),
                       borderWidth: 1,
                       backgroundColor: "#FFA500",
                       borderColor: "rgb(255, 99, 132)",

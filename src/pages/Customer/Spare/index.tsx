@@ -33,7 +33,7 @@ const Spare = () => {
     }
     const formData = new FormData();
     
-    const fileResponse = await axiosClient.post("http://localhost:3000/file_upload", formData);
+    const fileResponse = await axiosClient.post("/file_upload", formData);
     return fileResponse.data;
   };
   
