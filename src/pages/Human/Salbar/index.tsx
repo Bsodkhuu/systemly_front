@@ -151,7 +151,6 @@ const Salbar = () => {
                                     </Select>
                             </div>
                         </div>
-
                         <div className="flex gap-4">
                             <div className="w-1/2">
                                 <div className="mb-2 block">
@@ -159,8 +158,7 @@ const Salbar = () => {
                                 </div>
                                 <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
                             </div>
-                        </div>
-                        <div className="flex gap-4">
+                        
                         <div className="w-1/2">
                                 <div className="mb-2 block">
                                     <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
@@ -173,7 +171,8 @@ const Salbar = () => {
                                 </div>
                                 <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
                             </div>
-                        </div>
+                            </div>
+                        
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -188,7 +187,8 @@ const Salbar = () => {
                             <h4 className="text-1xl">Салбарын хаяг</h4>
                              <div className="md:flex gap-4">
                                <div className="flex gap-3 mt-3 justify-end md:justify-normal ">
-                                 <Button className="bg-orange-500" onClick={openModal}>Салбарын хаяг нэмэх</Button>
+                                 <Button className="bg-orange-400" onClick={openModal}>Салбарын хаяг нэмэх</Button>
+                                 <a href="/clock"><Button className="bg-orange-400">Ажлын цагийн хуваарь</Button></a>
                             </div>
                         </div>
                     </div>

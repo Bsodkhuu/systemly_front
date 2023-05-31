@@ -42,6 +42,9 @@ const Amralt = () => {
                 <TextInput type="date" {...register("openDate")} />&nbsp;
                 <TextInput type="date" {...register("closeDate")} />&nbsp;
                 <TextInput type="text" {...register("description")} />&nbsp;
+                <TextInput type="text" {...register("activeFlag")}/>&nbsp;
+                <TextInput type="text" {...register("deleteFlag")}/>&nbsp;
+                <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>&nbsp;
                 <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
                   Хадгалах
                 </Button>
@@ -53,10 +56,9 @@ const Amralt = () => {
               <Table.HeadCell>Эхлэх он сар</Table.HeadCell>
               <Table.HeadCell>Дуусах он сар</Table.HeadCell>
               <Table.HeadCell>Тайлбар</Table.HeadCell>
-              
             </Table.Head>
             <Table.Body className="divide-y">
-              {holidayList?.map((holiday: any, index: number) => (
+              {holidayList?.map((holiday: Holiday, index: number) => (
                 <Table.Row key={index}>
                   <Table.Cell>{holiday.openDate}</Table.Cell>
                   <Table.Cell>{holiday.closeDate}</Table.Cell>
