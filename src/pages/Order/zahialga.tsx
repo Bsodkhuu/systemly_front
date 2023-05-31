@@ -97,16 +97,12 @@ const Zahialga = () => {
     ]);
   };
 
-  const [inputText, setInputText] = React.useState();
 
-  function handleChange(event: { target: { inputText: any; value: any; }; }) {
-    const { inputText, value} = event.target;
-    setInputText({
-      ...inputText,
-      [inputText]: value,
-    });
+  const [inputText, setInputText ] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputText(event.target.value);
   }
-  
   function openModal() {
     setShowModal(true);
   }
@@ -315,7 +311,7 @@ const Zahialga = () => {
                         </Button>
                         </Table.Cell>
                         <Table.Cell>
-                          <TextInput value={inputText}/>
+                          <TextInput value={inputText} onChange={handleChange}/>
                         </Table.Cell>
                         <Table.Cell>
                         <a href="/messej">
