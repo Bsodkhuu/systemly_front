@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { Service, Spare } from "../../API";
 
 const Price = () => {
@@ -85,32 +84,32 @@ const Price = () => {
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="priceBig" value="Том оврийн"/>
+                  <Label htmlFor="priceBig" value="Том оврийн үнэ"/>
                 </div>
-                <TextInput id="priceBig" type="number" placeholder="Том оврийн" required {...register("priceBig")}/>
+                <TextInput id="priceBig" type="number" placeholder="Том оврийн үнээ бичнэ үү" required {...register("priceBig")}/>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="priceJeep" value="SUV"/>
+                  <Label htmlFor="priceJeep" value="SUV үнэ"/>
                 </div>
-                <TextInput id="priceJeep" type="number" placeholder="SUV" required {...register("priceJeep")}/>
+                <TextInput id="priceJeep" type="number" placeholder="SUV үнээ бичнэ үү" required {...register("priceJeep")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="priceMiddle" value="Дунд гарын"/>
+                  <Label htmlFor="priceMiddle" value="Дунд гарын үнэ"/>
                 </div>
-                <TextInput id="priceMiddle" type="number" placeholder="Дунд гарын" required {...register("priceMiddle")}/>
+                <TextInput id="priceMiddle" type="number" placeholder="Дунд гарын үнээ бичнэ үү" required {...register("priceMiddle")}/>
               </div>
             </div>
 
             <div className="flex gap-4">
               <div className="w-1/2">
                 <div className="mb-2 block">
-                  <Label htmlFor="priceSeat" value="Суудлын"/>
+                  <Label htmlFor="priceSeat" value="Суудлын үнэ"/>
                 </div>
-                <TextInput id="priceSeat" type="number" placeholder="Суудлын" required {...register("priceSeat")}/>
+                <TextInput id="priceSeat" type="number" placeholder="Суудлын үнээ бичнэ үү" required {...register("priceSeat")}/>
               </div>
               <div className="w-1/2">
                 <div className="mb-2 block">

@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { TextInput, Button, Table } from "flowbite-react";
+import React from "react";
+import { TextInput, Button, Table, Label } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import Layout from "../../../components/layout";
 import { useMutation, useQuery } from "react-query";
@@ -37,24 +37,57 @@ const Amralt = () => {
               <Button className="bg-orange-500">Хайх</Button>
             </div>
           </div>
-          
-          <form onSubmit={handleSubmit(onSubmit)}>
-                <TextInput type="date" {...register("openDate")} />&nbsp;
-                <TextInput type="date" {...register("closeDate")} />&nbsp;
-                <TextInput type="text" {...register("description")} />&nbsp;
-                <TextInput type="text" {...register("activeFlag")}/>&nbsp;
-                <TextInput type="text" {...register("deleteFlag")}/>&nbsp;
-                <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>&nbsp;
-                <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">
-                  Хадгалах
-                </Button>
-          </form>
-         &nbsp;&nbsp;
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+             <div className="flex gap-4">
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                       <Label htmlFor="openDate" value="Эхлэх хугацаа"/>
+                      </div>
+                    <TextInput type="date" {...register("openDate")} />
+                    </div>
+                  <div className="w-1/2">
+                    <div className="mb-2 block">
+                       <Label htmlFor="closeDate" value="Дуусах хугацаа"/>
+                    </div>
+                      <TextInput type="date" {...register("closeDate")} />
+                    </div>
+                  <div className="w-1/2">
+                      <div className="mb-2 block">
+                        <Label htmlFor="description" value="Тайлбар"/>
+                      </div>
+                        <TextInput type="text" {...register("description")} />
+                      </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                <Label htmlFor="activeFlag" value="Идэвхтэй эсэх"/>
+                                </div>
+                                <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
+                            </div>
+                        
+                        <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
+                                </div>
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
+                                </div>
+                                <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
+                     </div>
+                  </div>
+             <div className="flex justify-end" >
+              <Button onClick={handleSubmit(onSubmit)} className="bg-orange-500">Хадгалах</Button>
+              </div>
+            </form>
           
           <Table>
             <Table.Head  className="uppercase">
-              <Table.HeadCell>Эхлэх он сар</Table.HeadCell>
-              <Table.HeadCell>Дуусах он сар</Table.HeadCell>
+              <Table.HeadCell>Эхлэх хугацаа</Table.HeadCell>
+              <Table.HeadCell>Дуусах хугацаа</Table.HeadCell>
               <Table.HeadCell>Тайлбар</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">

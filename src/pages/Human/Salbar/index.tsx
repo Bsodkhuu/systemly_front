@@ -172,7 +172,6 @@ const Salbar = () => {
                                 <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
                             </div>
                             </div>
-                        
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

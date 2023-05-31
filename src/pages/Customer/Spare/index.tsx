@@ -16,14 +16,9 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { axiosClient } from "../../../config/axios";
 import { GarageInventory} from "../../API";
-import { Upload } from "antd";
-
-
 
 const Spare = () => {
   const [showModal, setShowModal] = useState(false);
-  const [searchParams] = useSearchParams();
-
   const [fileSelected, setFileSelected] = useState<File>();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,11 +37,6 @@ const Spare = () => {
     return fileResponse.data;
   };
   
-  function nexus() {
-    // supplier selbeg medeelliig table helwereer haruulah
-    //fetch api
-  }
-  function all() { }
 
   function openModal() {
     setShowModal(true);
@@ -65,13 +55,111 @@ const Spare = () => {
   const reviews = [
     {
       id: 1,
-      image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
-      link: "",
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/bilsentin.jpg",
     },
     {
       id: 2,
-      link: "",
-      image: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/bosh.jpg",
+    },
+    {
+      id: 3,
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2023/04/brembo.jpg",
+    },
+    {
+      id: 4, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/clarios.jpg",
+    },
+    {
+      id: 4, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/clarios.jpg",
+    },
+    {
+      id: 5, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/01/Continental.jpg",
+    },
+    {
+      id: 6, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/Delphi.jpg",
+    },
+    {
+      id: 7, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/denso.jpg",
+    },
+    {
+      id: 8, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/dr1v.jpg)",
+    },
+    {
+      id: 9, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/elring.jpg",
+    },
+    {
+      id: 10, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/exide.jpg",
+    },
+    {
+      id: 11, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/08/hc-cargo.jpg",
+    },
+    {
+      id: 12, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/hella.jpg",
+    },
+    {
+      id: 13, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/knorr.jpg",
+    },
+    {
+      id: 14, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/kyb.jpg",
+    },
+    {
+      id: 15, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/mahle.jpg",
+    },
+    {
+      id: 16, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/05/mann.jpg",
+    },
+    {
+      id: 17, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2023/04/Niterra.jpg",
+    },
+    {
+      id: 18, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/03/NRF.jpg",
+    },
+    {
+      id: 19, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/03/NTN.jpg",
+    },
+    {
+      id: 20, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/osram.jpg",
+    },
+    {
+      id: 21, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/Philips.jpg",
+    },
+    {
+      id: 22, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/schaeffler.jpg",
+    },
+    {
+      id: 23, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/skf.jpg",
+    },
+    {
+      id: 24, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2022/04/Totalenergies.jpg",
+    },
+    {
+      id: 25, 
+      image: "https://www.nexusautomotiveinternational.eu/wp-content/uploads/2021/04/valeo.jpg",
+    },
+    {
+      id: 26, 
+      image: "",
     },
   ];
   return (
@@ -86,7 +174,7 @@ const Spare = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="" value="Файл оруулах" />
                 </div>
-                <FileInput id=""  />
+                <FileInput id=""/>
               </div>
             </div>
           </form>
@@ -104,15 +192,6 @@ const Spare = () => {
         <div className="bg-white p-6 rounded-lg">
           <div className="flex justify-between mb-4">
             <h3 className="text-1xl">Агуулахын үлдэгдэл</h3>
-            <div className="flex gap-4">
-              <TextInput
-                name="purchasedFrom"
-                type="search"
-                placeholder="Сэлбэгний үлдэгдэл хайх"/>
-              <Button type="submit" className="bg-orange-500">
-                Хайх
-              </Button>
-            </div>
           </div>
           <div className="grid grid-cols-2">
             <div className="col-span-2">
@@ -123,7 +202,6 @@ const Spare = () => {
                     <img
                       className="d-block w-50"
                       src={review.image}
-                      alt={review.link}
                     />
                   ))}
                 </Carousel>
@@ -133,7 +211,7 @@ const Spare = () => {
                 <Card>
                 <TextInput type="file" onChange={handleFileChange}/>
                 <div>{fileSelected && `${fileSelected.name} - ${fileSelected.type}`}</div>
-                <Button onClick={handleUploadClick} className="bg-orange-500">Сэлбэг нэмэх</Button>
+                <Button onClick={handleUploadClick} className="bg-orange-500">Нэмэх</Button>
                 &nbsp;&nbsp;&nbsp;
                   <Table>
                     <Table.Head className="uppercase">
@@ -144,9 +222,9 @@ const Spare = () => {
                       <Table.HeadCell>Тайлбар</Table.HeadCell>
                       <Table.HeadCell>Бүтээгдэхүүний хэмжих нэгж</Table.HeadCell>
                       <Table.HeadCell>Захиалгын дугаар</Table.HeadCell>
-                      <Table.HeadCell>Нийт захиалгын тоо ширхэг</Table.HeadCell>
-                      <Table.HeadCell>Тоо, ширхэг Хасах</Table.HeadCell>
-                      <Table.HeadCell>Бүтээгдэхүүний үнэ</Table.HeadCell>
+                      <Table.HeadCell>Нийт захиалласан тоо ширхэг</Table.HeadCell>
+                      <Table.HeadCell>Үнэ</Table.HeadCell>
+                      <Table.HeadCell>Хасагдсан тоо ширхэг</Table.HeadCell>
                       <Table.HeadCell>Зарах үнэ</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
@@ -158,9 +236,9 @@ const Spare = () => {
                           <Table.Cell>{garageInventory.product.productName}</Table.Cell>
                           <Table.Cell>{garageInventory.product.productDescription}</Table.Cell>
                           <Table.Cell>{garageInventory.prodmetric.typeId}</Table.Cell>
-                          <Table.Cell>{garageInventory.order.numbOfProd}</Table.Cell>
-                          <Table.Cell>{garageInventory.productCnt}</Table.Cell>
+                          <Table.Cell>{garageInventory.order.packageId}</Table.Cell>
                           <Table.Cell>{garageInventory.productPirce}</Table.Cell>
+                          <Table.Cell>{garageInventory.productCnt}</Table.Cell>
                           <Table.Cell>{garageInventory.mainPrice}</Table.Cell>
                         </Table.Row>
                       ))}

@@ -176,15 +176,7 @@ const SidebarComponent = () => {
                   </div>{" "}
                   Засварын үнийн тохиргоо
                 </a>
-                <a
-                  href="/clock"
-                  className="flex h-8 w-full justify-start items-center">
-                  <div className="text-xl flex justify-center  w-12">
-                    {" "}
-                    <RxLapTimer />{" "}
-                  </div>{" "}
-                  Ажлын цагийн хуваарь
-                </a>
+                
               </div>
             </Panel>
             <Panel header="Сүлд ERP" key="6">
@@ -518,15 +510,7 @@ const SidebarComponent = () => {
                 </div>{" "}
                 Засварын үнийн тохиргоо
               </a>
-              <a
-                href="/clock"
-                className="flex h-8 w-full justify-start items-center">
-                <div className="text-xl flex justify-center  w-12">
-                  {" "}
-                  <RxLapTimer />{" "}
-                </div>{" "}
-                Ажлын цагийн хуваарь
-              </a>
+              
             </div>
           </Panel>
           <Panel header="Сүлд ERP" key="6">
@@ -740,7 +724,7 @@ const SidebarComponent = () => {
             onClick={logOut}
             danger
             className=" text-2xl flex justify-center items-center">
-            <BiExit /> <div className="text-sm">Гарах</div>{" "}
+            <BiExit/> <div className="text-sm">Гарах</div>{" "}
           </Button>
         </div>
       </div>
