@@ -151,6 +151,29 @@ const Salbar = () => {
                                     </Select>
                             </div>
                         </div>
+
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                <Label htmlFor="activeFlag" value="Идэвхтэй эсэх"/>
+                                </div>
+                                <TextInput id="activeFlag" placeholder="Идэвхтэй эсэх" {...register("activeFlag")}/>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                        <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deleteFlag" value="Засвар хийсэн утга"/>
+                                </div>
+                                <TextInput id="deleteFlag" placeholder="Засвар хийсэн утга" {...register("deleteFlag")}/>
+                            </div>
+                            <div className="w-1/2">
+                                <div className="mb-2 block">
+                                    <Label htmlFor="deleteDate" value="Засвар хийсэн он сар"/>
+                                </div>
+                                <TextInput id="deleteDate" type="date" {...register("deleteDate")}/>
+                            </div>
+                        </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
