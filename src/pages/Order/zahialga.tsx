@@ -344,7 +344,7 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Тоо ширхэг : {inputText}
                       <ListGroup.Item></ListGroup.Item>
-                      Нийт : {product.priceMain * product.productCnt} 
+                      Нийт : {product.priceMain} * {inputText} 
                       <ListGroup.Item></ListGroup.Item>
                     </ListGroup.Item>
                   ))}
