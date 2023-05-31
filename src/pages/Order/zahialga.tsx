@@ -80,7 +80,7 @@ const Zahialga = () => {
     const response = await axiosClient.get("/vehicle_categories");
     return response.data as VehicleCategory[];
   }
-  //product=> сэлбэгийн жагсаалт юм байнаа
+
   const { data: product } = useQuery("getProduct", getProduct);
 
   async function getProduct() {
@@ -97,6 +97,16 @@ const Zahialga = () => {
     ]);
   };
 
+  const [productCnt, setProductCnt] = React.useState();
+
+  function handleChange(event: { target: { productCnt: any; value: any; }; }) {
+    const { productCnt, value} = event.target;
+    setProductCnt({
+      ...productCnt,
+      [productCnt]: value,
+    });
+  }
+  
   function openModal() {
     setShowModal(true);
   }
@@ -305,7 +315,7 @@ const Zahialga = () => {
                         </Button>
                         </Table.Cell>
                         <Table.Cell>
-                          <TextInput id="productCnt"/>
+                          <TextInput id={productCnt}/>
                         </Table.Cell>
                         <Table.Cell>
                         <a href="/messej">
@@ -336,7 +346,7 @@ const Zahialga = () => {
                       <ListGroup.Item></ListGroup.Item>
                       Бүтээгдэхүүний хэмжих нэгж: {product.prodmetric.typeId}
                       <ListGroup.Item></ListGroup.Item>
-                      Тоо ширхэг : {product.productCnt}
+                      Тоо ширхэг : {productCnt}
                       <ListGroup.Item></ListGroup.Item>
                       Нийт : {product.priceMain * product.productCnt} 
                       <ListGroup.Item></ListGroup.Item>
